@@ -22,11 +22,22 @@
     body{
       margin:0;
       font-family:var(--sans);
-      background: radial-gradient(1000px 600px at 15% 0%, rgba(122,162,255,.18), transparent 55%),
-                  radial-gradient(900px 700px at 85% 10%, rgba(130,255,211,.10), transparent 60%),
-                  var(--bg);
+      background: var(--bg);
       color:var(--text);
       line-height:1.75;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* 固定背景层, 避免滚动时出现背景断层或渐变分段 */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(1000px 600px at 15% 0%, rgba(122,162,255,.18), transparent 55%),
+        radial-gradient(900px 700px at 85% 10%, rgba(130,255,211,.10), transparent 60%),
+        var(--bg);
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
@@ -40,10 +51,11 @@
     h1{font-size:38px;line-height:1.2;margin:14px 0 10px;letter-spacing:-.02em}
     .meta{color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:10px}
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden}
+    .card{background: rgba(255,255,255,.03); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden}
     .hero{position:relative}
     .hero img{width:100%;display:block;max-height:380px;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,15,22,.25), rgba(11,15,22,.95));}
+    /* 让封面渐变自然落到卡片底色, 避免视觉断层 */
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,15,22,.10), rgba(15,22,35,.98));}
     .hero-inner{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 20px;z-index:2}
     .hero-inner .kicker{color:rgba(231,238,252,.85);font-size:14px}
 

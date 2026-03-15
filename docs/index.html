@@ -90,8 +90,10 @@
     }
     code{font-family:var(--mono)}
 
-    /* 图片作为“正文内容的一部分”来排版, 统一高度, 用裁剪避免一高一低 */
-    .media-row{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0}
+    /* 图文融合: 左侧小图, 右侧正文 */
+    .layout{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+    .aside{position:relative}
+
     .media{
       margin:0;
       position:relative;
@@ -112,12 +114,15 @@
       background:linear-gradient(180deg, transparent, rgba(11,15,22,.85));
       backdrop-filter: blur(6px);
     }
+    .media--inline{margin:16px 0}
 
     footer{margin-top:18px;color:var(--muted);font-size:13px}
 
-    @media (min-width:860px){
-      .media-row{grid-template-columns:1fr 1fr}
-      .media .frame{height:260px}
+    @media (min-width:980px){
+      .layout{grid-template-columns:300px 1fr;gap:22px}
+      .media--aside{position:sticky; top:18px}
+      .media--aside .frame{height:360px}
+      .media--inline .frame{height:260px}
     }
   </style>
 </head>
@@ -142,23 +147,29 @@
       </div>
 
       <article>
-        <p>每次换新 Mac，都是一个新的开始。我从来不食用 Mac 的迁移工具，从零开始的机会太难得了。</p>
-        <p>昨天发了一条 X 推文之后，评论区不少朋友推荐了很多好用的 App。我全部仔细看了一遍，趁热打铁按照我自己的需求整理了一份 Mac 软件清单，分享给大家。</p>
+        <div class="layout">
+          <aside class="aside">
+            <figure class="media media--aside">
+              <div class="frame"><img src="./assets/quote.jpg" alt="引用推文图片" /></div>
+              <figcaption>引用推文配图</figcaption>
+            </figure>
+          </aside>
 
-        <div class="media-row">
-          <figure class="media">
-            <div class="frame"><img src="./assets/cover.jpg" alt="清单截图" /></div>
-            <figcaption>原帖配图</figcaption>
-          </figure>
-          <figure class="media">
-            <div class="frame"><img src="./assets/quote.jpg" alt="引用推文图片" /></div>
-            <figcaption>引用推文配图</figcaption>
-          </figure>
+          <div class="content">
+            <p>每次换新 Mac，都是一个新的开始。我从来不食用 Mac 的迁移工具，从零开始的机会太难得了。</p>
+            <p>昨天发了一条 X 推文之后，评论区不少朋友推荐了很多好用的 App。我全部仔细看了一遍，趁热打铁按照我自己的需求整理了一份 Mac 软件清单，分享给大家。</p>
+
+            <figure class="media media--inline">
+              <div class="frame"><img src="./assets/cover.jpg" alt="清单截图" /></div>
+              <figcaption>原帖配图</figcaption>
+            </figure>
+
+            <blockquote>
+              这份清单是按照我当前的习惯整理的，暂时没有把评论区所有推荐的 App 都加进来。后续随着试用深入，可能会有增删调整。如果你有特别好用的 Mac 软件推荐，欢迎留言交流。
+            </blockquote>
+
+          </div>
         </div>
-
-        <blockquote>
-          这份清单是按照我当前的习惯整理的，暂时没有把评论区所有推荐的 App 都加进来。后续随着试用深入，可能会有增删调整。如果你有特别好用的 Mac 软件推荐，欢迎留言交流。
-        </blockquote>
 
         <h2>第一步: 命令行环境</h2>
         <p>拿到新 Mac，第一件事不是装 App，而是把命令行搭好。后面大部分软件都靠它安装。</p>

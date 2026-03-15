@@ -90,15 +90,32 @@
     }
     code{font-family:var(--mono)}
 
-    .gallery{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0}
-    .gallery figure{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02)}
+    .gallery{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0}
+    .gallery figure{
+      margin:0;
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,.02);
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+    }
     .gallery img{width:100%;display:block}
-    .gallery figcaption{padding:10px 12px;color:var(--muted);font-size:13px}
+    /* 让说明文字贴在图片上, 更像内容卡片而不是生硬的图+字 */
+    .gallery figcaption{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding:10px 12px;
+      color:rgba(231,238,252,.92);
+      font-size:13px;
+      background:linear-gradient(180deg, transparent, rgba(11,15,22,.85));
+      backdrop-filter: blur(6px);
+    }
 
     footer{margin-top:18px;color:var(--muted);font-size:13px}
 
     @media (min-width:860px){
-      .gallery{grid-template-columns:1.25fr .75fr;align-items:start}
+      .gallery{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -127,10 +144,6 @@
         <p>昨天发了一条 X 推文之后，评论区不少朋友推荐了很多好用的 App。我全部仔细看了一遍，趁热打铁按照我自己的需求整理了一份 Mac 软件清单，分享给大家。</p>
 
         <div class="gallery">
-          <figure>
-            <img src="./assets/cover.jpg" alt="清单截图" />
-            <figcaption>原帖配图</figcaption>
-          </figure>
           <figure>
             <img src="./assets/quote.jpg" alt="引用推文图片" />
             <figcaption>引用推文配图</figcaption>

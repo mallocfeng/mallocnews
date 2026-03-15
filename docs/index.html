@@ -32,8 +32,12 @@
     body::before{
       content:"";
       position: fixed;
-      inset: 0;
+      /* iOS/Chrome 某些情况下 fixed 背景在滚动或回弹时会出现 1px 级别的拼接断层,
+         这里把背景往上下多铺一屏并开启 GPU 合成来消掉那条缝 */
+      top:-50vh; left:0; right:0; bottom:-50vh;
       z-index: -1;
+      will-change: transform;
+      transform: translateZ(0);
       background:
         radial-gradient(1000px 600px at 15% 0%, rgba(122,162,255,.18), transparent 55%),
         radial-gradient(900px 700px at 85% 10%, rgba(130,255,211,.10), transparent 60%),

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>柳工研究简报 | 2026-03-20</title>
+  <style>
+    :root {
+      --bg: #f2eee6;
+      --bg-deep: #e6dcc7;
+      --paper: rgba(255, 252, 245, 0.9);
+      --paper-strong: #fffaf1;
+      --ink: #1b1712;
+      --muted: #675b4d;
+      --line: rgba(27, 23, 18, 0.12);
+      --accent: #a66314;
+      --accent-soft: rgba(166, 99, 20, 0.14);
+      --danger: #8f2f1c;
+      --danger-soft: rgba(143, 47, 28, 0.1);
+      --shadow: 0 24px 60px rgba(68, 52, 29, 0.14);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(242, 196, 118, 0.32), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(110, 82, 38, 0.15), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Source Han Serif SC", "Songti SC", serif;
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(27, 23, 18, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27, 23, 18, 0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.76), transparent 88%);
+    }
+
+    a { color: var(--accent); }
+    h1, h2, h3, p { margin: 0; }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto 56px;
+    }
+
+    .hero,
+    .section,
+    .sources {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: var(--paper);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 34px;
+      margin-bottom: 22px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: 24px;
+      width: 260px;
+      height: 260px;
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(166, 99, 20, 0.18), rgba(166, 99, 20, 0)),
+        repeating-linear-gradient(135deg, rgba(27, 23, 18, 0.08), rgba(27, 23, 18, 0.08) 10px, transparent 10px, transparent 20px);
+      transform: rotate(14deg);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-family: "Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accent-soft);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    h1 {
+      margin-top: 18px;
+      max-width: 11ch;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .lede {
+      margin-top: 18px;
+      max-width: 42rem;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .meta-card,
+    .metric,
+    .zone-card,
+    .risk-card,
+    .note,
+    .disclaimer {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--paper-strong);
+    }
+
+    .meta-card {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.96rem;
+    }
+
+    .meta-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .meta-label {
+      color: var(--muted);
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-color: rgba(143, 47, 28, 0.22);
+      background: linear-gradient(135deg, rgba(143, 47, 28, 0.08), rgba(143, 47, 28, 0.03));
+    }
+
+    .disclaimer strong {
+      color: var(--danger);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      padding: 18px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-family: "Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 0.77rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-size: 1.9rem;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .layout {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section,
+    .sources {
+      padding: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-family: "Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section h2,
+    .sources h2 {
+      font-size: 1.85rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section p + p {
+      margin-top: 12px;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .subhead {
+      margin-bottom: 8px;
+      font-size: 1.06rem;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .zone-grid,
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .zone-card,
+    .risk-card {
+      padding: 18px;
+    }
+
+    .zone-tag,
+    .risk-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-family: "Avenir Next", "Helvetica Neue", "PingFang SC", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .zone-tag {
+      background: rgba(166, 99, 20, 0.1);
+      color: var(--accent);
+    }
+
+    .risk-tag {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .price {
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .sources ol {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .sources li + li {
+      margin-top: 12px;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .metrics,
+      .cols,
+      .zone-grid,
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">LIUGONG • 报告日期 2026-03-20</div>
+      <div class="hero-grid">
+        <div>
+          <h1>柳工的赔率不差, 但趋势还在下行。</h1>
+          <p class="lede">
+            这份简报把柳工的最新公开基本面和 2026 年 3 月 20 日的股价结构放在一起看。核心判断很简单: 公司经营质量在改善, 海外和电动化仍是亮点, 但股价已经跌破主要均线, 短线趋势明显偏弱, 更适合按区间分批接而不是追。
+          </p>
+          <div class="disclaimer">
+            <strong>免责声明</strong>
+            本页仅基于公开信息做研究整理, 不是投资建议, 不构成任何个性化买卖建议或收益承诺。报告日期为 2026-03-20, 财务数据主要截止到 2025-09-30, 行情数据截止到 2026-03-20 收盘。
+          </div>
+        </div>
+        <aside class="meta-card">
+          <div class="meta-row">
+            <span class="meta-label">公司</span>
+            <strong>广西柳工机械股份有限公司</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">证券代码</span>
+            <strong>000528.SZ</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">收盘价</span>
+            <strong>9.50 元</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">静态估值</span>
+            <strong>约 13.9x PE / 1.09x PB</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">策略倾向</span>
+            <strong>回撤分批, 不追涨</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">关键前提</span>
+            <strong>海外与利润率不失速</strong>
+          </div>
+        </aside>
+      </div>
+
+      <div class="metrics">
+        <article class="metric">
+          <div class="metric-label">2024 年营收</div>
+          <div class="metric-value">300.63 亿元</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">2024 年归母净利</div>
+          <div class="metric-value">13.27 亿元</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">2025 前三季归母净利</div>
+          <div class="metric-value">14.58 亿元</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">2026-03-20 RSI14</div>
+          <div class="metric-value">23.05</div>
+        </article>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="section">
+        <div class="section-head">
+          <h2>摘要</h2>
+          <div class="section-kicker">先看结论</div>
+        </div>
+        <p>
+          柳工当前更像一只“基本面改善, 但市场在压估值和压趋势”的周期股。2024 年公司营收同比增长 9.24%, 归母净利润同比增长 52.92%, 2025 年前三季度营收继续增长 12.71%, 归母净利润增长 10.37%, 说明经营并没有走坏。
+        </p>
+        <p>
+          但价格行为更弱。2026-03-20 收盘 9.50 元, 低于 20 日、50 日、100 日和 200 日均线, 14 日 RSI 只有 23.05, 属于明显超卖但仍未出现趋势修复信号的状态。估值不贵, 但也没有便宜到可以忽略景气和信用风险。
+        </p>
+        <div class="note">
+          这份报告给出的“建仓区间”是交易框架, 不是确定性预测。它建立在两条假设上: 一是公司海外收入和盈利能力没有显著恶化, 二是行业没有出现超预期需求塌陷。
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>基本面</h2>
+          <div class="section-kicker">经营质量在改善</div>
+        </div>
+        <div class="cols">
+          <div>
+            <h3 class="subhead">偏积极的证据</h3>
+            <ul>
+              <li>2024 年营收 300.63 亿元, 归母净利润 13.27 亿元, 扣非净利润 11.38 亿元, EPS 0.6824 元, ROE 7.93%。</li>
+              <li>2025 年前三季度营收 257.60 亿元, 归母净利润 14.58 亿元, 已经超过 2024 全年利润水平。</li>
+              <li>2024 年海外营业收入 137.60 亿元, 同比增长 20.05%, 海外收入占比接近六成, 海外仍是穿越国内周期的主要支撑。</li>
+              <li>年报披露电动化产品收入同比增长超过 380%, 矿山机械销售收入同比增长超过 60%, 说明新业务并非停留在故事阶段。</li>
+              <li>以 2026-03-20 收盘价 9.50 元计算, 对应 2024 年静态 PE 约 13.9 倍、PB 约 1.09 倍, 对龙头工程机械资产而言不算激进。</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="subhead">必须盯住的压力点</h3>
+            <ul>
+              <li>2025 年第三季度单季归母净利润 2.28 亿元, 同比下降 32.47%, 利润改善并非线性上行。</li>
+              <li>2025 年前三季度信用减值损失为 -6.11 亿元, 同比扩大 103.72%, 公司解释为应收账款减值损失及财务担保预计损失增加。</li>
+              <li>2025 年三季报显示预计负债 9.92 亿元, 较 2024 年末增加 40.30%, 主要是财务担保准备金和产品质量保证增加, 这会压制利润释放。</li>
+              <li>柳工本质上仍是周期股。即便海外收入占比提升, 若全球工程机械需求走弱, 估值与盈利仍会一起承压。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>技术面</h2>
+          <div class="section-kicker">超卖不等于见底</div>
+        </div>
+        <div class="cols">
+          <div>
+            <p><strong>价格结构:</strong> 截至 2026-03-20, 收盘价 9.50 元, 20 日/50 日/100 日/200 日均线分别约为 10.82 / 11.35 / 11.66 / 11.16 元。价格处于四条均线下方, 中短期趋势明显偏弱。</p>
+            <p><strong>动量:</strong> 14 日 RSI 约 23.05, 已进入显著超卖区间。这意味着情绪已冷, 但不能自动推导出趋势反转。</p>
+          </div>
+          <div>
+            <p><strong>波动:</strong> 14 日 ATR 约 0.316 元, 约等于现价的 3.3%。对一只 9 元多的股票来说, 这个波动不算小, 止损和仓位都要留余地。</p>
+            <p><strong>区间背景:</strong> 近 52 周价格区间大致为 9.32 元到 13.45 元。当前价格已经靠近区间下沿, 这提升了赔率, 但也意味着市场正在交易更保守的盈利预期。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>建仓区间(分批)</h2>
+          <div class="section-kicker">用价格纪律对冲判断失误</div>
+        </div>
+        <div class="zone-grid">
+          <article class="zone-card">
+            <div class="zone-tag">第一笔</div>
+            <div class="price">9.30 - 9.60</div>
+            <p class="muted">接近 52 周低位和报告日收盘价, 适合建立观察仓。赔率开始有吸引力, 但趋势还没有修好, 所以只拿轻仓。</p>
+          </article>
+          <article class="zone-card">
+            <div class="zone-tag">第二笔</div>
+            <div class="price">8.90 - 9.20</div>
+            <p class="muted">如果市场继续因景气、信用损失或行业情绪下修, 这一档更适合做成本优化。跌到这里时, 需要同步复核三季报风险是否继续恶化。</p>
+          </article>
+          <article class="zone-card">
+            <div class="zone-tag">第三笔</div>
+            <div class="price">8.30 - 8.70</div>
+            <p class="muted">这是给极端情绪或超预期利空预留的安全带。如果公司基本面假设仍成立, 这个区间的长期性价比会更高; 若基本面恶化, 则不应机械补仓。</p>
+          </article>
+        </div>
+        <div class="note">
+          参考仓位分配可以用 30% / 35% / 35%。如果股价未回到更低区间便修复上行, 宁可错过一段反弹, 也不要在下跌趋势里被迫越买越高。
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>风险管理</h2>
+          <div class="section-kicker">先管回撤, 再谈收益</div>
+        </div>
+        <div class="risk-grid">
+          <article class="risk-card">
+            <div class="risk-tag">仓位</div>
+            <p>单一个股的完整仓位不宜过重。对普通股票组合而言, 把柳工的目标仓位控制在总资产的 4% 到 8% 更容易承受工程机械行业的周期波动。</p>
+          </article>
+          <article class="risk-card">
+            <div class="risk-tag">失效条件</div>
+            <p>如果后续财报显示海外收入明显失速、信用减值继续大幅扩张, 或者市场跌破 8.30 元后仍无法快速收回, 就要把“低估”判断当成失效信号处理。</p>
+          </article>
+          <article class="risk-card">
+            <div class="risk-tag">复核节奏</div>
+            <p>重点盯下一份定期报告里的三项指标: 海外收入增速、信用减值损失、预计负债。柳工不是纯情绪票, 核心还是利润质量。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>关键风险</h2>
+          <div class="section-kicker">真正决定估值中枢的变量</div>
+        </div>
+        <ul>
+          <li><strong>行业周期风险:</strong> 国内工程机械仍处筑底阶段, 海外市场也并非单边繁荣。若全球投资需求转弱, 营收和利润都可能回落。</li>
+          <li><strong>信用与担保风险:</strong> 2025 年前三季度信用减值损失显著扩大, 财务担保准备金和质量保证增加, 这是利润表最需要继续跟踪的压力源。</li>
+          <li><strong>海外市场波动:</strong> 柳工近六成收入来自海外, 汇率、区域政策、地缘冲突和经销网络变化都会直接影响增长质量。</li>
+          <li><strong>竞争加剧:</strong> 工程机械出海已经从增量红利转向份额竞争, 若价格战升级, 毛利率和回款质量都可能被侵蚀。</li>
+          <li><strong>电动化兑现不及预期:</strong> 电动化是当下重要的估值加分项, 一旦渗透率、复购率或海外导入速度低于预期, 市场会先调估值。</li>
+        </ul>
+      </section>
+
+      <section class="sources">
+        <div class="section-head">
+          <h2>信息来源</h2>
+          <div class="section-kicker">优先采用原始披露</div>
+        </div>
+        <ol>
+          <li><a href="https://static.cninfo.com.cn/finalpage/2025-03-29/1222950803.PDF">巨潮资讯: 广西柳工机械股份有限公司 2024 年年度报告</a></li>
+          <li><a href="https://static.cninfo.com.cn/finalpage/2025-10-25/1224734957.PDF">巨潮资讯: 广西柳工机械股份有限公司 2025 年三季度报告</a></li>
+          <li><a href="https://qt.gtimg.cn/q=sz000528">腾讯行情接口: 柳工 2026-03-20 即时行情快照</a></li>
+          <li><a href="https://web.ifzq.gtimg.cn/appstock/app/kline/kline?param=sz000528,day,,,260">腾讯行情接口: 柳工近 260 个交易日日线数据</a></li>
+        </ol>
+        <p class="footer-note">
+          技术面中的均线、RSI 与 ATR 由近 260 个交易日日线数据计算得出; 估值中的 PE、PB 分别基于 2026-03-20 收盘价与 2024 年 EPS、2024 年末归母净资产估算。再次强调: 本页仅供信息参考, 不构成投资建议。
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

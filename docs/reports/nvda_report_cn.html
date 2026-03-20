@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVDA 报告 | 2026-03-20</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --paper: rgba(255, 252, 247, 0.86);
+      --paper-strong: #fffaf3;
+      --ink: #1e1a17;
+      --muted: #65584e;
+      --line: rgba(30, 26, 23, 0.12);
+      --accent: #146356;
+      --accent-soft: rgba(20, 99, 86, 0.12);
+      --warn: #9f5c15;
+      --shadow: 0 28px 70px rgba(69, 49, 26, 0.14);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 232, 196, 0.85), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(21, 99, 86, 0.14), transparent 26%),
+        linear-gradient(180deg, #f7f2ea 0%, #efe6d8 100%);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(30, 26, 23, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 26, 23, 0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 85%);
+    }
+
+    a { color: var(--accent); }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto 56px;
+    }
+
+    .hero,
+    .section,
+    .sources {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      background: var(--paper);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      overflow: hidden;
+      padding: 34px;
+      margin-bottom: 22px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -35% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(20, 99, 86, 0.16) 0%, rgba(20, 99, 86, 0) 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--accent-soft);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 12ch;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 42rem;
+    }
+
+    .meta-card,
+    .metric,
+    .buy-card,
+    .risk-card,
+    .note {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--paper-strong);
+    }
+
+    .meta-card {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.96rem;
+    }
+
+    .meta-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .meta-label { color: var(--muted); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .metric { padding: 18px; }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.77rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+
+    .layout { display: grid; gap: 18px; }
+
+    .section, .sources { padding: 28px; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section h2, .sources h2 {
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section p + p { margin-top: 12px; }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+
+    li + li { margin-top: 10px; }
+
+    .subhead { margin-bottom: 8px; font-size: 1.05rem; }
+
+    .muted { color: var(--muted); }
+
+    .buy-grid,
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .buy-card, .risk-card { padding: 18px; }
+
+    .buy-tag,
+    .risk-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .buy-tag {
+      background: rgba(20, 99, 86, 0.1);
+      color: var(--accent);
+    }
+
+    .risk-tag {
+      background: rgba(159, 92, 21, 0.1);
+      color: var(--warn);
+    }
+
+    .price {
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .sources ol {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .sources li + li { margin-top: 12px; }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .metrics,
+      .cols,
+      .buy-grid,
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">NVDA 报告 • 2026-03-20</div>
+      <div class="hero-grid">
+        <div>
+          <h1>NVIDIA, 生意很强, 股价偏弱。</h1>
+          <p class="lede">
+            这份报告把 NVIDIA 2026 财年基本面和 2026 年 3 月的价格行为放在一起看。结论很直白, 生意端依旧优秀, 股价端需要挑价位, 当前图形仍在关键均线下方, 还没有出现彻底的恐慌式出清。
+          </p>
+        </div>
+        <aside class="meta-card">
+          <div class="meta-row">
+            <span class="meta-label">公司</span>
+            <strong>NVIDIA Corp. (NASDAQ: NVDA)</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">报告日期</span>
+            <strong>2026-03-20</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">价格参考</span>
+            <strong>$175.31 收盘</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">策略倾向</span>
+            <strong>只在分批回撤里做吸筹</strong>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">纪律</span>
+            <strong>短线趋势走弱时不追涨</strong>
+          </div>
+        </aside>
+      </div>
+
+      <div class="metrics">
+        <article class="metric">
+          <div class="metric-label">2026 财年营收</div>
+          <div class="metric-value">$215.9B</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">2026 财年 GAAP EPS</div>
+          <div class="metric-value">$4.90</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">2027 财年 Q1 指引</div>
+          <div class="metric-value">$78.0B</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">隐含静态市盈率</div>
+          <div class="metric-value">35.8x</div>
+        </article>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="section">
+        <div class="section-head">
+          <h2>结论摘要</h2>
+          <div class="section-kicker">公司质量很高, 市场预期也很苛刻</div>
+        </div>
+        <p>
+          NVIDIA 的生意端依旧是顶级水平。2026 财年营收同比增长 65%, 达到 2159 亿美元, 2026 财年第四季度营收 681 亿美元, 2027 财年第一季度指引进一步上台阶, 预计营收 780 亿美元。数据中心仍然是主要引擎, 管理层持续强调需求来自 AI Agent, 推理成本下降带来的应用扩张, 以及超大规模客户的平台化部署。
+        </p>
+        <p>
+          股价端处在另一阶段。截至 2026-03-20 收盘, NVDA 处在 20 日, 50 日, 100 日, 200 日均线下方, 14 日 RSI 在 40 附近。这意味着不适合用很激进的方式追涨。更合适的做法是分批在回撤中建仓, 避免一次性梭哈。
+        </p>
+        <div class="note">
+          本报告仅供信息参考, 不构成个性化投资建议。下方的买入区间是基于公开价格数据与财报数据推导出来的交易框架, 不代表公司对未来价格的任何指引。
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>基本面</h2>
+          <div class="section-kicker">业务强势很明显</div>
+        </div>
+        <div class="cols">
+          <div>
+            <h3 class="subhead">正在发生的利好</h3>
+            <ul>
+              <li>2026 财年营收 2159 亿美元, 同比增长 65%, GAAP EPS 为 4.90 美元, GAAP 毛利率为 71.1%。</li>
+              <li>2026 财年第四季度数据中心营收 623 亿美元, 全年数据中心营收 1937 亿美元, 说明加速计算仍是盈利核心。</li>
+              <li>2027 财年第一季度指引营收 780 亿美元, 管理层明确表示该指引假设不包含中国数据中心计算收入, 这侧面说明非中国需求仍然强劲。</li>
+              <li>2026 财年向股东回馈 411 亿美元, 季末回购授权余额仍有 585 亿美元。</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="subhead">需要保持警惕的点</h3>
+            <ul>
+              <li>客户集中度较高, 2026 财年有单一直接客户贡献了 22% 的总营收, 另一个客户贡献 14%。</li>
+              <li>毛利率仍然优秀, 不过 2026 财年 GAAP 毛利率 71.1% 低于 2025 财年的 75.0%, 产品结构, 新平台导入, 供应链复杂度仍会影响利润率。</li>
+              <li>业务和超大规模客户, AI 实验室, 企业客户的资本开支周期高度相关。即便需求维持强劲, 只要增速从极端高位回落, 股价也可能出现估值下移。</li>
+              <li>以 2026-03-20 的收盘价计算, 静态 GAAP 市盈率约 35.8 倍, 相比极端亢奋期更理性, 但一旦执行偏差出现, 也谈不上明显便宜。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>技术面</h2>
+          <div class="section-kicker">趋势受损, 但尚未完全投降</div>
+        </div>
+        <div class="cols">
+          <div>
+            <p><strong>价格与趋势:</strong> 2026-03-20 收盘价为 175.31 美元。根据日线收盘价序列计算的简单均线约为 20 日 183.24, 50 日 184.65, 100 日 185.74, 200 日 178.45。价格低于四条均线, 说明短中期趋势偏弱。</p>
+            <p><strong>动量:</strong> 14 日 RSI 约 40.14, 偏弱但还不属于极度超卖, 更像是降温阶段, 离彻底恐慌还有距离。</p>
+          </div>
+          <div>
+            <p><strong>波动:</strong> 14 日 ATR 约 5.13 美元, 日波动约 2.9% 属于常态。仓位与止损必须给足波动空间。</p>
+            <p><strong>区间背景:</strong> 52 周区间为 94.31 到 207.04 美元。当前价格明显低于高点, 仍高于长期低位, 更符合大涨后的横盘整固特征。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>建议买入区间, 分批执行</h2>
+          <div class="section-kicker">基于价格结构推导, 不等同于公司指引</div>
+        </div>
+        <div class="buy-grid">
+          <article class="buy-card">
+            <div class="buy-tag">第一笔</div>
+            <div class="price">$170 到 $176</div>
+            <p class="muted">接近报告日收盘价, 也靠近 200 日均线附近。适合想先拿一点敞口, 同时接受短线仍可能继续磨的投资者。</p>
+          </article>
+          <article class="buy-card">
+            <div class="buy-tag">加仓区</div>
+            <div class="price">$160 到 $168</div>
+            <p class="muted">如果市场继续走弱, 这是更合适的第二层区域, 能更好改善成本, 也更匹配当前估值仍然偏高的现实。</p>
+          </article>
+          <article class="buy-card">
+            <div class="buy-tag">高确定性加仓</div>
+            <div class="price">$148 到 $156</div>
+            <p class="muted">若出现更强的风险偏好下行, 或者财报波动带来更深回撤, 这里的性价比会更好。跌破该区域后, 技术面受损会更严重, 需要重新审视逻辑。</p>
+          </article>
+        </div>
+        <div class="note">
+          参考仓位分配: 第一笔 25%, 第二笔 35%, 第三笔 40%。如果价格在到达更低档位之前反弹, 错过最完美的成交也可以接受, 不要在弱趋势里越买越高。
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>风险管理</h2>
+          <div class="section-kicker">先把亏损控制住</div>
+        </div>
+        <div class="risk-grid">
+          <article class="risk-card">
+            <div class="risk-tag">仓位</div>
+            <p>让 NVDA 的总暴露保持在组合可承受范围内。对分散化股票账户而言, 把完整仓位控制在约 5% 到 7% 更容易避免单一高波动巨头主导风险。</p>
+          </article>
+          <article class="risk-card">
+            <div class="risk-tag">失效条件</div>
+            <p>偏短线的交易者可以把 148 美元附近的有效跌破视为较实用的技术失效点。偏长期的持有者更该关注增长兑现情况与毛利率是否持续走弱, 这比某一个价格点更关键。</p>
+          </article>
+          <article class="risk-card">
+            <div class="risk-tag">事件纪律</div>
+            <p>不要在财报前或重大政策消息前盲目加仓。下一份季度财报出来后, 重点复核数据中心增速, 毛利率路径, 以及与中国相关的假设是否发生变化。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>主要风险点</h2>
+          <div class="section-kicker">公司很强, 股价也可能继续跌</div>
+        </div>
+        <ul>
+          <li><strong>出口管制:</strong> 公司在公开文件中提示, 新的管制可能对其造成更大影响, 同时推动客户加速设计替代美国芯片的方案。</li>
+          <li><strong>产品迭代节奏带来的复杂度:</strong> Blackwell, Blackwell Ultra, Rubin 等平台的年度节奏提高了供应, 认证, 需求节奏上的执行风险。</li>
+          <li><strong>客户集中度:</strong> 少数大客户占比高, 预算与部署节奏的变化会直接影响收入和市场预期。</li>
+          <li><strong>竞争与自研芯片:</strong> 超大规模客户的自研芯片与竞品加速器未必会立刻压垮需求, 但可能影响产品结构, 定价, 以及长期毛利率框架。</li>
+          <li><strong>估值回撤风险:</strong> 再优秀的公司, 一旦增速回归常态, 估值也可能先下修。市场从稀缺溢价切换到耐久溢价时, 倍数压缩会先发生。</li>
+        </ul>
+      </section>
+
+      <section class="sources">
+        <div class="section-head">
+          <h2>来源</h2>
+          <div class="section-kicker">优先引用原始披露</div>
+        </div>
+        <ol>
+          <li><a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026/default.aspx">NVIDIA 投资者关系: 2026 财年第四季度与全年业绩新闻稿</a></li>
+          <li><a href="https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx?source=content_type%3Areact%7Cfirst_level_url%3Aarticle%7Csection%3Amain_content%7Cbutton%3Abody_link">NVIDIA 投资者关系: 年报与委托书</a></li>
+          <li><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm">SEC: NVIDIA 2026 财年 Form 10-K</a></li>
+          <li><a href="https://www.barchart.com/stocks/quotes/NVDA/technical-analysis">Barchart: NVDA 技术面参考</a></li>
+          <li><a href="https://stooq.com/q/d/l/?s=nvda.us&i=d">Stooq: NVDA 日线历史数据 CSV</a></li>
+        </ol>
+        <p class="footer-note">
+          本报告中的技术面数值基于 Stooq 的日线收盘价序列, 截止到 2026-03-20。买入区间与仓位规则属于判断框架, 用于辅助决策, 不代表确定性结论。
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

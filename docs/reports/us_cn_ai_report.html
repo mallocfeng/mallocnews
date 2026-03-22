@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中美 AI 对比报告 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(11, 26, 45, 0.72);
+      --panel: rgba(10, 22, 39, 0.82);
+      --panel-strong: rgba(8, 18, 32, 0.94);
+      --line: rgba(153, 184, 220, 0.18);
+      --line-strong: rgba(153, 184, 220, 0.34);
+      --text: #eaf1ff;
+      --muted: #9eb3d1;
+      --warm: #f3b96b;
+      --warm-soft: rgba(243, 185, 107, 0.14);
+      --cyan: #6dd8ff;
+      --cyan-soft: rgba(109, 216, 255, 0.14);
+      --red: #ff8b7e;
+      --green: #73d5a2;
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.38);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(109, 216, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 88% 10%, rgba(243, 185, 107, 0.14), transparent 26%),
+        radial-gradient(circle at 50% 82%, rgba(126, 163, 255, 0.12), transparent 36%),
+        linear-gradient(180deg, #08111d 0%, #07101a 44%, #050b14 100%);
+      font-family: "Manrope", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black 42%, transparent 92%);
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #a9e8ff;
+    }
+
+    .wrap {
+      width: min(1200px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+        linear-gradient(160deg, rgba(5, 15, 30, 0.95), rgba(10, 26, 46, 0.84));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -42% 35%;
+      height: 340px;
+      background: radial-gradient(circle, rgba(243, 185, 107, 0.18), transparent 60%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 11ch;
+      margin-top: 18px;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .subhead {
+      max-width: 62ch;
+      margin-top: 18px;
+      color: #c0d0ea;
+      font-size: 16px;
+    }
+
+    .hero-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .hero-points div {
+      padding: 14px 16px;
+      border-left: 3px solid var(--warm);
+      background: rgba(255, 255, 255, 0.035);
+      color: #e5eeff;
+    }
+
+    .signal-card {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .card, .table-wrap, .quote-card, .metric-strip, .footer-note {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .signal {
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(160deg, rgba(109, 216, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(109, 216, 255, 0.15);
+    }
+
+    .signal small,
+    .section-intro,
+    .meta,
+    .footnote,
+    th {
+      color: var(--muted);
+    }
+
+    .signal strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 30px;
+      line-height: 1;
+      color: var(--cyan);
+    }
+
+    .signal p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: #d4def2;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 26px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-intro {
+      max-width: 60ch;
+      font-size: 14px;
+    }
+
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .metric {
+      padding: 22px 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric .k {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .metric .v {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .metric .t {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #d0dbf0;
+    }
+
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .chart-card {
+      padding: 22px;
+    }
+
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .chart-title h3 {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .chart-title span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chart {
+      height: 420px;
+      width: 100%;
+    }
+
+    .table-wrap {
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 16px 18px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .badge.us {
+      color: #072034;
+      background: var(--cyan);
+    }
+
+    .badge.cn {
+      color: #2b1305;
+      background: var(--warm);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    ul.clean {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: #dae5f9;
+    }
+
+    ul.clean li {
+      margin-bottom: 10px;
+    }
+
+    .quote-card {
+      padding: 22px;
+      background:
+        linear-gradient(150deg, rgba(243, 185, 107, 0.08), rgba(255, 255, 255, 0.02)),
+        var(--panel-strong);
+    }
+
+    .quote-card p {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-size: 22px;
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+    }
+
+    .quote-card small {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .watch {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .watch strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #f5f8ff;
+    }
+
+    .watch span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sources {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .source {
+      padding: 14px 16px;
+      border-left: 2px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.026);
+    }
+
+    .source strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: rise 0.8s ease forwards;
+    }
+
+    .reveal:nth-child(2) { animation-delay: 0.08s; }
+    .reveal:nth-child(3) { animation-delay: 0.16s; }
+    .reveal:nth-child(4) { animation-delay: 0.24s; }
+    .reveal:nth-child(5) { animation-delay: 0.32s; }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-2,
+      .watch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .metric:nth-child(2) {
+        border-right: 0;
+      }
+
+      .metric:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: min(100vw - 24px, 1200px);
+        padding-top: 14px;
+      }
+
+      .hero,
+      .section,
+      .card,
+      .chart-card {
+        padding: 18px;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .metric-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .metric:last-child {
+        border-bottom: 0;
+      }
+
+      .chart {
+        height: 360px;
+      }
+
+      th, td {
+        padding: 14px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero reveal">
+      <div class="eyebrow">US vs CN AI / Strategic Scan / 2026Q1</div>
+      <div class="hero-grid">
+        <div>
+          <h1>中美 AI 竞争态势报告</h1>
+          <p class="subhead">
+            这是一份面向决策层的单页情报简报：不试图证明谁“全面胜出”，而是回答更关键的问题
+            <strong>哪一侧在资本、模型、产业落地与制度组织上更强，差距正在缩小还是拉大，未来 24 个月该盯哪些指标。</strong>
+          </p>
+          <div class="hero-points">
+            <div>美国仍是 <strong>资本-算力-全球平台</strong> 的主导方，前沿模型供给和基础设施外溢能力更强。</div>
+            <div>中国的追赶主要来自 <strong>工程效率、开源推进、产业协同与政策执行力</strong>，质量差距在 2024-2025 明显收窄。</div>
+            <div>真正的分水岭不只在模型分数，而在 <strong>电力与芯片供给、智能体产品化、企业级渗透、以及对全球开发者生态的吸附力。</strong></div>
+          </div>
+        </div>
+        <aside class="signal-card">
+          <div class="signal">
+            <small>结论信号</small>
+            <strong>美国领先</strong>
+            <p>领先点集中在融资规模、头部平台、GPU 与数据中心扩容能力、全球开发者分发网络。</p>
+          </div>
+          <div class="signal">
+            <small>追赶斜率</small>
+            <strong>中国更陡</strong>
+            <p>2024-2025 年最明显的变化是高性能开源模型与低成本推理路线，对差距缩短贡献最大。</p>
+          </div>
+          <div class="signal">
+            <small>未来 24 个月</small>
+            <strong>看供给侧</strong>
+            <p>若美国扩算力兑现、而中国在国产替代与模型效率上继续提速，竞争将从“模型发布战”转入“基础设施和应用转化战”。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section metric-strip reveal">
+      <div class="metric">
+        <span class="k">2024 Private AI Investment</span>
+        <span class="v">$109.1B</span>
+        <div class="t">美国，约为中国 <strong>11.7x</strong>。来源：Stanford AI Index 2025。</div>
+      </div>
+      <div class="metric">
+        <span class="k">2024 Notable Models</span>
+        <span class="v">40 vs 15</span>
+        <div class="t">美国机构推出 40 个，中国 15 个，但质量差距已接近“近似持平”。</div>
+      </div>
+      <div class="metric">
+        <span class="k">Research Volume</span>
+        <span class="v">CN Leads</span>
+        <div class="t">中国在 AI 论文与专利数量维度仍占优，但高影响力与平台化转化仍偏向美国。</div>
+      </div>
+      <div class="metric">
+        <span class="k">Observation Window</span>
+        <span class="v">2026-2027</span>
+        <div class="t">决定性变量是算力、电力、企业工作流嵌入和开源生态对全球开发者的吸附。</div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">摘要结论</div>
+          <div class="section-intro">以下结论将“来源事实”和“分析性判断”合并呈现。评分是报告作者对竞争态势的归纳，不代表任何官方机构的标准分数。</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="quote-card">
+          <p>美国的护城河仍然是资本、算力与全球产品分发；中国缩小差距的方式不是复制同一路线，而是用更高的工程效率、更低的推理成本和更强的产业整合能力切入。</p>
+          <small>一句话版本：美国是“平台型领先”，中国是“追赶型收敛”。</small>
+        </div>
+        <div class="card">
+          <h3>判断框架</h3>
+          <ul class="clean">
+            <li>如果关注前沿能力上限，美国仍是第一象限，尤其在资本开支、数据中心与全球开发者网络上。</li>
+            <li>如果关注模型效率、开源扩散和产业嵌入速度，中国在 2024-2025 的改善最值得重视。</li>
+            <li>到 2026 年，竞争焦点将从“谁发布了更强模型”转向“谁能把模型更快嵌进真实工作流、并稳定获得电力与芯片”。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="charts reveal">
+      <div class="card chart-card">
+        <div class="chart-title">
+          <h3>雷达图：US vs CN 多维评分</h3>
+          <span>0-10 为报告评分，综合公开事实与分析判断</span>
+        </div>
+        <div id="radarChart" class="chart"></div>
+      </div>
+      <div class="card chart-card">
+        <div class="chart-title">
+          <h3>时间线：2022-2026 关键迭代节点</h3>
+          <span>2026 为观测窗口，不是既成事实</span>
+        </div>
+        <div id="timelineChart" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">维度对比表</div>
+          <div class="section-intro">把“谁更强”拆到可执行维度，避免只看单一 benchmark 或单次融资新闻。</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>美国</th>
+              <th>中国</th>
+              <th>判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>资本与算力</td>
+              <td>私募资金规模、超大数据中心建设和高端 GPU 供给明显领先。</td>
+              <td>受限于高端芯片约束，但通过模型压缩、推理优化和国产替代争取效率优势。</td>
+              <td><span class="badge us">US Lead</span> 这是当前最稳固的优势带。</td>
+            </tr>
+            <tr>
+              <td>前沿模型供给</td>
+              <td>OpenAI、Anthropic、Google 等持续推出旗舰模型，并掌握全球主流 API 平台。</td>
+              <td>DeepSeek、Qwen 等在开源与推理成本上推进很快，质量差距迅速收敛。</td>
+              <td><span class="badge us">US Lead</span> 但边际差距较 2023 已明显缩窄。</td>
+            </tr>
+            <tr>
+              <td>研究产出</td>
+              <td>高影响力研究与产业化研究强，顶级实验室集中。</td>
+              <td>论文与专利总量领先，研究供给面广。</td>
+              <td><span class="badge cn">CN Edge</span> 数量维度中国更强。</td>
+            </tr>
+            <tr>
+              <td>开源生态</td>
+              <td>Meta 系开源仍重要，但美国领先者更多依赖闭源商业化。</td>
+              <td>Qwen、DeepSeek 在 2024-2025 对全球开源社区影响力大幅提升。</td>
+              <td><span class="badge cn">CN Edge</span> 中国在“高性价比开放模型”上更具进攻性。</td>
+            </tr>
+            <tr>
+              <td>产业落地</td>
+              <td>办公、开发、搜索、云服务、企业 SaaS 工作流嵌入更成熟。</td>
+              <td>制造、政务、终端设备、互联网平台场景集成速度快，行业协同强。</td>
+              <td><span class="badge us">US Lead</span> 美国更强于全球化软件分发，中国更强于本土产业嵌入。</td>
+            </tr>
+            <tr>
+              <td>政策与组织力</td>
+              <td>资本市场和私营创新活跃，但协调机制相对分散。</td>
+              <td>政策执行、产业引导和资源统筹更集中。</td>
+              <td><span class="badge cn">CN Edge</span> 尤其体现在工业侧协同推进。</td>
+            </tr>
+            <tr>
+              <td>全球平台影响力</td>
+              <td>ChatGPT、Gemini、Claude、Azure/OpenAI API 等具有全球触达能力。</td>
+              <td>国际平台触达受限，但在价格敏感和开源开发者群体中影响力提升。</td>
+              <td><span class="badge us">US Lead</span> 分发网络决定了商业化速度与数据反馈回路。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">优势劣势</div>
+          <div class="section-intro">优势决定上限，短板决定节奏。真正重要的是哪一侧的短板更快被修复。</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>美国</h3>
+          <ul class="clean">
+            <li><strong>优势：</strong> 资本规模最大，前沿实验室密度高，全球开发者入口和企业软件生态强。</li>
+            <li><strong>优势：</strong> 数据中心扩建和电力筹集能力领先，2025 年 Stargate 强化了基础设施叙事。</li>
+            <li><strong>劣势：</strong> 成本结构更重，闭源主导导致扩散速度受商业边界制约。</li>
+            <li><strong>劣势：</strong> 监管、版权、能耗和安全讨论越深入，商业 rollout 节奏越容易受牵引。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>中国</h3>
+          <ul class="clean">
+            <li><strong>优势：</strong> 工程化效率强，开源与低成本推理路线在 2025 年取得显著突破。</li>
+            <li><strong>优势：</strong> 制造、终端、互联网平台和政企场景一体化，有利于快速落地和反馈闭环。</li>
+            <li><strong>劣势：</strong> 高端芯片与先进算力受约束，全球平台分发能力仍弱于美国。</li>
+            <li><strong>劣势：</strong> 如果不能持续获得稳定高性能算力，模型上限与训练速度仍会被硬件牵制。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">机会与风险</div>
+          <div class="section-intro">这里关注的是未来两年最可能改变竞争格局的非线性变量。</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>机会</h3>
+          <ul class="clean">
+            <li>美国如果把训练优势进一步转化为企业工作流、代理型软件和数据中心投产，领先会再次拉大。</li>
+            <li>中国如果继续通过高性价比开源模型、蒸馏、MoE 和推理优化降低部署门槛，全球开发者心智会进一步上升。</li>
+            <li>AI 从聊天产品转入“垂直工作流”和“设备端助手”阶段后，产业链完整的一方可能获得额外复利。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>风险</h3>
+          <ul class="clean">
+            <li>美国的主要风险是成本外溢、能耗与审批约束、以及监管摩擦拉长 ROI 回收周期。</li>
+            <li>中国的主要风险是高端算力瓶颈和国际市场触达限制，导致“效率优势”难完全转为“平台优势”。</li>
+            <li>双方共同风险是 benchmark 高分无法自然转化为可持续商业价值，造成资本误判与产能错配。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">未来 24 个月观测指标</div>
+          <div class="section-intro">如果只能盯少数指标，优先看这些，因为它们比单次模型发布更能说明趋势。</div>
+        </div>
+      </div>
+      <div class="watch-grid">
+        <div class="watch">
+          <strong>1. 可用训练算力与数据中心投产速度</strong>
+          <span>看谁能把“规划中的算力”更快变成“稳定在线的算力”。</span>
+        </div>
+        <div class="watch">
+          <strong>2. 企业级嵌入率</strong>
+          <span>重点跟踪办公、开发、客服、制造、搜索和工业软件中的深度接入比例。</span>
+        </div>
+        <div class="watch">
+          <strong>3. 开源模型真实采用量</strong>
+          <span>看 GitHub、Hugging Face、云市场和开发者框架里的调用与二次开发热度。</span>
+        </div>
+        <div class="watch">
+          <strong>4. 推理成本下降斜率</strong>
+          <span>谁能把高质量模型做到更低成本，谁就更容易穿透长尾场景。</span>
+        </div>
+        <div class="watch">
+          <strong>5. 代理型产品的留存与付费</strong>
+          <span>不是看 demo，而是看是否真能替代一段工作流程并形成持续收入。</span>
+        </div>
+        <div class="watch">
+          <strong>6. 芯片、电力与供应链韧性</strong>
+          <span>这是决定 2026-2027 谁能继续加速的底层变量。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-title">引用链接</div>
+          <div class="section-intro">以下链接用于支持时间线节点、融资规模和竞争格局判断。部分评分为据此做出的分析性归纳。</div>
+        </div>
+      </div>
+      <div class="sources">
+        <div class="source">
+          <strong>Stanford HAI, AI Index 2025</strong>
+          <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank" rel="noopener noreferrer">https://hai.stanford.edu/ai-index/2025-ai-index-report</a>
+        </div>
+        <div class="source">
+          <strong>OpenAI, GPT-4</strong>
+          <a href="https://openai.com/zh-Hant/index/gpt-4-research/" target="_blank" rel="noopener noreferrer">https://openai.com/zh-Hant/index/gpt-4-research/</a>
+        </div>
+        <div class="source">
+          <strong>OpenAI, GPT-4o</strong>
+          <a href="https://openai.com/index/gpt-4o-and-more-tools-to-chatgpt-free/" target="_blank" rel="noopener noreferrer">https://openai.com/index/gpt-4o-and-more-tools-to-chatgpt-free/</a>
+        </div>
+        <div class="source">
+          <strong>OpenAI, o1 reasoning series</strong>
+          <a href="https://openai.com/index/introducing-openai-o1-preview/" target="_blank" rel="noopener noreferrer">https://openai.com/index/introducing-openai-o1-preview/</a>
+        </div>
+        <div class="source">
+          <strong>OpenAI, The Stargate Project</strong>
+          <a href="https://openai.com/blog/announcing-the-stargate-project/" target="_blank" rel="noopener noreferrer">https://openai.com/blog/announcing-the-stargate-project/</a>
+        </div>
+        <div class="source">
+          <strong>Qwen Team, Qwen2.5</strong>
+          <a href="https://qwenlm.github.io/blog/qwen2.5/" target="_blank" rel="noopener noreferrer">https://qwenlm.github.io/blog/qwen2.5/</a>
+        </div>
+        <div class="source">
+          <strong>DeepSeek, DeepSeek-V2</strong>
+          <a href="https://github.com/deepseek-ai/DeepSeek-V2" target="_blank" rel="noopener noreferrer">https://github.com/deepseek-ai/DeepSeek-V2</a>
+        </div>
+        <div class="source">
+          <strong>DeepSeek, DeepSeek-R1</strong>
+          <a href="https://github.com/deepseek-ai/DeepSeek-R1" target="_blank" rel="noopener noreferrer">https://github.com/deepseek-ai/DeepSeek-R1</a>
+        </div>
+        <div class="source">
+          <strong>Google, Gemini 2.0</strong>
+          <a href="https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/" target="_blank" rel="noopener noreferrer">https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        说明：本报告基于公开资料与行业常识整理，用于对比视角梳理，不构成商业或投资建议。
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scoreDimensions = [
+      { name: "资本/算力", max: 10 },
+      { name: "前沿模型", max: 10 },
+      { name: "研究产出", max: 10 },
+      { name: "开源生态", max: 10 },
+      { name: "产业落地", max: 10 },
+      { name: "政策组织力", max: 10 },
+      { name: "全球平台", max: 10 }
+    ];
+
+    const scoreSeries = {
+      us: [9.8, 9.4, 8.2, 8.1, 9.1, 7.6, 9.7],
+      cn: [7.1, 8.7, 9.3, 9.0, 8.5, 9.2, 7.4]
+    };
+
+    const radar = echarts.init(document.getElementById("radarChart"));
+    radar.setOption({
+      backgroundColor: "transparent",
+      tooltip: {
+        trigger: "item",
+        backgroundColor: "rgba(6,16,28,0.96)",
+        borderColor: "rgba(153,184,220,0.24)",
+        textStyle: { color: "#eaf1ff" }
+      },
+      legend: {
+        right: 10,
+        top: 8,
+        itemWidth: 14,
+        itemHeight: 14,
+        textStyle: { color: "#d8e4f8", fontFamily: "Manrope" },
+        data: ["US", "CN"]
+      },
+      radar: {
+        center: ["50%", "54%"],
+        radius: "68%",
+        splitNumber: 5,
+        indicator: scoreDimensions,
+        axisName: {
+          color: "#dce8fa",
+          fontSize: 13,
+          fontWeight: 700
+        },
+        splitLine: {
+          lineStyle: {
+            color: [
+              "rgba(109,216,255,0.10)",
+              "rgba(109,216,255,0.12)",
+              "rgba(109,216,255,0.14)",
+              "rgba(109,216,255,0.16)",
+              "rgba(109,216,255,0.18)"
+            ]
+          }
+        },
+        splitArea: {
+          areaStyle: {
+            color: [
+              "rgba(255,255,255,0.01)",
+              "rgba(255,255,255,0.02)"
+            ]
+          }
+        },
+        axisLine: {
+          lineStyle: {
+            color: "rgba(255,255,255,0.15)"
+          }
+        }
+      },
+      series: [{
+        type: "radar",
+        symbol: "circle",
+        symbolSize: 8,
+        emphasis: {
+          lineStyle: {
+            width: 3
+          }
+        },
+        data: [
+          {
+            value: scoreSeries.us,
+            name: "US",
+            lineStyle: { color: "#6dd8ff", width: 2.5 },
+            itemStyle: { color: "#6dd8ff" },
+            areaStyle: { color: "rgba(109,216,255,0.22)" }
+          },
+          {
+            value: scoreSeries.cn,
+            name: "CN",
+            lineStyle: { color: "#f3b96b", width: 2.5 },
+            itemStyle: { color: "#f3b96b" },
+            areaStyle: { color: "rgba(243,185,107,0.18)" }
+          }
+        ]
+      }]
+    });
+
+    const timelinePoints = [
+      ["2022", 1, "2022.11 ChatGPT 公测，生成式 AI 全球认知拐点", "US"],
+      ["2023", 1, "2023.03 GPT-4 发布，多模态与推理能力上台阶", "US"],
+      ["2024", 1, "2024.05 GPT-4o 发布，实时多模态与免费扩散启动", "US"],
+      ["2024", 1, "2024.09 o1 推出，推理型模型路线成型", "US"],
+      ["2025", 1, "2025.01 Stargate 启动，基础设施竞争前移", "US"],
+      ["2026", 1, "2026 观测点：代理型产品能否形成大规模企业留存", "US"],
+      ["2022", 0, "2022 以产业场景与大模型预训练布局为主，追赶期加速", "CN"],
+      ["2023", 0, "2023 Qwen / 通义系持续演进，本土模型栈完善", "CN"],
+      ["2024", 0, "2024.05 DeepSeek-V2 发布，效率与成本成为主叙事", "CN"],
+      ["2024", 0, "2024.09 Qwen2.5 发布，开源能力上行", "CN"],
+      ["2025", 0, "2025.01 DeepSeek-R1 发布，开源推理模型破圈", "CN"],
+      ["2026", 0, "2026 观测点：国产算力与高质量开源模型能否持续闭环", "CN"]
+    ];
+
+    const timeline = echarts.init(document.getElementById("timelineChart"));
+    timeline.setOption({
+      backgroundColor: "transparent",
+      tooltip: {
+        trigger: "item",
+        formatter: (params) => {
+          return "<strong>" + params.data[3] + "</strong><br>" + params.data[2];
+        },
+        backgroundColor: "rgba(6,16,28,0.96)",
+        borderColor: "rgba(153,184,220,0.24)",
+        textStyle: { color: "#eaf1ff", lineHeight: 20 }
+      },
+      grid: {
+        left: 78,
+        right: 24,
+        top: 26,
+        bottom: 52
+      },
+      xAxis: {
+        type: "category",
+        data: ["2022", "2023", "2024", "2025", "2026"],
+        boundaryGap: true,
+        axisLine: { lineStyle: { color: "rgba(255,255,255,0.18)" } },
+        axisTick: { show: false },
+        axisLabel: { color: "#d8e4f8", fontWeight: 700 }
+      },
+      yAxis: {
+        type: "category",
+        data: ["CN", "US"],
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: {
+          color: "#d8e4f8",
+          fontWeight: 700
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: "rgba(255,255,255,0.08)"
+          }
+        }
+      },
+      series: [{
+        type: "effectScatter",
+        coordinateSystem: "cartesian2d",
+        data: timelinePoints,
+        symbolSize: function (val) {
+          return val[0] === "2026" ? 18 : 16;
+        },
+        rippleEffect: {
+          scale: 4.2,
+          brushType: "stroke"
+        },
+        itemStyle: {
+          color: function (params) {
+            return params.data[3] === "US" ? "#6dd8ff" : "#f3b96b";
+          },
+          shadowBlur: 18,
+          shadowColor: "rgba(109,216,255,0.32)"
+        },
+        label: {
+          show: true,
+          formatter: function (params) {
+            return params.data[2];
+          },
+          position: function (point, params, dom, rect, size) {
+            return params.data[3] === "US" ? [point[0] - 36, point[1] - 46] : [point[0] - 36, point[1] + 16];
+          },
+          width: 150,
+          overflow: "break",
+          color: "#dbe7fb",
+          fontSize: 12,
+          lineHeight: 17
+        }
+      }]
+    });
+
+    window.addEventListener("resize", () => {
+      radar.resize();
+      timeline.resize();
+    });
+  </script>
+</body>
+</html>

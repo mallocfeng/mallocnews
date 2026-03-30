@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026.04.12-04.17 曼谷双人旅行攻略 | mallocnews</title>
+  <meta name="description" content="2026 年 4 月 12 日到 4 月 17 日，曼谷双人旅行详细攻略。含行前准备、住宿区域、逐日行程、预算、交通、Songkran 泼水节避坑与官方链接。" />
+  <style>
+    :root{
+      --bg:#f6f0e4;
+      --paper:rgba(255,251,245,.82);
+      --paper-strong:#fffaf2;
+      --ink:#1d1a17;
+      --muted:#655b50;
+      --line:rgba(29,26,23,.10);
+      --accent:#0d7a6e;
+      --accent-soft:rgba(13,122,110,.12);
+      --warm:#e07a3f;
+      --warm-soft:rgba(224,122,63,.13);
+      --danger:#9b3d26;
+      --shadow:0 26px 70px rgba(84,58,32,.16);
+      --radius:26px;
+      --radius-sm:18px;
+      --sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;
+      --serif:Georgia,"Times New Roman","Songti SC","STSong",serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(242,191,120,.48), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(13,122,110,.14), transparent 26%),
+        linear-gradient(180deg, #f8f2e8 0%, #efe4d1 100%);
+      font-family:var(--sans);
+      line-height:1.72;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(29,26,23,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,26,23,.03) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.75), transparent 88%);
+    }
+
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .page{
+      width:min(1180px, calc(100% - 28px));
+      margin:20px auto 52px;
+    }
+
+    .hero,
+    .section,
+    .sources{
+      position:relative;
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:var(--radius);
+      background:var(--paper);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      overflow:hidden;
+      padding:34px;
+      margin-bottom:20px;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-30px;
+      width:380px;
+      height:380px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(13,122,110,.16), rgba(13,122,110,0) 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.7);
+      color:var(--muted);
+      font-size:.8rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--warm);
+      box-shadow:0 0 0 6px var(--warm-soft);
+    }
+
+    h1,h2,h3,p{margin:0}
+
+    h1{
+      margin-top:18px;
+      font-family:var(--serif);
+      font-size:clamp(2.8rem, 6vw, 5.2rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      max-width:12ch;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap:24px;
+      margin-top:26px;
+    }
+
+    .lede{
+      color:var(--muted);
+      font-size:1.06rem;
+      max-width:42rem;
+    }
+
+    .assumption{
+      margin-top:18px;
+      padding:15px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.62);
+      border:1px solid var(--line);
+      color:#53483f;
+      font-size:.96rem;
+    }
+
+    .meta-card,
+    .metric,
+    .stay-card,
+    .day-card,
+    .budget-card,
+    .warn-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius-sm);
+      background:var(--paper-strong);
+    }
+
+    .meta-card{
+      padding:20px;
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding-bottom:10px;
+      border-bottom:1px solid var(--line);
+      font-size:.95rem;
+    }
+
+    .meta-row:last-child{border-bottom:0;padding-bottom:0}
+    .meta-label{color:var(--muted)}
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .metric{padding:18px}
+    .metric-label{
+      color:var(--muted);
+      font-size:.76rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .metric-value{
+      margin-top:10px;
+      font-size:1.7rem;
+      line-height:1.1;
+      font-family:var(--serif);
+    }
+    .metric-note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .layout{display:grid;gap:18px}
+    .section,.sources{padding:28px}
+    .section + .section,
+    .sources{margin-top:18px}
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:baseline;
+      margin-bottom:18px;
+    }
+    .section-kicker{
+      color:var(--muted);
+      font-size:.84rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .section h2,.sources h2{
+      font-size:1.85rem;
+      letter-spacing:-.03em;
+    }
+
+    .grid-2,
+    .grid-3{
+      display:grid;
+      gap:16px;
+    }
+    .grid-2{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    .grid-3{grid-template-columns:repeat(3, minmax(0, 1fr))}
+
+    .stay-card,
+    .budget-card,
+    .warn-card{
+      padding:18px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:.75rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      background:var(--accent-soft);
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+
+    .tag.warm{
+      background:var(--warm-soft);
+      color:var(--warm);
+    }
+
+    .section p + p{margin-top:12px}
+    ul{margin:14px 0 0;padding-left:18px}
+    li + li{margin-top:9px}
+
+    .route{
+      display:grid;
+      grid-template-columns:92px minmax(0, 1fr);
+      gap:18px;
+    }
+
+    .route-day{
+      padding-top:4px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .route-day .num{
+      display:block;
+      margin-top:6px;
+      font-family:var(--serif);
+      font-size:2rem;
+      color:var(--ink);
+    }
+
+    .day-card{
+      padding:20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,250,242,.86)),
+        var(--paper-strong);
+    }
+
+    .day-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:12px;
+    }
+
+    .day-title{
+      font-size:1.22rem;
+      letter-spacing:-.02em;
+    }
+
+    .pace{
+      white-space:nowrap;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .timeline{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .slot{
+      display:grid;
+      grid-template-columns:92px minmax(0, 1fr);
+      gap:12px;
+      padding:11px 0;
+      border-top:1px dashed rgba(29,26,23,.12);
+    }
+
+    .slot:first-child{border-top:0;padding-top:0}
+    .time{
+      color:var(--muted);
+      font-size:.9rem;
+      font-weight:600;
+    }
+
+    .note{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(13,122,110,.06);
+      color:#2c4f49;
+      font-size:.94rem;
+    }
+
+    .note.warn{
+      background:rgba(224,122,63,.08);
+      color:#73452a;
+    }
+
+    .budget-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .price{
+      margin-top:10px;
+      font-size:1.5rem;
+      line-height:1.1;
+      font-family:var(--serif);
+    }
+
+    .highlight{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .sources ol{
+      margin:16px 0 0;
+      padding-left:20px;
+    }
+
+    .sources li{
+      margin-top:10px;
+    }
+
+    .foot{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .budget-grid,
+      .highlight{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .page{width:min(100%, calc(100% - 18px))}
+      .hero,.section,.sources{padding:20px}
+      .metrics{grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .route{grid-template-columns:1fr}
+      .route-day{text-align:left}
+      .slot{grid-template-columns:1fr}
+      h1{max-width:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">mallocnews · city guide</div>
+      <h1>曼谷 6 天 5 晚<br/>双人旅行攻略</h1>
+      <p class="lede">
+        时间是 <b>2026 年 4 月 12 日到 4 月 17 日</b>。这段时间正好卡在曼谷最热、也最热闹的泼水节窗口。你们是一男一女同行，我把这份攻略按
+        “<b>第一次去曼谷、想玩得舒服一点、既要有城市感也要有一点约会感</b>” 的思路来写，不走纯背包党路线，也不走奢华躺酒店路线。
+      </p>
+      <div class="assumption">
+        这份方案默认你们希望兼顾 4 件事：<b>城市经典景点</b>、<b>Songkran 体验</b>、<b>好吃但不过度折腾</b>、<b>双人相处节奏舒服</b>。
+        如果你们更偏购物、酒吧、佛寺深度游或者完全不想玩水，这份行程也能很容易微调。
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">Trip Window</div>
+              <div class="metric-value">6 天 5 晚</div>
+              <div class="metric-note">2026-04-12 到 2026-04-17，周日到周五。</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Key Factor</div>
+              <div class="metric-value">Songkran</div>
+              <div class="metric-note">4 月 13 日到 15 日是泰国新年核心窗口，人流会明显放大。</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Best Base</div>
+              <div class="metric-value">Asok / Silom</div>
+              <div class="metric-note">第一次去曼谷，住 BTS/MRT 交汇地带最省心。</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Budget</div>
+              <div class="metric-value">3.3 万 - 5.2 万 THB</div>
+              <div class="metric-note">双人不含国际机票，按中档酒店、正常吃玩估算。</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="meta-card">
+          <div class="meta-row"><span class="meta-label">最适合的住宿区域</span><b>Asok / Phrom Phong 或 Silom</b></div>
+          <div class="meta-row"><span class="meta-label">最需要提前做的事</span><b>TDAC、酒店、SkyWalk 时段</b></div>
+          <div class="meta-row"><span class="meta-label">最容易踩坑的点</span><b>泼水节湿身、寺庙着装、出租车绕路</b></div>
+          <div class="meta-row"><span class="meta-label">这趟行程的节奏</span><b>2 天城市经典 + 2 天节庆/轻松 + 1 天收尾</b></div>
+          <div class="meta-row"><span class="meta-label">一句话建议</span><b>不要把每天都塞满</b></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Quick Strategy</div>
+          <h2>先说结论</h2>
+        </div>
+      </div>
+      <div class="highlight">
+        <div>
+          <p>如果你们是第一次去曼谷，这次最稳的玩法不是“把所有景点都打卡完”，而是把城市拆成 3 条线：</p>
+          <ul>
+            <li><b>老城线</b>：大皇宫、卧佛寺、郑王庙、湄南河日落。这是曼谷气质最浓的一条。</li>
+            <li><b>节庆线</b>：Songkran 的泼水节体验，但只挑 1 天重度参加，剩下两天做轻量围观或转进室内。</li>
+            <li><b>舒服线</b>：Siam/EmSphere 购物、按摩、咖啡、roof top，这条线最适合一男一女同行。</li>
+          </ul>
+          <p>我不建议你们 4 月 13 日到 15 日连续三天都扎进最猛的泼水区。理由很简单：第一，真的很热；第二，电子设备会很难受；第三，双人旅行如果每天都被人群裹挟，体验很容易从兴奋变成烦躁。</p>
+        </div>
+        <div class="warn-card">
+          <span class="tag warm">这趟旅行最重要的 3 件事</span>
+          <ul>
+            <li><b>提前 3 天内填写 TDAC</b>。如果你们 4 月 12 日入境，最早可以从 <b>4 月 9 日</b> 开始填。</li>
+            <li><b>至少准备两套“能湿身”的轻便衣物</b>，外加手机防水袋和凉鞋。</li>
+            <li><b>酒店尽量贴 BTS/MRT</b>，Songkran 期间地面交通会明显更慢。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Before You Go</div>
+          <h2>行前准备清单</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="stay-card">
+          <span class="tag">证件与入境</span>
+          <ul>
+            <li><b>先确认签证要求</b>：签证政策取决于你们的护照国籍，别把 TDAC 当成签证。</li>
+            <li><b>TDAC</b>：所有外国旅客入境泰国都要填，官方说明是可在到达前 <b>3 天内</b> 提交，且可团体提交、可修改。</li>
+            <li>准备好护照信息、航班信息、酒店地址、邮箱。</li>
+            <li>把 TDAC 确认页存到手机相册，也发到彼此微信或邮箱里。</li>
+          </ul>
+        </div>
+        <div class="stay-card">
+          <span class="tag warm">随身物品</span>
+          <ul>
+            <li><b>轻薄速干衣</b> 2 套以上，Songkran 当天不要穿牛仔。</li>
+            <li><b>手机防水袋</b>、小号斜挎包、充电宝、防晒霜、墨镜、止汗纸巾。</li>
+            <li><b>寺庙着装</b>：至少备一套能遮肩、过膝的衣服。去卧佛寺、大皇宫不要穿太暴露。</li>
+            <li>脚上尽量穿 <b>凉鞋或可快干运动鞋</b>，不要穿容易泡坏的皮鞋。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note warn">关于天气：曼谷 4 月本来就是全年最热的一段，且 Songkran 期间户外时间容易被拉长。即使临近出发的实时天气预报有波动，也建议你们按 <b>高温 + 暴晒 + 可能阵雨</b> 来准备。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Stay</div>
+          <h2>住哪里最合适</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="stay-card">
+          <span class="tag">优先推荐</span>
+          <h3>Asok / Phrom Phong</h3>
+          <p>第一次去曼谷最省心的区域。BTS 和 MRT 切换方便，吃饭、商场、按摩、夜生活都不缺，回酒店也轻松。</p>
+          <ul>
+            <li>适合：第一次去、怕折腾、行程想兼顾节庆和日常舒适。</li>
+            <li>缺点：老城景点要坐车过去，纯城市感偏商业。</li>
+          </ul>
+        </div>
+        <div class="stay-card">
+          <span class="tag">也很适合</span>
+          <h3>Silom / Sathorn</h3>
+          <p>更成熟一点的都市感，适合你们晚上去 Sky Bar、Mahanakhon 或河边吃饭。去老城和河边都更顺。</p>
+          <ul>
+            <li>适合：双人同行，想要白天看城、晚上看夜景。</li>
+            <li>缺点：Songkran 期间部分路段会更挤。</li>
+          </ul>
+        </div>
+        <div class="stay-card">
+          <span class="tag warm">预算更高可选</span>
+          <h3>湄南河边</h3>
+          <p>更有度假感，拍照和夜景更强，适合想把这趟做得更“像旅行”而不是“像通勤”的人。</p>
+          <ul>
+            <li>适合：更重视氛围、酒店体验和日落晚餐。</li>
+            <li>缺点：价格高，去地铁线通常要换乘或打车。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">如果你只让我给一个选择，我会建议你们住 <b>Asok / Phrom Phong</b>。原因很简单：两个人一起出门，最值钱的是“回程不折腾”。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Itinerary</div>
+          <h2>逐日详细行程</h2>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">1</span>
+            <div>04/12 周日</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">抵达曼谷，先把体力和城市节奏对上</div>
+                <p>第一天不要野心太大。你们接下来三天会碰上节庆与高温，先把睡眠、换汇、交通熟悉好，后面会舒服很多。</p>
+              </div>
+              <div class="pace">轻松节奏</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">到达后</div>
+                <div>入住酒店，先在附近解决第一餐。优先选离酒店 10 分钟步行内的地方，不用为了第一顿饭横穿半个城。</div>
+              </div>
+              <div class="slot">
+                <div class="time">15:00-17:30</div>
+                <div>如果你们落地早，去 <b>Benjakitti Park</b> 或 <b>EmSphere / Emporium</b> 一带散步，熟悉城市体感，顺便买防水袋、拖鞋和补给。</div>
+              </div>
+              <div class="slot">
+                <div class="time">18:00-21:30</div>
+                <div>安排一顿“第一晚比较像旅行”的晚餐。建议选 <b>河边餐厅</b> 或 <b>高层酒吧/观景餐厅</b>，让这趟旅行开场就进入状态。</div>
+              </div>
+            </div>
+            <div class="note">如果你们 4 月 12 日下午前就到，而且住得离地铁近，周日可以把 <b>Chatuchak 周末市场</b> 作为可选项，但前提是落地不累、行李不多。否则这天就别硬上。</div>
+          </div>
+        </div>
+
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">2</span>
+            <div>04/13 周一</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">Songkran 主体验日：只重度参加一天就够</div>
+                <p>这是你们这趟最热闹的一天。建议把它设成唯一一个“认真玩水”的日子，别三天都冲最猛的区。</p>
+              </div>
+              <div class="pace">热闹节奏</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">上午</div>
+                <div>睡到自然醒，穿速干衣，带上防水袋和少量现金。午前不要急着进最挤的区域，先在酒店附近吃点东西。</div>
+              </div>
+              <div class="slot">
+                <div class="time">13:00-17:00</div>
+                <div>去你们选定的 Songkran 区域。<b>Khao San / Silom</b> 最热闹，但也最挤、最湿、最容易疲惫。第一次体验可以只玩 2 到 4 小时，别硬顶一整天。</div>
+              </div>
+              <div class="slot">
+                <div class="time">傍晚</div>
+                <div>回酒店洗澡换衣服，再出去吃晚饭。建议晚饭不要安排太远，选酒店附近质量稳定的地方，或者去商场里找环境更好的餐厅。</div>
+              </div>
+            </div>
+            <div class="note warn">这天的关键不是“玩得多猛”，而是“及时收手”。一男一女同行，最容易出现的翻车点就是有人还想冲、有人已经累了，所以提前约好撤退时间特别重要。</div>
+          </div>
+        </div>
+
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">3</span>
+            <div>04/14 周二</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">从高刺激切回轻松：商场、咖啡、按摩、夜景</div>
+                <p>连续高温和泼水之后，这一天故意降强度。你们会发现这种松弛感，反而很像一趟好的双人旅行。</p>
+              </div>
+              <div class="pace">恢复节奏</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">上午</div>
+                <div>睡晚一点。把这天当作恢复日，去 <b>Siam</b> 片区或者 <b>EmDistrict</b> 逛商场、喝咖啡、补逛街清单。</div>
+              </div>
+              <div class="slot">
+                <div class="time">下午</div>
+                <div>安排一场正规按摩。卧佛寺官方按摩营业到 <b>19:30</b>，但这天更建议选酒店附近评价稳定的店，减少折返。</div>
+              </div>
+              <div class="slot">
+                <div class="time">傍晚到夜间</div>
+                <div>去 <b>Mahanakhon</b> 看城市全景和日落。官方页面显示 SkyWalk 每日 <b>10:00-19:00</b>，最后入场 <b>18:30</b>，所以最好提前订 17:00 左右时段。</div>
+              </div>
+            </div>
+            <div class="note">这天很适合拍照，也很适合把旅行里“像约会”的部分做出来。比起继续冲泼水区，Mahanakhon 的收益更高。</div>
+          </div>
+        </div>
+
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">4</span>
+            <div>04/15 周三</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">老城经典一整天：大皇宫 + 卧佛寺 + 郑王庙 + 河边日落</div>
+                <p>这是最像“曼谷”的一天。建议早起，不然热和人流都会加倍。</p>
+              </div>
+              <div class="pace">经典景点日</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">08:00 前</div>
+                <div>出门去大皇宫。官方资料显示大皇宫每日开放时间是 <b>08:30-15:30</b>，越早到越好。着装一定要规矩，避免现场临时处理。</div>
+              </div>
+              <div class="slot">
+                <div class="time">11:00 左右</div>
+                <div>步行去 <b>Wat Pho 卧佛寺</b>。官方页面显示开放时间 <b>08:00-19:30</b>，门票 <b>300 THB</b>，且要求礼貌着装。</div>
+              </div>
+              <div class="slot">
+                <div class="time">午后</div>
+                <div>从河边坐船过去 <b>Wat Arun 郑王庙</b>。中午最晒，可以接受的话就继续；如果状态一般，先找空调餐厅休息再过去。</div>
+              </div>
+              <div class="slot">
+                <div class="time">傍晚</div>
+                <div>回到河边，安排一顿景观晚餐。郑王庙对岸或河边 rooftop 的价值很高，这时拍照最好看。</div>
+              </div>
+            </div>
+            <div class="note warn">老城线的痛点不是景点本身，而是 <b>热</b>。一旦中午还要排长队，情绪很容易下滑，所以这天一定带水、遮阳、薄外套和能接受汗的心态。</div>
+          </div>
+        </div>
+
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">5</span>
+            <div>04/16 周四</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">自由调整日：你们这天可以按喜好分流</div>
+                <p>前四天已经把节庆、城市、老城都覆盖了，所以第 5 天不要再强行“补课”。让它变成真正的旅行日。</p>
+              </div>
+              <div class="pace">灵活节奏</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">方案 A</div>
+                <div><b>购物休闲线</b>：继续逛 Siam / CentralWorld / EmSphere，买伴手礼，找一家更正式一点的午餐或下午茶。</div>
+              </div>
+              <div class="slot">
+                <div class="time">方案 B</div>
+                <div><b>咖啡慢游线</b>：挑一个你们顺眼的街区，比如 Ari 或旧城边缘，少打卡、多坐下来。</div>
+              </div>
+              <div class="slot">
+                <div class="time">方案 C</div>
+                <div><b>轻夜生活线</b>：如果前几天没去成，可以把这晚留给 rooftop、酒吧或更有氛围的晚餐。</div>
+              </div>
+            </div>
+            <div class="note">双人旅行最舒服的状态，通常不是“每天都很满”，而是到第 5 天你们还能各自保留一点选择权。</div>
+          </div>
+        </div>
+
+        <div class="route">
+          <div class="route-day">
+            Day
+            <span class="num">6</span>
+            <div>04/17 周五</div>
+          </div>
+          <div class="day-card">
+            <div class="day-head">
+              <div>
+                <div class="day-title">离开前的收尾：轻早餐、补买、准时去机场</div>
+                <p>最后一天不要再塞景点。曼谷最容易让人低估的不是距离，是时间。</p>
+              </div>
+              <div class="pace">收尾节奏</div>
+            </div>
+            <div class="timeline">
+              <div class="slot">
+                <div class="time">上午</div>
+                <div>吃一顿舒服的早餐，检查护照、登机牌、退税单据、防水袋里有没有现金或卡。</div>
+              </div>
+              <div class="slot">
+                <div class="time">离店前</div>
+                <div>如果住商圈附近，可以补买伴手礼；如果住河边，就把最后一段时间留给慢一点的散步。</div>
+              </div>
+              <div class="slot">
+                <div class="time">去机场</div>
+                <div>Songkran 余波和工作日交通叠加，建议你们宁可早一点，也不要赌时间。尤其如果是国际航班，更不要把酒店 checkout 和出发压太极限。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Money</div>
+          <h2>预算怎么抓</h2>
+        </div>
+      </div>
+      <p>下面这组是我建议你们直接拿来做预算的范围，单位都是 <b>泰铢 THB</b>，默认是 <b>双人</b>，不含国际机票和大额购物。</p>
+      <div class="budget-grid">
+        <div class="budget-card">
+          <span class="tag">酒店</span>
+          <div class="price">2,500 - 4,500 / 晚</div>
+          <p>中档干净、交通方便的酒店大致在这个区间。河边或更好的品牌会更高。</p>
+        </div>
+        <div class="budget-card">
+          <span class="tag">餐饮</span>
+          <div class="price">1,200 - 2,500 / 天</div>
+          <p>街头 + 商场 + 一顿像样晚餐的混搭预算。想吃得更讲究就继续往上加。</p>
+        </div>
+        <div class="budget-card">
+          <span class="tag">交通</span>
+          <div class="price">400 - 900 / 天</div>
+          <p>BTS 比较稳，官方成人票价表是按站计费；实操上你们每天再加一点 Grab 预算更舒服。</p>
+        </div>
+        <div class="budget-card">
+          <span class="tag warm">门票与体验</span>
+          <div class="price">1,500 - 2,800 / 天</div>
+          <p>如果有大皇宫、卧佛寺、Mahanakhon、按摩或河边晚餐，这部分会显著抬高。</p>
+        </div>
+      </div>
+      <div class="note">按这套抓法，<b>6 天 5 晚总预算大概 33,000 到 52,000 THB</b>。如果你们酒店上探到河边高档线，或者晚餐更追求景观，预算往上浮会很快。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Transport & Safety</div>
+          <h2>交通、节庆和避坑</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="warn-card">
+          <span class="tag">交通原则</span>
+          <ul>
+            <li><b>BTS / MRT 优先</b>。Songkran 期间地面交通更容易慢，住轨道交通附近值回房价。</li>
+            <li>打车尽量用 <b>Grab / Bolt</b>，或者上车前确认打表。</li>
+            <li>大皇宫和老城线尽量早到，晚到不是不能玩，是会更晒、更挤。</li>
+          </ul>
+        </div>
+        <div class="warn-card">
+          <span class="tag warm">Songkran 特别提醒</span>
+          <ul>
+            <li>不是所有地方都适合玩水，<b>寺庙、商场内部、地铁车厢</b> 都不要乱来。</li>
+            <li>尽量不要带贵重相机去最猛的泼水区，手机一定套防水袋。</li>
+            <li>如果其中一人不想继续玩，立刻撤，不要拖。节庆疲劳来得非常快。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="warn-card">
+          <span class="tag">寺庙礼仪</span>
+          <ul>
+            <li>大皇宫、卧佛寺请穿得像“要进去参观宗教场所”，不要赌现场能混进去。</li>
+            <li>鞋子方便穿脱很重要，进入部分区域需要脱鞋。</li>
+            <li>卧佛寺官方也特别提醒保持礼貌着装和安静参观。</li>
+          </ul>
+        </div>
+        <div class="warn-card">
+          <span class="tag warm">最容易低估的事</span>
+          <ul>
+            <li><b>热</b>：不是温暖，是会让人脾气变差的热。</li>
+            <li><b>湿</b>：Songkran 那几天衣服鞋子干不了得太快。</li>
+            <li><b>时间</b>：两个人协调节奏比一个人旅行慢，预留缓冲就是在保体验。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Sources</div>
+          <h2>参考来源与说明</h2>
+        </div>
+      </div>
+      <p>这份攻略里，涉及入境、景点开放时间和官方运营信息的部分，尽量用了官方来源。酒店区域、预算和节奏安排则是我基于这些信息做出的旅行建议。</p>
+      <ol>
+        <li>泰国外交部 2025-04-10 新闻简报，说明 <b>TDAC</b> 自 2025-05-01 起启用、适用于所有外国旅客、可在到达前 3 天内填写，且 <b>TDAC 不是签证</b>：<br/><a href="https://www.mfa.go.th/en/content/weeklypress10apr-en?menu=674059a73084665a5f64c653&page=67405908f18a3c15fc291053" target="_blank" rel="noreferrer">https://www.mfa.go.th/en/content/weeklypress10apr-en...</a></li>
+        <li>泰国电子签证官方手册入口：<br/><a href="https://www.thaievisa.go.th/static/English-Manual.pdf" target="_blank" rel="noreferrer">https://www.thaievisa.go.th/static/English-Manual.pdf</a></li>
+        <li>卧佛寺 Wat Pho 官方访客页面，含开放时间 <b>08:00-19:30</b>、门票 <b>300 Baht</b>、礼貌着装要求：<br/><a href="https://www.watpho.com/en/contact/plan" target="_blank" rel="noreferrer">https://www.watpho.com/en/contact/plan</a></li>
+        <li>大皇宫官方资料页面搜索结果显示 <b>The Grand Palace is open daily 08:30-15:30</b>：<br/><a href="https://www.royalgrandpalace.th/" target="_blank" rel="noreferrer">https://www.royalgrandpalace.th/</a></li>
+        <li>King Power Mahanakhon 官方页面，SkyWalk 开放时间与最后入场信息：<br/><a href="https://kingpowermahanakhon.co.th/plan-your-visit/" target="_blank" rel="noreferrer">https://kingpowermahanakhon.co.th/plan-your-visit/</a></li>
+        <li>King Power Mahanakhon 官方购票页，含夜间开放、时段说明与入场规则：<br/><a href="https://shop.kingpowermahanakhon.co.th/products/mahanakhon-skywalk" target="_blank" rel="noreferrer">https://shop.kingpowermahanakhon.co.th/products/mahanakhon-skywalk</a></li>
+        <li>BTS 官方票价表（现行票价表 PDF，可作为轨道交通预算参考）：<br/><a href="https://www.bts.co.th/eng/files/uploads/tickets/pdf/fare_Adult_2JAN24.pdf" target="_blank" rel="noreferrer">https://www.bts.co.th/eng/files/uploads/tickets/pdf/fare_Adult_2JAN24.pdf</a></li>
+      </ol>
+      <p class="foot">说明：2026 年 Songkran 的具体活动舞台、封路和分区安排，官方通常会在更临近节日前集中发布。这份攻略先按节庆规律和现有官方信息设计行程，出发前 7 天你们再核对一次最终活动地图，会更稳。</p>
+    </section>
+  </div>
+</body>
+</html>

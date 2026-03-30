@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026.04.12-04.17 曼谷酒店推荐 | mallocnews</title>
+  <meta name="description" content="2026 年 4 月 12 日到 4 月 17 日曼谷双人旅行酒店推荐。按 Asok、Phrom Phong、Silom/Sathorn、Riverside 分区说明，含适合人群、优缺点与官方链接。" />
+  <style>
+    :root{
+      --bg:#f4efe4;
+      --paper:rgba(255,251,245,.84);
+      --paper-strong:#fffaf2;
+      --ink:#1d1a17;
+      --muted:#675c52;
+      --line:rgba(29,26,23,.1);
+      --accent:#0d7a6e;
+      --accent-soft:rgba(13,122,110,.11);
+      --warm:#c46c34;
+      --warm-soft:rgba(196,108,52,.12);
+      --shadow:0 26px 70px rgba(84,58,32,.15);
+      --radius:26px;
+      --radius-sm:18px;
+      --sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;
+      --serif:Georgia,"Times New Roman","Songti SC","STSong",serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(232,189,122,.45), transparent 24%),
+        radial-gradient(circle at 92% 12%, rgba(13,122,110,.13), transparent 24%),
+        linear-gradient(180deg, #f8f2e8 0%, #efe4d1 100%);
+      font-family:var(--sans);
+      line-height:1.72;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(29,26,23,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,26,23,.03) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.72), transparent 88%);
+    }
+
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .page{width:min(1180px, calc(100% - 28px));margin:20px auto 52px}
+    .hero,.section,.sources{
+      position:relative;
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:var(--radius);
+      background:var(--paper);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+    .hero{overflow:hidden;padding:34px;margin-bottom:20px}
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-100px;
+      top:-40px;
+      width:360px;height:360px;border-radius:50%;
+      background:radial-gradient(circle, rgba(13,122,110,.16), rgba(13,122,110,0) 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.7);color:var(--muted);
+      font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+    }
+    .eyebrow::before{
+      content:"";width:8px;height:8px;border-radius:50%;
+      background:var(--warm);box-shadow:0 0 0 6px var(--warm-soft);
+    }
+
+    .topnav{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .navlink{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);background:rgba(255,255,255,.72);color:var(--ink);font-size:.92rem;font-weight:600;
+    }
+    .navlink:hover{text-decoration:none;border-color:rgba(13,122,110,.25);color:var(--accent)}
+
+    h1,h2,h3,p{margin:0}
+    h1{
+      margin-top:18px;font-family:var(--serif);font-size:clamp(2.8rem, 6vw, 5rem);
+      line-height:.95;letter-spacing:-.05em;max-width:12ch;
+    }
+    .lede{margin-top:16px;color:var(--muted);font-size:1.05rem;max-width:48rem}
+    .hero-grid{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(290px,.95fr);
+      gap:24px;margin-top:26px;
+    }
+
+    .card,.hotel,.summary,.zone,.note{
+      border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper-strong);
+    }
+    .card,.summary,.zone{padding:18px}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .metric{padding:18px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper-strong)}
+    .metric-label{color:var(--muted);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+    .metric-value{margin-top:10px;font-size:1.65rem;line-height:1.1;font-family:var(--serif)}
+    .metric-note{margin-top:10px;color:var(--muted);font-size:.92rem}
+
+    .section,.sources{padding:28px}
+    .section + .section,.sources{margin-top:18px}
+    .section-head{display:flex;justify-content:space-between;gap:18px;align-items:baseline;margin-bottom:18px}
+    .section-kicker{color:var(--muted);font-size:.84rem;letter-spacing:.12em;text-transform:uppercase}
+    .section h2,.sources h2{font-size:1.85rem;letter-spacing:-.03em}
+
+    .grid-2,.grid-3,.hotel-grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .hotel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    ul{margin:14px 0 0;padding-left:18px}
+    li + li{margin-top:9px}
+
+    .tag{
+      display:inline-block;padding:6px 10px;border-radius:999px;font-size:.75rem;letter-spacing:.1em;
+      text-transform:uppercase;background:var(--accent-soft);color:var(--accent);margin-bottom:10px;
+    }
+    .tag.warm{background:var(--warm-soft);color:var(--warm)}
+
+    .zone h3,.hotel h3{font-size:1.18rem;letter-spacing:-.02em}
+    .zone p + p,.hotel p + p{margin-top:10px}
+    .note{
+      margin-top:16px;padding:14px 16px;background:rgba(13,122,110,.06);color:#2c4f49;font-size:.95rem;
+    }
+
+    .hotel{
+      padding:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,250,242,.86)), var(--paper-strong);
+    }
+    .hotel-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+    .fit{white-space:nowrap;color:var(--muted);font-size:.9rem}
+    .proscons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+    .pros,.cons{padding:12px 14px;border-radius:14px}
+    .pros{background:rgba(13,122,110,.06)}
+    .cons{background:rgba(196,108,52,.08)}
+    .pros h4,.cons h4{margin:0 0 6px;font-size:.95rem}
+    .cta{margin-top:14px;font-size:.95rem}
+
+    .sources ol{margin:16px 0 0;padding-left:20px}
+    .sources li{margin-top:10px}
+    .foot{margin-top:18px;color:var(--muted);font-size:.9rem}
+
+    @media (max-width:980px){
+      .hero-grid,.grid-2,.grid-3,.hotel-grid,.proscons,.metrics{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      .page{width:min(100%, calc(100% - 18px))}
+      .hero,.section,.sources{padding:20px}
+      h1{max-width:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">mallocnews · hotel guide</div>
+      <h1>曼谷酒店推荐<br/>单独决策页</h1>
+      <div class="topnav">
+        <a class="navlink" href="./bangkok_2026_0412_0417_guide.html">返回总攻略</a>
+        <a class="navlink" href="./bangkok_2026_0412_0417_hotels.html">酒店推荐页</a>
+        <a class="navlink" href="./index.html">返回报告索引</a>
+      </div>
+      <p class="lede">这页专门解决“到底住哪”的问题。你们是一男一女同行，旅行窗口又撞上 Songkran，所以我把推荐逻辑放在 <b>交通效率、回酒店舒适度、双人相处氛围</b> 这三件事上，而不是只看网红感。</p>
+
+      <div class="hero-grid">
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">First Choice</div>
+            <div class="metric-value">Asok / Phrom Phong</div>
+            <div class="metric-note">第一次去曼谷、怕折腾、想兼顾节庆和日常舒适，优先看这里。</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Best For Dates</div>
+            <div class="metric-value">Riverside</div>
+            <div class="metric-note">如果这趟更想有“旅行感”和夜景感，河边的体验最强。</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Best Value</div>
+            <div class="metric-value">Mercure 24 / HIX Sathorn</div>
+            <div class="metric-note">兼顾位置和预算，通常最容易下决定。</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Best Transport</div>
+            <div class="metric-value">Terminal 21 / Eastin</div>
+            <div class="metric-note">一个是 Asok 交汇点，一个是直接连 BTS，出行最省脑子。</div>
+          </div>
+        </div>
+        <aside class="summary">
+          <span class="tag warm">先讲结论</span>
+          <ul>
+            <li><b>完全不想费脑</b>：优先看 <b>Grande Centre Point Terminal 21</b> 或 <b>The Westin Grande Sukhumvit</b>。</li>
+            <li><b>想控制预算但不想住差</b>：看 <b>Mercure Bangkok Sukhumvit 24</b> 或 <b>Holiday Inn Express Bangkok Sathorn</b>。</li>
+            <li><b>想更像约会和度假</b>：看 <b>Shangri-La Bangkok</b>。</li>
+            <li><b>重视轨道交通直接连接</b>：看 <b>Eastin Grand Hotel Sathorn</b>。</li>
+          </ul>
+          <div class="note">这页不写死房价。原因是酒店价格随日期、取消政策、早餐、房型和节庆溢价会明显波动。更稳的做法是：<b>先定区域，再定酒店，再只比较可免费取消的房型</b>。</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">How To Choose</div>
+          <h2>先按区域选，不要一上来就选酒店名</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="zone">
+          <span class="tag">最稳</span>
+          <h3>Asok</h3>
+          <p>曼谷第一次住这里几乎不会错。BTS Asok 和 MRT Sukhumvit 在这里交汇，去老城、Siam、Silom、夜生活区都顺。</p>
+          <p>适合你们这种双人旅行，因为晚上回酒店不用再折腾，节奏会稳很多。</p>
+        </div>
+        <div class="zone">
+          <span class="tag">最平衡</span>
+          <h3>Phrom Phong</h3>
+          <p>比 Asok 稍微柔和一点，更像高质量商圈生活区。EmSphere、Emporium、EmQuartier 都在附近，吃喝和逛街很舒服。</p>
+          <p>如果你们重视“走出来就有地方可逛”，这里往往比 Asok 更舒服。</p>
+        </div>
+        <div class="zone">
+          <span class="tag warm">最有氛围</span>
+          <h3>Silom / Sathorn / Riverside</h3>
+          <p>更适合想要夜景、河景、成熟都市感的人。适合把旅行做得更有“约会感”，但有些酒店到商圈不如 Sukhumvit 线直接。</p>
+          <p>如果你们会安排 rooftop、河边晚餐，这一区的体验会更好。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Shortlist</div>
+          <h2>推荐酒店清单</h2>
+        </div>
+      </div>
+      <div class="hotel-grid">
+        <article class="hotel">
+          <span class="tag">Asok · first-time safe pick</span>
+          <div class="hotel-head">
+            <div>
+              <h3>Grande Centre Point Terminal 21</h3>
+              <p>如果你让我只推荐一个“第一次去曼谷最不容易后悔”的选择，这家会非常靠前。官方路线页明确写到酒店与 <b>Asok BTS</b> 和 <b>Sukhumvit MRT</b> 相邻。</p>
+            </div>
+            <div class="fit">适合：第一次去</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>交通几乎是天花板，去哪里都省脑子。</li>
+                <li>直接贴着 Terminal 21，吃饭、换汇、下雨躲避都方便。</li>
+                <li>双人同行时，晚归安全感和效率都高。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>因为位置太强，人气和房价通常都不低。</li>
+                <li>更偏功能型优等生，不是最有度假氛围的一类。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>把麻烦降到最低</b>。如果你们不想把时间浪费在选路和折返上，这家非常强。</p>
+          <p class="cta">官方链接：<a href="https://grandecentrepointterminal21.com/map-and-direction/" target="_blank" rel="noreferrer">Grande Centre Point Terminal 21</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag">Asok · premium classic</span>
+          <div class="hotel-head">
+            <div>
+              <h3>The Westin Grande Sukhumvit, Bangkok</h3>
+              <p>Marriott 官方页面明确写到酒店 <b>毗邻 BTS Asok 和 MRT Sukhumvit</b>。如果你们想住得比“方便型酒店”更好一点，但又不想牺牲位置，这家很好用。</p>
+            </div>
+            <div class="fit">适合：位置+品质都要</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>地理位置极强，同时比很多商圈酒店更成熟稳定。</li>
+                <li>品牌和服务线相对稳，适合不想赌发挥的人。</li>
+                <li>适合双人旅行里“白天跑城、晚上回酒店恢复”的需求。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>通常比中端酒店贵一截。</li>
+                <li>如果你主要想要河景和度假氛围，它不是那一挂。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>位置拉满，但住宿质感比纯功能型更好</b>。</p>
+          <p class="cta">官方链接：<a href="https://www.marriott.com/th/hotels/bkkwi-the-westin-grande-sukhumvit-bangkok/overview/" target="_blank" rel="noreferrer">The Westin Grande Sukhumvit</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag">Phrom Phong · best value</span>
+          <div class="hotel-head">
+            <div>
+              <h3>Mercure Bangkok Sukhumvit 24</h3>
+              <p>Accor 官方页面写得很清楚：酒店距 <b>BTS Phrom Phong 100 米</b>，离 EmDistrict 很近，还有 rooftop pool 和酒吧。</p>
+            </div>
+            <div class="fit">适合：预算和位置都要</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>通常是“位置很好但没贵到离谱”的代表。</li>
+                <li>出门就是商圈，适合你们晚上吃饭逛街后轻松回房。</li>
+                <li>Phrom Phong 的氛围比 Asok 柔和，双人体验通常更舒服。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>整体定位偏中高端实用，不是豪华度假型。</li>
+                <li>如果你们很在意房间面积，订房时要注意房型差异。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>这页里性价比最容易打中的一个</b>。</p>
+          <p class="cta">官方链接：<a href="https://all.accor.com/hotel/B0M2/index.en.shtml" target="_blank" rel="noreferrer">Mercure Bangkok Sukhumvit 24</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag">Phrom Phong / Asoke · newer design</span>
+          <div class="hotel-head">
+            <div>
+              <h3>KROMO Bangkok, Curio Collection by Hilton</h3>
+              <p>Hilton 官方位置页显示它在 Sukhumvit 购物带上，靠近 <b>Em District</b>，到 <b>Asok BTS &amp; Sukhumvit MRT</b> 约 0.6 km。</p>
+            </div>
+            <div class="fit">适合：想住新一点</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>新开业属性明显，通常硬件和公共区域会更有新鲜感。</li>
+                <li>兼顾 Asok 和 Phrom Phong 两边资源，位置比较灵活。</li>
+                <li>适合不想住太老牌、又不想远离主线商圈的人。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>不是直接贴地铁口，炎热天气下 600 米体感会被放大。</li>
+                <li>新酒店的服务稳定性要看当期运营状态。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>如果你们在“好位置”和“别太旧”之间找平衡，这家值得看</b>。</p>
+          <p class="cta">官方链接：<a href="https://www.hilton.com/en/hotels/bkkqqqq-kromo/hotel-location/" target="_blank" rel="noreferrer">KROMO Bangkok, Curio Collection by Hilton</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag">Sathorn · budget stable</span>
+          <div class="hotel-head">
+            <div>
+              <h3>Holiday Inn Express Bangkok Sathorn</h3>
+              <p>IHG 官方页面写明酒店距 <b>Chong Nonsi BTS 3 分钟步行</b>，位于 Sathorn 商务区和 Silom 娱乐区之间。它是很标准的“把位置买对”的策略。</p>
+            </div>
+            <div class="fit">适合：预算更克制</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>对第一次去曼谷的人来说，位置并不吃亏。</li>
+                <li>如果你们白天在外面跑得多，酒店本身不必太重资产。</li>
+                <li>通常是控制预算同时维持交通效率的好选择。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>更偏实用，不是约会氛围型酒店。</li>
+                <li>如果你们非常重视泳池、景观和公共空间，这家吸引力会弱一些。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>把钱花在城市本身，不是全压在房费上</b>。</p>
+          <p class="cta">官方链接：<a href="https://www.ihg.com/holidayinnexpress/hotels/us/en/bangkok/bkkbt/hoteldetail" target="_blank" rel="noreferrer">Holiday Inn Express Bangkok Sathorn</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag">Sathorn · transit king</span>
+          <div class="hotel-head">
+            <div>
+              <h3>Eastin Grand Hotel Sathorn</h3>
+              <p>Eastin 官方 FAQ 明确写到酒店 <b>direct access to the skytrain at Surasak Station</b>。这点很关键，因为曼谷 4 月的热会让“多走 5 分钟”变成真正的问题。</p>
+            </div>
+            <div class="fit">适合：轨道交通优先</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>直接连 BTS，对高温天和节庆天都非常友好。</li>
+                <li>Sathorn 区域更成熟、没那么游客化，睡眠和秩序感通常更好。</li>
+                <li>去河边也顺，适合你们想做点夜景和晚餐安排。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>不是最贴近 Sukhumvit 商圈的那种热闹感。</li>
+                <li>如果你们每天都想下楼就逛 mall，Asok/Phrom Phong 仍然更强。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>这是“住得稳 + 交通爽”的典型答案</b>。</p>
+          <p class="cta">官方链接：<a href="https://www.eastinhotelsresidences.com/eastingrandsathornbangkok/faq" target="_blank" rel="noreferrer">Eastin Grand Hotel Sathorn</a></p>
+        </article>
+
+        <article class="hotel">
+          <span class="tag warm">Riverside · most romantic</span>
+          <div class="hotel-head">
+            <div>
+              <h3>Shangri-La Bangkok</h3>
+              <p>Shangri-La 官方交通页说明酒店紧邻 <b>Saphan Taksin BTS</b>。河边酒店里，这家最大的优点不是“奢”，而是它既有河景感，又没有和轨道交通完全脱节。</p>
+            </div>
+            <div class="fit">适合：更像约会旅行</div>
+          </div>
+          <div class="proscons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <li>氛围最好，夜景和河边早餐都很加分。</li>
+                <li>如果你们要安排一顿正式晚餐或想让旅程更有仪式感，这家非常对路。</li>
+                <li>既靠河也靠 BTS，不会像有些度假酒店那样完全被困住。</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>注意</h4>
+              <ul>
+                <li>通常预算明显上探。</li>
+                <li>如果你们主打商圈逛街和地铁通勤，住河边未必最省时间。</li>
+              </ul>
+            </div>
+          </div>
+          <p class="cta">推荐理由：<b>如果你们想把这趟做得更像一趟“带氛围”的双人旅行，它是很强的终极方案</b>。</p>
+          <p class="cta">官方链接：<a href="https://www.shangri-la.com/bangkok/shangrila/about/local-guide/explore-bangkok/transportation/" target="_blank" rel="noreferrer">Shangri-La Bangkok</a></p>
+        </article>
+      </div>
+      <div class="note">如果你现在就要下单，我会建议你按这个顺序比较：<b>1. Grande Centre Point Terminal 21</b>，<b>2. Mercure Bangkok Sukhumvit 24</b>，<b>3. Eastin Grand Hotel Sathorn</b>，<b>4. Shangri-La Bangkok</b>。前 3 个更偏“效率最大化”，最后一个更偏“体验最大化”。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Decision</div>
+          <h2>怎么最终下单最稳</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <span class="tag">筛选顺序</span>
+          <ul>
+            <li>先只看 <b>可免费取消</b> 的房型。</li>
+            <li>把范围缩到 <b>Asok / Phrom Phong / Sathorn / Riverside</b> 其中一个。</li>
+            <li>再比 <b>早餐、房间面积、是否近 BTS/MRT、泳池和景观</b>。</li>
+            <li>Songkran 时段尽量不要为了省一点钱住得太偏。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag warm">双人同行的实战建议</span>
+          <ul>
+            <li>如果你们行程里“回酒店休息再出门”的概率高，位置的价值会被放大。</li>
+            <li>如果女生会带稍多行李、化妆品、伴手礼，房间过小会明显影响体验。</li>
+            <li>如果这趟更偏“约会感”，河边和景观型酒店的加分会比你想象的大。</li>
+            <li>如果主要是第一次去认路、体验城市，那就别为气氛牺牲交通。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Sources</div>
+          <h2>来源</h2>
+        </div>
+      </div>
+      <ol>
+        <li>Grande Centre Point Terminal 21 官方地图与到达说明：<br/><a href="https://grandecentrepointterminal21.com/map-and-direction/" target="_blank" rel="noreferrer">https://grandecentrepointterminal21.com/map-and-direction/</a></li>
+        <li>The Westin Grande Sukhumvit 官方页面，说明酒店紧邻 BTS Asok 与 MRT Sukhumvit：<br/><a href="https://www.marriott.com/th/hotels/bkkwi-the-westin-grande-sukhumvit-bangkok/overview/" target="_blank" rel="noreferrer">https://www.marriott.com/th/hotels/bkkwi-the-westin-grande-sukhumvit-bangkok/overview/</a></li>
+        <li>Mercure Bangkok Sukhumvit 24 官方页面，说明距 BTS Phrom Phong 100 米、临近 EmDistrict：<br/><a href="https://all.accor.com/hotel/B0M2/index.en.shtml" target="_blank" rel="noreferrer">https://all.accor.com/hotel/B0M2/index.en.shtml</a></li>
+        <li>KROMO Bangkok, Curio Collection by Hilton 官方位置页，说明靠近 Em District，距 Asok BTS &amp; Sukhumvit MRT 约 0.6 km：<br/><a href="https://www.hilton.com/en/hotels/bkkqqqq-kromo/hotel-location/" target="_blank" rel="noreferrer">https://www.hilton.com/en/hotels/bkkqqqq-kromo/hotel-location/</a></li>
+        <li>Holiday Inn Express Bangkok Sathorn 官方页面，说明距 Chong Nonsi BTS 3 分钟步行：<br/><a href="https://www.ihg.com/holidayinnexpress/hotels/us/en/bangkok/bkkbt/hoteldetail" target="_blank" rel="noreferrer">https://www.ihg.com/holidayinnexpress/hotels/us/en/bangkok/bkkbt/hoteldetail</a></li>
+        <li>Eastin Grand Hotel Sathorn 官方 FAQ，说明酒店 direct access to the skytrain at Surasak Station：<br/><a href="https://www.eastinhotelsresidences.com/eastingrandsathornbangkok/faq" target="_blank" rel="noreferrer">https://www.eastinhotelsresidences.com/eastingrandsathornbangkok/faq</a></li>
+        <li>Shangri-La Bangkok 官方交通页，说明酒店紧邻 Saphan Taksin BTS：<br/><a href="https://www.shangri-la.com/bangkok/shangrila/about/local-guide/explore-bangkok/transportation/" target="_blank" rel="noreferrer">https://www.shangri-la.com/bangkok/shangrila/about/local-guide/explore-bangkok/transportation/</a></li>
+      </ol>
+      <p class="foot">说明：这页有意优先使用酒店官方页面，而不是 OTA 聚合页。因为你现在需要的是更稳的选址判断，而不是一时一刻的价格波动。真正下单前，再去比当日的可免费取消房型即可。</p>
+    </section>
+  </div>
+</body>
+</html>

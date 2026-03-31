@@ -13,8 +13,8 @@
   .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px 0; flex-shrink: 0; }
   .logo { font-size: 0.95rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.4; }
   .clock { font-size: 0.75rem; opacity: 0.4; font-variant-numeric: tabular-nums; }
-  .city-nav { display: flex; gap: 5px; padding: 12px 20px 0; overflow-x: auto; flex-shrink: 0; -webkit-overflow-scrolling: touch; }
-  .city-nav::-webkit-scrollbar { height: 0; }
+  .city-nav { display: flex; gap: 5px; padding: 12px 20px 0; overflow-x: auto; flex-shrink: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .city-nav::-webkit-scrollbar { display: none; }
   .city-btn { padding: 6px 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.82rem;
     font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.3s; font-family: inherit;

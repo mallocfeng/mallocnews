@@ -165,7 +165,7 @@ resize();
 // PARTICLE TYPES
 // ============================================================
 let rainDrops = [], hRainDrops = [], snowFlakes = [];
-let fluffyClouds = [], flatClouds = [], sunObj = {}, starArr = [], sunRays = [];
+let fluffyClouds = [], sunObj = {}, starArr = [];
 let time = 0;
 let lightningAlpha = 0;
 
@@ -240,17 +240,7 @@ starArr = makeStars(150);
 
 function initSceneClouds() {
   fluffyClouds = [];
-  flatClouds = [];
-  for (let i = 0; i < 10; i++) fluffyClouds.push(makeCloud());
-  for (let i = 0; i < 15; i++) {
-    flatClouds.push({
-      x: -400 + Math.random() * (canvasW + 800),
-      y: -10 + Math.random() * (canvasH * 0.5),
-      w: 300 + Math.random() * 500, h: 80 + Math.random() * 180,
-      sp: 0.08 + Math.random() * 0.2,
-      op: 0.05 + Math.random() * 0.12,
-    });
-  }
+  for (let i = 0; i < 8; i++) fluffyClouds.push(makeCloud());
 }
 initSceneClouds();
 
@@ -260,7 +250,6 @@ function tickClouds() {
     if (c.x - 200 > canvasW + 50) {
       c.x = -200;
       c.y = 30 + Math.random() * (canvasH * 0.28);
-      // regenerate circles
       const baseW = 80 + Math.random() * 120;
       const count = 4 + Math.floor(Math.random() * 5);
       c.circles = [];
@@ -373,17 +362,6 @@ function drawFluffyCloud(c, r, g, b) {
   }
 }
 
-// --- Flat dense cloud (overcast) ---
-function drawFlatCloud(c, r, g, b) {
-  const grad = cx.createRadialGradient(c.x + c.w * 0.3, c.y + c.h * 0.3, 0, c.x, c.y, c.w * 0.6);
-  grad.addColorStop(0, `rgba(${r},${g},${b},${c.op * 1.5})`);
-  grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-  cx.fillStyle = grad;
-  cx.beginPath();
-  cx.ellipse(c.x + c.w * 0.5, c.y + c.h * 0.5, c.w * 0.55, c.h * 0.55, 0, 0, Math.PI * 2);
-  cx.fill();
-}
-
 // --- Stars ---
 function drawStars() {
   starArr.forEach(s => {
@@ -446,17 +424,17 @@ function drawLightning() {
 // MAIN LOOP
 // ============================================================
 const SCENES = {
-  clear:     { clouds:0, stars:1, sun:1, flatC:0, rain:0, hRain:0, snow:0, storm:0, fog:0 },
-  cloudy:    { clouds:1, stars:0, sun:1, flatC:0, rain:0, hRain:0, snow:0, storm:0, fog:0 },
-  overcast:  { clouds:1, stars:0, sun:0, flatC:1, rain:0, hRain:0, snow:0, storm:0, fog:0 },
-  fog:       { clouds:0, stars:0, sun:0, flatC:1, rain:0, hRain:0, snow:0, storm:0, fog:1 },
-  rain:      { clouds:1, stars:0, sun:0, flatC:1, rain:1, hRain:0, snow:0, storm:0, fog:0 },
-  heavyRain: { clouds:1, stars:0, sun:0, flatC:1, rain:0, hRain:1, snow:0, storm:0, fog:0 },
-  storm:     { clouds:1, stars:0, sun:0, flatC:1, rain:0, hRain:1, snow:0, storm:1, fog:0 },
-  snow:      { clouds:1, stars:0, sun:0, flatC:0, rain:0, hRain:0, snow:1, storm:0, fog:0 },
-  heavySnow: { clouds:1, stars:0, sun:0, flatC:0, rain:0, hRain:0, snow:1, storm:0, fog:0 },
-  sleet:     { clouds:1, stars:0, sun:0, flatC:1, rain:1, hRain:0, snow:1, storm:0, fog:0 },
-  drizzle:   { clouds:1, stars:0, sun:0, flatC:0, rain:0.3, hRain:0, snow:0, storm:0, fog:0 },
+  clear:     { clouds:0, stars:1, sun:1, rain:0, hRain:0, snow:0, storm:0, fog:0 },
+  cloudy:    { clouds:1, stars:0, sun:1, rain:0, hRain:0, snow:0, storm:0, fog:0 },
+  overcast:  { clouds:1, stars:0, sun:0, rain:0, hRain:0, snow:0, storm:0, fog:0 },
+  fog:       { clouds:0, stars:0, sun:0, rain:0, hRain:0, snow:0, storm:0, fog:1 },
+  rain:      { clouds:1, stars:0, sun:0, rain:1, hRain:0, snow:0, storm:0, fog:0 },
+  heavyRain: { clouds:1, stars:0, sun:0, rain:0, hRain:1, snow:0, storm:0, fog:0 },
+  storm:     { clouds:1, stars:0, sun:0, rain:0, hRain:1, snow:0, storm:1, fog:0 },
+  snow:      { clouds:1, stars:0, sun:0, rain:0, hRain:0, snow:1, storm:0, fog:0 },
+  heavySnow: { clouds:1, stars:0, sun:0, rain:0, hRain:0, snow:1, storm:0, fog:0 },
+  sleet:     { clouds:1, stars:0, sun:0, rain:1, hRain:0, snow:1, storm:0, fog:0 },
+  drizzle:   { clouds:1, stars:0, sun:0, rain:0.3, hRain:0, snow:0, storm:0, fog:0 },
 };
 
 function draw() {
@@ -471,48 +449,33 @@ function draw() {
   // sun + corona
   if (sc.sun) drawSun();
 
-  // clouds layer
+  // clouds layer — always fluffy multi-circle clouds
   if (sc.clouds) {
     tickClouds();
     for (const c of fluffyClouds) {
-      if (weatherScene === 'overcast' || weatherScene === 'heavyRain') {
-        drawFluffyCloud(c, 60, 65, 80);
-      } else if (weatherScene === 'storm') {
-        drawFluffyCloud(c, 30, 32, 45);
-      } else if (weatherScene === 'rain') {
-        drawFluffyCloud(c, 140, 150, 170);
+      if (weatherScene === 'storm') {
+        drawFluffyCloud(c, 35, 37, 50);
+      } else if (weatherScene === 'overcast' || weatherScene === 'heavyRain' || weatherScene === 'rain' || weatherScene === 'drizzle') {
+        drawFluffyCloud(c, 120, 130, 150);
+      } else if (weatherScene === 'snow' || weatherScene === 'heavySnow' || weatherScene === 'sleet') {
+        drawFluffyCloud(c, 180, 185, 200);
       } else {
-        drawFluffyCloud(c, 230, 235, 245);
+        drawFluffyCloud(c, 240, 245, 255);
       }
     }
   }
 
-  // flat dense clouds (overcast / fog)
-  if (sc.flatC) {
-    for (const c of flatClouds) {
-      c.x += c.sp;
-      if (c.x - c.w > canvasW + 100) c.x = -c.w - 100;
-      if (weatherScene === 'overcast') {
-        drawFlatCloud(c, 80, 85, 95);
-      } else if (weatherScene === 'fog') {
-        drawFlatCloud(c, 160, 165, 170);
-      } else {
-        drawFlatCloud(c, 180, 185, 195);
-      }
-    }
-  }
-
-  // fog veil
+  // fog shimmer
   if (sc.fog) {
     for (let i = 0; i < 5; i++) {
-      const fogY = canvasH * 0.4 + i * canvasH * 0.15;
+      const fogY = canvasH * 0.35 + i * canvasH * 0.15;
       const fogAlpha = 0.04 + Math.sin(time * 0.0003 + i) * 0.02;
       const fogGrad = cx.createRadialGradient(
         canvasW * 0.5 + Math.sin(time * 0.0002 + i) * canvasW * 0.3,
         fogY, 0, canvasW * 0.5, fogY, canvasW * 0.4
       );
-      fogGrad.addColorStop(0, `rgba(180,185,190,${fogAlpha * 2})`);
-      fogGrad.addColorStop(1, `rgba(180,185,190,0)`);
+      fogGrad.addColorStop(0, `rgba(170,175,180,${fogAlpha * 2})`);
+      fogGrad.addColorStop(1, `rgba(170,175,180,0)`);
       cx.fillStyle = fogGrad;
       cx.fillRect(0, fogY - canvasH * 0.2, canvasW, canvasH * 0.4);
     }

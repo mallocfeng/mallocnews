@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天气 · 动效预报</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --glass-bg: rgba(255,255,255,0.12);
+    --glass-border: rgba(255,255,255,0.18);
+    --text-primary: #fff;
+    --text-secondary: rgba(255,255,255,0.75);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1.2s ease;
+    color: var(--text-primary);
+  }
+
+  /* ---- sky backgrounds ---- */
+  .sky-sunny  { background: linear-gradient(135deg, #2980b9 0%, #6dd5fa 50%, #f9d423 100%); }
+  .sky-cloudy { background: linear-gradient(135deg, #4b6cb7 0%, #636fa0 40%, #8e99a4 100%); }
+  .sky-rainy  { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+  .sky-snowy  { background: linear-gradient(135deg, #e6dada 0%, #8fa8c8 50%, #274168 100%); }
+  .sky-stormy { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #4a3f6b 100%); }
+  .sky-night  { background: linear-gradient(135deg, #0a0a23 0%, #1a1a3a 50%, #2d2d5e 100%); }
+
+  /* ---- canvas overlay ---- */
+  #weatherCanvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 1;
+  }
+
+  /* ---- main layout ---- */
+  .app {
+    position: relative; z-index: 2;
+    max-width: 1100px; margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  /* ---- header ---- */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .header h1 {
+    font-size: 1.6rem; font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .header .time-badge {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 6px 18px; font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  /* ---- city picker ---- */
+  .city-bar {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 28px;
+  }
+  .city-chip {
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; user-select: none;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: all 0.3s;
+  }
+  .city-chip:hover { background: rgba(255,255,255,0.22); color: #fff; }
+  .city-chip.active {
+    background: rgba(255,255,255,0.3);
+    color: #fff;
+    border-color: rgba(255,255,255,0.45);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  /* ---- glass card ---- */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 28px 32px;
+  }
+
+  /* ---- current weather ---- */
+  .current-weather {
+    display: flex; align-items: center; gap: 28px;
+    margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .current-icon {
+    font-size: 5rem; line-height: 1;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.25));
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .current-info h2 { font-size: 3.6rem; font-weight: 300; line-height: 1.1; }
+  .current-info h2 span { font-size: 1.6rem; vertical-align: top; margin-left: 2px; }
+  .current-info .desc { font-size: 1.1rem; color: var(--text-secondary); margin-top: 4px; }
+  .current-info .city-name {
+    font-size: 1.8rem; font-weight: 700; margin-bottom: 6px;
+  }
+
+  /* ---- details grid ---- */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px; margin-bottom: 28px;
+  }
+  .detail-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 16px;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .detail-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.15);
+  }
+  .detail-card .icon { font-size: 1.5rem; }
+  .detail-card .val { font-size: 1.3rem; font-weight: 700; margin: 6px 0 2px; }
+  .detail-card .label { font-size: 0.78rem; color: var(--text-secondary); }
+
+  /* ---- forecast ---- */
+  .section-title {
+    font-size: 1.05rem; font-weight: 500;
+    margin-bottom: 16px; color: var(--text-secondary);
+  }
+  .forecast-row {
+    display: flex; gap: 12px; margin-bottom: 28px;
+    overflow-x: auto; padding-bottom: 8px;
+  }
+  .forecast-card {
+    flex: 0 0 110px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 18px 12px;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .forecast-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.15);
+  }
+  .forecast-card .day { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px; }
+  .forecast-card .ficon { font-size: 2rem; margin-bottom: 8px; }
+  .forecast-card .ftemp { font-size: 1.05rem; font-weight: 700; }
+  .forecast-card .ftemp .lo { font-weight: 400; color: var(--text-secondary); font-size: 0.88rem; }
+
+  /* ---- hourly ---- */
+  .hourly-row {
+    display: flex; gap: 10px; overflow-x: auto;
+    padding-bottom: 8px; margin-bottom: 28px;
+  }
+  .hourly-card {
+    flex: 0 0 72px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px; padding: 12px 8px;
+    text-align: center;
+  }
+  .hourly-card .htime { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 6px; }
+  .hourly-card .hicon { font-size: 1.4rem; margin-bottom: 6px; }
+  .hourly-card .htemp { font-size: 0.95rem; font-weight: 700; }
+
+  /* ---- cloud layers ---- */
+  .cloud-layer {
+    position: fixed; top: 0; left: 0;
+    width: 200%; height: 100%;
+    pointer-events: none; z-index: 0;
+    opacity: 0; transition: opacity 1.5s;
+  }
+  .cloud-layer.visible { opacity: 1; }
+
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.18);
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+
+  .cloud-1 { width: 500px; height: 180px; top: 8%; animation: drift 60s linear infinite; }
+  .cloud-2 { width: 400px; height: 140px; top: 18%; animation: drift 80s linear infinite; animation-delay: -20s; }
+  .cloud-3 { width: 600px; height: 200px; top: 30%; animation: drift 70s linear infinite; animation-delay: -40s; }
+  .cloud-4 { width: 350px; height: 120px; top: 5%;  animation: drift 90s linear infinite; animation-delay: -10s; }
+  .cloud-5 { width: 450px; height: 160px; top: 22%; animation: drift 75s linear infinite; animation-delay: -50s; }
+
+  @keyframes drift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---- lightning flash ---- */
+  .lightning-flash {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #fff;
+    pointer-events: none; z-index: 3;
+    opacity: 0;
+  }
+
+  /* ---- responsive ---- */
+  @media (max-width: 600px) {
+    .current-icon { font-size: 3.5rem; }
+    .current-info h2 { font-size: 2.8rem; }
+    .current-info .city-name { font-size: 1.4rem; }
+    .glass { padding: 20px 18px; }
+    .forecast-card { flex: 0 0 95px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- cloud layer -->
+<div class="cloud-layer" id="cloudLayer">
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+  <div class="cloud cloud-4"></div>
+  <div class="cloud cloud-5"></div>
+</div>
+
+<!-- weather canvas -->
+<canvas id="weatherCanvas"></canvas>
+
+<!-- lightning -->
+<div class="lightning-flash" id="lightning"></div>
+
+<div class="app">
+  <!-- header -->
+  <div class="header">
+    <h1>☁️ 天气动效预报</h1>
+    <div class="time-badge" id="timeBadge"></div>
+  </div>
+
+  <!-- city chips -->
+  <div class="city-bar" id="cityBar"></div>
+
+  <!-- current -->
+  <div class="glass">
+    <div class="current-weather">
+      <div class="current-icon" id="curIcon">🌤️</div>
+      <div class="current-info">
+        <div class="city-name" id="curCity">苏州</div>
+        <h2 id="curTemp">22<span>°C</span></h2>
+        <div class="desc" id="curDesc">多云转晴</div>
+      </div>
+    </div>
+
+    <!-- details -->
+    <div class="details-grid" id="detailsGrid"></div>
+  </div>
+
+  <!-- hourly -->
+  <div style="margin-top:24px">
+    <div class="section-title">逐时预报</div>
+    <div class="hourly-row" id="hourlyRow"></div>
+  </div>
+
+  <!-- forecast -->
+  <div>
+    <div class="section-title">7 日预报</div>
+    <div class="forecast-row" id="forecastRow"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA — simulated realistic weather for demo
+// ============================================================
+const CITIES = [
+  { name: '苏州', en: 'Suzhou' },
+  { name: '北京', en: 'Beijing' },
+  { name: '上海', en: 'Shanghai' },
+  { name: '广州', en: 'Guangzhou' },
+  { name: '深圳', en: 'Shenzhen' },
+  { name: '成都', en: 'Chengdu' },
+  { name: '杭州', en: 'Hangzhou' },
+  { name: '南京', en: 'Nanjing' },
+  { name: '武汉', en: 'Wuhan' },
+  { name: '西安', en: 'Xi\'an' },
+];
+
+// weather type definitions
+const W = {
+  sunny:  { icon:'☀️',  sky:'sky-sunny',  cloud:false, canvas:'sunny' },
+  cloudy: { icon:'⛅',  sky:'sky-cloudy', cloud:true,  canvas:'cloudy' },
+  rainy:  { icon:'🌧️', sky:'sky-rainy',  cloud:true,  canvas:'rain' },
+  heavyRain:{ icon:'🌧️',sky:'sky-rainy', cloud:true,  canvas:'heavyRain' },
+  storm:  { icon:'⛈️',  sky:'sky-stormy', cloud:true,  canvas:'storm' },
+  snowy:  { icon:'🌨️', sky:'sky-snowy',  cloud:true,  canvas:'snow' },
+  night:  { icon:'🌙',  sky:'sky-night',  cloud:false, canvas:'stars' },
+};
+
+// generate realistic-ish data
+function seededRandom(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 16807 + 0) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+
+function genWeather(cityIdx) {
+  const rng = seededRandom(cityIdx * 137 + 42);
+  const now = new Date();
+  const hour = now.getHours();
+
+  // base temp by latitude simulation
+  const baseTemps = [18, 12, 17, 26, 27, 16, 19, 18, 20, 14];
+  const baseTemp = baseTemps[cityIdx] || 18;
+
+  const types = ['sunny','sunny','cloudy','cloudy','rainy','rainy','storm','snowy'];
+  const type = cityIdx === 0 ? 'rainy' : types[Math.floor(rng() * types.length)];
+  const wt = W[type];
+
+  // current
+  const temp = Math.round(baseTemp + (rng() - 0.5) * 6 + (hour > 6 && hour < 18 ? 3 : -2));
+  const hi = temp + Math.round(rng() * 4 + 2);
+  const lo = temp - Math.round(rng() * 4 + 2);
+  const humidity = Math.round(45 + rng() * 40);
+  const wind = Math.round(5 + rng() * 25);
+  const windDirs = ['北风','南风','东风','西风','东北风','东南风','西南风','西北风'];
+  const windDir = windDirs[Math.floor(rng() * windDirs.length)];
+  const aqi = Math.round(30 + rng() * 120);
+  const uv = Math.round(rng() * 10);
+  const pressure = Math.round(1005 + rng() * 25);
+  const visibility = Math.round(5 + rng() * 15);
+
+  const descs = {
+    sunny:'晴空万里', cloudy:'多云转阴', rainy:'小雨绵绵',
+    heavyRain:'大雨倾盆', storm:'雷暴天气', snowy:'雪花飘飘', night:'夜色静谧'
+  };
+
+  // hourly (next 12h)
+  const hourly = [];
+  for (let i = 0; i < 12; i++) {
+    const h = (hour + i) % 24;
+    const hType = h >= 6 && h <= 18 ? type : (rng() > 0.3 ? 'night' : type);
+    const hw = W[hType];
+    hourly.push({
+      time: `${String(h).padStart(2,'0')}:00`,
+      icon: hw.icon,
+      temp: Math.round(temp + (rng()-0.5)*5 + (h >= 12 && h <= 15 ? 2 : -1)),
+    });
+  }
+
+  // 7-day forecast
+  const days = ['周日','周一','周二','周三','周四','周五','周六'];
+  const forecast = [];
+  for (let i = 1; i <= 7; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() + i);
+    const fType = types[Math.floor(rng() * types.length)];
+    const fw = W[fType];
+    const fTemp = Math.round(baseTemp + (rng()-0.5)*8);
+    forecast.push({
+      day: i === 1 ? '明天' : days[d.getDay()],
+      date: `${d.getMonth()+1}/${d.getDate()}`,
+      icon: fw.icon,
+      hi: fTemp + Math.round(rng()*4+2),
+      lo: fTemp - Math.round(rng()*4+2),
+      type: fType,
+    });
+  }
+
+  return {
+    type, wt, temp, hi, lo, humidity, wind, windDir, aqi, uv, pressure, visibility,
+    desc: descs[type] || type,
+    hourly, forecast,
+  };
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+let currentCity = 0;
+let currentData = null;
+
+function renderCityBar() {
+  const bar = document.getElementById('cityBar');
+  bar.innerHTML = CITIES.map((c, i) =>
+    `<div class="city-chip ${i === currentCity ? 'active' : ''}" data-idx="${i}">${c.name}</div>`
+  ).join('');
+  bar.querySelectorAll('.city-chip').forEach(el => {
+    el.addEventListener('click', () => switchCity(+el.dataset.idx));
+  });
+}
+
+function switchCity(idx) {
+  currentCity = idx;
+  currentData = genWeather(idx);
+  renderCityBar();
+  renderCurrent();
+  renderDetails();
+  renderHourly();
+  renderForecast();
+  applyWeatherEffects(currentData);
+}
+
+function renderCurrent() {
+  const d = currentData;
+  document.getElementById('curIcon').textContent = d.wt.icon;
+  document.getElementById('curCity').textContent = CITIES[currentCity].name;
+  document.getElementById('curTemp').innerHTML = `${d.temp}<span>°C</span>`;
+  document.getElementById('curDesc').textContent = d.desc + ` · H:${d.hi}° L:${d.lo}°`;
+}
+
+function renderDetails() {
+  const d = currentData;
+  const aqiLabel = d.aqi <= 50 ? '优' : d.aqi <= 100 ? '良' : d.aqi <= 150 ? '轻度' : '中度';
+  const items = [
+    { icon:'💧', label:'湿度', val:`${d.humidity}%` },
+    { icon:'🌬️', label:'风力', val:`${d.windDir} ${d.wind}km/h` },
+    { icon:'🌡️', label:'气压', val:`${d.pressure} hPa` },
+    { icon:'👁️', label:'能见度', val:`${d.visibility} km` },
+    { icon:'☀️', label:'紫外线', val: d.uv.toString() },
+    { icon:'💨', label:'空气质量', val:`AQI ${d.aqi} (${aqiLabel})` },
+  ];
+  document.getElementById('detailsGrid').innerHTML = items.map(it =>
+    `<div class="detail-card">
+      <div class="icon">${it.icon}</div>
+      <div class="val">${it.val}</div>
+      <div class="label">${it.label}</div>
+    </div>`
+  ).join('');
+}
+
+function renderHourly() {
+  document.getElementById('hourlyRow').innerHTML = currentData.hourly.map(h =>
+    `<div class="hourly-card">
+      <div class="htime">${h.time}</div>
+      <div class="hicon">${h.icon}</div>
+      <div class="htemp">${h.temp}°</div>
+    </div>`
+  ).join('');
+}
+
+function renderForecast() {
+  document.getElementById('forecastRow').innerHTML = currentData.forecast.map(f =>
+    `<div class="forecast-card">
+      <div class="day">${f.day}<br><small style="opacity:0.6">${f.date}</small></div>
+      <div class="ficon">${f.icon}</div>
+      <div class="ftemp">${f.hi}° <span class="lo">${f.lo}°</span></div>
+    </div>`
+  ).join('');
+}
+
+function applyWeatherEffects(d) {
+  const body = document.body;
+  body.className = d.wt.sky;
+
+  // clouds
+  document.getElementById('cloudLayer').classList.toggle('visible', d.wt.cloud);
+
+  // restart canvas animation
+  canvasType = d.wt.canvas;
+  if (canvasType === 'stars' || canvasType === 'sunny') {
+    // still draw particles but softer
+  }
+
+  // lightning for storm
+  if (canvasType === 'storm') startLightning();
+  else stopLightning();
+}
+
+// ============================================================
+// CANVAS ANIMATIONS — rain, snow, etc.
+// ============================================================
+const canvas = document.getElementById('weatherCanvas');
+const ctx = canvas.getContext('2d');
+let canvasType = 'rain';
+let particles = [];
+let W, H;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class Raindrop {
+  constructor(heavy) {
+    this.reset(heavy);
+  }
+  reset(heavy) {
+    this.x = Math.random() * W;
+    this.y = Math.random() * -H;
+    this.speed = heavy ? 18 + Math.random()*14 : 8 + Math.random()*8;
+    this.len = heavy ? 22 + Math.random()*18 : 12 + Math.random()*10;
+    this.opacity = 0.15 + Math.random()*0.35;
+    this.w = heavy ? 2 : 1 + Math.random();
+  }
+  update(heavy) {
+    this.y += this.speed;
+    this.x -= 1.5;
+    if (this.y > H) this.reset(heavy);
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(174,194,224,${this.opacity})`;
+    ctx.lineWidth = this.w;
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x - 2, this.y - this.len);
+    ctx.stroke();
+  }
+}
+
+class Snowflake {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * -H;
+    this.r = 2 + Math.random() * 4;
+    this.speed = 1 + Math.random() * 2;
+    this.wind = -0.5 + Math.random();
+    this.wobble = Math.random() * Math.PI * 2;
+    this.opacity = 0.4 + Math.random() * 0.6;
+  }
+  update() {
+    this.wobble += 0.02;
+    this.y += this.speed;
+    this.x += this.wind + Math.sin(this.wobble) * 0.8;
+    if (this.y > H + 10 || this.x < -20 || this.x > W + 20) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+class Star {
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H * 0.7;
+    this.r = 0.5 + Math.random() * 2;
+    this.twinkleSpeed = 0.01 + Math.random() * 0.03;
+    this.phase = Math.random() * Math.PI * 2;
+  }
+  draw(t) {
+    const o = 0.3 + 0.7 * Math.abs(Math.sin(t * this.twinkleSpeed + this.phase));
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,240,${o})`;
+    ctx.fill();
+  }
+}
+
+class Puddle {
+  constructor() {
+    this.x = Math.random() * W;
+    this.y = H - Math.random() * 60;
+    this.r = 0;
+    this.maxR = 4 + Math.random() * 8;
+    this.speed = 0.3 + Math.random() * 0.4;
+    this.opacity = 0.4;
+  }
+  update() {
+    this.r += this.speed;
+    this.opacity -= 0.008;
+    if (this.opacity <= 0) {
+      this.r = 0; this.opacity = 0.4;
+      this.x = Math.random() * W;
+      this.y = H - Math.random() * 40;
+      this.maxR = 4 + Math.random() * 8;
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(174,194,224,${this.opacity})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+}
+
+let stars = [], puddles = [], raindrops = [], snowflakes = [];
+
+function initParticles(type) {
+  stars = []; puddles = []; raindrops = []; snowflakes = [];
+  switch(type) {
+    case 'rain':
+    case 'heavyRain':
+      const heavy = type === 'heavyRain';
+      const count = heavy ? 350 : 180;
+      for (let i = 0; i < count; i++) raindrops.push(new Raindrop(heavy));
+      for (let i = 0; i < 30; i++) puddles.push(new Puddle());
+      break;
+    case 'snow':
+      for (let i = 0; i < 200; i++) snowflakes.push(new Snowflake());
+      break;
+    case 'storm':
+      for (let i = 0; i < 400; i++) raindrops.push(new Raindrop(true));
+      for (let i = 0; i < 50; i++) puddles.push(new Puddle());
+      break;
+    case 'stars':
+      for (let i = 0; i < 150; i++) { const s = new Star(); s.reset(); stars.push(s); }
+      break;
+    default:
+      for (let i = 0; i < 80; i++) { const s = new Star(); s.reset(); stars.push(s); }
+  }
+}
+
+initParticles('rain');
+
+let animFrame;
+let frameCounter = 0;
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  frameCounter++;
+
+  switch(canvasType) {
+    case 'rain':
+      raindrops.forEach(d => { d.update(false); d.draw(); });
+      puddles.forEach(p => { p.update(); p.draw(); });
+      break;
+    case 'heavyRain':
+      raindrops.forEach(d => { d.update(true); d.draw(); });
+      puddles.forEach(p => { p.update(); p.draw(); });
+      break;
+    case 'snow':
+      snowflakes.forEach(s => { s.update(); s.draw(); });
+      break;
+    case 'storm':
+      raindrops.forEach(d => { d.update(true); d.draw(); });
+      puddles.forEach(p => { p.update(); p.draw(); });
+      break;
+    case 'stars':
+    case 'sunny':
+    case 'cloudy':
+      stars.forEach(s => s.draw(frameCounter));
+      break;
+  }
+
+  animFrame = requestAnimationFrame(animate);
+}
+
+animate();
+
+// lightning
+let lightningInterval = null;
+function startLightning() {
+  stopLightning();
+  const el = document.getElementById('lightning');
+  lightningInterval = setInterval(() => {
+    if (Math.random() > 0.6) {
+      el.style.opacity = '0.7';
+      setTimeout(() => { el.style.opacity = '0'; }, 80);
+      setTimeout(() => {
+        el.style.opacity = '0.4';
+        setTimeout(() => { el.style.opacity = '0'; }, 60);
+      }, 150);
+    }
+  }, 3000);
+}
+function stopLightning() {
+  if (lightningInterval) { clearInterval(lightningInterval); lightningInterval = null; }
+  document.getElementById('lightning').style.opacity = '0';
+}
+
+// ============================================================
+// TIME
+// ============================================================
+function updateTime() {
+  const now = new Date();
+  const opts = { weekday:'short', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
+  document.getElementById('timeBadge').textContent = now.toLocaleDateString('zh-CN', opts);
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+// ============================================================
+// INIT
+// ============================================================
+// switch to first city (苏州)
+switchCity(0);
+
+// auto-detect night
+const h = new Date().getHours();
+if (h < 6 || h > 19) {
+  const nd = {...currentData, wt: W.night, type:'night'};
+  nd.wt = W.night;
+  nd.desc = '夜色静谧';
+  currentData = nd;
+  renderCurrent();
+  applyWeatherEffects(nd);
+  initParticles('stars');
+}
+</script>
+</body>
+</html>

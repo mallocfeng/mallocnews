@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>伊朗战争局势摘要 | 2026-04-02</title>
+  <style>
+    :root {
+      --bg: #0e1325;
+      --panel: rgba(18, 26, 50, 0.84);
+      --panel-2: rgba(24, 35, 67, 0.92);
+      --card: rgba(255,255,255,0.05);
+      --text: #eef3ff;
+      --muted: #a8b3d3;
+      --line: rgba(255,255,255,0.1);
+      --accent: #ffb84d;
+      --accent2: #67d1ff;
+      --danger: #ff6b6b;
+      --shadow: 0 28px 80px rgba(0,0,0,.35);
+      --radius: 24px;
+      --radius-sm: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at top left, rgba(255,184,77,.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(103,209,255,.16), transparent 25%),
+        linear-gradient(180deg, #0a1020 0%, #111937 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 88%);
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap {
+      width: min(1080px, calc(100% - 28px));
+      margin: 28px auto 72px;
+    }
+    .hero, .section, .footer {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .hero {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -90px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,107,.22), rgba(255,107,107,0));
+      filter: blur(14px);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(255,184,77,.14);
+    }
+    h1,h2,h3,p { margin: 0; }
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.4rem, 6vw, 4.9rem);
+      line-height: .96;
+      letter-spacing: -.05em;
+      max-width: 12ch;
+    }
+    .subtitle {
+      margin-top: 18px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+    .meta {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .meta-card, .card {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+    }
+    .meta-k {
+      color: var(--muted);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .meta-v {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .layout { margin-top: 20px; display: grid; gap: 18px; }
+    .section { padding: 28px; }
+    .section-head { margin-bottom: 16px; }
+    .eyebrow {
+      color: var(--muted);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+    h2 { font-size: 1.75rem; letter-spacing: -.03em; }
+    .lead {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+    }
+    ul { margin: 12px 0 0; padding-left: 18px; }
+    li { margin: 8px 0; }
+    .callout {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .footer {
+      padding: 22px 26px;
+      color: var(--muted);
+    }
+    .small { font-size: .94rem; }
+    @media (max-width: 860px) {
+      .meta, .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="tag">News Brief · NYT Live Summary · 2026-04-02</div>
+      <h1>伊朗战争局势摘要</h1>
+      <p class="subtitle">
+        基于《纽约时报》2026-04-02 live 页面整理的中文摘要。重点聚焦：战事升级、油价冲击、霍尔木兹海峡风险，以及美国、伊朗、欧洲与联合国的最新表态。
+      </p>
+      <div class="meta">
+        <div class="meta-card">
+          <div class="meta-k">核心判断</div>
+          <div class="meta-v">局势在升级，不是在降温</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-k">市场反应</div>
+          <div class="meta-v">油价大涨，股市下跌</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-k">关键风险点</div>
+          <div class="meta-v">霍尔木兹海峡持续外溢</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="section">
+        <div class="section-head">
+          <div class="eyebrow">Summary</div>
+          <h2>一句话概括</h2>
+        </div>
+        <p class="lead">
+          <strong>局势在升级，不是在降温。</strong>
+          特朗普公开威胁进一步扩大对伊朗打击，市场立刻做出负面反应：<strong>油价大涨、股市下跌、霍尔木兹海峡风险继续外溢</strong>。
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="eyebrow">Latest Updates</div>
+          <h2>最新几条关键信息</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>1. 特朗普讲话后，油价明显飙升</h3>
+            <ul>
+              <li>布伦特原油一度涨超 <strong>7%</strong>，到 <strong>约 108 美元/桶</strong>。</li>
+              <li>市场担心霍尔木兹海峡长期受阻。</li>
+              <li>亚洲股市承压，韩国、日本跌幅较明显。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>2. 特朗普口风更强硬，但没有清晰退出路径</h3>
+            <ul>
+              <li>他表示会对伊朗打得“<strong>非常狠</strong>”。</li>
+              <li>还威胁把伊朗炸回“<strong>石器时代</strong>”。</li>
+              <li>同时又说谈判还在进行，外界认为信号矛盾且不稳定。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>3. 伊朗方面最新表态：强硬、不示弱</h3>
+            <ul>
+              <li>伊朗外长系统和革命卫队都在放硬话。</li>
+              <li>核心意思是：美以并没有真正摧毁伊朗导弹、无人机和电子战能力。</li>
+              <li>在这种情况下，谈判不可能正常进行。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>4. 霍尔木兹海峡仍是全球最危险的经济点</h3>
+            <ul>
+              <li>英国正召集多国讨论如何让航道恢复安全。</li>
+              <li><strong>马克龙明确表示，用武力强开霍尔木兹“不现实”。</strong></li>
+              <li>英方称过去 24 小时只有 <strong>25 艘船</strong>通过，而正常应是 <strong>150 艘/天</strong>。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>5. 联合国和欧洲都在往“停火/降温”方向喊话</h3>
+            <ul>
+              <li>联合国秘书长古特雷斯呼吁<strong>立即停战</strong>。</li>
+              <li>欧盟也在推动外交解决，特别强调恢复海峡自由通航。</li>
+              <li>马克龙公开回怼特朗普，批评其说法反复、对 NATO 的攻击不负责任。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>6. 冲突外溢迹象继续增强</h3>
+            <ul>
+              <li>以色列国防部长威胁 Hezbollah 领导人。</li>
+              <li>伊朗称德黑兰的 Pasteur Institute 遭打击。</li>
+              <li>联合国安理会将表决一项关于霍尔木兹通航的决议。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="eyebrow">Other Developments</div>
+          <h2>其他值得注意的新进展</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <ul>
+              <li>奥地利、瑞士拒绝美军作战飞机飞越领空，理由是中立政策。</li>
+              <li>伊拉克开始改走陆路经叙利亚出口石油。</li>
+              <li>菲律宾称伊朗已承诺让菲律宾旗船只安全通过霍尔木兹。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul>
+              <li>伊朗继续发射导弹/无人机，说明战力仍在。</li>
+              <li>海湾国家继续报告拦截导弹和无人机。</li>
+              <li>能源、航运、保险和全球风险资产都在同步承压。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="eyebrow">Assessment</div>
+          <h2>当前判断</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>军事上</h3>
+            <p>冲突仍在扩散，没有明确收口迹象。</p>
+          </div>
+          <div class="card">
+            <h3>经济上</h3>
+            <p>油价和航运已经出现实质性冲击。</p>
+          </div>
+          <div class="card">
+            <h3>外交上</h3>
+            <p>欧洲、联合国在催降温，但美国和伊朗的公开话术都偏强硬。</p>
+          </div>
+          <div class="card">
+            <h3>整体结论</h3>
+            <p>目前更像是“高强度对抗 + 全球市场再定价”，而不是接近停火。</p>
+          </div>
+        </div>
+        <div class="callout">
+          本页按你的要求，仅保留摘要正文，不包含任何“下一步我还可以继续做什么”的附加结尾。
+        </div>
+      </section>
+
+      <div class="footer">
+        <div><strong style="color:var(--text)">Published via mallocnews / GitHub Pages</strong></div>
+        <div class="small" style="margin-top:8px">Source basis: The New York Times live coverage page captured on 2026-04-02, summarized into Chinese for fast reading.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

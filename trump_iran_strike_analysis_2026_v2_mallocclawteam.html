@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>特朗普对伊朗军事打击分析报告（2026）</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --paper: rgba(255, 252, 245, 0.92);
+      --ink: #1d1c1a;
+      --muted: #6d665c;
+      --line: rgba(29, 28, 26, 0.12);
+      --accent: #8f2d1f;
+      --accent-2: #c57a33;
+      --ok: #1f6b4f;
+      --warn: #9a5c00;
+      --risk: #8d1f2b;
+      --shadow: 0 24px 60px rgba(38, 24, 9, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(197, 122, 51, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(143, 45, 31, 0.15), transparent 32%),
+        linear-gradient(180deg, #f1eadf 0%, #f7f2eb 40%, #eee5d9 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(143, 45, 31, 0.3);
+    }
+
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,248,237,0.9)),
+        linear-gradient(120deg, rgba(143,45,31,0.08), rgba(197,122,51,0.1));
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -30% 45%;
+      height: 220px;
+      background: radial-gradient(circle, rgba(143,45,31,0.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 10px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(143, 45, 31, 0.08);
+      border: 1px solid rgba(143, 45, 31, 0.12);
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-top: 20px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .lead {
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .card, .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .section {
+      padding: 28px;
+      margin-top: 24px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .metric {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--line);
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .metric strong {
+      font-size: 1.05rem;
+    }
+
+    .summary-list, .reference-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .summary-list li, .reference-list li {
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 108px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(143,45,31,0.3), rgba(197,122,51,0.18));
+    }
+
+    .timeline li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 28px;
+      padding: 0 0 22px;
+    }
+
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 101px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(143, 45, 31, 0.08);
+    }
+
+    .timeline .date {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0 0;
+    }
+
+    .chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .tone-good {
+      border-left: 4px solid var(--ok);
+      padding-left: 14px;
+    }
+
+    .tone-risk {
+      border-left: 4px solid var(--risk);
+      padding-left: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 16px;
+      font-size: 0.96rem;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(143, 45, 31, 0.06);
+      font-weight: 700;
+    }
+
+    .score {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .score-high { color: var(--ok); }
+    .score-mid { color: var(--warn); }
+    .score-low { color: var(--risk); }
+
+    .tree {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .branch {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.68);
+    }
+
+    .branch-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .two-col, .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 74px;
+      }
+
+      .timeline li {
+        grid-template-columns: 58px 1fr;
+        gap: 24px;
+      }
+
+      .timeline li::before {
+        left: 67px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Policy Brief / 2026-03-29</div>
+      <h1>特朗普对伊朗现有军事行动分析报告</h1>
+      <p class="lead">
+        本报告聚焦于截至 <strong>2026 年 3 月 29 日</strong> 正在进行中的美以对伊朗军事行动及其延伸态势，重点回答：这场已经展开的军事行动在战略上获得了什么、正在付出什么代价、在美国国内法与国际法上面临哪些边界，以及未来两周至两个月更可能走向何种结局。
+      </p>
+      <div class="meta">
+        <div class="metric">
+          <small>分析对象</small>
+          <strong>现有军事行动，而非抽象“对伊政策”</strong>
+        </div>
+        <div class="metric">
+          <small>核心判断</small>
+          <strong>战术压制有效，战略净值偏负</strong>
+        </div>
+        <div class="metric">
+          <small>综合评分</small>
+          <strong>45 / 100（审慎偏负）</strong>
+        </div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">关键词：Operation Epic Fury</span>
+        <span class="chip">关键词：霍尔木兹海峡</span>
+        <span class="chip">关键词：有限打击与被迫寻找出口</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>执行摘要</h2>
+        <ol class="summary-list">
+          <li>从白宫公开口径看，本轮行动的目标并不只限于“打击核设施”，而是同时瞄准伊朗的导弹能力、海军、代理人网络和核能力上限。这意味着行动逻辑已经从一次性惩罚走向“压制能力 + 强迫谈判”的复合型战役。<a href="https://www.whitehouse.gov/releases/2026/03/operation-epic-fury-decisive-american-power-to-crush-irans-terror-regime/">白宫 3 月 12 日</a></li>
+          <li>短期军事收益已经出现。美方公开宣称伊朗军力遭到系统削弱；同时，特朗普政府 3 月下旬已拿出 15 点停火方案，说明华盛顿认为战场施压已经足以转化为谈判筹码。<a href="https://www.whitehouse.gov/releases/2026/03/americas-warriors-are-obliterating-iranian-terror-regime-with-unrelenting-force/">白宫 3 月 4 日</a>；<a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-24-2026-8bb5e79a98ea72fccc5c50b4931ad778">AP 3 月 24 日</a></li>
+          <li>但“控制升级”明显失败。到 3 月 28 日，美军伤员已超过 300 人，阵亡至少 13 人；伊朗报复已外溢到科威特、沙特，并出现胡塞武装加入的迹象，说明行动没有被锁在单一战区。<a href="https://apnews.com/article/iran-war-american-casualties-wounded-troops-ea713e7850053d8670b062e6b11a6e39">AP 3 月 28 日</a>；<a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-28-2026-0f919596403d2f851196451f4532717e">AP 3 月 28 日</a></li>
+          <li>经济与航运风险已从“市场波动”升级为“政策约束”。霍尔木兹海峡威胁迫使特朗普在 3 月 26 日推迟对伊朗能源基础设施的打击期限，说明华盛顿不得不在军事升级与市场冲击之间反复权衡。<a href="https://apnews.com/article/f27e9560d1929732185da658e33d7fdb">AP 3 月 26 日</a></li>
+          <li>法律上，最稳固的论证只能落在“发生武装攻击后的自卫”范围内，但现有行动目标已明显扩展到政权能力和长期威慑塑形。随着行动持续、战区扩大、任务外延化，美国国内的《战争权力决议》问题和国际法上的比例性/必要性问题都会同步上升。<a href="https://www.un.org/en/about-us/un-charter/full-text">联合国宪章第 2 条第 4 款</a>；<a href="https://www.un.org/en/about-us/un-charter/chapter-7">联合国宪章第 51 条</a>；<a href="https://www.congress.gov/crs-product/R47321">CRS</a>；<a href="https://www.law.cornell.edu/wex/war_powers">LII</a></li>
+          <li>结论上，这场现有军事行动的最佳解释不是“必胜攻势”，而是“战术上先手成功、战略上正在被升级成本追赶”。如果未来两周内不能把战果转成可验证停火与核导弹约束安排，净评分会继续下滑。</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>结论卡片</h2>
+        <p><strong>一句话结论：</strong>对当前正在进行的军事行动而言，<strong>“打得动”不等于“收得住”</strong>。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>评分</th>
+              <th>判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>短期军事压制</td>
+              <td class="score score-high">78</td>
+              <td>目标清晰，打击力度强，早期压制效果明显。</td>
+            </tr>
+            <tr>
+              <td>升级控制</td>
+              <td class="score score-low">28</td>
+              <td>战火已外溢至科威特、沙特，并出现胡塞加入。</td>
+            </tr>
+            <tr>
+              <td>法律稳固性</td>
+              <td class="score score-mid">43</td>
+              <td>初始自卫论证可用，但持续战役化后争议迅速上升。</td>
+            </tr>
+            <tr>
+              <td>联盟与外交可持续性</td>
+              <td class="score score-mid">41</td>
+              <td>G7 多国态度冷淡，外交支持不足。</td>
+            </tr>
+            <tr>
+              <td>经济外溢控制</td>
+              <td class="score score-low">32</td>
+              <td>霍尔木兹风险已倒逼美方调整打击节奏。</td>
+            </tr>
+            <tr>
+              <td>退出路径清晰度</td>
+              <td class="score score-low">35</td>
+              <td>停火方案存在，但未形成双方可执行框架。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>事实时间线（带引用链接）</h2>
+      <ul class="timeline">
+        <li>
+          <div class="date">2026-02-06</div>
+          <div>
+            <strong>特朗普签署针对伊朗的进一步紧急经济措施。</strong>
+            <p>白宫称总统重申针对伊朗的国家紧急状态，并建立对继续与伊朗交易国家征收关税的程序。这是军事行动前的政策加压背景，说明“先极限施压、后军事升级”的路径已成型。</p>
+            <p><a href="https://www.whitehouse.gov/fact-sheets/2026/02/fact-sheet-president-donald-j-trump-addresses-threats-to-the-united-states-by-the-government-of-iran/">来源：白宫 Fact Sheet，2026-02-06</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-02-11</div>
+          <div>
+            <strong>特朗普仍要求继续与伊朗谈判。</strong>
+            <p>AP 报道称，特朗普会见内塔尼亚胡后表示，他坚持让美伊谈判继续，以观察是否能达成协议；若不能，再看后果。这说明在开战前，美方仍把军事手段视为外交失败后的备选，而非首选。</p>
+            <p><a href="https://apnews.com/article/israel-iran-trump-netanyahu-nuclear-talks-fa5be8069deb4b1b01cdf30d3e3525e7">来源：AP，2026-02-11</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-02-28</div>
+          <div>
+            <strong>美国开始对伊朗实施大规模作战行动。</strong>
+            <p>白宫发布“美国在伊朗重大作战行动”视频页面；随后 3 月 1 日和 3 月 12 日的官方说明将行动命名为 <em>Operation Epic Fury</em>。这标志着局势从威慑与谈判正式转入公开战争阶段。</p>
+            <p><a href="https://www.whitehouse.gov/videos/president-donald-j-trump-on-the-united-states-military-major-combat-operations-in-iran/">来源：白宫视频页，2026-02-28</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-02 至 03-12</div>
+          <div>
+            <strong>白宫明确作战目标：导弹、海军、代理人、核能力。</strong>
+            <p>白宫公开列出四项目标：摧毁伊朗导弹与生产能力、消灭海军、切断代理人支持、确保伊朗不得获得核武。这意味着现有军事行动已经超出一次性报复，更接近一场强制性、塑形性的区域战役。</p>
+            <p><a href="https://www.whitehouse.gov/releases/2026/03/operation-epic-fury-decisive-american-power-to-crush-irans-terror-regime/">来源：白宫 Releases，2026-03-12</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-07</div>
+          <div>
+            <strong>伊朗无人机打击科威特，6 名美军遗体送回。</strong>
+            <p>白宫公开“六名在科威特遭伊朗无人机袭击阵亡士兵遗体交接”页面。到 3 月 28 日，AP 进一步确认这 6 人死于科威特民用港口行动中心遇袭。这说明伊朗报复具备持续对美军后方节点造成损失的能力。</p>
+            <p><a href="https://www.whitehouse.gov/gallery/the-dignified-transfer-of-remains-of-six-u-s-soldiers-march-7-2026/">来源：白宫 Gallery，2026-03-07</a>；<a href="https://apnews.com/article/iran-war-american-casualties-wounded-troops-ea713e7850053d8670b062e6b11a6e39">AP，2026-03-28</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-17</div>
+          <div>
+            <strong>市场开始把战争视为能源与供应链冲击，而不只是地区安全事件。</strong>
+            <p>Allianz 研究指出，冲突第一周能源价格飙升约 40%，并警告霍尔木兹海峡若中断不到两个月，仍足以显著推高新兴市场通胀；若超过三个月，将转为更广泛的衰退风险。</p>
+            <p><a href="https://www.allianz.com/content/dam/onemarketing/azcom/Allianz_com/economic-research/publications/specials/en/2026/march/17-03-26_EM_Middle_East.pdf">来源：Allianz Research，2026-03-17</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-22</div>
+          <div>
+            <strong>霍尔木兹海峡与基础设施打击威胁同时升级。</strong>
+            <p>AP 报道称，特朗普给伊朗设下 48 小时重新开放霍尔木兹海峡的期限，并威胁打击伊朗电力设施；伊朗则威胁彻底关闭海峡并打击地区基础设施。这是当前行动最危险的升级门槛之一。</p>
+            <p><a href="https://apnews.com/article/16cc60862529b873666ce4c1f6529d78">来源：AP，2026-03-22</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-24 至 03-26</div>
+          <div>
+            <strong>美国一边增兵，一边尝试停火谈判。</strong>
+            <p>AP 3 月 24 日披露，特朗普政府向伊朗提出 15 点停火方案，并准备向中东再派至少 1,000 名士兵；3 月 26 日特朗普又把对伊朗能源设施的打击期限延至 4 月 6 日，称结束战争的谈判“进展很好”。这说明美方已进入“边打边找出口”的阶段。</p>
+            <p><a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-24-2026-8bb5e79a98ea72fccc5c50b4931ad778">来源：AP，2026-03-24</a>；<a href="https://apnews.com/article/f27e9560d1929732185da658e33d7fdb">AP，2026-03-26</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="date">2026-03-27 至 03-28</div>
+          <div>
+            <strong>伊朗继续打击沙特基地，美军伤亡扩大；胡塞加入。</strong>
+            <p>AP 报道称，伊朗导弹和无人机袭击沙特 Prince Sultan 空军基地，导致至少 10 名、后上修至至少 15 名美军受伤；到 3 月 28 日，美军累计伤员已超过 300 人。当天胡塞武装宣布参战，意味着现有行动已出现多战区扩散迹象。</p>
+            <p><a href="https://apnews.com/article/iran-war-us-troops-wounded-saudi-base-8404fd9b67b76c756e543fc307565572">来源：AP，2026-03-27</a>；<a href="https://apnews.com/article/iran-war-american-casualties-wounded-troops-ea713e7850053d8670b062e6b11a6e39">AP，2026-03-28</a>；<a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-28-2026-0f919596403d2f851196451f4532717e">AP，2026-03-28</a></p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>战略收益与风险</h2>
+      <div class="two-col">
+        <div>
+          <h3 class="tone-good">已实现或正在形成的战略收益</h3>
+          <p><strong>1. 打击节奏与目标设置清晰。</strong> 从官方口径看，美方不是单点示威，而是要压掉伊朗导弹、海军和外部投送能力。对于“迫使伊朗接受更严厉核导弹约束”而言，这确实比有限象征性打击更有压力效果。</p>
+          <p><strong>2. 已经创造出谈判筹码。</strong> 停火方案的出现表明，美方认为当前战场压力足以进入交易窗口。换言之，军事行动至少在短期内把议程主导权从“伊朗坚持谈判条件”转为“美国先定义停火条件”。</p>
+          <p><strong>3. 对地区盟友释放了强硬承诺。</strong> 尤其对以色列与海湾伙伴，这场行动展示了美国愿意直接入场，而不只是通过代理或防御性部署维持威慑。</p>
+        </div>
+        <div>
+          <h3 class="tone-risk">正在累积并可能反噬收益的战略风险</h3>
+          <p><strong>1. 升级链已经跑在谈判链前面。</strong> 科威特、沙特、也门方向都出现外溢，说明对手并未被完全震慑，反而在用分布式报复拉长战线。</p>
+          <p><strong>2. 作战目标存在“扩张倾向”。</strong> 白宫表述从防止核武扩展到“切断代理人”“消灭海军”“压制政权输出能力”，越打越像“战略瘫痪”而不是“有限自卫”，退出门槛自然抬高。</p>
+          <p><strong>3. 经济成本已转化为军事约束。</strong> 霍尔木兹与能源设施风险迫使特朗普延后打击期限，说明市场与航运冲击开始反向塑造白宫的军事决策。</p>
+          <p><strong>4. 盟友支持并不牢。</strong> AP 报道称 G7 主要国家对这场战争态度冷淡。若冲突拖长，美国将更像单独承担战争账单与政治责任的一方。</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>问题</th>
+            <th>当前判断</th>
+            <th>为什么重要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>是否已取得决定性战果？</td>
+            <td>部分取得，但未形成不可逆政治结果。</td>
+            <td>打掉能力并不自动等于迫使对手接受停火条款。</td>
+          </tr>
+          <tr>
+            <td>能否控制报复范围？</td>
+            <td>不能充分控制。</td>
+            <td>现已扩散至海湾基地、航运与代理人战线。</td>
+          </tr>
+          <tr>
+            <td>是否存在明确退出机制？</td>
+            <td>存在草案，没有闭环。</td>
+            <td>15 点方案是入口，不是已落地协议。</td>
+          </tr>
+          <tr>
+            <td>是否值得继续追加军事压力？</td>
+            <td>只有在能明显换来可核验停火条件时才值得。</td>
+            <td>否则边际收益可能低于升级与法律成本。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>法律框架</h2>
+      <h3>一、国际法边界</h3>
+      <p>联合国宪章第 2 条第 4 款要求各国避免以武力威胁或使用武力侵害他国领土完整与政治独立。理论上，唯一最常见、最稳固的例外之一，是第 51 条所承认的在遭受武装攻击后行使个别或集体自卫权。</p>
+      <p>因此，若美方把本轮行动解释为对伊朗武装攻击的即时自卫反应，其最强法理基础成立于：存在武装攻击、当前行动具有必要性、打击强度具比例性、并且已向安理会报告。</p>
+      <p>但从白宫公开目标看，行动已不止于“排除眼前攻击”，而是要长期削弱伊朗导弹、海军、代理人网络与核能力。这会把法理争点从“即时自卫”推向“持续性强制战争是否合法”，也更容易遭遇必要性与比例性争议。</p>
+      <p><a href="https://www.un.org/en/about-us/un-charter/full-text">联合国宪章全文（第 2 条第 4 款）</a>；<a href="https://www.un.org/en/about-us/un-charter/chapter-7">联合国宪章第 51 条</a></p>
+
+      <h3>二、美国国内法边界</h3>
+      <p>国会研究处（CRS）在 <em>Iran: Background and U.S. Policy</em> 中明确写道：<strong>“Congress has not explicitly authorized the use of military force against Iran.”</strong> 这意味着，截至其报告所反映的政策背景，美国并不存在针对伊朗的明确新授权。</p>
+      <p>根据《战争权力决议》的通行解释，总统在把美军投入敌对状态后，应在 48 小时内向国会通报；若未获国会授权，通常不得无限期持续，60 天是关键政治法律门槛。Cornell LII 对该规则作了简明概括。</p>
+      <p>换句话说，当前行动在美国国内法上可能有“总统作为总司令的初始行动空间”，但随着作战持续、增兵、任务扩大，其合法性越来越依赖国会是否明确背书，或者至少默许。</p>
+      <p><a href="https://www.congress.gov/crs-product/R47321">来源：CRS，Iran: Background and U.S. Policy</a>；<a href="https://www.law.cornell.edu/wex/war_powers">来源：Cornell LII, War Powers</a></p>
+
+      <h3>三、法律结论</h3>
+      <ul class="summary-list">
+        <li><strong>初始阶段：</strong>若以遭受武装攻击后的自卫回应来论证，法理还有可辩护空间。</li>
+        <li><strong>现阶段：</strong>行动目标已向持续性削弱伊朗国家能力扩展，法律争议显著上升。</li>
+        <li><strong>继续升级的代价：</strong>每增加一轮对能源、基础设施或政权纵深的打击，国际法上的比例性争议与美国国内法上的授权争议都会同步放大。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>情景树与评分结论</h2>
+      <p>以下情景树只针对<strong>当前已经展开的军事行动</strong>，不是对“美伊长期关系”做抽象预测。</p>
+
+      <div class="tree">
+        <div class="branch">
+          <div class="branch-head">
+            <strong>情景 A：有限停火 + 强制谈判回路形成</strong>
+            <span class="score score-high">概率 35% / 评分 68</span>
+          </div>
+          <p>条件是：霍尔木兹恢复通行、伊朗接受部分核与导弹约束、美方暂停打击能源与基础设施。这个情景下，美方可以宣称“以军事压力换来外交筹码”，是现有行动最体面的出口。</p>
+        </div>
+
+        <div class="branch">
+          <div class="branch-head">
+            <strong>情景 B：长期空海打击 + 有限报复的消耗僵局</strong>
+            <span class="score score-mid">概率 40% / 评分 42</span>
+          </div>
+          <p>当前最像基线情景。美国继续打、伊朗继续报复，谈判时断时续，战场既不彻底升级也无法真正停火。短期战果继续累积，但美军伤亡、盟友疲劳、市场压力和法律争议同步抬升。</p>
+        </div>
+
+        <div class="branch">
+          <div class="branch-head">
+            <strong>情景 C：地区战扩散，霍尔木兹与代理人战线全面外溢</strong>
+            <span class="score score-low">概率 25% / 评分 18</span>
+          </div>
+          <p>若美国继续威胁伊朗能源基础设施、伊朗进一步打击海湾关键节点、胡塞和其他代理人扩大介入，则战争会从“压制伊朗”转成“海湾系统性安全危机”，这是对现有行动最不利的演化路径。</p>
+        </div>
+      </div>
+
+      <h3>综合评分结论</h3>
+      <p><strong>加权结论：45 / 100，审慎偏负。</strong></p>
+      <p>原因并不在于这场行动完全无效，而在于它的<strong>战术收益已经兑现一部分，但战略成本的曲线正在变陡</strong>。只要现有行动仍然无法在近期落地为一个可验证、可执行、可对外解释的停火与约束安排，它就会越来越像一场“不断寻找终点的成功打击”。</p>
+      <p>如果必须给出政策建议，那么最优选项不是简单“继续加码”或“马上收手”，而是：<strong>利用已经取得的压制优势，尽快把战果锁进谈判文本</strong>。否则，当前行动的优势窗口会被伤亡、油价、航运、代理人扩散和法律争议持续侵蚀。</p>
+    </section>
+
+    <section class="section">
+      <h2>参考链接</h2>
+      <ol class="reference-list">
+        <li><a href="https://www.whitehouse.gov/fact-sheets/2026/02/fact-sheet-president-donald-j-trump-addresses-threats-to-the-united-states-by-the-government-of-iran/">White House, Fact Sheet: President Donald J. Trump Addresses Threats to the United States by the Government of Iran, 2026-02-06</a></li>
+        <li><a href="https://apnews.com/article/israel-iran-trump-netanyahu-nuclear-talks-fa5be8069deb4b1b01cdf30d3e3525e7">AP, Trump says he insisted that US talks with Iran continue, 2026-02-11</a></li>
+        <li><a href="https://www.whitehouse.gov/videos/president-donald-j-trump-on-the-united-states-military-major-combat-operations-in-iran/">White House, President Donald J. Trump on the United States Military Major Combat Operations in Iran, 2026-02-28</a></li>
+        <li><a href="https://www.whitehouse.gov/releases/2026/03/operation-epic-fury-decisive-american-power-to-crush-irans-terror-regime/">White House, Operation Epic Fury: Decisive American Power to Crush Iran’s Terror Regime, 2026-03-12</a></li>
+        <li><a href="https://www.whitehouse.gov/releases/2026/03/americas-warriors-are-obliterating-iranian-terror-regime-with-unrelenting-force/">White House, America’s Warriors Are Obliterating Iranian Terror Regime with Unrelenting Force, 2026-03-04</a></li>
+        <li><a href="https://www.whitehouse.gov/gallery/the-dignified-transfer-of-remains-of-six-u-s-soldiers-march-7-2026/">White House, The Dignified Transfer of Remains of Six U.S. Soldiers, 2026-03-07</a></li>
+        <li><a href="https://apnews.com/article/16cc60862529b873666ce4c1f6529d78">AP, Iran threatens to close Strait of Hormuz after Trump ultimatum, 2026-03-22</a></li>
+        <li><a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-24-2026-8bb5e79a98ea72fccc5c50b4931ad778">AP, Trump administration offers 15-point ceasefire plan to Iran, 2026-03-24</a></li>
+        <li><a href="https://apnews.com/article/f27e9560d1929732185da658e33d7fdb">AP, Trump delays Strait of Hormuz deadline, 2026-03-26</a></li>
+        <li><a href="https://apnews.com/article/iran-war-us-troops-wounded-saudi-base-8404fd9b67b76c756e543fc307565572">AP, Iranian attack on Saudi base wounds U.S. troops, 2026-03-27</a></li>
+        <li><a href="https://apnews.com/article/iran-war-american-casualties-wounded-troops-ea713e7850053d8670b062e6b11a6e39">AP, American casualties in the Iran war grow beyond 300 wounded, 2026-03-28</a></li>
+        <li><a href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-28-2026-0f919596403d2f851196451f4532717e">AP, Houthis enter the monthlong war, 2026-03-28</a></li>
+        <li><a href="https://www.allianz.com/content/dam/onemarketing/azcom/Allianz_com/economic-research/publications/specials/en/2026/march/17-03-26_EM_Middle_East.pdf">Allianz Research, Not all Emerging Markets are equal: Hormuz, triple deficits, and the new energy risk premium, 2026-03-17</a></li>
+        <li><a href="https://www.un.org/en/about-us/un-charter/full-text">United Nations, Charter of the United Nations (full text)</a></li>
+        <li><a href="https://www.un.org/en/about-us/un-charter/chapter-7">United Nations, UN Charter Chapter VII / Article 51</a></li>
+        <li><a href="https://www.congress.gov/crs-product/R47321">Congressional Research Service, Iran: Background and U.S. Policy</a></li>
+        <li><a href="https://www.law.cornell.edu/wex/war_powers">Cornell Legal Information Institute, War Powers</a></li>
+      </ol>
+      <p class="footer-note">说明：本次汇总任务原本依赖 fact / strategy / law 三个子任务的正式产出，但截至成稿时相应工作区未提供与题目一致的可用分析文本，因此本报告以公开可核验来源重新编制，并按用户要求输出为中文 HTML 报告。</p>
+    </section>
+  </main>
+</body>
+</html>

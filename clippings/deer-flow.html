@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>deer-flow</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>deer-flow</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>DeerFlow</h1>
+<p>Source: https://github.com/bytedance/deer-flow</p>
+<h2>Overview</h2>
+<p>DeerFlow 2.0 is ByteDance's open-source super agent harness. The repo describes it as a system for researching, coding, and creating, with support for sandboxes, memory, tools, skills, and sub-agents. The page makes a clear point that v2 is a full rewrite, separate from the old 1.x line.</p>
+<h2>What changed in 2.0</h2>
+<p>The landing page says DeerFlow 2.0 is a ground-up rewrite and shares no code with v1. If you want the original Deep Research framework, that still exists on the 1.x branch. Active development is now on 2.0.</p>
+<h2>Core architecture</h2>
+<p>DeerFlow is designed as a harness, not just a chat interface. The important pieces are:</p>
+<ul>
+<li>a lead agent that can plan and coordinate work</li>
+<li>sub-agents for parallel or scoped tasks</li>
+<li>long-term memory</li>
+<li>a sandboxed filesystem and execution environment</li>
+<li>a skills system for reusable workflows</li>
+<li>core tools for search, fetch, file operations, and bash</li>
+<li>MCP support for custom tool integrations</li>
+<li>channel integrations for chat-based task submission</li>
+</ul>
+<h2>Configuration steps</h2>
+<p>The repo's quick start is roughly:</p>
+<ol>
+<li>Clone the repository</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/bytedance/deer-flow.git
+cd deer-flow
+</code></pre>
+<ol start="2">
+<li>Generate local configuration files</li>
+</ol>
+<pre><code class="language-bash">make config
+</code></pre>
+<p>This creates local config files from the example templates.</p>
+<ol start="3">
+<li>Configure at least one model in <code>config.yaml</code>
+The page shows model entries like these:</li>
+</ol>
+<pre><code class="language-yaml">models:
+  - name: gpt-4
+    display_name: GPT-4
+    use: langchain_openai:ChatOpenAI
+    model: gpt-4
+    api_key: $OPENAI_API_KEY
+    max_tokens: 4096
+    temperature: 0.7
+</code></pre>
+<p>It also shows examples for OpenRouter, Responses API mode, and CLI-backed providers such as Codex CLI and Claude Code OAuth.</p>
+<ol start="4">
+<li>Set environment variables
+The page suggests using <code>.env</code> or shell exports. Common examples shown on the page include:</li>
+</ol>
+<pre><code class="language-bash">OPENAI_API_KEY=your-openai-api-key
+TAVILY_API_KEY=your-tavily-api-key
+INFOQUEST_API_KEY=your-infoquest-api-key
+</code></pre>
+<p>For OpenRouter-style setups, the repo notes that <code>langchain_openai:ChatOpenAI</code> plus <code>base_url</code> is the intended pattern.</p>
+<ol start="5">
+<li>Configure sandbox mode
+The docs mention multiple sandbox execution modes:</li>
+</ol>
+<ul>
+<li>local execution on the host</li>
+<li>Docker execution</li>
+<li>Docker plus Kubernetes via provisioner</li>
+</ul>
+<ol start="6">
+<li>Start the application
+For Docker-based development:</li>
+</ol>
+<pre><code class="language-bash">make docker-init
+make docker-start
+</code></pre>
+<p>For local development:</p>
+<pre><code class="language-bash">make check
+make install
+make dev
+</code></pre>
+<p>The page says the app is then accessible at <code>http://localhost:2026</code>.</p>
+<h2>Configuration details shown on the page</h2>
+<h3>Model examples</h3>
+<p>The page gives several patterns:</p>
+<ul>
+<li>standard OpenAI-compatible configuration with <code>langchain_openai:ChatOpenAI</code></li>
+<li>OpenRouter via <code>base_url: https://openrouter.ai/api/v1</code></li>
+<li>OpenAI Responses API using <code>use_responses_api: true</code> and <code>output_version: responses/v1</code></li>
+<li>Codex CLI provider using <code>deerflow.models.openai_codex_provider:CodexChatModel</code></li>
+<li>Claude Code provider using <code>deerflow.models.claude_provider:ClaudeChatModel</code></li>
+</ul>
+<h3>CLI-backed providers</h3>
+<p>The page is explicit that Codex CLI reads <code>~/.codex/auth.json</code>. For Claude Code, it mentions auth via environment variables or credentials files, and notes that on macOS DeerFlow does not probe Keychain automatically. If needed, you export the Claude Code OAuth credentials explicitly.</p>
+<h3>Channel config</h3>
+<p>The docs show a <code>channels:</code> block with these pieces:</p>
+<ul>
+<li><code>langgraph_url</code></li>
+<li><code>gateway_url</code></li>
+<li>optional global session defaults</li>
+<li>per-channel settings for Feishu, Slack, Telegram</li>
+<li>allowed users and per-user session overrides</li>
+</ul>
+<p>Example structure from the page:</p>
+<pre><code class="language-yaml">channels:
+  langgraph_url: http://localhost:2024
+  gateway_url: http://localhost:8001
+  session:
+    assistant_id: lead_agent
+    config:
+      recursion_limit: 100
+    context:
+      thinking_enabled: true
+      is_plan_mode: false
+      subagent_enabled: false
+</code></pre>
+<h2>Messaging channel setup</h2>
+<h3>Telegram</h3>
+<ul>
+<li>Create a bot with BotFather</li>
+<li>Put the token in <code>TELEGRAM_BOT_TOKEN</code></li>
+<li>Enable the Telegram channel in config</li>
+</ul>
+<h3>Slack</h3>
+<p>The page says to:</p>
+<ul>
+<li>create a Slack app</li>
+<li>add bot scopes like <code>app_mentions:read</code>, <code>chat:write</code>, <code>im:history</code>, <code>im:read</code>, <code>im:write</code>, <code>files:write</code></li>
+<li>enable Socket Mode</li>
+<li>create an App-Level Token with <code>connections:write</code></li>
+<li>subscribe to events like <code>app_mention</code> and <code>message.im</code></li>
+</ul>
+<h3>Feishu / Lark</h3>
+<p>The page says to:</p>
+<ul>
+<li>create a Feishu app</li>
+<li>enable Bot capability</li>
+<li>add permissions including <code>im:message</code>, <code>im:message.p2p_msg:readonly</code>, <code>im:resource</code></li>
+<li>subscribe to <code>im.message.receive_v1</code></li>
+<li>use Long Connection mode</li>
+<li>set <code>FEISHU_APP_ID</code> and <code>FEISHU_APP_SECRET</code></li>
+</ul>
+<h2>Commands exposed in chat</h2>
+<p>The repo lists several built-in commands:</p>
+<ul>
+<li><code>/new</code> to start a new conversation</li>
+<li><code>/status</code> to show thread info</li>
+<li><code>/models</code> to list models</li>
+<li><code>/memory</code> to view memory</li>
+<li><code>/help</code> to show help</li>
+</ul>
+<h2>Skills and tools</h2>
+<p>The page explains that skills are loaded progressively, only when needed. It also says DeerFlow comes with core tools such as web search, web fetch, file ops, and bash execution, while custom tools can be added via MCP and Python functions.</p>
+<h2>Sub-agents</h2>
+<p>The repo emphasizes that complex jobs should be decomposed. The lead agent can spawn sub-agents, each with its own scoped context and stop conditions. The page says sub-agents can run in parallel when possible and report structured results back.</p>
+<h2>Sandboxed file system</h2>
+<p>The docs describe an isolated Docker container with a filesystem for uploads, workspace, and outputs. The point is to keep the work auditable and separated from the host.</p>
+<h2>Memory and context engineering</h2>
+<p>DeerFlow keeps persistent memory across sessions, and the page says memory updates skip duplicate facts when applied. It also summarizes completed subtasks to keep context lean during long tasks.</p>
+<h2>Python client</h2>
+<p>The page shows an embedded Python client:</p>
+<pre><code class="language-python">from deerflow.client import DeerFlowClient
+client = DeerFlowClient()
+response = client.chat(&quot;Analyze this paper for me&quot;, thread_id=&quot;my-thread&quot;)
+</code></pre>
+<p>It also supports streaming, listing models, listing skills, updating skills, and uploading files.</p>
+<h2>Practical notes</h2>
+<p>This repo is closer to an agent runtime platform than a normal chatbot wrapper. If you already have a project that needs long-running research, task decomposition, file work, and persistent memory, DeerFlow is aimed squarely at that problem.</p>
+<h2>Repo stats shown on the page</h2>
+<ul>
+<li>Stars: 38.7k</li>
+<li>Forks: 4.6k</li>
+<li>Watching: 185</li>
+</ul>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

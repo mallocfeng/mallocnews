@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClawTeam/README_CN.md at main · HKUDS/ClawTeam</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>ClawTeam/README_CN.md at main · HKUDS/ClawTeam</h1>
+<div class="meta"><a href="https://github.com/HKUDS/ClawTeam/blob/main/README_CN.md" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h1>ClawTeam/README_CN.md at main · HKUDS/ClawTeam</h1>
+<hr />
+<h2>原文</h2>
+<h2>ClawTeam：Agent 群体智能</h2>
+<p><strong>今天的 Agent 各自为战 🤖，明天的 Agent 将协同作战 🦞🤖🤖🤖<br />
+ClawTeam：让 AI Agent 自主组建团队、分配任务、协同工作的 CLI 工具</strong></p>
+<p><strong>一行命令</strong> ：给 Agent 一个目标，它自动组建团队完成任务。支持 <a href="https://claude.ai/claude-code">Claude Code</a> 、 <a href="https://openai.com/codex">Codex</a> 、 <a href="https://github.com/openclaw/openclaw">OpenClaw</a> 、 <a href="https://github.com/HKUDS/nanobot">nanobot</a> 、 <a href="https://cursor.com/">Cursor</a> 及任意 CLI Agent。 <a href="https://github.com/HKUDS/ClawTeam/blob/main/README.md"><strong>English</strong></a></p>
+<p><a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/teaser.png"><img src="" alt="ClawTeam - Agent 群体智能" /></a></p>
+<hr />
+<p>clawteam.mp4<video src="https://github.com/user-attachments/assets/7e2f0ecd-8fe3-4970-90ac-5c9669ff060c" controls="controls"></video></p>
+<p><a href="https://github.com/user-attachments/assets/7e2f0ecd-8fe3-4970-90ac-5c9669ff060c">直接打开演示视频</a></p>
+<p><em>☝️ 一个 Leader Claude Agent 在 8 块 H100 GPU 上自主创建 8 个子 Agent，分配实验方向，监控进度，交叉融合发现，并及时纠正无效方向 —— 全程无人干预。</em></p>
+<hr />
+<h2>✨ 核心场景</h2>
+<table>
+<thead>
+<tr>
+<th>### 🔬 自主 ML 研究  <a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/scene-autoresearch.png"><img src="" alt="" /></a>  <strong>多 GPU 实验群体</strong>  8 Agent × 8 H100 自主优化 LLM 训练：2430+ 实验，val_bpb 1.044→0.977</th>
+<th>### 🏗️ Agent 软件工程  <a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/scene-engineering.png"><img src="" alt="" /></a>  <strong>并行软件开发</strong>  Agent 自动拆分为 API、后端、前端、测试 —— 各自独立分支，完成后自动合并</th>
+<th>### 💰 AI 对冲基金  <a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/scene-hedgefund.png"><img src="" alt="" /></a>  <strong>多分析师信号融合</strong>  7 个分析师 Agent（价值、成长、技术、基本面、情绪）+ 风控经理收敛投资决策</th>
+<th>### 🎪 自定义群体  <a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/scene-template.png"><img src="" alt="" /></a>  <strong>一键启动团队</strong>  用 TOML 模板定义任意团队原型 —— 角色、任务、提示词 —— 一条命令 <code>clawteam launch</code> 启动</th>
+</tr>
+</thead>
+</table>
+<hr />
+<h2>🤔 为什么需要 ClawTeam？</h2>
+<p>AI 编程 Agent 很强大 —— 但它们 <strong>各自为战</strong> 。当任务太大时，你只能手动拆分工作、复制粘贴上下文、合并结果。</p>
+<p><strong>如果 Agent 能自己组队呢？</strong></p>
+<p>ClawTeam 实现了 <strong>Agent 群体智能（Swarm Intelligence）</strong> —— Agent 自主组建团队、分工协作、共享发现、收敛到最优方案。一个 Leader Agent 可以：</p>
+<ul>
+<li>🚀 <strong>创建子 Agent</strong> —— 每个子 Agent 拥有独立的 Git Worktree 和 tmux 会话</li>
+<li>📋 <strong>分配任务</strong> —— 支持依赖链，完成时自动解除下游阻塞</li>
+<li>💬 <strong>发送消息</strong> —— 向任意子 Agent 发送指令</li>
+<li>📊 <strong>监控进度</strong> —— 查看看板、读取实验结果</li>
+<li>🔄 <strong>调整方向</strong> —— 终止低效 Agent，用新方向重新分配</li>
+</ul>
+<p>人类只需提供初始目标， <strong>群体智能完成剩下的一切。</strong></p>
+<p><a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/comic-how-it-works.png"><img src="" alt="ClawTeam 工作流程" /></a></p>
+<hr />
+<h2>🎯 群体智能的优势</h2>
+<table>
+<thead>
+<tr>
+<th>### 🦞 Agent 创建 Agent  Leader Agent 调用 <code>clawteam spawn</code> 创建 Worker。每个 Worker 自动获得独立的 <strong>Git Worktree</strong> 、 <strong>tmux 窗口</strong> 和 <strong>身份标识</strong> 。  <code># Leader Agent 执行： clawteam spawn --team my-team \   --agent-name worker1 \   --task &quot;实现认证模块&quot;</code></th>
+<th>### 🤖 Agent 之间对话  Worker 检查收件箱、更新任务状态、汇报结果 —— 全部通过 CLI 命令，启动时 <strong>自动注入</strong> 协作提示词。  <code># Worker Agent 检查任务： clawteam task list my-team --owner me # 汇报结果： clawteam inbox send my-team leader \   &quot;认证模块完成，全部测试通过。&quot;</code></th>
+<th>### 👀 你只需观看  通过 tmux 平铺视图或 Web UI 监控群体工作。Leader 负责协调 —— 你只在需要时介入。  <code># 同时观看所有 Agent clawteam board attach my-team # 或打开 Web 仪表板 clawteam board serve --port 8080</code></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ClawTeam</th>
+<th>其他多 Agent 框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎯 <strong>使用者</strong></td>
+<td><strong>AI Agent 自身</strong></td>
+<td>人类编写编排代码</td>
+</tr>
+<tr>
+<td>⚡ <strong>搭建</strong></td>
+<td><code>pip install</code> + 一句提示词</td>
+<td>Docker、云 API、YAML 配置</td>
+</tr>
+<tr>
+<td>🏗️ <strong>基础设施</strong></td>
+<td>文件系统 + tmux 即可</td>
+<td>Redis、消息队列、数据库</td>
+</tr>
+<tr>
+<td>🤖 <strong>Agent 支持</strong></td>
+<td>任意 CLI Agent（Claude Code、Codex、OpenClaw 等）</td>
+<td>仅限特定框架</td>
+</tr>
+<tr>
+<td>🌳 <strong>隔离机制</strong></td>
+<td>Git Worktree（真实分支、真实 diff）</td>
+<td>容器或虚拟环境</td>
+</tr>
+<tr>
+<td>🧠 <strong>协调方式</strong></td>
+<td>群体自组织 CLI 命令</td>
+<td>硬编码编排逻辑</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>🎬 使用场景</h2>
+<h3>🔬 1. 自主 ML 研究 — 8 Agent × 8 块 H100 GPU</h3>
+<p>基于 <a href="https://github.com/karpathy/autoresearch">@karpathy 的 autoresearch</a> 。人类告诉 Leader Agent： <em>&quot;用 8 块 GPU 优化这个 LLM 训练配置。&quot;</em> <strong>Leader 自主完成所有工作。</strong></p>
+<p><a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/autoresearch-progress.png"><img src="" alt="AutoResearch 实验进展" /></a><br />
+<em>🏆 val_bpb: 1.044 → 0.977（提升 6.4%）| 2430+ 实验 | ~30 GPU 小时</em></p>
+<p><strong>Leader Agent 自主完成的操作：</strong></p>
+<pre><code>人类提示词：&quot;用 8 块 GPU 优化 train.py，阅读 program.md 了解规则。&quot;
+
+🦞 Leader Agent 的行动：
+├── 📖 阅读 program.md，理解实验协议
+├── 🏗️ clawteam team spawn-team autoresearch
+├── 🚀 为每块 GPU 分配研究方向：
+│   ├── GPU 0: clawteam spawn --task &quot;探索模型深度（DEPTH 10-16）&quot;
+│   ├── GPU 1: clawteam spawn --task &quot;探索模型宽度（ASPECT_RATIO 80-128）&quot;
+│   ├── GPU 2: clawteam spawn --task &quot;调优学习率和优化器&quot;
+│   ├── GPU 3: clawteam spawn --task &quot;探索批量大小&quot;
+│   ├── GPU 4-7: clawteam spawn tmux codex --task &quot;...&quot;（Codex Agent）
+│   └── 🌳 每个 Agent 独立的 Git Worktree 和分支
+├── 🔄 每 30 分钟检查进展：
+│   ├── clawteam board show autoresearch
+│   ├── 读取每个 Agent 的 results.tsv
+│   ├── 🏆 识别最佳发现（depth=12、batch=2^17、norm-before-RoPE）
+│   └── 📡 交叉融合：让新 Agent 从最佳配置开始
+├── 🔧 Agent 完成后重新分配 GPU：
+│   ├── 终止空闲 Agent，清理工作区
+│   ├── 从最佳 commit 创建新的 Worktree
+│   └── 用组合优化方向创建新 Agent
+└── ✅ 2430+ 实验后：val_bpb 1.044 → 0.977
+</code></pre>
+<p>完整结果： <a href="https://github.com/novix-science/autoresearch">novix-science/autoresearch</a></p>
+<hr />
+<h3>🏗️ 2. 大规模 Agent 软件工程</h3>
+<p>你告诉 Claude Code： <em>&quot;帮我做一个全栈 Todo 应用。&quot;</em> Claude 判断这是多模块任务， <strong>自主组建团队</strong> ：</p>
+<pre><code>人类提示词：&quot;做一个全栈 Todo 应用，包含认证、数据库和 React 前端。&quot;
+
+🦞 Leader Agent 的行动：
+├── 🏗️ clawteam team spawn-team webapp -d &quot;全栈 Todo 应用&quot;
+├── 📋 创建带依赖链的任务：
+│   ├── T1: &quot;设计 REST API 接口&quot;          → architect
+│   ├── T2: &quot;实现 JWT 认证&quot; --blocked-by T1  → backend1
+│   ├── T3: &quot;构建数据库层&quot; --blocked-by T1   → backend2
+│   ├── T4: &quot;构建 React 前端&quot;             → frontend
+│   └── T5: &quot;集成测试&quot; --blocked-by T2,T3,T4 → tester
+├── 🚀 创建 5 个子 Agent（各自独立 Git Worktree）
+├── 🔗 依赖自动解除：
+│   ├── architect 完成 → backend1 和 backend2 自动解除阻塞
+│   └── 所有后端完成 → tester 自动开始
+├── 💬 子 Agent 通过收件箱协调：
+│   ├── architect → backend1: &quot;API 接口规范在这...&quot;
+│   ├── backend1 → tester: &quot;认证端点已就绪 /api/auth/*&quot;
+│   └── tester → leader: &quot;全部 47 个测试通过 ✅&quot;
+└── 🌳 Leader 将所有 Worktree 合并回主分支
+</code></pre>
+<hr />
+<h3>💰 3. AI 对冲基金 — 一键启动团队</h3>
+<p>预置的 TOML 模板一键创建 <strong>7 Agent</strong> 投资分析团队：</p>
+<pre><code># 一条命令启动完整团队：
+clawteam launch hedge-fund --team fund1 --goal &quot;分析 AAPL、MSFT、NVDA 的 Q2 2026 投资价值&quot;
+</code></pre>
+<pre><code>🦞 自动发生的事情：
+├── 📊 投资组合经理（Leader）启动并接收目标
+├── 🤖 5 个分析师 Agent 启动，各有不同策略：
+│   ├── 🎩 巴菲特分析师 → 价值投资（护城河、ROE、DCF）
+│   ├── 🚀 成长分析师   → 颠覆潜力（TAM、网络效应）
+│   ├── 📈 技术分析师   → 技术指标（EMA、RSI、布林带）
+│   ├── 📋 基本面分析师 → 财务比率（P/E、D/E、FCF）
+│   └── 📰 情绪分析师   → 新闻 + 内部交易信号
+├── 🛡️ 风险经理汇总所有信号，计算仓位限制
+└── 💼 投资组合经理做出最终买入/卖出/持有决策
+</code></pre>
+<hr />
+<h2>📦 安装</h2>
+<pre><code>pip install clawteam
+
+# 或从源码安装
+git clone https://github.com/HKUDS/ClawTeam.git
+cd ClawTeam
+pip install -e .
+
+# 可选：P2P 传输（ZeroMQ）
+pip install -e &quot;.[p2p]&quot;
+</code></pre>
+<p>需要 <strong>Python 3.10+</strong> 。依赖： <code>typer</code> 、 <code>pydantic</code> 、 <code>rich</code> 。</p>
+<p>下面所有 <code>spawn</code> 示例都默认你填写的 agent CLI 已经安装好，并且在 <code>PATH</code> 里可以直接运行。</p>
+<hr />
+<h2>🚀 快速开始</h2>
+<p>如果你是第一次用 ClawTeam，建议按这个顺序：</p>
+<ol>
+<li>先确认 <code>tmux</code> 和你的 agent CLI 本机能单独跑起来。</li>
+<li>选一条路径：让 agent 驱动，或者你自己手动驱动。</li>
+<li>根据下面的支持表，选择正确的 <code>spawn</code> 命令。</li>
+<li>如果你接的是新 agent，先看兼容要求，再去排查问题。</li>
+</ol>
+<h3>✅ 开始前先确认</h3>
+<p>先跑这几个检查：</p>
+<pre><code>tmux -V
+clawteam --help
+
+# 把 claude 换成你实际要用的 agent：
+claude --version
+codex --version
+nanobot --help
+</code></pre>
+<p>如果 agent CLI 自己都跑不起来， <code>clawteam spawn</code> 也不会帮你修好它。</p>
+<h3>⚡ 方式一：让 Agent 驱动（推荐）</h3>
+<p>ClawTeam 内置 <strong>Claude Code 技能</strong> ，安装后自动激活。直接告诉你的 Agent：</p>
+<pre><code>&quot;帮我做一个 Web 应用。用 clawteam 把工作拆分给多个 Agent。&quot;
+</code></pre>
+<p>Agent 会自动使用 <code>clawteam</code> 命令创建团队、启动 Worker、分配任务、协调工作。</p>
+<h3>🔧 方式二：手动操作</h3>
+<pre><code># 1. 创建团队
+clawteam team spawn-team my-team -d &quot;构建认证模块&quot; -n leader
+
+# 2. 启动 Worker Agent —— 每个自动获得 Git Worktree、tmux 窗口和身份
+clawteam spawn --team my-team --agent-name alice --task &quot;实现 OAuth2 流程&quot;
+clawteam spawn --team my-team --agent-name bob   --task &quot;编写认证单元测试&quot;
+
+# 3. Worker 自动获得协作提示词，知道如何：
+#    ✅ 查看任务：clawteam task list my-team --owner alice
+#    ✅ 更新状态：clawteam task update my-team &lt;id&gt; --status completed
+#    ✅ 汇报 Leader：clawteam inbox send my-team leader &quot;完成！&quot;
+
+# 4. 观看 Agent 协同工作
+clawteam board attach my-team
+</code></pre>
+<h3>🧭 我到底该用哪条 spawn 命令？</h3>
+<p>通用格式是 <code>clawteam spawn [backend] [command] ...</code>。 <code>command</code> 要填你机器上本来就能工作的 agent CLI：</p>
+<pre><code># Claude Code
+clawteam spawn tmux claude --team my-team --agent-name alice --task &quot;实现 OAuth2&quot;
+
+# Codex
+clawteam spawn tmux codex --team my-team --agent-name bob --task &quot;编写前端测试&quot;
+
+# nanobot
+clawteam spawn tmux nanobot --team my-team --agent-name carol --task &quot;构建 API&quot;
+</code></pre>
+<p>说明：</p>
+<ul>
+<li><code>tmux</code> 是默认 backend，适合需要保留交互式 TUI、并且想直接观察 agent 工作过程的场景。</li>
+<li><code>subprocess</code> 更适合一次性工具或非交互脚本。</li>
+<li><code>nanobot</code> 在 ClawTeam 内部会自动规范化为 <code>nanobot agent</code> ，上面的写法就是正确入口。</li>
+<li>Claude Code 和 Codex 在全新 worktree 里的 trust prompt，tmux backend 会自动确认。</li>
+</ul>
+<h3>🔌 接入别的 Agent 要满足什么？</h3>
+<p>除了 Claude Code、Codex、nanobot 之外，ClawTeam 也能接别的 CLI agent，但至少要满足这几个条件：</p>
+<ol>
+<li>命令在 <code>PATH</code> 里能找到，并且脱离 ClawTeam 也能正常启动。</li>
+<li>能在指定工作目录或 git worktree 里运行。</li>
+<li>能接收初始任务，方式可以是命令行参数，也可以是交互输入。</li>
+<li>如果是交互式 agent，启动后不能立刻退出，得能留在 <code>tmux</code> 里。</li>
+</ol>
+<p>如果你不确定一个 agent 是否兼容，先这样测：</p>
+<pre><code>clawteam spawn subprocess &lt;your-agent&gt; --team my-team --agent-name test --task &quot;Say OK&quot;
+</code></pre>
+<p>这条能跑通，再切到 <code>tmux</code> 做交互式监控。</p>
+<h3>🤖 支持的 Agent</h3>
+<p>下表中的命令都默认对应 CLI 已经能在你的机器上独立运行。</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>启动命令</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://claude.ai/claude-code">Claude Code</a></td>
+<td><code>clawteam spawn tmux claude --team ...</code></td>
+<td>✅ 完全支持</td>
+</tr>
+<tr>
+<td><a href="https://openai.com/codex">Codex</a></td>
+<td><code>clawteam spawn tmux codex --team ...</code></td>
+<td>✅ 完全支持</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openclaw/openclaw">OpenClaw</a></td>
+<td><code>clawteam spawn tmux openclaw --team ...</code></td>
+<td>✅ 完全支持</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HKUDS/nanobot">nanobot</a></td>
+<td><code>clawteam spawn tmux nanobot --team ...</code></td>
+<td>✅ 完全支持</td>
+</tr>
+<tr>
+<td><a href="https://cursor.com/">Cursor</a></td>
+<td><code>clawteam spawn subprocess cursor --team ...</code></td>
+<td>🔮 实验性</td>
+</tr>
+<tr>
+<td>自定义脚本</td>
+<td><code>clawteam spawn subprocess python --team ...</code></td>
+<td>✅ 完全支持</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>✨ 功能特性</h2>
+<table>
+<thead>
+<tr>
+<th>### 🦞 Agent 自组织  - Leader Agent 创建和管理 Worker Agent - <strong>自动注入协作提示词</strong> —— 零配置 - Worker 自主汇报状态、结果和空闲状态 - 支持任意 CLI Agent  ### 🌳 工作区隔离  - 每个 Agent 独立 <strong>Git Worktree</strong> （独立分支） - 并行 Agent 之间零冲突 - 检查点、合并、清理命令  ### 📋 带依赖的任务跟踪  - 共享看板： <code>pending</code> → <code>in_progress</code> → <code>completed</code> / <code>blocked</code> - <code>--blocked-by</code> 依赖链 —— <strong>完成时自动解除阻塞</strong> - <code>task wait</code> 阻塞直到全部完成</th>
+<th>### 💬 Agent 间通信  - 点对点 <strong>收件箱</strong> （发送、接收、预览） - <strong>广播</strong> 给所有团队成员 - 文件传输（默认）或 ZeroMQ P2P 传输（含离线回退）  ### 📊 监控面板  - <code>board show</code> — 终端看板 - <code>board live</code> — 自动刷新 - <code>board attach</code> — <strong>tmux 平铺视图</strong> - <code>board serve</code> — <strong>Web UI 实时仪表板</strong>  ### 🎪 团队模板  - <strong>TOML 文件</strong> 定义团队原型（角色、任务、提示词） - 一条命令启动完整团队： <code>clawteam launch &lt;template&gt;</code> - 内置：AI 对冲基金（7 Agent），可自定义</th>
+</tr>
+</thead>
+</table>
+<hr />
+<h2>🗺️ 发展路线</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>版本</th>
+<th>内容</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>当前</strong></td>
+<td>v0.3</td>
+<td>文件传输 + P2P (ZeroMQ) + Web UI + 多用户 + 团队模板</td>
+<td>✅ 已完成</td>
+</tr>
+<tr>
+<td><strong>Phase 1</strong></td>
+<td>v0.4</td>
+<td>Redis Transport —— 跨机器消息通信</td>
+<td>🔜 计划中</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>v0.5</td>
+<td>共享状态层 —— 团队配置和任务也跨机器</td>
+<td>🔜 计划中</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>v0.6</td>
+<td>Agent 市场 —— 发现和复用社区 Agent 模板</td>
+<td>💡 规划中</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong></td>
+<td>v0.7</td>
+<td>自适应调度 —— 根据 Agent 性能动态调整任务分配</td>
+<td>💡 规划中</td>
+</tr>
+<tr>
+<td><strong>Phase 5</strong></td>
+<td>v1.0</td>
+<td>生产级稳定版 —— 认证、权限、审计日志</td>
+<td>💡 规划中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📖 致谢</h2>
+<ul>
+<li><a href="https://github.com/karpathy/autoresearch">@karpathy/autoresearch</a> — 8 Agent 群体实验的基础框架</li>
+<li><a href="https://claude.ai/claude-code">Claude Code</a> 和 <a href="https://openai.com/codex">Codex</a> — 作为 ClawTeam 团队成员的 AI 编程 Agent</li>
+<li><a href="https://github.com/virattt/ai-hedge-fund">ai-hedge-fund</a> — AI 对冲基金模板的灵感来源</li>
+<li><a href="https://github.com/HKUDS/CLI-Anything">CLI-Anything</a> — 姊妹项目，让所有软件都能被 Agent 使用</li>
+</ul>
+<h2>⭐ Star History</h2>
+<p>如果 ClawTeam 帮助你的 AI Agent 协同工作，给我们一个 star ⭐</p>
+<p><a href="https://star-history.com/#HKUDS/ClawTeam&amp;Date"><img src="" alt="Star History Chart" /></a></p>
+<hr />
+<h2>📄 开源协议</h2>
+<p>MIT</p>
+<hr />
+<p><strong>ClawTeam</strong> — <em>Agent 群体智能</em> 🦞</p>
+<p><sub>8 Agent × 8 H100 × 2430 实验 × 一个 CLI × 一个群体</sub></p>
+<p><a href="https://github.com/HKUDS/ClawTeam/blob/main/assets/icon.png"><img src="" alt="ClawTeam" /></a></p>
+<p><em>感谢访问 ✨ ClawTeam！</em></p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

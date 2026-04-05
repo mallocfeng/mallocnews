@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web UI</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>Web UI</h1>
+<div class="meta"><a href="https://ui.shadcn.com/create" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h1>New Project</h1>
+<blockquote>
+<p>[!tip] 中文标题
+命令面板</p>
+</blockquote>
+<blockquote>
+<p>[!abstract] 摘要
+本文介绍了命令面板的功能和用途。命令面板是一个搜索界面，允许用户快速查找并运行编辑器或系统中的各种命令。用户可以通过快捷键（如Ctrl+Shift+P）打开它，输入命令名称或关键词进行搜索，系统会实时显示匹配结果。该工具提高了工作效率，避免了在菜单中层层查找的麻烦，特别适合在复杂软件或集成开发环境中使用。核心观点是命令面板通过搜索驱动的方式简化了命令访问流程。</p>
+</blockquote>
+<h2>关键要点</h2>
+<ul>
+<li>命令面板是一个用于搜索和运行命令的快速访问界面。</li>
+<li>用户可通过快捷键（如Ctrl+Shift+P）打开面板并输入关键词搜索命令。</li>
+<li>该工具能提升工作效率，避免在多层菜单中手动查找命令。</li>
+<li>特别适用于复杂软件或开发环境，通过搜索简化操作流程。</li>
+</ul>
+<h2>中文全文</h2>
+<p>Search for a command to run...</p>
+<hr />
+<h2>原文</h2>
+<h2>Command Palette</h2>
+<p>Search for a command to run...</p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

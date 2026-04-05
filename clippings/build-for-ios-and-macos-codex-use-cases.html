@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build for iOS and macOS | Codex use cases</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>Build for iOS and macOS | Codex use cases</h1>
+<div class="meta"><a href="https://developers.openai.com/codex/use-cases/native-ios-macos-apps" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h1>Build for iOS and macOS | Codex use cases</h1>
+<blockquote>
+<p>[!tip] 中文标题
+使用 Codex 搭建 SwiftUI 项目脚手架，通过 <code>xcodebuild</code> 或 Tuist 保持 CLI 优先的构建循环，并在深入工作时添加 XcodeBuildMCP 或专门的 SwiftUI 技能</p>
+</blockquote>
+<blockquote>
+<p>[!abstract] 摘要
+本文介绍了如何利用 OpenAI 的 Codex 来高效搭建和迭代 SwiftUI 项目。核心是保持 CLI 优先的工作流，使用 <code>xcodebuild</code> 或 Tuist 进行构建，避免依赖 Xcode 图形界面。对于新建项目，可从基础提示开始搭建应用脚手架和构建脚本；对于现有项目，则可利用 XcodeBuildMCP 进行更深度的自动化，如管理方案、启动模拟器、截图等。文章推荐在需要时引入专门的 SwiftUI 技能（如性能审计、视图重构）来提升代码质量，并强调通过小范围、可信的验证循环来确保每次更改的有效性，从而提高开发效率。</p>
+</blockquote>
+<h2>关键要点</h2>
+<ul>
+<li>使用 Codex 搭建 SwiftUI 项目时，应保持 CLI 优先的工作流，首选 <code>xcodebuild</code> 或 Tuist 进行构建和自动化。</li>
+<li>对于新建项目，可从基础提示开始搭建应用和构建脚本；对于现有项目，则需利用 XcodeBuildMCP 进行方案管理、模拟器控制和截图等深度操作。</li>
+<li>在开发深入时，可引入专门的 SwiftUI 技能（如性能审计、视图重构）来遵循最佳实践并提升代码质量。</li>
+<li>迭代过程中应采用最小化的可信验证循环，先进行窄范围检查，通过后再扩展至完整构建，以保持高效。</li>
+<li>整个流程旨在让智能体（agent）保持在自动化循环中，减少对 Xcode 图形界面的手动依赖。</li>
+</ul>
+<h2>中文全文</h2>
+<p><a href="https://developers.openai.com/codex/use-cases">← 所有用例</a></p>
+<p>使用 Codex 搭建 SwiftUI 项目脚手架，通过 <code>xcodebuild</code> 或 Tuist 保持 CLI 优先的构建循环，并在深入工作时添加 XcodeBuildMCP 或专门的 SwiftUI 技能。</p>
+<p>高级</p>
+<p>1小时</p>
+<h2>最适合</h2>
+<ul>
+<li>全新的 SwiftUI 应用程序，希望 Codex 从零开始搭建应用脚手架和构建循环</li>
+<li>现有的 Apple 平台项目，需要 Codex 在处理工作之前处理方案、模拟器输出、截图或 UI 自动化</li>
+<li>希望长期运行的本地 UI 任务保持智能体驱动和 CLI 优先，而不是依赖 Xcode 图形界面的团队</li>
+</ul>
+<h2>技能与插件</h2>
+<ul>
+<li><a href="https://github.com/openai/plugins/tree/main/plugins/build-ios-apps">构建 iOS 应用</a>
+\t构建或重构 SwiftUI 界面，采用现代 iOS 模式（如 Liquid Glass），审计运行时性能，并通过 XcodeBuildMCP 支持的工作流在模拟器上调试应用。</li>
+</ul>
+<h2>起始提示</h2>
+<p>搭建一个初始的 SwiftUI 应用，并添加一个构建和启动脚本，以便我可以将其连接到本地环境中的 <code>Build</code> 操作。约束条件：- 保持 CLI 优先。优先使用 Apple 的 <code>xcodebuild</code>；如果更简洁的设置有帮助，也可以使用 Tuist。- 如果此仓库已包含完整的 Xcode 项目，请使用 XcodeBuildMCP 列出目标、选择正确的方案、构建、启动并在迭代过程中捕获截图。- 重用现有的模型、导航模式和共享工具。- 保持 iOS 和 macOS 的兼容性，除非我明确将工作范围限定在一个平台。- 每次更改后使用一个小的可信验证循环，仅当较窄的检查通过后才扩展到更广泛的构建。- 告诉我您是将此视为全新的脚手架还是现有项目的更改。交付物：- 应用脚手架或请求的功能切片- 一个包含确切命令的小型构建和启动脚本- 您运行的最小相关验证步骤- 您使用的确切方案、模拟器和检查</p>
+<h2>搭建应用和构建循环</h2>
+<p>对于全新的工作，从简单的提示开始。要求 Codex 搭建一个初始的 SwiftUI 应用，并编写一个小的构建和启动脚本，以便您可以将其连接到<a href="https://developers.openai.com/codex/app/local-environments">本地环境</a>中的 <code>Build</code> 操作。</p>
+<p>保持循环的 CLI 优先。Apple 的 <code>xcodebuild</code> 可以从终端列出方案并处理构建、测试、归档、<code>build-for-testing</code> 和 <code>test-without-building</code> 操作，这使 Codex 可以保持在智能体循环中，而不是跳转到 Xcode 图形界面。</p>
+<p>如果您想要一个更简洁的项目生成器，并且对第三方工具感到满意，<a href="https://tuist.dev/">Tuist</a> 是一个很好的下一步选择。它可以在不需要图形界面的情况下生成和构建 Xcode 项目，同时仍然允许 Codex 从终端构建和启动应用。</p>
+<p>一旦您进入完整的 Xcode 项目并需要更深度的自动化时，请使用 <a href="https://www.xcodebuildmcp.com/">XcodeBuildMCP</a>。当方案、目标、模拟器控制、截图、日志和 UI 交互变得足够重要，以至于普通的 shell 命令不再是全部时，就到了这个阶段。</p>
+<h2>利用技能</h2>
+<p>对于第一轮，您通常不需要技能或 MCP 服务器。一旦工作变得专业化，或者您希望将更强的 SwiftUI 约定融入运行时，再添加技能。</p>
+<ul>
+<li><a href="https://github.com/AvdLee/SwiftUI-Agent-Skill">SwiftUI 专家</a> 是一个强大的通用 SwiftUI 技能，已经内置了许多最佳实践。</li>
+<li><a href="https://github.com/twostraws/SwiftUI-Agent-Skill/blob/main/swiftui-pro/SKILL.md">SwiftUI Pro</a> 是一个广泛的 SwiftUI 审查技能，涵盖现代 API、可维护性、可访问性和性能。</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-liquid-glass/SKILL.md">Liquid glass 专家</a> 使智能体能够理解新的 iOS 和 macOS 26 Liquid Glass API 的工作原理，并修复您的组件，使其在最新版本上看起来更好。</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-performance-audit/SKILL.md">SwiftUI 性能</a> 是一个很好的技能，几乎在任何时候遇到性能问题或对某些代码有疑问时都可以使用，因为它会扫描人类或智能体最常犯的 SwiftUI 错误，并生成一份报告，列出需要修复的内容以及最大收益所在位置的优先级列表。</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swift-concurrency-expert/SKILL.md">Swift 并发专家</a> 在遇到晦涩的错误和编译器警告开始阻碍您想要进行的更改时很有帮助。在 GPT-5.4 上，您可能不需要它那么频繁，但当 Swift 并发诊断信息变得嘈杂时，它仍然很有用。</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-view-refactor/SKILL.md">SwiftUI 视图重构</a> 有助于保持文件较小，并使 SwiftUI 代码在整个仓库中更加一致。</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-ui-patterns/SKILL.md">SwiftUI 模式</a> 有助于在应用增长时采用可预测的 <code>@Observable</code> 和 <code>@Environment</code> 架构模式。</li>
+</ul>
+<p>要了解有关如何安装和使用技能的更多信息，请参阅我们的<a href="https://developers.openai.com/codex/skills">技能文档</a>。</p>
+<h2>迭代</h2>
+<p>一旦您有了一个可行的第一轮，或者如果您是从现有项目开始的，就可以开始迭代 UI 或行为。</p>
+<p>对于这一部分，请明确说明您想要更改什么以及如何更改。</p>
+<p>使该提示层明确：告诉 Codex 它是在全新的仓库中工作还是在现有的 Xcode 项目中工作，哪些平台必须保持工作状态，以及您期望的验证循环是什么。</p>
+<h3>示例提示</h3>
+<p>例如，如果您想为现有应用添加一个功能，可以像这样要求 Codex 进行更改：</p>
+<p>为此 SwiftUI 应用添加入门流程。约束条件：- 重用现有的模型、导航模式和共享工具。- 使用 XcodeBuildMCP 列出正确的目标或方案，构建应用，启动它，并在需要视觉验证时捕获截图。- 保持 iOS 和 macOS 的兼容性，除非我明确将工作范围限定在一个平台。- 确切地告诉我您使用了哪个方案、模拟器和检查。实现该功能切片，使用最小相关的构建或运行循环进行验证，并总结更改内容。</p>
+<h2>实用技巧</h2>
+<h3>从基础开始</h3>
+<p>对于全新的工作，从简单的提示开始。要求 Codex 搭建一个初始的 SwiftUI 应用，并编写一个小的构建和启动脚本，以便您可以将其连接到<a href="https://developers.openai.com/codex/app/local-environments">本地环境</a>中的 <code>Build</code> 操作。对于第一轮，您通常不需要任何技能或 MCP 服务器。</p>
+<h3>使用小的可信验证循环</h3>
+<p>告诉 Codex 在每次更改后运行最窄的命令，以实际证明您所触及的约定。稍后再扩展到更广泛的构建。这使 Codex 保持快速，而不会假装每次编辑都需要完整的应用构建。</p>
+<h3>保持循环的 CLI 优先</h3>
+<p>保持循环的 CLI 优先。Apple 的 <code>xcodebuild</code> 工具可以从终端列出方案并运行构建、测试、归档、<code>build-for-testing</code> 和 <code>test-without-building</code> 操作，这使 Codex 可以保持在智能体循环中，而不是跳转到 Xcode 图形界面。</p>
+<h3>利用 XcodeBuildMCP</h3>
+<p>一旦您进入完整的 Xcode 项目并需要更深度的自动化，就使用 XcodeBuildMCP。当方案、目标、模拟器控制、截图、日志和 UI 交互变得足够重要，以至于普通的 shell 命令不再是全部时，就到了这个阶段。</p>
+<h2>技术栈</h2>
+<p>UI 框架</p>
+<p><a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a></p>
+<p>在 Apple 平台上原型化视图、导航和共享状态的最快方式，同时保持 UI 代码的可读性。</p>
+<p>构建工具</p>
+<p>xcodebuild 或 <a href="https://docs.tuist.dev/">Tuist</a></p>
+<p>两者都使本地构建循环保持在终端中，而不是依赖 Xcode 图形界面。</p>
+<p>项目自动化</p>
+<p><a href="https://www.xcodebuildmcp.com/">XcodeBuildMCP</a></p>
+<p>一旦您需要 Codex 检查方案和目标、启动应用、捕获截图并在不离开智能体循环的情况下继续迭代时，这是一个强大的选择。</p>
+<p>分发工具</p>
+<p><a href="https://asccli.sh/">App Store Connect CLI</a></p>
+<p>让您的智能体完全处于循环中，并将您的应用构建直接发送到 App Store。</p>
+<hr />
+<h2>原文</h2>
+<p><a href="https://developers.openai.com/codex/use-cases">← All use cases</a></p>
+<p>Use Codex to scaffold SwiftUI projects, keep the build loop CLI-first with <code>xcodebuild</code> or Tuist, and add XcodeBuildMCP or focused SwiftUI skills when the work gets deeper.</p>
+<p>Advanced</p>
+<p>1h</p>
+<h2>Best for</h2>
+<ul>
+<li>Greenfield SwiftUI apps where you want Codex to scaffold the app and build loop from scratch</li>
+<li>Existing Apple-platform projects where Codex needs schemes, simulator output, screenshots, or UI automation before the work is done</li>
+<li>Teams that want long-running native UI tasks to stay agentic and CLI-first instead of depending on the Xcode GUI</li>
+</ul>
+<h2>Skills &amp; Plugins</h2>
+<ul>
+<li><a href="https://github.com/openai/plugins/tree/main/plugins/build-ios-apps">Build iOS Apps</a>
+Build or refactor SwiftUI UI, adopt modern iOS patterns such as Liquid Glass, audit runtime performance, and debug apps on simulators with XcodeBuildMCP-backed workflows.</li>
+</ul>
+<h2>Starter prompt</h2>
+<p>Scaffold a starter SwiftUI app and add a build-and-launch script I can wire to a `Build` action in my local environment. Constraints: - Stay CLI-first. Prefer Apple's `xcodebuild`; if a cleaner setup helps, it's okay to use Tuist. - If this repo already contains a full Xcode project, use XcodeBuildMCP to list targets, pick the right scheme, build, launch, and capture screenshots while you iterate. - Reuse existing models, navigation patterns, and shared utilities when they already exist. - Keep iOS and macOS compatibility intact unless I explicitly scope the work to one platform. - Use a small trustworthy validation loop after each change, then expand to broader builds only when the narrower check passes. - Tell me whether you treated this as a greenfield scaffold or an existing-project change. Deliver: - the app scaffold or requested feature slice - a small build-and-launch script with the exact commands - the smallest relevant validation steps you ran - the exact scheme, simulator, and checks you used</p>
+<h2>Scaffold the app and build loop</h2>
+<p>For greenfield work, start with plain prompting. Ask Codex to scaffold a starter SwiftUI app and write a small build-and-launch script you can wire to a <code>Build</code> action in a <a href="https://developers.openai.com/codex/app/local-environments">local environment</a>.</p>
+<p>Keep the loop CLI-first. Apple’s <code>xcodebuild</code> can list schemes and handle build, test, archive, <code>build-for-testing</code>, and <code>test-without-building</code> actions from the terminal, which lets Codex stay in an agentic loop instead of bouncing into the Xcode GUI.</p>
+<p>If you want a cleaner project generator and you’re comfortable with third-party tooling, <a href="https://tuist.dev/">Tuist</a> is a good next step. It can generate and build Xcode projects without needing the GUI, while still letting Codex build and launch the app from the terminal.</p>
+<p>Use <a href="https://www.xcodebuildmcp.com/">XcodeBuildMCP</a> once you’re inside a full Xcode project and need deeper automation. That’s when schemes, targets, simulator control, screenshots, logs, and UI interaction matter enough that plain shell commands stop being the whole story.</p>
+<h2>Leverage skills</h2>
+<p>For the first pass, you often don’t need a skill or MCP server. Add skills once the work gets specialized or you want stronger SwiftUI conventions baked into the run.</p>
+<ul>
+<li><a href="https://github.com/AvdLee/SwiftUI-Agent-Skill">SwiftUI expert</a> is a strong general-purpose SwiftUI skill with a lot of best practices already baked in.</li>
+<li><a href="https://github.com/twostraws/SwiftUI-Agent-Skill/blob/main/swiftui-pro/SKILL.md">SwiftUI Pro</a> is a broad SwiftUI review skill for modern APIs, maintainability, accessibility, and performance.</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-liquid-glass/SKILL.md">Liquid glass expert</a> allows the agent to understand how the new iOS and macOS 26 Liquid Glass API work and fix your components so they look good on the latest versions</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-performance-audit/SKILL.md">SwiftUI performance</a> is a great skill to use almost anytime you have a performance issue or doubt about some code as it will scan for the most common SwiftUI mistakes humans or agents make and produce a report with a priority list of what to fix and where the biggest gains are.</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swift-concurrency-expert/SKILL.md">Swift concurrency expert</a> helps when cryptic errors and compiler warnings start fighting the change you want to make. On GPT-5.4, you may need it less often, but it’s still useful when Swift concurrency diagnostics get noisy.</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-view-refactor/SKILL.md">SwiftUI view refactor</a> helps keep files smaller and make SwiftUI code more consistent across the repo.</li>
+<li><a href="https://github.com/Dimillian/Skills/blob/main/swiftui-ui-patterns/SKILL.md">SwiftUI patterns</a> helps reach for predictable <code>@Observable</code> and <code>@Environment</code> architecture patterns as the app grows.</li>
+</ul>
+<p>To learn more about how to install and use skills, see our <a href="https://developers.openai.com/codex/skills">skills documentation</a>.</p>
+<h2>Iterate</h2>
+<p>Once you have a first pass working, or if you’re starting from an existing project, you can start iterating on the UI or behavior.</p>
+<p>For this part, be specific about what you want to change and how you want to change it.</p>
+<p>Make that prompting layer explicit: tell Codex whether it’s working in a greenfield repo or an existing Xcode project, which platforms must keep working, and what validation loop you expect.</p>
+<h3>Example prompt</h3>
+<p>For example, if you want to add a feature to an existing app, you can ask Codex for a change like this:</p>
+<p>Add the onboarding flow for this SwiftUI app. Constraints: - Reuse existing models, navigation patterns, and shared utilities. - Use XcodeBuildMCP to list the right targets or schemes, build the app, launch it, and capture screenshots if you need visual verification. - Keep iOS and macOS compatibility intact unless I explicitly scope the work to one platform. - Tell me exactly which scheme, simulator, and checks you used. Implement the slice, verify it with the smallest relevant build or run loop, and summarize what changed.</p>
+<h2>Practical tips</h2>
+<h3>Start with basics</h3>
+<p>Start with plain prompting for greenfield work. Ask Codex to scaffold a starter SwiftUI app and write a small build-and-launch script you can wire to a <code>Build</code> action in a <a href="https://developers.openai.com/codex/app/local-environments">local environment</a>. For that first pass, you often don’t need any skill or MCP server.</p>
+<h3>Use a small trustworthy validation loop</h3>
+<p>Tell Codex to run after each change the narrowest command that actually proves the contract you touched. Expand to broader builds later. This keeps Codex fast without pretending a full app build is required for every edit.</p>
+<h3>Keep the loop CLI-first</h3>
+<p>Keep the loop CLI-first. Apple’s <code>xcodebuild</code> tool can list schemes and run build, test, archive, <code>build-for-testing</code>, and <code>test-without-building</code> actions from the terminal, which lets Codex stay in an agentic loop instead of bouncing into the Xcode GUI.</p>
+<h3>Leverage XcodeBuildMCP</h3>
+<p>Use XcodeBuildMCP as soon as you are inside a full Xcode project and need deeper automation. That’s the point where schemes, targets, simulator control, screenshots, logs, and UI interaction matter enough that plain shell commands stop being the whole story.</p>
+<h2>Tech stack</h2>
+<p>UI framework</p>
+<p><a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a></p>
+<p>The fastest way to prototype views, navigation, and shared state across Apple platforms while keeping the UI code readable.</p>
+<p>Build tooling</p>
+<p>xcodebuild or <a href="https://docs.tuist.dev/">Tuist</a></p>
+<p>Both keep the native build loop in the terminal instead of depending on the Xcode GUI.</p>
+<p>Project automation</p>
+<p><a href="https://www.xcodebuildmcp.com/">XcodeBuildMCP</a></p>
+<p>A strong option once you need Codex to inspect schemes and targets, launch the app, capture screenshots, and keep iterating without leaving the agentic loop.</p>
+<p>Distribution tooling</p>
+<p><a href="https://asccli.sh/">App Store Connect CLI</a></p>
+<p>Keep your agent fully in the loop and send your app build directly to the App Store.</p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VPS + 3x-ui 从零基础小白到完整自建Hysteria2节点保姆级教程</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>VPS + 3x-ui 从零基础小白到完整自建Hysteria2节点保姆级教程</h1>
+<div class="meta"><time class="date">2026-04-04</time><a href="https://x.com/onehopeA9/status/2040335226250084437" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h1>RackNerd + 3x-ui 从零基础小白到完整自建Hysteria2节点保姆级教程</h1>
+<blockquote>
+<p>[!tip] 中文标题
+花99元/年自己开车，比坐不稳定公交香10倍！Claude Code、ChatGPT、Netflix全解锁，晚高峰4K丝滑！X不跳验证（仅自用，切勿用于非法用途）</p>
+</blockquote>
+<blockquote>
+<p>[!abstract] 摘要
+本文是一篇关于自建网络代理节点的详细教程。作者指出，由于近期公共代理服务（机场）不稳定，自建节点具有成本透明、自主可控、速度快等优势。文章推荐使用RackNerd VPS作为服务器，并详细介绍了从购买VPS、安装3x-ui面板、配置VLESS+Reality节点，到进阶使用Hysteria2协议以提升速度和抗封锁能力的完整流程。文中还提供了实践任务清单、常见问题解答和排雷指南，旨在帮助用户快速搭建一个稳定、高速的个人网络环境。</p>
+</blockquote>
+<h2>关键要点</h2>
+<ul>
+<li>针对公共代理服务（机场）不稳定的现状，推荐自建网络代理节点，具有成本低、自主可控、速度快等优势。</li>
+<li>详细介绍了新手30分钟快速上手的流程，包括购买RackNerd VPS、安装3x-ui面板、创建VLESS+Reality节点。</li>
+<li>进阶部分重点讲解了如何配置Hysteria2协议以解决网络卡顿问题，实现高速抗封锁。</li>
+<li>提供了实践任务清单、常见问题解答和容易踩坑的排雷指南，帮助用户顺利完成搭建。</li>
+</ul>
+<h2>中文全文</h2>
+<p>花99元/年自己开车，比坐不稳定公交香10倍！Claude Code、ChatGPt、Netflix全解锁，晚高峰4K丝滑！X不跳验证（仅自用，切勿用于非法用途）</p>
+<h1>目录</h1>
+<ol>
+<li>为什么现在值得自建节点？（最近疯狂断网）</li>
+<li>基础概念（科普版）</li>
+<li>总体架构</li>
+<li>新手阶段：30分钟快速上手</li>
+<li>进阶阶段：搭建高性能抗封锁节点（重点Hysteria2详细配置）</li>
+<li>高级阶段：多用户管理与个人小机场</li>
+<li>实践任务清单</li>
+<li>容易踩的坑（排雷必看）</li>
+<li>常见问题解答（FAQ）</li>
+</ol>
+<h1>1. 为什么现在值得自建节点？</h1>
+<p>最近我的节点一直各种超时，换了一个说可以用的机场，过会又不行</p>
+<p>想必大家的也是这样，因为我就没见到有人说稳定，笑.jpg</p>
+<p>迫不得已之下自己搭建了一个稳定的上网环境。</p>
+<p>不用不知道，一用吓一跳——原来死活用不了的Antigravity能用了，Gemini、Google AI Studio、Netflix再也不卡了，所有原来被网络限制的网站全部都能用了！！！</p>
+<p><strong>自建 vs 买机场的5大优势：</strong></p>
+<p>自己掌控IP和流量，不怕突然拔网线</p>
+<p>成本透明，99元/年起就能用（比某些机场月付还便宜）</p>
+<p>支持VLESS+Reality（伪装正常网站流量）、Hysteria2（抗弱网高速）</p>
+<p>可做个人小机场，家人朋友一起用</p>
+<p>随时备份、换IP、升级协议</p>
+<h1>2. 前置概念</h1>
+<p><strong>（一）上网到底是怎么回事？</strong> 简单说，你电脑想访问国外网站，就得先“打电话”过去要数据。 你的电脑发请求 → 对方服务器收到 → 把数据打包发回来。 中间如果有人“监听”或“堵路”，就会卡、慢、甚至直接连不上。这时候就需要一条加密的“专线”来绕过去。</p>
+<p><strong>（二）IP地址是什么？</strong> IP就是每台设备的“网络门牌号”。 没有IP，服务器根本不知道数据该发给谁。VPS的IP就是你以后所有翻墙流量的“出口门牌”。</p>
+<p><strong>（三）VPS到底是什么？</strong> VPS = 在国外云端租一台永远不会关机的私人小电脑。 你本地电脑关机或没网都没事，这台VPS 24小时在线，专门帮你转发海外流量。 通俗点讲：它就是你的“海外中转站”，你想怎么用就怎么用。</p>
+<p><strong>（四）VLESS、Reality、Hysteria 2 到底是什么？</strong></p>
+<p>如果把 VPS 理解成“海外中转站”，那 VLESS、Reality、Hysteria 2 就是这座中转站采用的“通行方式”。</p>
+<p>它们不是不同的服务器，而是不同的连接协议。 协议决定了你的流量怎么加密、怎么传输、遇到复杂网络环境时稳不稳、快不快。</p>
+<p>对新手来说，不需要一开始就研究所有技术细节，只要先记住：</p>
+<ul>
+<li>VLESS：一种比较主流、轻量的代理协议</li>
+<li>Reality：通常和 VLESS 搭配使用，让连接特征更接近日常 HTTPS 流量</li>
+<li>Hysteria 2：更偏向弱网优化和速度表现，在网络波动较大时通常更有优势</li>
+</ul>
+<p>你可以把它们理解成两种不同风格的方案： 一种更偏“通用、稳妥”，一种更偏“高速、抗波动”。</p>
+<p><strong>（五）机场和自建VPS有什么区别？</strong></p>
+<img src="" alt="Image" />
+<p>自建就像自己买车想怎么开怎么开，机场就像天天挤公交，晚高峰还容易抛锚。</p>
+<p>本文主推方案：RackNerd VPS + 3x-ui面板 + VLESS+Reality + v2ray-agent+ Hysteria2，双保险又快又稳。</p>
+<h1>3. 总体架构</h1>
+<p>本地客户端（v2rayN / Stash） → 加密通道（VLESS+Reality / Hysteria2） → RackNerd VPS（3x-ui面板） → 海外网站</p>
+<img src="" alt="Image" />
+<h1>4. 新手阶段：30分钟快速上手</h1>
+<p>任务1：购买VPS</p>
+<img src="" alt="Image" />
+<p>建议机房：洛杉矶 / 圣何塞（延迟较低）。 完成标准：拿到IPv4地址、root密码，成功SSH登录（PowerShell输入 ssh root@你的IP）。</p>
+<p>任务2：安装3x-ui面板 登录VPS后运行：</p>
+<pre><code class="language-bash">bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+</code></pre>
+<img src="" alt="Image" />
+<p>选择1 Install，按照提示，设置自定义端口（10000-65000之间，避免80/443/22）。 完成标准：浏览器打开面板地址（http://你的IP:端口），能正常登录。</p>
+<img src="" alt="Image" />
+<p>任务3：创建第一个VLESS+Reality节点 面板 → 添加入站 → VLESS + Reality传输选XHTTP,路径随机填写 Target/SNI填 <a href="https://www.microsoft.com/">www.microsoft.com</a>:443，生成密钥对。 完成标准：在v2rayN/Stash上成功连接。</p>
+<img src="" alt="Image" />
+<p><strong>5. 进阶阶段：搭建高性能抗封锁节点（Hysteria2详细配置）--解决RackNerd 网速卡的坑</strong></p>
+<p>当你完成新手任务的时候，你会发现，你已经成功解锁网络，但这网的质量，有点差强人意。</p>
+<p>（如果不卡的同学，忽略下面这个任务）</p>
+<p>这个时候，就是 Hysteria2协议出场了</p>
+<p>任务5：使用 Xray-core/sing-box 一键脚本 开启Hysteria2协议</p>
+<pre><code class="language-bash">wget -P /root -N --no-check-certificate \\&quot;https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh\\&quot; &amp;&amp; chmod 700 /root/install.sh &amp;&amp; /root/install.sh
+</code></pre>
+<p>根据提示，一路配置</p>
+<img src="" alt="Image" />
+<p>客户端导入&amp;测试：</p>
+<ul>
+<li>Windows（v2rayN）：导入订阅 → 选择Hysteria2节点 → 系统代理 → 测试Netflix 4K / YouTube</li>
+<li>Android（v2rayNG）：扫码导入 → 开启</li>
+<li>iOS（Stash）：导入订阅链接 → 测试</li>
+</ul>
+<p>完成标准：YouTube 4K丝滑，速度明显快于VLESS。</p>
+<img src="" alt="Image" />
+<p>任务6：安全加固(看个人需要) 修改SSH端口、防火墙、面板密码。</p>
+<h1>6. 进阶任务：多用户管理与个人小机场</h1>
+<p>这部分是留个有探索精神的小伙伴，一点小作业，<strong>很刑！</strong> 任务7：添加多用户 + 流量统计 任务8：Tg机器人通知 + 自动续费 任务9：面板备份 + 节点迁移 任务10：多节点负载均衡</p>
+<h1>7. 实践任务清单</h1>
+<ul>
+<li>购买RackNerd VPS并SSH登录</li>
+<li>安装3x-ui面板并登录</li>
+<li>创建第一个VLESS+Reality节点</li>
+<li>绑定域名 + TLS</li>
+<li>配置Hysteria2协议并测试4K</li>
+<li>安全加固完成</li>
+<li>添加多用户并设置流量</li>
+<li>备份面板配置</li>
+</ul>
+<h1>8. 容易踩的坑（排雷必看）</h1>
+<ul>
+<li>IP被墙 → RackNerd支持免费/低价换IP</li>
+<li>面板打不开 → 检查防火墙 + 端口</li>
+<li>Hysteria2连不上 → 确认TLS和SNI伪装正确、密码一致</li>
+<li>速度慢 → 优先用Hysteria2 + BBR + RackNerd美西机房</li>
+<li>私钥权限错误 → Windows属性→安全→禁用继承修复</li>
+</ul>
+<h1>9. 常见问题解答（FAQ）</h1>
+<p>Q：RackNerd和DMIT哪个好？ A：新手预算有限首选RackNerd（最便宜大流量），追求极致线路可选<strong>DMIT</strong>。</p>
+<p>Q：Hysteria2一定要域名吗？ A：强烈推荐，带域名+TLS效果最好。</p>
+<p>Q：客户端推荐？ Windows：v2rayN，Clash Verge Android：v2rayNG iOS：Stash / Loon 如果大家还有更好思路，欢迎交流</p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

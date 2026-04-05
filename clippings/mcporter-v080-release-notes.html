@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mcporter-v0.8.0-release-notes</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>mcporter-v0.8.0-release-notes</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>mcporter v0.8.0 Release Notes</h1>
+<p>Source: https://github.com/steipete/mcporter/releases/tag/v0.8.0</p>
+<h2>[0.8.0] - 2026-03-29</h2>
+<h3>CLI</h3>
+<ul>
+<li>
+<p>Preserve OAuth flow vs post-auth transport failures so invalid OAuth/provider errors surface directly, while real legacy 404/405 transport mismatches still fall back to SSE correctly. (PR <a href="https://github.com/steipete/mcporter/pull/97">#97</a>, thanks <a href="https://github.com/mavam">@mavam</a>)</p>
+</li>
+<li>
+<p>Ignore static Authorization headers once OAuth is active so imported editor configs cannot override fresh OAuth tokens. (PR <a href="https://github.com/steipete/mcporter/pull/123">#123</a>, thanks <a href="https://github.com/ahonn">@ahonn</a>)</p>
+</li>
+<li>
+<p>Keep mcporter call --output json parseable by emitting valid JSON even when the command falls back to raw output. (PR <a href="https://github.com/steipete/mcporter/pull/128">#128</a>, thanks <a href="https://github.com/armanddp">@armanddp</a>)</p>
+</li>
+<li>
+<p>Render resource content blocks in call output helpers instead of dropping them, including markdown resources and JSON text payloads. (PR <a href="https://github.com/steipete/mcporter/pull/124">#124</a>, thanks <a href="https://github.com/mvanhorn">@mvanhorn</a>)</p>
+</li>
+<li>
+<p>Preserve full JSON/error payloads when data is just one field instead of collapsing the response to data alone. (PR <a href="https://github.com/steipete/mcporter/pull/106">#106</a>, thanks <a href="https://github.com/AielloChan">@AielloChan</a>)</p>
+</li>
+<li>
+<p>Generated CLIs now parse object-valued flags as JSON and render object placeholders/examples with JSON-shaped help text, so tools like Jira fields no longer receive raw strings. (PR <a href="https://github.com/steipete/mcporter/pull/114">#114</a>, thanks <a href="https://github.com/v2nic">@v2nic</a>)</p>
+</li>
+<li>
+<p>Deduplicate concurrent keep-alive daemon restarts per server so repeated fatal errors only force-close the cached daemon transport once before retrying. (PR <a href="https://github.com/steipete/mcporter/pull/125">#125</a>, thanks <a href="https://github.com/zm2231">@zm2231</a>)</p>
+</li>
+<li>
+<p>mcporter config add now accepts plural --args as an alias for repeated stdio arguments, matching common CLI muscle memory. (PR <a href="https://github.com/steipete/mcporter/pull/93">#93</a>, thanks <a href="https://github.com/Jah-yee">@Jah-yee</a>)</p>
+</li>
+<li>
+<p>Preserve default imports when mcporter config add writes a config file, instead of forcing &quot;imports&quot;: [].</p>
+</li>
+<li>
+<p>OAuth: avoid crashing on headless Linux when xdg-open is unavailable; clear stale dynamic-port client registrations; close callback server if stale-client persistence reads fail. (PR <a href="https://github.com/steipete/mcporter/pull/72">#72</a>, thanks <a href="https://github.com/mgonto">@mgonto</a>)</p>
+</li>
+<li>
+<p>Added optional oauthScope/oauth_scope config override as an escape hatch for providers that require explicit scopes.</p>
+</li>
+<li>
+<p>OAuth wait/redirect now share one deferred to eliminate authorization race windows and preserve stable close-path errors, including wait-before-redirect and repeated-redirect flows. (PR <a href="https://github.com/steipete/mcporter/pull/70">#70</a>, thanks <a href="https://github.com/monotykamary">@monotykamary</a>)</p>
+</li>
+<li>
+<p>createCallResult().json() now collects all parseable JSON entries from MCP content arrays (single item stays backward-compatible), and raw inspect depth now stays readable without unbounded traversal. (PR <a href="https://github.com/steipete/mcporter/pull/91">#91</a>, thanks <a href="https://github.com/blankdlh">@Blankdlh</a>)</p>
+</li>
+<li>
+<p>Added --raw-strings (numeric coercion off) and --no-coerce (all coercion off) for mcporter call argument parsing so IDs/codes can stay literal strings. (PR <a href="https://github.com/steipete/mcporter/pull/59">#59</a>, thanks <a href="https://github.com/nobrainer-tech">@nobrainer-tech</a>)</p>
+</li>
+<li>
+<p>Added CallResult.images() plus opt-in mcporter call --save-images so image content blocks can be persisted without changing existing stdout output contracts. (PR <a href="https://github.com/steipete/mcporter/pull/61">#61</a>, thanks <a href="https://github.com/daniella-11ways">@daniella-11ways</a>)</p>
+</li>
+<li>
+<p>OAuth transport retries now classify HTTP 405 as HTTP (not auth) and OAuth promotion applies to configured HTTP servers too, so post-auth fallback flows no longer drop credentials on 405-only endpoints. (PR <a href="https://github.com/steipete/mcporter/pull/48">#48</a>, thanks <a href="https://github.com/caseyg">@caseyg</a>)</p>
+</li>
+<li>
+<p>Config loading now parses project and explicit config files as JSONC, so mcporter.json / mcporter.jsonc can include comments and trailing commas. (PR <a href="https://github.com/steipete/mcporter/pull/42">#42</a>, thanks <a href="https://github.com/aryasaatvik">@aryasaatvik</a>)</p>
+</li>
+<li>
+<p>Added generated mcporter.schema.json plus pnpm generate:schema for IDE autocomplete/validation, including $schema and oauthScope/oauth_scope coverage. (PR <a href="https://github.com/steipete/mcporter/pull/43">#43</a>, thanks <a href="https://github.com/ahonn">@ahonn</a>)</p>
+</li>
+</ul>
+<h3>Tooling / Dependencies</h3>
+<ul>
+<li>
+<p>Updated dependencies to latest releases (including MCP SDK, Rolldown RC, Zod, Biome, Oxlint, Vitest, Bun types).</p>
+</li>
+<li>
+<p>Synced biome.json schema URL to Biome 2.4.5.</p>
+</li>
+</ul>
+<p>SHA256 (mcporter-macos-arm64-v0.8.0.tar.gz): <code>81c093704e1f0f247f14f2fa7ff0e8206227f9d44d6b8ff4bbd839941d083475</code></p>
+<p>SHA256 (mcporter-0.8.0.tgz): <code>1de6cbbaf1295ceaa66a5ff5896987681021003d00d176d021b44dc5dc7daa80</code></p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

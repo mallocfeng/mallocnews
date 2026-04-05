@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>openclaw-teams-setup</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>openclaw-teams-setup</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>openclaw-teams-setup</h1>
+<p>Source: https://github.com/SidU/openclaw-teams-setup</p>
+<p>One command to get an OpenClaw-powered AI agent running in Microsoft Teams.</p>
+<pre><code class="language-bash">npx openclaw-teams-setup
+</code></pre>
+<h2>What it does</h2>
+<p>Getting an AI agent into Teams today requires about 12 manual steps across Azure Portal, Teams Developer Portal, and the terminal. This tool reduces it to one command.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Node.js 18+ (check with <code>node --version</code>)</li>
+<li>An Azure account (free tier is enough)</li>
+<li>OpenClaw or NemoClaw installed (tool can install NemoClaw for you)</li>
+</ul>
+<h2>Quick start</h2>
+<p>Run:</p>
+<pre><code class="language-bash">npx openclaw-teams-setup
+</code></pre>
+<p>The tool will walk you through everything:</p>
+<ul>
+<li>Detects whether you have OpenClaw or NemoClaw and adapts</li>
+<li>Installs Azure CLI and Dev Tunnels CLI if missing (asks first)</li>
+<li>Opens a browser to sign in to Azure</li>
+<li>Prompts for bot name + resource group name</li>
+<li>Creates Azure bot, sets up tunnel, configures OpenClaw, generates Teams app</li>
+</ul>
+<p>At the end you will upload the app to Teams:</p>
+<ol>
+<li>Open Microsoft Teams</li>
+<li>Click Apps</li>
+<li>Click Manage your apps</li>
+<li>Click Upload an app, then Upload a custom app</li>
+<li>Select <code>~/Desktop/openclaw-teams-app.zip</code></li>
+<li>Click Add</li>
+</ol>
+<p>Then find the bot in Teams, and send it a message to test.</p>
+<h2>Notes</h2>
+<ul>
+<li>The bot only works while the tunnel is running.</li>
+<li>After restart, rerun the same command, it will detect existing setup and start the tunnel.</li>
+</ul>
+<h2>Auto detection paths</h2>
+<ul>
+<li>NemoClaw installed: skips straight to Teams setup</li>
+<li>OpenClaw installed (no NemoClaw): offers NemoClaw upgrade, then Teams setup</li>
+<li>Nothing installed: installs NemoClaw + OpenClaw, then Teams setup</li>
+</ul>
+<h2>What the Teams setup automates</h2>
+<ul>
+<li>Azure Bot: app registration, client secret, bot resource (F0), enable Teams channel</li>
+<li>Tunnel: persistent dev tunnel so Teams can reach local agent</li>
+<li>Config: installs <code>@openclaw/msteams</code> plugin, writes credentials to <code>openclaw.json</code>, sets DM policy allowlist</li>
+<li>App package: Teams manifest ZIP with icons and RSC permissions</li>
+</ul>
+<p>Flow:</p>
+<p>Teams → Dev Tunnel → localhost:3978 → OpenClaw gateway (msteams plugin) → LLM</p>
+<h2>Handy commands</h2>
+<pre><code class="language-bash">npx openclaw-teams-setup --status       # Show current state
+npx openclaw-teams-setup --tunnel       # Start tunnel explicitly
+npx openclaw-teams-setup --teardown     # Remove bot, tunnel, config
+npx openclaw-teams-setup --reconfigure  # Re-run config step
+npx openclaw-teams-setup --yes          # Non-interactive
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>Bot not responding?</p>
+<ul>
+<li>Make sure the tunnel is running (<code>npx openclaw-teams-setup</code>)</li>
+<li>Check channel status: <code>openclaw channels status</code></li>
+<li>Check gateway logs: <code>openclaw channels logs</code></li>
+<li>If logs say &quot;Not allowlisted&quot;, DM policy may be blocking you, run <code>npx openclaw-teams-setup --reconfigure</code></li>
+</ul>
+<p>Tunnel URL changed?</p>
+<ul>
+<li>The tool auto-updates the Azure bot endpoint when you start the tunnel. Just rerun <code>npx openclaw-teams-setup</code>.</li>
+</ul>
+<p>Bot name already taken?</p>
+<ul>
+<li>Azure bot names must be globally unique. Use a more specific name.</li>
+</ul>
+<h2>Project structure (from README)</h2>
+<pre><code>openclaw-teams-setup/
+├── bin/cli.js
+├── lib/
+├── templates/
+└── test/
+</code></pre>
+<p>License: MIT</p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

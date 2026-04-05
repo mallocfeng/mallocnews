@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>openclaw-codex-app-server</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>openclaw-codex-app-server</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>pwrdrvr/openclaw-codex-app-server</h1>
+<p>一个通过 Codex App Server 协议，把 Codex 接到 Telegram 和 Discord 的 OpenClaw 插件。· GitHub</p>
+<p>这个项目没有产品名，它只是一个 OpenClaw 插件，负责把 OpenClaw 连接到 Codex App Server 协议，这样你就能通过 Telegram 和 Discord 对话，和自己在 Codex Desktop、Codex TUI 里的现有线程互动。</p>
+<p>这里提到 Codex，只是为了描述这个插件连接的协议和工具链。这个仓库是独立项目，不是官方项目，也没有得到 OpenAI 或 Codex 的提供、赞助、背书或关联。</p>
+<p>如果 Codex 已经能在运行 OpenClaw 的那台机器上工作，这个插件也应该能工作。它使用同样的本地 Codex CLI 和共享登录状态，正常使用时不需要额外的插件登录。</p>
+<ul>
+<li>
+<p>把插件安装到 OpenClaw 里。</p>
+</li>
+<li>
+<p>在你想绑定桥接的 Telegram 或 Discord 对话中开始。</p>
+</li>
+<li>
+<p>运行 /cas_resume。</p>
+</li>
+<li>
+<p>选择最近的线程，点 New 新建一个，或者直接搜索。</p>
+</li>
+<li>
+<p>绑定完成后，这个对话里的普通文本会路由到选中的 Codex 线程。</p>
+</li>
+</ul>
+<p>界面会提供项目和线程选择、模型切换，以及技能快捷入口。如果筛选条件有歧义，插件会给出选择器，而不是瞎猜。</p>
+<p>以下是面向 OpenClaw 2026.3.22 及更新版本的推荐安装命令，这些版本包含此包所需的绑定和插件接口。</p>
+<p>安装：</p>
+<pre><code class="language-bash">openclaw plugins install openclaw-codex-app-server
+</code></pre>
+<p>卸载：</p>
+<pre><code class="language-bash">openclaw plugins uninstall openclaw-codex-app-server
+</code></pre>
+<p>OpenClaw 2026.3.22 及更新版本已经包含所需的绑定和插件接口变更。如果你在这个版本发布前测试，请使用本文档底部的本地开发流程。</p>
+<p>预发布包会发布到对应的 npm dist-tag，而不是 latest。比如 v0.3.0-beta.1 这种标签会发布到 openclaw-codex-app-server@beta，所以 npm install openclaw-codex-app-server@latest 仍然会保持在最新稳定版。</p>
+<ul>
+<li>
+<p>使用你现有的本地 Codex CLI 配置，而不是单独托管的桥接服务。</p>
+</li>
+<li>
+<p>在聊天里很自然，绑定一次 /cas_resume，之后直接说话就行。</p>
+</li>
+<li>
+<p>/cas_status、/cas_plan、/cas_review 等常用控制项都放得很近。</p>
+</li>
+<li>
+<p>适合你想绑定到真实 Codex 线程的 Telegram 和 Discord 对话。</p>
+</li>
+<li>
+<p>在你想绑定的对话里运行 /cas_resume。</p>
+</li>
+<li>
+<p>使用选择器按钮、点击 New，或者传入类似 /cas_resume release-fix、/cas_resume --projects、/cas_resume --new openclaw 这样的筛选条件。</p>
+</li>
+<li>
+<p>绑定时也可以顺手设置模型、快速模式或权限，例如 /cas_resume --model gpt-5.4 --fast --yolo。</p>
+</li>
+<li>
+<p>线程绑定后，正常发送聊天消息即可。</p>
+</li>
+<li>
+<p>用 /cas_status 直接查看或调整当前绑定，包括模型、推理、快速模式、权限、压缩和停止控制。</p>
+</li>
+<li>
+<p>如果你通过正常的 Implement this plan 按钮离开 plan 模式，就不需要 /cas_plan off。只有你想手动退出规划时，才用 /cas_plan off。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>说明 / 示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/cas_resume</td>
+<td>把当前对话绑定到一个 Codex 线程。</td>
+<td>不带参数时，会打开当前工作区最近线程的选择器，并带一个 New 按钮。</td>
+</tr>
+<tr>
+<td>/cas_resume --projects</td>
+<td>先浏览项目。</td>
+<td>先打开项目选择器，再打开线程选择器。</td>
+</tr>
+<tr>
+<td>/cas_resume --new</td>
+<td>在某个项目里新建一个 Codex 线程。</td>
+<td>打开项目选择器，而不是线程选择器。</td>
+</tr>
+<tr>
+<td>/cas_resume --new openclaw</td>
+<td>直接在匹配的项目里新建一个 Codex 线程。</td>
+<td>如果匹配到多个工作区，会给你按钮选择。</td>
+</tr>
+<tr>
+<td>/cas_resume --all</td>
+<td>跨项目搜索最近线程。</td>
+<td>当线程不在当前工作区时很有用。</td>
+</tr>
+<tr>
+<td>/cas_resume --cwd ~/github/openclaw</td>
+<td>把浏览和搜索限制在一个工作区里。</td>
+<td>--cwd 可以接受绝对路径或 ~/... 。</td>
+</tr>
+<tr>
+<td>/cas_resume --sync</td>
+<td>恢复绑定，并尝试把聊天或话题名称同步到 Codex 线程。</td>
+<td>可以和其他参数一起用。</td>
+</tr>
+<tr>
+<td>/cas_resume --model gpt-5.4</td>
+<td>以首选模型恢复或创建线程。</td>
+<td>这个偏好会保存在绑定上，后续轮次复用。</td>
+</tr>
+<tr>
+<td>/cas_resume --fast, /cas_resume --no-fast</td>
+<td>在绑定或创建线程时设置快速模式。</td>
+<td>快速模式只在受支持的模型上可用，比如 GPT-5.4+。</td>
+</tr>
+<tr>
+<td>/cas_resume --yolo, /cas_resume --no-yolo</td>
+<td>在绑定或创建线程时设置权限模式。</td>
+<td>--yolo 代表 Full Access。</td>
+</tr>
+<tr>
+<td>/cas_resume release-fix</td>
+<td>按标题或 id 恢复匹配的线程。</td>
+<td>如果匹配到多个线程，会提供按钮供你选择。</td>
+</tr>
+<tr>
+<td>/cas_status</td>
+<td>显示当前绑定、线程状态和交互控制。</td>
+<td>包含模型、推理、快速模式、权限以及停止按钮。</td>
+</tr>
+<tr>
+<td>/cas_status --model gpt-5.4</td>
+<td>修改首选模型并刷新状态卡。</td>
+<td>对当前绑定生效。</td>
+</tr>
+<tr>
+<td>/cas_status --fast, /cas_status --no-fast</td>
+<td>修改快速模式并刷新状态卡。</td>
+<td>快速模式只在受支持的模型上可用，比如 GPT-5.4+。</td>
+</tr>
+<tr>
+<td>/cas_status --yolo, /cas_status --no-yolo</td>
+<td>修改权限模式并刷新状态卡。</td>
+<td>--yolo 代表 Full Access。</td>
+</tr>
+<tr>
+<td>/cas_detach</td>
+<td>解除当前对话与 Codex 的绑定。</td>
+<td>停止把这个对话里的纯文本路由到绑定线程。</td>
+</tr>
+<tr>
+<td>/cas_stop</td>
+<td>中断当前正在运行的 Codex 任务。</td>
+<td>只在当前轮次还在进行时有效。</td>
+</tr>
+<tr>
+<td>/cas_steer <message></td>
+<td>向正在运行的任务发送后续 steering 文本。</td>
+<td>示例：/cas_steer 先专注修失败的测试</td>
+</tr>
+<tr>
+<td>/cas_plan <goal></td>
+<td>让 Codex 先规划，而不是直接执行。</td>
+<td>插件会把规划问题和最终计划回传到聊天里。</td>
+</tr>
+<tr>
+<td>/cas_plan off</td>
+<td>退出这个对话的 plan 模式。</td>
+<td>当你想手动退出规划，而不是通过正常的 Implement this plan 按钮退出时使用。</td>
+</tr>
+<tr>
+<td>/cas_review</td>
+<td>审查绑定工作区里当前未提交的改动。</td>
+<td>需要已经存在绑定。</td>
+</tr>
+<tr>
+<td>/cas_review <focus></td>
+<td>带自定义指令进行审查。</td>
+<td>示例：/cas_review focus on thread selection regressions</td>
+</tr>
+<tr>
+<td>/cas_compact</td>
+<td>压缩绑定的 Codex 线程。</td>
+<td>插件会发进度和最终上下文占用情况。</td>
+</tr>
+<tr>
+<td>/cas_skills</td>
+<td>列出当前工作区可用的 Codex 技能。</td>
+<td>最多会添加 8 个技能快捷按钮。</td>
+</tr>
+<tr>
+<td>/cas_skills review</td>
+<td>过滤技能列表。</td>
+<td>可按技能名、描述或 cwd 匹配。</td>
+</tr>
+<tr>
+<td>/cas_experimental</td>
+<td>列出 Codex 报告的实验性功能。</td>
+<td>只读。</td>
+</tr>
+<tr>
+<td>/cas_mcp</td>
+<td>列出已配置的 MCP 服务器。</td>
+<td>显示认证状态，以及工具、资源、模板的数量。</td>
+</tr>
+<tr>
+<td>/cas_mcp github</td>
+<td>过滤 MCP 服务器。</td>
+<td>按名称和认证状态匹配。</td>
+</tr>
+<tr>
+<td>/cas_fast</td>
+<td>切换绑定线程的快速模式。</td>
+<td>这是 /cas_status 上同一项控制的便捷命令。</td>
+</tr>
+<tr>
+<td>/cas_fast on, /cas_fast off, /cas_fast status</td>
+<td>显式设置或查看快速模式。</td>
+<td>示例：/cas_fast status</td>
+</tr>
+<tr>
+<td>/cas_model</td>
+<td>在对话已绑定时列出模型并显示模型选择按钮。</td>
+<td>如果没有绑定，只会列出模型。</td>
+</tr>
+<tr>
+<td>/cas_model gpt-5.4</td>
+<td>为绑定线程设置模型。</td>
+<td>同时也会更新保存的首选模型，供后续轮次使用。</td>
+</tr>
+<tr>
+<td>/cas_permissions</td>
+<td>显示账户、速率限制和当前权限状态。</td>
+<td>要修改权限，请用 /cas_status --yolo 或状态卡。</td>
+</tr>
+<tr>
+<td>/cas_init ...</td>
+<td>把 /init 转发给 Codex。</td>
+<td>直接把这个别名透传给 App Server。</td>
+</tr>
+<tr>
+<td>/cas_diff ...</td>
+<td>把 /diff 转发给 Codex。</td>
+<td>直接把这个别名透传给 App Server。</td>
+</tr>
+<tr>
+<td>/cas_rename <new name></td>
+<td>重命名已绑定的 Codex 线程。</td>
+<td>示例：/cas_rename approval flow cleanup</td>
+</tr>
+<tr>
+<td>/cas_rename --sync <new name></td>
+<td>重命名线程，并尝试同步对话或话题名称。</td>
+<td>需要已经存在绑定。</td>
+</tr>
+<tr>
+<td>/cas_rename --sync</td>
+<td>显示推荐命名风格，并把选中的名字同步到对话。</td>
+<td>当你想用自动生成的线程或项目命名，又懒得手打时很有用。</td>
+</tr>
+</tbody>
+</table>
+<p>The status card is the main control surface once a conversation is bound. It shows the current binding state and provides buttons for:</p>
+<ul>
+<li>model selection</li>
+<li>reasoning selection</li>
+<li>fast mode toggle when the current model supports it</li>
+<li>permissions toggle between Default and Full Access</li>
+<li>compaction</li>
+<li>stopping the active run</li>
+</ul>
+<p>The plugin schema in <a href="/pwrdrvr/openclaw-codex-app-server/blob/main/openclaw.plugin.json">openclaw.plugin.json</a> supports:</p>
+<ul>
+<li>transport: stdio or websocket</li>
+<li>command and args: the Codex executable and CLI args for stdio</li>
+<li>url, authToken, headers: connection settings for websocket</li>
+<li>defaultWorkspaceDir: fallback workspace for unbound actions</li>
+<li>defaultModel: model used when a new thread starts without an explicit selection</li>
+<li>defaultServiceTier: default service tier for new turns</li>
+</ul>
+<p>Use this path when you are testing a local checkout of this repository against a local OpenClaw build before the required plugin interface is available in a released OpenClaw version.</p>
+<p>This plugin originally targeted <a href="https://github.com/openclaw/openclaw/pull/45318">openclaw/openclaw#45318</a>. Use that branch if it is still unmerged, or use main once the change has landed there.</p>
+<pre><code class="language-bash">git clone https://github.com/openclaw/openclaw.git
+cd openclaw
+gh pr checkout 45318
+pnpm install
+</code></pre>
+<p>If you are not using gh, fetch the PR directly:</p>
+<pre><code class="language-bash">git fetch origin pull/45318/head:pr-45318
+git checkout pr-45318
+pnpm install
+</code></pre>
+<p>From the OpenClaw repository:</p>
+<pre><code class="language-bash">pnpm openclaw plugins install --link &quot;/absolute/path/to/openclaw-codex-app-server&quot;
+</code></pre>
+<p>Remove the linked local checkout:</p>
+<pre><code class="language-bash">pnpm openclaw plugins uninstall openclaw-codex-app-server
+</code></pre>
+<p>From the OpenClaw checkout:</p>
+<pre><code class="language-bash">pnpm gateway:watch
+</code></pre>
+<p>This repository no longer commits a machine-local openclaw dev dependency, so CI stays portable. If you want this plugin checkout to resolve openclaw from your own local OpenClaw source tree, add a local-only override in your working copy:</p>
+<pre><code class="language-bash">pnpm add -D openclaw@file:/absolute/path/to/openclaw
+pnpm install
+</code></pre>
+<p>That override is for local development only. Do not commit the resulting package.json or pnpm-lock.yaml changes.</p>
+<pre><code class="language-bash">pnpm test
+pnpm typecheck
+</code></pre>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

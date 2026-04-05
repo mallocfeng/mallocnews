@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Designing-delightful-frontends-with-GPT-5.4</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>Designing-delightful-frontends-with-GPT-5.4</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>使用 GPT-5.4 设计令人愉悦的前端</h1>
+<blockquote>
+<p>原文链接：https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4</p>
+</blockquote>
+<h2>中文翻译</h2>
+<p>GPT-5.4 在网页开发方面比其前辈更出色——生成更具视觉吸引力和野心的前端。值得注意的是，我们在训练 GPT-5.4 时专注于改进的 UI 能力和图像使用。通过正确的指导，模型可以生成包含微妙触感、精心设计的交互和美丽图像的生产就绪前端。</p>
+<p>网页设计可以产生大量结果。优秀的设计在克制与创新之间取得平衡——汲取经受住时间考验的模式，同时引入新事物。GPT-5.4 已经学习了这种广泛的设计方法，并理解了构建网站的许多不同方式。</p>
+<p>当提示不明确时，模型往往会回退到训练数据中的高频模式。其中一些是经过验证的惯例，但许多只是我们想要避免的过度代表的习惯。结果通常是合理且功能正常的，但可能会趋向于通用结构、视觉层次薄弱和与我们脑海中设想不符的设计选择。</p>
+<p>本指南解释了引导 GPT-5.4 朝着您设想的设计方向发展的实用技术。</p>
+<h3>模型改进</h3>
+<p>虽然 GPT-5.4 在<a href="https://openai.com/index/introducing-gpt-5-4/">多个方面</a>有所提升，但对于前端工作，我们专注于三个实际收益：</p>
+<ul>
+<li>在整个设计过程中增强的图像理解能力</li>
+<li>更完整功能的应用程序和网站</li>
+<li>更好地使用工具来检查、测试和验证其自身工作</li>
+</ul>
+<h4>图像理解和工具使用</h4>
+<p>GPT-5.4 被训练为原生使用图像搜索和图像生成工具，使其能够直接将视觉推理纳入其设计过程。为了获得最佳效果，请指示模型首先生成情绪板或几种视觉选项，然后选择最终资产。</p>
+<p>您可以通过明确描述图像应捕捉的属性（例如，风格、色彩构图、布局或情绪）来引导模型使用强视觉参考。您还应包括提示指令，指导模型重用之前生成的图像，调用图像生成工具创建新的视觉内容，或在需要时引用特定的外部图像。</p>
+<p>默认使用任何上传/预生成的图像。否则使用图像生成工具创建视觉震撼的图像制品。除非用户明确要求，否则不要引用或链接到网络图像。</p>
+<h4>功能改进</h4>
+<p>该模型被训练为开发更完整且功能健全的应用程序。预期模型在长时间任务中将更可靠。您以前认为不可能的游戏和复杂用户体验现在在一两轮内成为可能。</p>
+<h4>计算机使用和验证</h4>
+<p>GPT-5.4 是我们第一个接受计算机使用训练的主线模型。它可以原生导航界面，并且结合 Playwright 等工具，可以迭代检查其工作，验证行为并改进实现——从而实现更长、更自主的开发工作流程。</p>
+<p>观看我们的<a href="https://openai.com/index/introducing-gpt-5-4/?video=1170427106">发布视频</a>以了解这些能力在行动中的表现。</p>
+<p>Playwright 尤其有价值于前端开发。它允许模型检查渲染页面，测试多个视口，导航应用程序流程，并检测与状态或导航相关的问题。提供 Playwright 工具或技能可以显著提高 GPT-5.4 生成抛光、功能完整界面的可能性。通过改进的图像理解，它还为模型提供了一种视觉验证其工作的方式，并检查其是否与提供的参考 UI 匹配。</p>
+<h3>实用技巧快速入门</h3>
+<p>如果您只采用本文档中的几种做法，请从以下开始：</p>
+<ul>
+<li>选择低推理级别开始。</li>
+<li>事先定义您的设计系统和约束（即，排版、配色方案、布局）。</li>
+<li>提供视觉参考或情绪板（即附加截图）为模型提供视觉护栏。</li>
+<li>事先定义叙事或内容策略以指导模型的内容创建。</li>
+</ul>
+<p>这是一个开始的提示。</p>
+<h2>前端任务</h2>
+<p>在进行前端设计任务时，避免通用、过度构建的布局。</p>
+<p><strong>使用这些硬性规则：</strong></p>
+<ul>
+<li>一种构成：第一个视口必须读作一种构成，除非它是仪表盘。</li>
+<li>首先品牌：在品牌页面上，品牌或产品名称必须是英雄级别的信号，而不仅仅是导航文本或眉毛。没有任何标题应该盖过品牌。</li>
+<li>品牌测试：如果在移除导航后，第一个视口可能属于另一个品牌，那么品牌太弱了。</li>
+<li>排版：使用富有表现力、有目的的字体，避免默认字体堆栈（Inter、Roboto、Arial、系统）。</li>
+<li>背景：不要依赖平坦、单色背景；使用渐变、图像或微妙模式来构建氛围。</li>
+<li>全幅英雄仅限：在着陆页和促销表面上，英雄图像应该是主导的边缘到边缘的视觉平面或背景，默认情况下。不要使用嵌入式英雄图像、侧面板英雄图像、圆角媒体卡、铺贴拼贴或浮动图像块，除非现有设计系统明确要求它。</li>
+<li>英雄预算：第一个视口通常应仅包含品牌、一个标题、一个简短的支持句子、一个 CTA 组和一个占主导地位的图像。不要在此处放置统计数据、时间表、活动列表、地址块、促销内容、“本周”提示、元数据行或次要营销内容。</li>
+<li>没有英雄覆盖层：不要在英雄媒体之上放置分离的标签、浮动徽章、促销贴纸、信息芯片或行动呼吁框。</li>
+<li>卡片：默认：不使用卡片。永远不要在英雄中使用卡片。只有当它们是用户交互的容器时才允许使用卡片。如果移除边框、阴影、背景或半径不会损害交互或理解，则不应是卡片。</li>
+<li>每个部分一项工作：每个部分应具有一个目的、一个标题，并且通常具有一个简短的支持句子。</li>
+<li>真实视觉锚点：图像应展示产品、场所、氛围或上下文。装饰性渐变和抽象背景不算作主要视觉概念。</li>
+<li>减少杂乱：避免药丸簇、统计条、图标行、盒式促销、时间表片段和多个竞争的文本块。</li>
+<li>使用运动来创建存在和层次，而不是噪音。为视觉导向的工作至少交付 2-3 种有意图的运动。</li>
+<li>颜色与外观：选择清晰的视觉方向；定义 CSS 变量；避免紫色-on-白色默认值。没有紫色偏好或深色模式偏好。</li>
+<li>确保页面在台式机和移动设备上都能正常加载。</li>
+<li>对于 React 代码，在适当时优先使用现代模式，包括 useEffectEvent、startTransition 和 useDeferredValue，如果团队使用的话。除非已经使用，否则默认不要添加 useMemo/useCallback；遵循仓库的 React 编译器指南。</li>
+</ul>
+<p>例外：如果在现有网站或设计系统中工作，请保留既定的模式、结构和视觉语言。</p>
+<h3>更好设计的技术</h3>
+<h4>从设计原则开始</h4>
+<p>定义诸如一个 H1 标题，不超过六个部分，最多两种字体，一种强调颜色，以及折叠以上的主要 CTA 之类的约束。</p>
+<h4>提供视觉参考</h4>
+<p>参考截图或情绪板有助于模型推断布局节奏、排版比例、间距系统和图像处理。以下是 GPT-5.4 在 Codex 中受纽约咖啡文化和 Y2K 美学启发而生成的其自身情绪板的示例。</p>
+<h4>将页面构建为叙事</h4>
+<p>典型的营销页面结构：</p>
+<ul>
+<li>英雄——建立身份和承诺</li>
+<li>支持性图像——展示背景或环境</li>
+<li>产品详情——解释产品</li>
+<li>社会证明——建立可信度</li>
+<li>最终 CTA——将兴趣转化为行动</li>
+</ul>
+<h4>指导设计系统遵守</h4>
+<p>鼓励模型尽早建立清晰的设计系统。定义核心设计标记，如背景、表面、主要文本、次要文本和强调色，以及排版角色如显示、标题、正文和标注。这种结构有助于模型在应用程序中生成一致且可扩展的 UI 模式。</p>
+<p>对于大多数网络项目，从熟悉的堆栈如 React 和 Tailwind 开始效果很好。GPT-5.4 在使用这些工具时表现尤为出色，使其能够快速迭代并达到抛光结果。</p>
+<p>动态和分层的 UI 元素可能会引入复杂性，特别是当固定或浮动组件与主要内容交互时。在使用动画、覆盖层或装饰层时，有助于包括指导，鼓励安全的布局行为。例如：</p>
+<p>保持固定或浮动 UI 元素不与文本、按钮或其他关键内容在各种屏幕尺寸上重叠。将它们放置在安全区域，在主要内容后面（如果适用），并保持足够的间距。</p>
+<h4>降低推理级别</h4>
+<p>对于更简单的网站，更多的推理并不总是更好。实际上，低和中等推理水平往往会导致更强的前端结果，帮助模型保持快速、专注且不易过度思考，同时仍然为更雄心勃勃的设计留出提升推理的余地。</p>
+<h4>用真实内容为设计奠基</h4>
+<p>向模型提供真实文案、产品背景或明确的项目目标是改善前端结果的最简单方法之一。这种背景有助于它选择正确的网站结构，塑造更清晰的部分级别叙事，并编写更可信的信息，而不是陷入一般的占位符模式。</p>
+<h2>结合前端技能</h2>
+<p>为了帮助人们在一般前端任务中充分利用 GPT-5.4，我们还准备了一个专门的 <a href="https://github.com/openai/skills/tree/main/skills/.curated/frontend-skill">frontend-skill</a> 您可以在下面找到。它通过强调受限构图、图像主导的层次结构、协调的内容结构和品味十足的运动，同时避免通用卡片、弱品牌和 UI 杂乱，来帮助模型从一开始就生成更抛光、有意和愉悦的设计。</p>
+<h2>前端技能</h2>
+<h2>名称：frontend-skill
+描述：在任务要求具有视觉吸引力的着陆页、网站、应用程序、原型、演示或游戏 UI 时使用。此技能强调受限构图、图像主导的层次结构、协调的内容结构和品味十足的运动，同时避免通用卡片、弱品牌和 UI 杂乱。</h2>
+<h1>前端技能</h1>
+<p>当工作质量取决于艺术指导、层次、克制、图像和运动而不是组件数量时，请使用此技能。</p>
+<p>目标：交付感觉刻意、高级和当前的界面。默认情况下，倾向于奖项级别构图：一个大想法、强烈的图像、稀少的副本、严格的间距和少量难忘的运动。</p>
+<h2>工作模型</h2>
+<p>在构建之前，请写三件事：</p>
+<ul>
+<li>视觉论点：一句描述情绪、材料和能量的句子</li>
+<li>内容计划：英雄、支持、细节、最终 CTA</li>
+<li>交互论点：改变页面感觉的 2-3 种运动想法</li>
+</ul>
+<p>每个部分获得一项工作，一个主要的视觉想法，以及一个主要的收获或行动。</p>
+<h2>美丽的默认值</h2>
+<ul>
+<li>从构图开始，而不是从组件开始。</li>
+<li>首选全幅英雄或全画布视觉锚点。</li>
+<li>让品牌或产品名称成为最响亮的文本。</li>
+<li>保持副本简短到可以在几秒内扫描。</li>
+<li>在添加 chrome 之前使用空白、对齐、比例、裁剪和对比。</li>
+<li>限制系统：最多两种字体，默认一种强调颜色。</li>
+<li>默认为无卡片布局。使用部分、列、分隔符、列表和媒体块而不是卡片。</li>
+<li>将第一个视口视为海报，而不是文档。</li>
+</ul>
+<h2>着陆页</h2>
+<p>默认序列：</p>
+<ol>
+<li>英雄：品牌或产品、承诺、CTA 和一个占主导地位的视觉</li>
+<li>支持：一个具体的功能、优惠或证明点</li>
+<li>详细信息：氛围、工作流程、产品深度或故事</li>
+<li>最终 CTA：转化、开始、访问或联系</li>
+</ol>
+<p>英雄规则：</p>
+<ul>
+<li>仅一种构成。</li>
+<li>全幅图像或占主导地位的视觉平面。</li>
+<li>规范的全幅规则：在品牌着陆页上，英雄本身必须边缘到边缘运行，没有继承的页面间距，框架容器或共享最大宽度；仅限内部文本/操作列。</li>
+<li>品牌第一，标题第二，正文第三，CTA 第四。</li>
+<li>不使用英雄卡片、统计条、标志云、药丸汤或默认的浮动仪表盘。</li>
+<li>保持标题大约为桌面端的 2-3 行，并且在移动端上可以一眼读完。</li>
+<li>保持文本列窄并固定在图像的平静区域。</li>
+<li>所有覆盖在图像上的文本必须保持强烈对比度和清晰的点击目标。</li>
+</ul>
+<p>如果在移除图像后，第一个视口仍然有效，则图像太弱。如果在隐藏导航后品牌消失，则层级太弱。</p>
+<p>视口预算：</p>
+<ul>
+<li>如果第一屏幕包括粘性/固定头部，则该头部计入英雄。组合头部+英雄内容必须在常见台式机和移动尺寸内的初始视口内适合。</li>
+<li>当使用 <code>100vh</code>/<code>100svh</code> 英雄时，减去持久 UI chrome（<code>calc(100svh - header-height)</code>）或者将头部覆盖在正常流程之上。</li>
+</ul>
+<h2>应用</h2>
+<p>默认为 Linear 风格的克制：</p>
+<ul>
+<li>平静的表面层次结构</li>
+<li>强排版和间距</li>
+<li>少量颜色</li>
+<li>密集但可读的信息</li>
+<li>最小的 chrome</li>
+<li>只有当卡片是交互时才使用卡片</li>
+</ul>
+<p>对于应用程序 UI，请围绕以下内容进行组织：</p>
+<ul>
+<li>主要工作区</li>
+<li>导航</li>
+<li>次要背景或检查器</li>
+<li>一个明确的强调色用于动作或状态</li>
+</ul>
+<p>避免：</p>
+<ul>
+<li>仪表盘卡片马赛克</li>
+<li>每个区域都有厚边框</li>
+<li>常规产品 UI 背后的装饰性渐变</li>
+<li>多种竞争性强调颜色</li>
+<li>不能改善扫描的装饰性图标</li>
+</ul>
+<p>如果一个面板可以变成纯布局而不会失去意义，请移除卡片处理。</p>
+<h3>图像</h3>
+<p>图像必须完成叙事工作。</p>
+<ul>
+<li>为品牌、场所、编辑页面和生活方式产品使用至少一个强烈、看似真实的图像。</li>
+<li>优先使用情境摄影而非抽象渐变或假 3D 对象。</li>
+<li>选择或裁剪图像，使其具有用于文本的稳定 tonal 区域。</li>
+<li>不要使用带有嵌入式标识、标志或与 UI 争夺的排版杂乱的图像。</li>
+<li>不要生成带有内置 UI 框架的图像</li>
+</ul>
+<p>[内容因长度被截断，完整英文原文请参考来源链接]</p>
+<hr />
+<p><em>此文档为机器翻译与原文对照版本，建议阅读英文原文以获取最准确信息</em></p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

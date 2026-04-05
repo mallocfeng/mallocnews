@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>gws</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>gws</h1>
+<div class="meta"><a href="https://github.com/googleworkspace/cli" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h2>这是什么</h2>
+<p><code>gws</code> 是一个面向 Google Workspace 的统一命令行工具, 目标是把 Drive, Gmail, Calendar, Sheets, Chat 等所有 Workspace API, 用同一种 CLI 方式调用出来, 并且默认输出结构化 JSON, 方便脚本处理与 AI agent 接管。</p>
+<p>它的关键特性是, 命令面是运行时根据 Google Discovery Service 动态生成的, 所以它不会像传统 CLI 那样在仓库里写死一份完整子命令列表。Google 新增 API 或方法后, <code>gws</code> 理论上可以自动跟进。</p>
+<h2>安装与版本</h2>
+<h3>npm 安装</h3>
+<pre><code class="language-bash">npm install -g @googleworkspace/cli
+</code></pre>
+<p>说明, npm 包带了预编译二进制, 通常不需要 Rust 工具链。</p>
+<h3>其他安装方式</h3>
+<ul>
+<li>GitHub Releases 下载二进制</li>
+<li>从源码安装<pre><code class="language-bash">cargo install --git https://github.com/googleworkspace/cli --locked
+</code></pre>
+</li>
+<li>Nix<pre><code class="language-bash">nix run github:googleworkspace/cli
+</code></pre>
+</li>
+</ul>
+<h2>基础使用模型</h2>
+<p><code>gws</code> 的调用基本形态是</p>
+<pre><code class="language-bash">gws &lt;service&gt; &lt;resource&gt; &lt;method&gt; [flags]
+</code></pre>
+<p>例如</p>
+<pre><code class="language-bash">gws drive files list --params '{&quot;pageSize&quot;: 10}'
+</code></pre>
+<p>因为命令是动态生成的, 所以你在某个 API 下可用的 <code>resource</code> 和 <code>method</code> 需要用 <code>--help</code> 去探索。</p>
+<p>常见探索路径</p>
+<pre><code class="language-bash">gws --help
+# 进入某个 service
+gws drive --help
+# 进入某个 resource
+gws drive files --help
+# 看具体 method 的参数
+gws drive files list --help
+</code></pre>
+<h2>输出与输入</h2>
+<h3>输出</h3>
+<ul>
+<li>默认输出结构化 JSON</li>
+<li>分页场景下可输出 NDJSON, 便于管道处理</li>
+</ul>
+<h3>输入</h3>
+<p>常用两类输入字段</p>
+<ol>
+<li><code>--params</code> 传 URL query 参数或路径参数, 典型是 list, get 这种方法</li>
+<li><code>--json</code> 传 request body, 典型是 create, update, batch 这种方法</li>
+</ol>
+<p>示例</p>
+<pre><code class="language-bash"># 创建一个 spreadsheet
+gws sheets spreadsheets create \
+  --json '{&quot;properties&quot;: {&quot;title&quot;: &quot;Q1 Budget&quot;}}'
+
+# 发一条 Chat 消息, 并用 dry run 预览
+gws chat spaces messages create \
+  --params '{&quot;parent&quot;: &quot;spaces/xyz&quot;}' \
+  --json '{&quot;text&quot;: &quot;Deploy complete.&quot;}' \
+  --dry-run
+</code></pre>
+<h2>认证体系</h2>
+<p><code>gws</code> 支持多种认证来源, 兼顾本机交互, CI, 服务器。</p>
+<h3>交互式本机认证</h3>
+<pre><code class="language-bash">gws auth setup
+gws auth login
+</code></pre>
+<p>要点</p>
+<ul>
+<li><code>auth setup</code> 依赖 <code>gcloud</code> 来自动创建或配置 GCP 项目, 启用 API 等</li>
+<li>凭据会加密存储, 密钥放在系统 keyring</li>
+<li>OAuth 在 testing mode 时, scope 数量有上限, 选太多会失败, 这种情况下建议只选需要的服务 scopes</li>
+</ul>
+<p>例子</p>
+<pre><code class="language-bash">gws auth login -s drive,gmail,sheets
+</code></pre>
+<h3>手动 OAuth 配置</h3>
+<p>适用场景</p>
+<ul>
+<li>没装 <code>gcloud</code></li>
+<li>想完全掌控 GCP 项目与 OAuth 客户端</li>
+</ul>
+<p>核心步骤</p>
+<ul>
+<li>在 GCP Console 创建 Desktop app 类型 OAuth client</li>
+<li>下载 client JSON, 保存到 <code>~/.config/gws/client_secret.json</code></li>
+<li>确保把自己的账号加到 Test users</li>
+<li>然后 <code>gws auth login</code></li>
+</ul>
+<h3>Headless 或 CI</h3>
+<p>思路是先在有浏览器的机器完成登录, 然后导出 credentials, 在 CI 上用环境变量引用。</p>
+<pre><code class="language-bash"># 交互机器
+gws auth export --unmasked &gt; credentials.json
+
+# CI 机器
+export GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE=/path/to/credentials.json
+</code></pre>
+<h3>Service Account</h3>
+<pre><code class="language-bash">export GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE=/path/to/service-account.json
+</code></pre>
+<h3>外部已有 Access Token</h3>
+<p>当你已经用别的系统拿到 token, 让 <code>gws</code> 直接复用。</p>
+<pre><code class="language-bash">export GOOGLE_WORKSPACE_CLI_TOKEN=$(gcloud auth print-access-token)
+</code></pre>
+<h3>认证来源优先级</h3>
+<p>从高到低</p>
+<ol>
+<li><code>GOOGLE_WORKSPACE_CLI_TOKEN</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE</code></li>
+<li><code>gws auth login</code> 生成的加密凭据</li>
+<li><code>~/.config/gws/credentials.json</code> 明文凭据</li>
+</ol>
+<h2>重要命令与功能清单</h2>
+<p>说明, 完整命令面会随 Discovery 动态变化, 下面列的是仓库 README 明确提供的稳定功能点与子命令, 以及你用得上的探索方式。</p>
+<h3>通用</h3>
+<ul>
+<li><code>gws --help</code>, <code>gws &lt;service&gt; --help</code>, <code>gws &lt;service&gt; &lt;resource&gt; &lt;method&gt; --help</code></li>
+<li><code>--dry-run</code> 预览请求, 不真正发送</li>
+</ul>
+<h3>schema</h3>
+<ul>
+<li><code>gws schema &lt;fully.qualified.method&gt;</code></li>
+</ul>
+<p>用途</p>
+<ul>
+<li>查看某个 API 方法的请求与响应 schema, 便于快速拼 <code>--params</code> 和 <code>--json</code></li>
+</ul>
+<p>例子</p>
+<pre><code class="language-bash">gws schema drive.files.list
+</code></pre>
+<h3>auth</h3>
+<ul>
+<li><code>gws auth setup</code> 通过 gcloud 引导配置项目与 API</li>
+<li><code>gws auth login</code> OAuth 登录, 选择 scopes</li>
+<li><code>gws auth export --unmasked</code> 导出 credentials, 给 headless 使用</li>
+</ul>
+<h3>分页</h3>
+<p>相关参数</p>
+<ul>
+<li><code>--page-all</code> 自动翻页, 每页一行 JSON, 适合管道</li>
+<li><code>--page-limit &lt;N&gt;</code> 最大页数, 默认 10</li>
+<li><code>--page-delay &lt;MS&gt;</code> 页间延迟, 默认 100ms</li>
+</ul>
+<p>例子</p>
+<pre><code class="language-bash"># 把所有页面输出为 NDJSON, 再用 jq 抽字段
+gws drive files list --params '{&quot;pageSize&quot;: 100}' --page-all | jq -r '.files[].name'
+</code></pre>
+<h3>上传</h3>
+<pre><code class="language-bash">gws drive files create --json '{&quot;name&quot;: &quot;report.pdf&quot;}' --upload ./report.pdf
+</code></pre>
+<h3>Sheets 的感叹号</h3>
+<p>Sheets range 里有 <code>!</code>, 在某些 shell 下会触发历史展开, 处理原则是, JSON 用单引号包起来。</p>
+<pre><code class="language-bash">gws sheets spreadsheets values get \
+  --params '{&quot;spreadsheetId&quot;: &quot;SPREADSHEET_ID&quot;, &quot;range&quot;: &quot;Sheet1!A1:C10&quot;}'
+</code></pre>
+<h3>Model Armor 响应净化</h3>
+<p>用 Google Cloud Model Armor 对响应做 prompt injection 扫描, 减少把恶意内容喂给 agent 的风险。</p>
+<pre><code class="language-bash">gws gmail users messages get --params '...' \
+  --sanitize &quot;projects/P/locations/L/templates/T&quot;
+</code></pre>
+<p>环境变量</p>
+<ul>
+<li><code>GOOGLE_WORKSPACE_CLI_SANITIZE_TEMPLATE</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_SANITIZE_MODE</code>, <code>warn</code> 或 <code>block</code></li>
+</ul>
+<h2>环境变量速查</h2>
+<ul>
+<li><code>GOOGLE_WORKSPACE_CLI_TOKEN</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_CLIENT_ID</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_CLIENT_SECRET</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_CONFIG_DIR</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_SANITIZE_TEMPLATE</code></li>
+<li><code>GOOGLE_WORKSPACE_CLI_SANITIZE_MODE</code></li>
+<li><code>GOOGLE_WORKSPACE_PROJECT_ID</code></li>
+</ul>
+<h2>与 AI agent 结合</h2>
+<p>仓库自带大量 SKILL.md, 并提供 <code>npx skills add</code> 的安装方式, 方便把 Workspace 能力注入到 agent 系统中。</p>
+<pre><code class="language-bash">npx skills add https://github.com/googleworkspace/cli
+npx skills add https://github.com/googleworkspace/cli/tree/main/skills/gws-drive
+</code></pre>
+<p>如果你用 OpenClaw, 也可以把 skills 目录直接链接进 <code>~/.openclaw/skills/</code> 来保持同步。</p>
+<h2>排障速记</h2>
+<h3>Access blocked 或 403</h3>
+<p>常见原因, OAuth consent screen 处于 testing mode, 但没有把当前账号加到 Test users。把账号加进去后重试 <code>gws auth login</code>。</p>
+<h3>redirect_uri_mismatch</h3>
+<p>OAuth client 类型建错了, 必须是 Desktop app。</p>
+<h3>accessNotConfigured</h3>
+<p>对应 API 没启用, 需要在 GCP Console 里 Enable, 等十秒左右再重试。</p>
+<h2>我自己的用法建议</h2>
+<ol>
+<li>一开始只开你需要的 scopes, 尤其是 testing mode, 省得 scope 太多直接登录失败。</li>
+<li>用 <code>gws schema ...</code> 当成 API 的实时文档, 比翻网页快。</li>
+<li>所有输出都 JSON, 你要养成 <code>jq</code> 管道习惯, 能把大量自动化直接串起来。</li>
+<li>在 agent 场景里, 强烈建议开 <code>--sanitize</code> 或全局模板, 这玩意实际能挡掉不少“把提示词塞进邮件正文”的阴招。</li>
+</ol>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

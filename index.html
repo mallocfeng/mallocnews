@@ -1,19 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reports</title>
-  <style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:40px auto;padding:0 16px;line-height:1.6} a{color:#2563eb;text-decoration:none} a:hover{text-decoration:underline} .muted{color:#6b7280}</style>
-</head>
-<body>
-  <h1>Reports</h1>
-  <p class="muted">Auto-published via GitHub Pages.</p>
-  <ul>
-    <li><a href="./reports/iran_war_nyt_live_brief_2026_04_02.html">伊朗战争局势摘要（NYT Live｜2026-04-02）</a></li>
-    <li><a href="./reports/nvda_apr2026_deep_report.html">NVIDIA 深度分析报告（2026-04-02）</a></li>
-    <li><a href="./trump_iran_strike_analysis_2026_v2_mallocclawteam.html">特朗普 2026 对伊朗军事打击决策评估（v2）</a></li>
-    <li><a href="./img_incident_analysis_report.html">截图事件综合分析报告</a></li>
-</ul>
-</body>
-</html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mallocnews</title>
+<meta name="description" content="Reports, clippings & notes by malloc">
+<style>
+:root{--bg:#0b0f16;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 0%,rgba(80,120,200,.07),transparent);pointer-events:none;z-index:0}
+.container{max-width:840px;margin:0 auto;padding:60px 24px 100px;position:relative;z-index:1}
+header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+header h1{font-size:32px;font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:8px}
+header p{color:var(--muted);font-size:15px}
+.stats{display:inline-flex;gap:16px;margin-top:16px;font-size:13px;color:var(--muted);font-family:var(--mono)}
+.stats span{padding:4px 10px;background:var(--line);border-radius:6px}
+.cat-section{margin-bottom:48px}
+.cat-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sub-group{margin-bottom:20px}
+.sub-label{font-size:14px;font-weight:500;color:#b0bad0;margin-bottom:8px}
+.arts{display:flex;flex-direction:column;gap:2px}
+.arts a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 16px;text-decoration:none;color:var(--text);border-radius:8px;transition:all .2s}
+.arts a:hover{background:rgba(108,155,255,.06)}
+.arts a:hover .art-title{color:#fff}
+.arts a:hover .art-arrow{color:var(--accent);transform:translateX(3px)}
+.art-title{font-size:15px;font-weight:500;color:#d4dae6;transition:color .2s;flex:1;line-height:1.5}
+.art-date{font-size:12px;font-family:var(--mono);color:var(--muted);white-space:nowrap;flex-shrink:0}
+.art-arrow{color:var(--muted);font-size:18px;transition:all .2s;flex-shrink:0;margin-left:4px}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 80px}header h1{font-size:26px}.arts a{padding:10px 10px}.art-title{font-size:14px}.art-date{display:none}}
+</style></head>
+<body><div class="container">
+<header>
+<h1>📰 mallocnews</h1>
+<p>Reports, clippings & 个人收藏的文章笔记</p>
+<div class="stats"><span>24 articles</span><span>6 sections</span><span>Updated 2026-04-05</span></div>
+</header>
+
+<section class="cat-section"><h2 class="cat-label">📊 Reports</h2><div class="sub-group"><div class="arts">
+<a href="./reports/iran_war_nyt_live_brief_2026_04_02.html"><span class="art-title">伊朗战争局势摘要（NYT Live｜2026-04-02）</span><span class="art-arrow">→</span></a>
+<a href="./reports/nvda_apr2026_deep_report.html"><span class="art-title">NVIDIA 深度分析报告（2026-04-02）</span><span class="art-arrow">→</span></a>
+<a href="./trump_iran_strike_analysis_2026_v2_mallocclawteam.html"><span class="art-title">特朗普 2026 对伊朗军事打击决策评估（v2）</span><span class="art-arrow">→</span></a>
+<a href="./img_incident_analysis_report.html"><span class="art-title">截图事件综合分析报告</span><span class="art-arrow">→</span></a>
+<a href="./apple-tv-next-gen-2026-04/"><span class="art-title">Apple TV 新一代最新进展与预测报告 (2026-04-03)</span><span class="art-arrow">→</span></a>
+</div></div></section>
+
+<section class="cat-section"><h2 class="cat-label">📰 新闻</h2><div class="sub-group">
+<div class="sub-label">NYT</div><div class="arts">
+<a href="./clippings/striking-down-pentagon-press-limits.html"><span class="art-title">Striking Down Pentagon Press Limits</span><span class="art-arrow">→</span></a>
+<a href="./clippings/马克韦恩穆林.html"><span class="art-title">马克韦恩·穆林</span><span class="art-arrow">→</span></a>
+</div></div><div class="sub-group">
+<div class="sub-label">WaPo</div><div class="arts">
+<a href="./clippings/trump-jokes-about-pearl-harbor-in-meeting-with-japans-leader.html"><span class="art-title">Trump Jokes About Pearl Harbor in Meeting With Japan's Leader</span><span class="art-arrow">→</span></a>
+<a href="./clippings/一位法国奶奶的美国公路旅行.html"><span class="art-title">一位法国奶奶的美国公路旅行</span><span class="art-arrow">→</span></a>
+</div></div></section>
+
+<section class="cat-section"><h2 class="cat-label">💻 技术</h2><div class="sub-group">
+<div class="sub-label">OpenClaw</div><div class="arts">
+<a href="./clippings/openclaw-codex-app-server.html"><span class="art-title">openclaw-codex-app-server</span><span class="art-arrow">→</span></a>
+<a href="./clippings/openclaw-teams-setup.html"><span class="art-title">openclaw-teams-setup</span><span class="art-arrow">→</span></a>
+<a href="./clippings/openclaw-文档速读接口导航与数据结构.html"><span class="art-title">OpenClaw 文档速读：接口导航与数据结构</span><span class="art-arrow">→</span></a>
+<a href="./clippings/deer-flow.html"><span class="art-title">deer-flow</span><span class="art-arrow">→</span></a>
+</div></div><div class="sub-group">
+<div class="sub-label">Tools</div><div class="arts">
+<a href="./clippings/build-for-ios-and-macos-codex-use-cases.html"><span class="art-title">Build for iOS and macOS | Codex use cases</span><span class="art-arrow">→</span></a>
+<a href="./clippings/web-ui.html"><span class="art-title">Web UI</span><span class="art-arrow">→</span></a>
+<a href="./clippings/chengloupretext.html"><span class="art-title">chenglou/pretext</span><span class="art-arrow">→</span></a>
+<a href="./clippings/larksuite-cli.html"><span class="art-title">larksuite-cli</span><span class="art-arrow">→</span></a>
+<a href="./clippings/gws.html"><span class="art-title">gws</span><span class="art-arrow">→</span></a>
+<a href="./clippings/mcporter-v080-release-notes.html"><span class="art-title">mcporter-v0.8.0-release-notes</span><span class="art-arrow">→</span></a>
+<a href="./clippings/vps-3x-ui-从零基础小白到完整自建hysteria2节点保姆级教程.html"><span class="art-title">VPS + 3x-ui 从零基础小白到完整自建Hysteria2节点保姆级教程</span><span class="art-arrow">→</span></a>
+</div></div></section>
+
+<section class="cat-section"><h2 class="cat-label">📋 其他</h2><div class="sub-group"><div class="arts">
+<a href="./clippings/clawteamreadme-cnmd-at-main-hkudsclawteam.html"><span class="art-title">ClawTeam/README_CN.md</span><span class="art-arrow">→</span></a>
+<a href="./clippings/designing-delightful-frontends-with-gpt-54.html"><span class="art-title">Designing delightful frontends with GPT-5.4</span><span class="art-arrow">→</span></a>
+<a href="./clippings/project-hail-mary-影评综述.html"><span class="art-title">Project Hail Mary 影评综述</span><span class="art-arrow">→</span></a>
+</div></div></section>
+
+<footer>Built with ♥ · <a href="https://github.com/mallocfeng/mallocnews">mallocfeng/mallocnews</a></footer>
+</div></body></html>

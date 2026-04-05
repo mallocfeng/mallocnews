@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chenglou/pretext</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>chenglou/pretext</h1>
+<div class="meta"><a href="https://github.com/chenglou/pretext" class="source-link" target="_blank" rel="noopener">📎 查看原文</a></div>
+</header>
+<main class="content"><h1>chenglou/pretext</h1>
+<blockquote>
+<p>[!tip] 中文标题
+Pretext：用于多行文本测量与布局的纯 JavaScript/TypeScript 库</p>
+</blockquote>
+<blockquote>
+<p>[!abstract] 摘要
+Pretext 是一个纯 JavaScript/TypeScript 库，用于多行文本的测量与布局。它通过自身的文本测量逻辑，避免了昂贵的 DOM 测量和布局重排，利用浏览器的字体引擎作为基准，实现了快速且准确的文本处理。该库支持所有语言，包括表情符号和混合双向文本，并能渲染到 DOM、Canvas、SVG 等目标。其 API 主要分为两类：一是通过 <code>prepare</code> 和 <code>layout</code> 函数高效计算段落高度，用于虚拟化等场景；二是通过 <code>prepareWithSegments</code> 及相关函数提供更细粒度的行级手动布局控制，适用于 Canvas 渲染等高级用途。库内包含缓存管理、区域设置等辅助功能，并遵循常见的 CSS 文本包装规则。</p>
+</blockquote>
+<h2>关键要点</h2>
+<ul>
+<li>Pretext 是一个纯 JavaScript/TypeScript 库，通过避免 DOM 重排来实现快速、准确的多行文本测量与布局。</li>
+<li>它支持所有语言（包括表情符号和混合双向文本），并能将文本渲染到 DOM、Canvas、SVG 等多种目标。</li>
+<li>其核心 API 分为两类：一类用于高效计算段落高度，另一类提供细粒度的行级手动布局控制。</li>
+<li>库内包含缓存管理、区域设置等辅助函数，并遵循 <code>overflow-wrap: break-word</code> 等常见的 CSS 文本包装规则。</li>
+<li>开发灵感源于 Sebastian Markbåge 的早期工作，目前针对 <code>white-space: normal</code> 或 <code>pre-wrap</code> 等常见文本设置进行优化。</li>
+</ul>
+<h2>中文全文</h2>
+<h2>前言</h2>
+<p>用于多行文本测量与布局的纯 JavaScript/TypeScript 库。快速、准确，并支持您甚至不知道的所有语言。允许渲染到 DOM、Canvas、SVG，并且很快将支持服务器端。</p>
+<p>Pretext 绕过了对 DOM 测量（例如 <code>getBoundingClientRect</code>、<code>offsetHeight</code>）的需求，这些操作会触发布局重排，这是浏览器中最昂贵的操作之一。它实现了自己的文本测量逻辑，使用浏览器自身的字体引擎作为基准（非常 AI 友好的迭代方法）。</p>
+<h2>安装</h2>
+<pre><code>npm install @chenglou/pretext
+</code></pre>
+<h2>演示</h2>
+<p>克隆仓库，运行 <code>bun install</code>，然后 <code>bun start</code>，并在浏览器中打开 <code>/demos</code>（不要带尾部斜杠。Bun 开发服务器对此有 bug）。或者，在 <a href="https://chenglou.me/pretext/">chenglou.me/pretext</a> 查看在线演示。更多演示请见 <a href="https://somnai-dreams.github.io/pretext-demos/">somnai-dreams.github.io/pretext-demos</a></p>
+<h2>API</h2>
+<p>Pretext 服务于 2 个用例：</p>
+<h3>1. 在不接触 DOM 的情况下测量段落高度</h3>
+<pre><code>import { prepare, layout } from '@chenglou/pretext'
+
+const prepared = prepare('AGI 春天到了. بدأت الرحلة 🚀', '16px Inter')
+const { height, lineCount } = layout(prepared, textWidth, 20) // 纯算术运算。无 DOM 布局和重排！
+</code></pre>
+<p><code>prepare()</code> 执行一次性工作：规范化空白字符、分割文本、应用粘合规则、使用 Canvas 测量分割段，并返回一个不透明的句柄。<code>layout()</code> 是之后廉价的“热路径”：对缓存的宽度进行纯算术运算。</p>
+<p>如果您想要类似 textarea 的文本，其中普通空格、<code>\\t</code> 制表符和 <code>\ </code> 硬换行保持可见，请将 <code>{ whiteSpace: 'pre-wrap' }</code> 传递给 <code>prepare()</code> / <code>prepareWithSegments()</code>。</p>
+<pre><code>const prepared = prepare(textareaValue, '16px Inter', { whiteSpace: 'pre-wrap' })
+const { height } = layout(prepared, textareaWidth, 20)
+</code></pre>
+<p>在当前已签入的基准测试快照中：</p>
+<ul>
+<li><code>prepare()</code> 对于共享的 500 个文本批次大约需要 <code>19ms</code></li>
+<li><code>layout()</code> 对于同一批次大约需要 <code>0.09ms</code></li>
+</ul>
+<p>我们支持您能想象的所有语言，包括表情符号和混合双向文本，并针对特定的浏览器怪癖进行了调整。</p>
+<p>返回的高度是解锁 Web UI 的关键最后一块：</p>
+<ul>
+<li>无需猜测和缓存即可实现适当的虚拟化/遮挡</li>
+<li>花哨的用户端布局：砖石布局、类似 JS 驱动的 flexbox 实现、无需 CSS hack 即可微调一些布局值（想象一下）等。</li>
+<li><em>开发时</em>验证（尤其是现在有了 AI）标签（例如按钮上的标签）不会溢出到下一行，且无需浏览器</li>
+<li>当新文本加载并且您想重新锚定滚动位置时，防止布局偏移</li>
+</ul>
+<h3>2. 手动自行布局段落行</h3>
+<p>将 <code>prepare</code> 替换为 <code>prepareWithSegments</code>，然后：</p>
+<ul>
+<li><code>layoutWithLines()</code> 在固定宽度下为您提供所有行：</li>
+</ul>
+<pre><code>import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext'
+
+const prepared = prepareWithSegments('AGI 春天到了. بدأت الرحلة 🚀', '18px \\&quot;Helvetica Neue\\&quot;')
+const { lines } = layoutWithLines(prepared, 320, 26) // 320px 最大宽度，26px 行高
+for (let i = 0; i &lt; lines.length; i++) ctx.fillText(lines[i].text, 0, i * 26)
+</code></pre>
+<ul>
+<li><code>walkLineRanges()</code> 为您提供行宽和光标位置，而无需构建文本字符串：</li>
+</ul>
+<pre><code>let maxW = 0
+walkLineRanges(prepared, 320, line =&gt; { if (line.width &gt; maxW) maxW = line.width })
+// maxW 现在是最大行宽 —— 仍然能容纳文本的最紧凑容器宽度！这种多行“收缩包裹”功能在 Web 上一直缺失
+</code></pre>
+<ul>
+<li><code>layoutNextLine()</code> 允许您在宽度变化时逐行流动文本：</li>
+</ul>
+<pre><code>let cursor = { segmentIndex: 0, graphemeIndex: 0 }
+let y = 0
+
+// 在浮动图像周围流动文本：图像旁边的行更窄
+while (true) {
+  const width = y &lt; image.bottom ? columnWidth - image.width : columnWidth
+  const line = layoutNextLine(prepared, cursor, width)
+  if (line === null) break
+  ctx.fillText(line.text, 0, y)
+  cursor = line.end
+  y += 26
+}
+</code></pre>
+<p>这种用法允许渲染到 Canvas、SVG、WebGL 以及（最终）服务器端。</p>
+<h3>API 术语表</h3>
+<p>用例 1 的 API：</p>
+<pre><code>prepare(text: string, font: string, options?: { whiteSpace?: 'normal' | 'pre-wrap' }): PreparedText // 一次性文本分析 + 测量过程，返回一个不透明的值以传递给 `layout()`。确保 `font` 与您要测量的文本的 CSS `font` 声明简写（例如大小、粗细、样式、字体系列）同步。`font` 的格式与您用于 `myCanvasContext.font = ...` 的格式相同，例如 `16px Inter`。
+layout(prepared: PreparedText, maxWidth: number, lineHeight: number): { height: number, lineCount: number } // 给定最大宽度和行高计算文本高度。确保 `lineHeight` 与您要测量的文本的 CSS `line-height` 声明同步。
+</code></pre>
+<p>用例 2 的 API：</p>
+<pre><code>prepareWithSegments(text: string, font: string, options?: { whiteSpace?: 'normal' | 'pre-wrap' }): PreparedTextWithSegments // 与 `prepare()` 相同，但返回更丰富的结构以满足手动行布局需求
+layoutWithLines(prepared: PreparedTextWithSegments, maxWidth: number, lineHeight: number): { height: number, lineCount: number, lines: LayoutLine[] } // 用于手动布局需求的高级 API。接受所有行的固定最大宽度。类似于 `layout()` 的返回值，但额外返回行信息
+walkLineRanges(prepared: PreparedTextWithSegments, maxWidth: number, onLine: (line: LayoutLineRange) =&gt; void): number // 用于手动布局需求的低级 API。接受所有行的固定最大宽度。每行调用一次 `onLine`，提供其实际计算的行宽和开始/结束光标，而无需构建行文本字符串。对于某些您想推测性测试一些宽度和高度边界的情况非常有用（例如，通过重复调用 walkLineRanges 并检查行数以及因此的高度是否“合适”，来二分搜索一个合适的宽度值。您可以通过这种方式实现文本消息的收缩包裹和平衡文本布局）。在 walkLineRanges 调用之后，您将调用一次 layoutWithLines，使用您满意的最大宽度，以获取实际的行信息。
+layoutNextLine(prepared: PreparedTextWithSegments, start: LayoutCursor, maxWidth: number): LayoutLine | null // 用于以不同宽度布局每一行的迭代器式 API！返回从 `start` 开始的 LayoutLine，或者在段落耗尽时返回 `null`。将前一行的 `end` 光标作为下一个 `start` 传递。
+type LayoutLine = {
+  text: string // 此行的完整文本内容，例如 'hello world'
+  width: number // 此行的测量宽度，例如 87.5
+  start: LayoutCursor // 在 prepared 的 segments/graphemes 中的包含性起始光标
+  end: LayoutCursor // 在 prepared 的 segments/graphemes 中的排除性结束光标
+}
+type LayoutLineRange = {
+  width: number // 此行的测量宽度，例如 87.5
+  start: LayoutCursor // 在 prepared 的 segments/graphemes 中的包含性起始光标
+  end: LayoutCursor // 在 prepared 的 segments/graphemes 中的排除性结束光标
+}
+type LayoutCursor = {
+  segmentIndex: number // 在 prepareWithSegments 的 prepared 丰富分段流中的分段索引
+  graphemeIndex: number // 该分段内的字素索引；在分段边界处为 `0`
+}
+</code></pre>
+<p>其他辅助函数：</p>
+<pre><code>clearCache(): void // 清除 prepare() 和 prepareWithSegments() 使用的 Pretext 共享内部缓存。如果您的应用程序循环使用许多不同的字体或文本变体，并且您希望释放累积的缓存，这将非常有用
+setLocale(locale?: string): void // 可选（默认我们使用当前区域设置）。为未来的 prepare() 和 prepareWithSegments() 设置区域设置。在内部，它也会调用 clearCache()。设置新的区域设置不会影响现有的 prepare() 和 prepareWithSegments() 状态（不会对它们进行修改）
+</code></pre>
+<h2>注意事项</h2>
+<p>Pretext 并不试图成为一个完整的字体渲染引擎（目前？）。它目前针对常见的文本设置：</p>
+<ul>
+<li><code>white-space: normal</code></li>
+<li><code>word-break: normal</code></li>
+<li><code>overflow-wrap: break-word</code></li>
+<li><code>line-break: auto</code></li>
+<li>如果您传递 <code>{ whiteSpace: 'pre-wrap' }</code>，则普通空格、<code>\\t</code> 制表符和 <code>\ </code> 硬换行将被保留而不是折叠。制表符遵循默认的浏览器样式 <code>tab-size: 8</code>。其他包装默认值保持不变：<code>word-break: normal</code>、<code>overflow-wrap: break-word</code> 和 <code>line-break: auto</code>。</li>
+<li>在 macOS 上，<code>system-ui</code> 对于 <code>layout()</code> 的准确性是不安全的。请使用命名字体。</li>
+<li>因为默认目标包括 <code>overflow-wrap: break-word</code>，所以非常窄的宽度仍然可以在单词内断行，但仅限于字素边界。</li>
+</ul>
+<h2>开发</h2>
+<p>有关开发设置和命令，请参见 <a href="https://github.com/chenglou/pretext/blob/main/DEVELOPMENT.md">DEVELOPMENT.md</a>。</p>
+<h2>致谢</h2>
+<p>Sebastiaan Markbåge 在上个十年通过 <a href="https://github.com/chenglou/text-layout">text-layout</a> 首次播下了种子。他的设计 —— 用于字形排版的 Canvas <code>measureText</code>、来自 pdf.js 的双向文本处理、流式换行 —— 为我们在此不断推进的架构提供了参考。</p>
+<hr />
+<h2>原文</h2>
+<h2>Pretext</h2>
+<p>Pure JavaScript/TypeScript library for multiline text measurement &amp; layout. Fast, accurate &amp; supports all the languages you didn't even know about. Allows rendering to DOM, Canvas, SVG and soon, server-side.</p>
+<p>Pretext side-steps the need for DOM measurements (e.g. <code>getBoundingClientRect</code>, <code>offsetHeight</code>), which trigger layout reflow, one of the most expensive operations in the browser. It implements its own text measurement logic, using the browsers' own font engine as ground truth (very AI-friendly iteration method).</p>
+<h2>Installation</h2>
+<pre><code>npm install @chenglou/pretext
+</code></pre>
+<h2>Demos</h2>
+<p>Clone the repo, run <code>bun install</code>, then <code>bun start</code>, and open the <code>/demos</code> in your browser (no trailing slash. Bun devserver bugs on those) Alternatively, see them live at <a href="https://chenglou.me/pretext/">chenglou.me/pretext</a>. Some more at <a href="https://somnai-dreams.github.io/pretext-demos/">somnai-dreams.github.io/pretext-demos</a></p>
+<h2>API</h2>
+<p>Pretext serves 2 use cases:</p>
+<h3>1. Measure a paragraph's height without ever touching DOM</h3>
+<pre><code>import { prepare, layout } from '@chenglou/pretext'
+
+const prepared = prepare('AGI 春天到了. بدأت الرحلة 🚀', '16px Inter')
+const { height, lineCount } = layout(prepared, textWidth, 20) // pure arithmetics. No DOM layout &amp; reflow!
+</code></pre>
+<p><code>prepare()</code> does the one-time work: normalize whitespace, segment the text, apply glue rules, measure the segments with canvas, and return an opaque handle. <code>layout()</code> is the cheap hot path after that: pure arithmetic over cached widths.</p>
+<p>If you want textarea-like text where ordinary spaces, <code>\t</code> tabs, and <code>\n</code> hard breaks stay visible, pass <code>{ whiteSpace: 'pre-wrap' }</code> to <code>prepare()</code> / <code>prepareWithSegments()</code>.</p>
+<pre><code>const prepared = prepare(textareaValue, '16px Inter', { whiteSpace: 'pre-wrap' })
+const { height } = layout(prepared, textareaWidth, 20)
+</code></pre>
+<p>On the current checked-in benchmark snapshot:</p>
+<ul>
+<li><code>prepare()</code> is about <code>19ms</code> for the shared 500-text batch</li>
+<li><code>layout()</code> is about <code>0.09ms</code> for that same batch</li>
+</ul>
+<p>We support all the languages you can imagine, including emojis and mixed-bidi, and caters to specific browser quirks</p>
+<p>The returned height is the crucial last piece for unlocking web UI's:</p>
+<ul>
+<li>proper virtualization/occlusion without guesstimates &amp; caching</li>
+<li>fancy userland layouts: masonry, JS-driven flexbox-like implementations, nudging a few layout values without CSS hacks (imagine that), etc.</li>
+<li><em>development time</em> verification (especially now with AI) that labels on e.g. buttons don't overflow to the next line, browser-free</li>
+<li>prevent layout shift when new text loads and you wanna re-anchor the scroll position</li>
+</ul>
+<h3>2. Lay out the paragraph lines manually yourself</h3>
+<p>Switch out <code>prepare</code> with <code>prepareWithSegments</code>, then:</p>
+<ul>
+<li><code>layoutWithLines()</code> gives you all the lines at a fixed width:</li>
+</ul>
+<pre><code>import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext'
+
+const prepared = prepareWithSegments('AGI 春天到了. بدأت الرحلة 🚀', '18px &quot;Helvetica Neue&quot;')
+const { lines } = layoutWithLines(prepared, 320, 26) // 320px max width, 26px line height
+for (let i = 0; i &lt; lines.length; i++) ctx.fillText(lines[i].text, 0, i * 26)
+</code></pre>
+<ul>
+<li><code>walkLineRanges()</code> gives you line widths and cursors without building the text strings:</li>
+</ul>
+<pre><code>let maxW = 0
+walkLineRanges(prepared, 320, line =&gt; { if (line.width &gt; maxW) maxW = line.width })
+// maxW is now the widest line — the tightest container width that still fits the text! This multiline &quot;shrink wrap&quot; has been missing from web
+</code></pre>
+<ul>
+<li><code>layoutNextLine()</code> lets you route text one row at a time when width changes as you go:</li>
+</ul>
+<pre><code>let cursor = { segmentIndex: 0, graphemeIndex: 0 }
+let y = 0
+
+// Flow text around a floated image: lines beside the image are narrower
+while (true) {
+  const width = y &lt; image.bottom ? columnWidth - image.width : columnWidth
+  const line = layoutNextLine(prepared, cursor, width)
+  if (line === null) break
+  ctx.fillText(line.text, 0, y)
+  cursor = line.end
+  y += 26
+}
+</code></pre>
+<p>This usage allows rendering to canvas, SVG, WebGL and (eventually) server-side.</p>
+<h3>API Glossary</h3>
+<p>Use-case 1 APIs:</p>
+<pre><code>prepare(text: string, font: string, options?: { whiteSpace?: 'normal' | 'pre-wrap' }): PreparedText // one-time text analysis + measurement pass, returns an opaque value to pass to \`layout()\`. Make sure \`font\` is synced with your css \`font\` declaration shorthand (e.g. size, weight, style, family) for the text you're measuring. \`font\` is the same format as what you'd use for \`myCanvasContext.font = ...\`, e.g. \`16px Inter\`.
+layout(prepared: PreparedText, maxWidth: number, lineHeight: number): { height: number, lineCount: number } // calculates text height given a max width and lineHeight. Make sure \`lineHeight\` is synced with your css \`line-height\` declaration for the text you're measuring.
+</code></pre>
+<p>Use-case 2 APIs:</p>
+<pre><code>prepareWithSegments(text: string, font: string, options?: { whiteSpace?: 'normal' | 'pre-wrap' }): PreparedTextWithSegments // same as \`prepare()\`, but returns a richer structure for manual line layouts needs
+layoutWithLines(prepared: PreparedTextWithSegments, maxWidth: number, lineHeight: number): { height: number, lineCount: number, lines: LayoutLine[] } // high-level api for manual layout needs. Accepts a fixed max width for all lines. Similar to \`layout()\`'s return, but additionally returns the lines info
+walkLineRanges(prepared: PreparedTextWithSegments, maxWidth: number, onLine: (line: LayoutLineRange) =&gt; void): number // low-level api for manual layout needs. Accepts a fixed max width for all lines. Calls \`onLine\` once per line with its actual calculated line width and start/end cursors, without building line text strings. Very useful for certain cases where you wanna speculatively test a few width and height boundaries (e.g. binary search a nice width value by repeatedly calling walkLineRanges and checking the line count, and therefore height, is &quot;nice&quot; too. You can have text messages shrinkwrap and balanced text layout this way). After walkLineRanges calls, you'd call layoutWithLines once, with your satisfying max width, to get the actual lines info.
+layoutNextLine(prepared: PreparedTextWithSegments, start: LayoutCursor, maxWidth: number): LayoutLine | null // iterator-like api for laying out each line with a different width! Returns the LayoutLine starting from \`start\`, or \`null\` when the paragraph's exhausted. Pass the previous line's \`end\` cursor as the next \`start\`.
+type LayoutLine = {
+  text: string // Full text content of this line, e.g. 'hello world'
+  width: number // Measured width of this line, e.g. 87.5
+  start: LayoutCursor // Inclusive start cursor in prepared segments/graphemes
+  end: LayoutCursor // Exclusive end cursor in prepared segments/graphemes
+}
+type LayoutLineRange = {
+  width: number // Measured width of this line, e.g. 87.5
+  start: LayoutCursor // Inclusive start cursor in prepared segments/graphemes
+  end: LayoutCursor // Exclusive end cursor in prepared segments/graphemes
+}
+type LayoutCursor = {
+  segmentIndex: number // Segment index in prepareWithSegments' prepared rich segment stream
+  graphemeIndex: number // Grapheme index within that segment; \`0\` at segment boundaries
+}
+</code></pre>
+<p>Other helpers:</p>
+<pre><code>clearCache(): void // clears Pretext's shared internal caches used by prepare() and prepareWithSegments(). Useful if your app cycles through many different fonts or text variants and you want to release the accumulated cache
+setLocale(locale?: string): void // optional (by default we use the current locale). Sets locale for future prepare() and prepareWithSegments(). Internally, it also calls clearCache(). Setting a new locale doesn't affect existing prepare() and prepareWithSegments() states (no mutations to them)
+</code></pre>
+<h2>Caveats</h2>
+<p>Pretext doesn't try to be a full font rendering engine (yet?). It currently targets the common text setup:</p>
+<ul>
+<li><code>white-space: normal</code></li>
+<li><code>word-break: normal</code></li>
+<li><code>overflow-wrap: break-word</code></li>
+<li><code>line-break: auto</code></li>
+<li>If you pass <code>{ whiteSpace: 'pre-wrap' }</code>, ordinary spaces, <code>\t</code> tabs, and <code>\n</code> hard breaks are preserved instead of collapsed. Tabs follow the default browser-style <code>tab-size: 8</code>. The other wrapping defaults stay the same: <code>word-break: normal</code>, <code>overflow-wrap: break-word</code>, and <code>line-break: auto</code>.</li>
+<li><code>system-ui</code> is unsafe for <code>layout()</code> accuracy on macOS. Use a named font.</li>
+<li>Because the default target includes <code>overflow-wrap: break-word</code>, very narrow widths can still break inside words, but only at grapheme boundaries.</li>
+</ul>
+<h2>Develop</h2>
+<p>See <a href="https://github.com/chenglou/pretext/blob/main/DEVELOPMENT.md">DEVELOPMENT.md</a> for the dev setup and commands.</p>
+<h2>Credits</h2>
+<p>Sebastian Markbage first planted the seed with <a href="https://github.com/chenglou/text-layout">text-layout</a> last decade. His design — canvas <code>measureText</code> for shaping, bidi from pdf.js, streaming line breaking — informed the architecture we kept pushing forward here.</p>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenClaw 文档速读：接口导航与数据结构</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>OpenClaw 文档速读：接口导航与数据结构</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>OpenClaw 文档速读：接口导航与数据结构</h1>
+<blockquote>
+<p>面向“我想用 OpenClaw 把工具, 自动化, 多端接入跑起来”的快速笔记版说明。内容基于官方文档 https://docs.openclaw.ai/ ，并按接口与数据结构重新编排。</p>
+</blockquote>
+<h2>目录</h2>
+<ul>
+<li><a href="#1-openclaw-%E6%98%AF%E4%BB%80%E4%B9%88">1. OpenClaw 是什么</a></li>
+<li><a href="#2-%E6%96%87%E6%A1%A3%E5%AF%BC%E8%88%AA">2. 文档导航</a></li>
+<li><a href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E9%80%9F%E8%AE%B0">3. 核心概念速记</a></li>
+<li><a href="#4-%E5%B7%A5%E5%85%B7%E6%8E%A5%E5%8F%A3%E6%80%BB%E8%A7%88tool-api">4. 工具接口总览（Tool API）</a>
+<ul>
+<li><a href="#41-%E5%B7%A5%E5%85%B7%E7%AD%96%E7%95%A5%E4%B8%8E%E5%88%86%E7%BB%84toolsallow-toolsdeny-toolsprofile">4.1 工具策略与分组（tools.allow, tools.deny, tools.profile）</a></li>
+<li><a href="#42-exec-%E4%B8%8E-process%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%8E%E5%90%8E%E5%8F%B0%E4%BC%9A%E8%AF%9D">4.2 exec 与 process（运行命令与后台会话）</a></li>
+<li><a href="#43-web_search-%E4%B8%8E-web_fetch%E8%81%94%E7%BD%91%E6%A3%80%E7%B4%A2%E4%B8%8E%E6%8A%93%E5%8F%96">4.3 web_search 与 web_fetch（联网检索与抓取）</a></li>
+<li><a href="#44-browser%E5%8F%AF%E6%8E%A7%E6%B5%8F%E8%A7%88%E5%99%A8">4.4 browser（可控浏览器）</a></li>
+<li><a href="#45-nodes-%E4%B8%8E-canvas%E8%8A%82%E7%82%B9%E8%83%BD%E5%8A%9B-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E5%B1%8F%E5%B9%95">4.5 nodes 与 canvas（节点能力, 相机与屏幕）</a></li>
+<li><a href="#46-message%E8%B7%A8%E6%B8%A0%E9%81%93%E6%B6%88%E6%81%AF">4.6 message（跨渠道消息）</a></li>
+<li><a href="#47-cron%E7%BD%91%E5%85%B3%E5%AE%9A%E6%97%B6%E5%99%A8">4.7 cron（网关定时器）</a></li>
+<li><a href="#48-gateway%E7%BD%91%E5%85%B3%E6%8E%A7%E5%88%B6%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4">4.8 gateway（网关控制与配置变更）</a></li>
+<li><a href="#49-sessions_%E4%BC%9A%E8%AF%9D%E5%B7%A5%E5%85%B7">4.9 sessions_*（会话工具）</a></li>
+<li><a href="#410-pdfpdf-%E5%88%86%E6%9E%90">4.10 pdf（PDF 分析）</a></li>
+</ul>
+</li>
+<li><a href="#5-%E8%87%AA%E5%8A%A8%E5%8C%96cron-jobs-%E6%B7%B1%E5%85%A5">5. 自动化：Cron jobs 深入</a></li>
+<li><a href="#6-%E9%85%8D%E7%BD%AEopenclawjson-%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97%E6%AE%B5">6. 配置：openclaw.json 的关键字段</a></li>
+<li><a href="#7-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%80%9F%E6%9F%A5json-shape-cheatsheet">7. 数据结构速查（JSON Shape Cheatsheet）</a></li>
+</ul>
+<hr />
+<h2>1. OpenClaw 是什么</h2>
+<p>OpenClaw 把“聊天式智能体”落到工程层面，核心在于：</p>
+<ul>
+<li>有一层 Gateway 常驻进程，负责工具调用, 会话, 定时任务, 以及多渠道适配。</li>
+<li>智能体通过一组第一类 Tools 来做事，包含文件, 运行命令, 浏览器控制, 节点设备, 定时任务, 发消息等。</li>
+<li>既能在主会话里连续对话，也能把任务丢到隔离会话或子智能体去跑。</li>
+</ul>
+<h2>2. 文档导航</h2>
+<p>建议按“先能跑, 再精调”的顺序读：</p>
+<ul>
+<li>工具总览: https://docs.openclaw.ai/tools</li>
+<li>配置入门: https://docs.openclaw.ai/gateway/configuration</li>
+<li>Cron jobs: https://docs.openclaw.ai/automation/cron-jobs</li>
+<li>Session tools: https://docs.openclaw.ai/concepts/session-tool</li>
+</ul>
+<p>进阶导航（按需求挑）：</p>
+<ul>
+<li>配置全量参考: https://docs.openclaw.ai/gateway/configuration-reference</li>
+<li>工具分项: https://docs.openclaw.ai/tools/index.md</li>
+<li>CLI 参考: https://docs.openclaw.ai/cli/index.md</li>
+<li>Hooks 与 Webhooks: https://docs.openclaw.ai/automation/hooks.md</li>
+</ul>
+<p>提示：官方提供了全站索引文件 <code>llms.txt</code>，适合用脚本或检索工具直接拉列表。</p>
+<ul>
+<li>索引: https://docs.openclaw.ai/llms.txt</li>
+</ul>
+<h2>3. 核心概念速记</h2>
+<ul>
+<li><strong>Gateway</strong>：常驻服务，维护 sessions, cron, hooks，统一做工具调用与消息投递。</li>
+<li><strong>Session</strong>：对话上下文容器。直接聊天通常落在 <code>main</code>，Cron 与子智能体会产出独立 session key。</li>
+<li><strong>Tool</strong>：智能体可调用的能力，带结构化参数。工具可被策略限制，防止越权和误用。</li>
+<li><strong>Main vs Isolated</strong>：定时任务或子任务常建议用 isolated，减少主会话噪音，并避免上下文污染。</li>
+</ul>
+<h2>4. 工具接口总览（Tool API）</h2>
+<p>来源: https://docs.openclaw.ai/tools</p>
+<p>OpenClaw 的工具可以理解成一套“受控 RPC”，每个工具都有明确 action 和参数结构。下面按常用度整理。</p>
+<h3>4.1 工具策略与分组（tools.allow, tools.deny, tools.profile）</h3>
+<p>核心字段（位于 <code>~/.openclaw/openclaw.json</code>）：</p>
+<ul>
+<li><code>tools.profile</code>：基础工具集模板
+<ul>
+<li><code>minimal</code> 只开 <code>session_status</code></li>
+<li><code>coding</code> 适合本地文件与命令行</li>
+<li><code>messaging</code> 适合纯消息型机器人</li>
+<li><code>full</code> 不限制</li>
+</ul>
+</li>
+<li><code>tools.allow</code> 与 <code>tools.deny</code>：二次收紧或放开，deny 优先。</li>
+<li><code>group:*</code>：工具组快捷写法，例如 <code>group:fs</code>, <code>group:web</code>, <code>group:messaging</code>。</li>
+</ul>
+<p>示例：只允许文件工具和 browser。</p>
+<pre><code class="language-json5">{
+  tools: {
+    allow: [&quot;group:fs&quot;, &quot;browser&quot;],
+  },
+}
+</code></pre>
+<h3>4.2 exec 与 process（运行命令与后台会话）</h3>
+<ul>
+<li><code>exec</code>：执行 shell 命令，支持后台化（yieldMs 后返回 sessionId）。</li>
+<li><code>process</code>：管理后台 exec 会话，常用 action 包含 <code>poll</code>, <code>log</code>, <code>kill</code>。</li>
+</ul>
+<p>你会经常用到的参数：</p>
+<ul>
+<li><code>exec.command</code> 必填</li>
+<li><code>exec.yieldMs</code> 控制多久转后台</li>
+<li><code>exec.pty=true</code> 给需要 TTY 的 CLI（交互式工具）</li>
+<li><code>process(action=poll)</code> 用于长任务等待</li>
+</ul>
+<h3>4.3 web_search 与 web_fetch（联网检索与抓取）</h3>
+<ul>
+<li><code>web_search</code>：搜标题与摘要，适合定位页面。</li>
+<li><code>web_fetch</code>：抓取并抽取正文（markdown 或 text），适合做“读文档再总结”。</li>
+</ul>
+<p><code>web_fetch</code> 常用：</p>
+<ul>
+<li><code>extractMode: &quot;markdown&quot; | &quot;text&quot;</code></li>
+<li><code>maxChars</code> 控制截断上限</li>
+</ul>
+<h3>4.4 browser（可控浏览器）</h3>
+<p>适合 JS 重站点, 登录态页面, 或需要交互式点击填表的场景。</p>
+<p>关键动作：</p>
+<ul>
+<li><code>snapshot</code> 获取可操作引用</li>
+<li><code>act</code> 对引用执行 click, type, press 等</li>
+</ul>
+<p>一个经验：优先用 <code>snapshot(refs=&quot;aria&quot;)</code> 拿到稳定引用，再做 <code>act</code>。</p>
+<h3>4.5 nodes 与 canvas（节点能力, 相机与屏幕）</h3>
+<ul>
+<li><code>nodes</code>：发现与控制配对节点（macOS companion app 或其它 node host）。</li>
+<li>常用 action：<code>notify</code>, <code>camera_snap</code>, <code>screen_record</code>, <code>location_get</code>。</li>
+<li><code>canvas</code>：驱动节点 UI 画布，包含 present, eval, snapshot。</li>
+</ul>
+<h3>4.6 message（跨渠道消息）</h3>
+<p><code>message</code> 负责发送文本, 媒体, 以及对渠道做操作（编辑, 删除, react, poll）。</p>
+<p>注意点：当 message 工具调用绑定在当前会话时，发送目标会受限，避免跨上下文泄露。</p>
+<h3>4.7 cron（网关定时器）</h3>
+<p><code>cron</code> 是 Gateway 的调度器。</p>
+<ul>
+<li>action：<code>status</code>, <code>list</code>, <code>add</code>, <code>update</code>, <code>remove</code>, <code>run</code>, <code>runs</code>, <code>wake</code></li>
+<li>关键概念：job = schedule + payload + delivery</li>
+</ul>
+<p>详细见第 5 节。</p>
+<h3>4.8 gateway（网关控制与配置变更）</h3>
+<ul>
+<li><code>gateway.restart</code>：触发网关重启</li>
+<li><code>gateway.config.get</code>：读取当前配置</li>
+<li><code>gateway.config.patch</code>：合并式更新配置</li>
+<li><code>gateway.config.apply</code>：全量替换配置</li>
+<li><code>gateway.update.run</code>：更新依赖并重启</li>
+</ul>
+<p>提示：配置严格校验，未知字段可能导致 Gateway 起不来，所以改动要有计划。</p>
+<h3>4.9 sessions_*（会话工具）</h3>
+<p>来源: https://docs.openclaw.ai/concepts/session-tool</p>
+<p>工具集合：</p>
+<ul>
+<li><code>sessions_list</code>：列出会话</li>
+<li><code>sessions_history</code>：拉取会话消息</li>
+<li><code>sessions_send</code>：向另一个会话发送消息并可等待结果</li>
+<li><code>sessions_spawn</code>：启动子智能体（isolated session），完成后可回投递</li>
+</ul>
+<p>重要约定：主会话 key 始终是字面量 <code>main</code>。</p>
+<h3>4.10 pdf（PDF 分析）</h3>
+<p><code>pdf</code> 工具用于读 PDF 并做抽取或分析，适合和 SummarizerX 类似的工作流结合。</p>
+<h2>5. 自动化：Cron jobs 深入</h2>
+<p>来源: https://docs.openclaw.ai/automation/cron-jobs</p>
+<p>Cron 的价值是把“准时发生的事”交给 Gateway，智能体只负责生成和执行逻辑。</p>
+<h3>5.1 两种执行方式</h3>
+<ol>
+<li><strong>Main session job</strong></li>
+</ol>
+<ul>
+<li><code>sessionTarget: &quot;main&quot;</code></li>
+<li><code>payload.kind: &quot;systemEvent&quot;</code></li>
+<li>本质是往主会话塞一个系统事件，等下一次 heartbeat 执行。</li>
+</ul>
+<ol start="2">
+<li><strong>Isolated job</strong></li>
+</ol>
+<ul>
+<li><code>sessionTarget: &quot;isolated&quot;</code></li>
+<li><code>payload.kind: &quot;agentTurn&quot;</code></li>
+<li>每次 run 是独立回合，默认可配置 delivery，把结果投递回聊天。</li>
+</ul>
+<h3>5.2 schedule 三种形态</h3>
+<ul>
+<li><code>at</code>：一次性，<code>schedule.at</code> 为 ISO8601</li>
+<li><code>every</code>：固定间隔，<code>schedule.everyMs</code> 毫秒</li>
+<li><code>cron</code>：cron 表达式，<code>schedule.expr</code>，可选 <code>schedule.tz</code></li>
+</ul>
+<h3>5.3 delivery 交付方式</h3>
+<ul>
+<li><code>delivery.mode: &quot;announce&quot;</code> 直接投递到渠道</li>
+<li><code>delivery.mode: &quot;webhook&quot;</code> POST 到 <code>delivery.to</code></li>
+<li><code>delivery.mode: &quot;none&quot;</code> 不投递</li>
+</ul>
+<h3>5.4 cron.add 例子（工具调用形态）</h3>
+<p>一次性提醒，走 main session：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Reminder&quot;,
+  &quot;schedule&quot;: { &quot;kind&quot;: &quot;at&quot;, &quot;at&quot;: &quot;2026-02-01T16:00:00Z&quot; },
+  &quot;sessionTarget&quot;: &quot;main&quot;,
+  &quot;wakeMode&quot;: &quot;now&quot;,
+  &quot;payload&quot;: { &quot;kind&quot;: &quot;systemEvent&quot;, &quot;text&quot;: &quot;Reminder text&quot; },
+  &quot;deleteAfterRun&quot;: true
+}
+</code></pre>
+<p>周期任务，走 isolated 并投递：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Morning brief&quot;,
+  &quot;schedule&quot;: { &quot;kind&quot;: &quot;cron&quot;, &quot;expr&quot;: &quot;0 7 * * *&quot;, &quot;tz&quot;: &quot;America/Los_Angeles&quot; },
+  &quot;sessionTarget&quot;: &quot;isolated&quot;,
+  &quot;wakeMode&quot;: &quot;next-heartbeat&quot;,
+  &quot;payload&quot;: {
+    &quot;kind&quot;: &quot;agentTurn&quot;,
+    &quot;message&quot;: &quot;Summarize overnight updates.&quot;,
+    &quot;lightContext&quot;: true
+  },
+  &quot;delivery&quot;: {
+    &quot;mode&quot;: &quot;announce&quot;,
+    &quot;channel&quot;: &quot;slack&quot;,
+    &quot;to&quot;: &quot;channel:C1234567890&quot;,
+    &quot;bestEffort&quot;: true
+  }
+}
+</code></pre>
+<h2>6. 配置：openclaw.json 的关键字段</h2>
+<p>来源: https://docs.openclaw.ai/gateway/configuration</p>
+<h3>6.1 配置文件与格式</h3>
+<ul>
+<li>路径：<code>~/.openclaw/openclaw.json</code></li>
+<li>格式：JSON5（支持注释与尾逗号）</li>
+<li>校验：严格 schema 校验，字段错了可能导致 Gateway 拒绝启动</li>
+</ul>
+<h3>6.2 常见配置任务</h3>
+<ul>
+<li>channels 连接与访问控制：<code>channels.&lt;provider&gt;</code></li>
+<li>模型与 fallback：<code>agents.defaults.model.primary</code> 与 <code>fallbacks</code></li>
+<li>会话策略：<code>session.*</code></li>
+<li>工具策略：<code>tools.*</code></li>
+<li>自动化：<code>cron.*</code>, <code>hooks.*</code>, <code>agents.defaults.heartbeat.*</code></li>
+</ul>
+<h3>6.3 热加载</h3>
+<p>配置文件变化通常可热应用，部分 gateway 级别字段可能需要重启。文档里提供了 reload mode：<code>hybrid</code>, <code>hot</code>, <code>restart</code>, <code>off</code>。</p>
+<h2>7. 数据结构速查（JSON Shape Cheatsheet）</h2>
+<p>下面把文档里最实用的“结构体”整理成便于复制的形态。</p>
+<h3>7.1 Tool policy（工具策略）</h3>
+<pre><code class="language-json5">{
+  tools: {
+    profile: &quot;coding&quot;,
+    allow: [&quot;group:fs&quot;, &quot;group:web&quot;],
+    deny: [&quot;browser&quot;],
+    byProvider: {
+      &quot;openai/gpt-5.2&quot;: { allow: [&quot;group:fs&quot;, &quot;sessions_list&quot;] },
+    },
+  },
+}
+</code></pre>
+<h3>7.2 sessions_list 返回行（Row shape）</h3>
+<pre><code class="language-json">{
+  &quot;key&quot;: &quot;main&quot;,
+  &quot;kind&quot;: &quot;main&quot;,
+  &quot;channel&quot;: &quot;telegram&quot;,
+  &quot;displayName&quot;: &quot;...&quot;,
+  &quot;updatedAt&quot;: 1710000000000,
+  &quot;sessionId&quot;: &quot;...&quot;,
+  &quot;model&quot;: &quot;...&quot;,
+  &quot;contextTokens&quot;: 0,
+  &quot;totalTokens&quot;: 0,
+  &quot;thinkingLevel&quot;: &quot;low&quot;,
+  &quot;sendPolicy&quot;: &quot;allow&quot;,
+  &quot;lastChannel&quot;: &quot;telegram&quot;,
+  &quot;lastTo&quot;: &quot;884672457&quot;,
+  &quot;deliveryContext&quot;: { &quot;channel&quot;: &quot;telegram&quot;, &quot;to&quot;: &quot;884672457&quot;, &quot;accountId&quot;: &quot;default&quot; }
+}
+</code></pre>
+<h3>7.3 sessions_send 参数</h3>
+<pre><code class="language-json">{
+  &quot;sessionKey&quot;: &quot;main&quot;,
+  &quot;message&quot;: &quot;...&quot;,
+  &quot;timeoutSeconds&quot;: 30
+}
+</code></pre>
+<h3>7.4 cron job 核心结构</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;...&quot;,
+  &quot;schedule&quot;: { &quot;kind&quot;: &quot;cron&quot;, &quot;expr&quot;: &quot;0 7 * * *&quot;, &quot;tz&quot;: &quot;America/Los_Angeles&quot; },
+  &quot;sessionTarget&quot;: &quot;isolated&quot;,
+  &quot;wakeMode&quot;: &quot;next-heartbeat&quot;,
+  &quot;payload&quot;: { &quot;kind&quot;: &quot;agentTurn&quot;, &quot;message&quot;: &quot;...&quot;, &quot;model&quot;: &quot;opus&quot;, &quot;thinking&quot;: &quot;low&quot; },
+  &quot;delivery&quot;: { &quot;mode&quot;: &quot;announce&quot;, &quot;channel&quot;: &quot;telegram&quot;, &quot;to&quot;: &quot;&lt;chatId&gt;&quot; },
+  &quot;enabled&quot;: true
+}
+</code></pre>
+<hr />
+<h2>结语</h2>
+<p>如果你想把这篇笔记升级成“团队可用的 OpenClaw 接入手册”，我建议下一步按你实际要用的能力切两条线写：</p>
+<ol>
+<li>作为个人助理，重点写 channels, cron, sessions, message。</li>
+<li>作为工程平台，重点写 tools policy, sandbox, hooks, 以及可观测性与故障排查。</li>
+</ol>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>larksuite-cli</title>
+<style>
+:root{--bg:#0b0f16;--card:#0f1318;--text:#e4e8f1;--muted:#8b95a8;--accent:#6c9bff;--line:rgba(255,255,255,.08);--code-bg:#151a24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",Arial}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(60,100,180,.08),transparent);pointer-events:none;z-index:0}
+.container{max-width:760px;margin:0 auto;padding:60px 24px 80px;position:relative;z-index:1}
+.header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.header a.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:24px;transition:color .2s}
+.header a.back:hover{color:var(--accent)}
+h1{font-size:28px;font-weight:700;line-height:1.35;letter-spacing:-.02em;margin-bottom:16px;color:#fff}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.author{color:var(--accent);font-weight:500}
+.source-link{color:var(--muted);text-decoration:none;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:20px;transition:all .2s}
+.source-link:hover{color:var(--accent);border-color:var(--accent)}
+.content h2{font-size:22px;font-weight:600;color:#f0f3f8;margin:40px 0 16px;padding-top:16px}
+.content h3{font-size:18px;font-weight:600;color:#e6eaf2;margin:32px 0 12px}
+.content h4,.content h5,.content h6{font-size:16px;font-weight:600;color:#dde2ec;margin:24px 0 8px}
+.content p{margin-bottom:20px}
+.content blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:rgba(108,155,255,.05);border-radius:0 8px 8px 0;color:var(--muted);font-style:italic}
+.content ul,.content ol{padding-left:24px;margin-bottom:20px}
+.content li{margin-bottom:8px}
+.content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.content a:hover{border-bottom-color:var(--accent)}
+.content code{background:var(--code-bg);padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:.9em;color:#b8c5d9}
+.content pre{background:var(--code-bg);padding:20px;border-radius:10px;overflow-x:auto;margin:20px 0;border:1px solid var(--line)}
+.content pre code{background:none;padding:0;font-size:14px;line-height:1.6}
+.content img{max-width:100%;border-radius:12px;margin:24px 0;box-shadow:0 8px 30px rgba(0,0,0,.4);display:block}
+.content table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+.content th,.content td{padding:10px 14px;border:1px solid var(--line);text-align:left}
+.content th{background:var(--code-bg);font-weight:600;color:#f0f3f8}
+.content hr{border:none;border-top:1px solid var(--line);margin:32px 0}
+.footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+@media(max-width:600px){.container{padding:32px 16px 60px}h1{font-size:22px}.content h2{font-size:19px}body{font-size:16px}}
+</style></head>
+<body><div class="container">
+<header class="header">
+<a href="./" class="back">← 返回导航页</a>
+<h1>larksuite-cli</h1>
+<div class="meta"></div>
+</header>
+<main class="content"><h1>larksuite/cli</h1>
+<p>A command-line tool for <a href="https://www.larksuite.com/">Lark/Feishu</a> Open Platform — built for humans and AI Agents. Covers core business domains including Messenger, Docs, Base, Sheets, Calendar, Mail, Tasks, Meetings, and more, with 200+ commands and 19 AI Agent <a href="/larksuite/cli/blob/main/skills">Skills</a>.</p>
+<p><a href="/larksuite/cli/blob/main/README.zh.md">中文版</a> | <a href="/larksuite/cli/blob/main/README.md">English</a></p>
+<p><a href="#installation--quick-start">Install</a> · <a href="#agent-skills">AI Agent Skills</a> · <a href="#authentication">Auth</a> · <a href="#three-layer-command-system">Commands</a> · <a href="#advanced-usage">Advanced</a> · <a href="#security--risk-warnings-read-before-use">Security</a> · <a href="#contributing">Contributing</a></p>
+<ul>
+<li>Agent-Native Design — 19 structured <a href="/larksuite/cli/blob/main/skills">Skills</a> out of the box, compatible with popular AI tools — Agents can operate Lark with zero extra setup</li>
+<li>Wide Coverage — 11 business domains, 200+ curated commands, 19 AI Agent <a href="/larksuite/cli/blob/main/skills">Skills</a></li>
+<li>AI-Friendly &amp; Optimized — Every command is tested with real Agents, featuring concise parameters, smart defaults, and structured output to maximize Agent call success rates</li>
+<li>Open Source, Zero Barriers — MIT license, ready to use, just npm install</li>
+<li>Up and Running in 3 Minutes — One-click app creation, interactive login, from install to first API call in just 3 steps</li>
+<li>Secure &amp; Controllable — Input injection protection, terminal output sanitization, OS-native keychain credential storage</li>
+<li>Three-Layer Architecture — Shortcuts (human &amp; AI friendly) → API Commands (platform-synced) → Raw API (full coverage), choose the right granularity</li>
+</ul>
+<h2>Capabilities</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📅 Calendar</td>
+<td>View agenda, create events, invite attendees, check free/busy status, time suggestions</td>
+</tr>
+<tr>
+<td>💬 Messenger</td>
+<td>Send/reply messages, create and manage group chats, view chat history &amp; threads, search messages, download media</td>
+</tr>
+<tr>
+<td>📄 Docs</td>
+<td>Create, read, update, and search documents, read/write media &amp; whiteboards</td>
+</tr>
+<tr>
+<td>📁 Drive</td>
+<td>Upload and download files, search docs &amp; wiki, manage comments</td>
+</tr>
+<tr>
+<td>📊 Base</td>
+<td>Create and manage tables, fields, records, views, dashboards, data aggregation &amp; analytics</td>
+</tr>
+<tr>
+<td>📈 Sheets</td>
+<td>Create, read, write, append, find, and export spreadsheet data</td>
+</tr>
+<tr>
+<td>✅ Tasks</td>
+<td>Create, query, update, and complete tasks; manage task lists, subtasks, comments &amp; reminders</td>
+</tr>
+<tr>
+<td>📚 Wiki</td>
+<td>Create and manage knowledge spaces, nodes, and documents</td>
+</tr>
+<tr>
+<td>👤 Contact</td>
+<td>Search users by name/email/phone, get user profiles</td>
+</tr>
+<tr>
+<td>📧 Mail</td>
+<td>Browse, search, read emails, send, reply, forward, manage drafts, watch new mail</td>
+</tr>
+<tr>
+<td>🎥 Meetings</td>
+<td>Search meeting records, query meeting minutes &amp; recordings</td>
+</tr>
+</tbody>
+</table>
+<h2>Quick start</h2>
+<p>Before you start, make sure you have:</p>
+<ul>
+<li>Node.js (npm/npx)</li>
+<li>Go v1.23+ and Python 3 (only required for building from source)</li>
+</ul>
+<h3>Quick Start (AI Agent)</h3>
+<p>Step 1 — Install</p>
+<pre><code class="language-bash">npm install -g @larksuite/cli
+npx skills add larksuite/cli -y -g
+</code></pre>
+<p>Step 2 — Configure app credentials</p>
+<pre><code class="language-bash">lark-cli config init --new
+</code></pre>
+<p>Step 3 — Login</p>
+<pre><code class="language-bash">lark-cli auth login --recommend
+</code></pre>
+<p>Step 4 — Verify</p>
+<pre><code class="language-bash">lark-cli auth status
+</code></pre>
+<h2>AI Agent Skills</h2>
+<ul>
+<li>lark-shared</li>
+<li>lark-calendar</li>
+<li>lark-im</li>
+<li>lark-doc</li>
+<li>lark-drive</li>
+<li>lark-sheets</li>
+<li>lark-base</li>
+<li>lark-task</li>
+<li>lark-mail</li>
+<li>lark-contact</li>
+<li>lark-wiki</li>
+<li>lark-event</li>
+<li>lark-vc</li>
+<li>lark-whiteboard</li>
+<li>lark-minutes</li>
+<li>lark-openapi-explorer</li>
+<li>lark-skill-maker</li>
+<li>lark-workflow-meeting-summary</li>
+<li>lark-workflow-standup-report</li>
+</ul>
+<h2>Command examples</h2>
+<h3>Authentication</h3>
+<pre><code class="language-bash">lark-cli auth login
+lark-cli auth logout
+lark-cli auth status
+lark-cli auth check
+lark-cli auth scopes
+lark-cli auth list
+</code></pre>
+<h3>Identity switching</h3>
+<pre><code class="language-bash">lark-cli calendar +agenda --as user
+lark-cli im +messages-send --as bot --chat-id &quot;oc_xxx&quot; --text &quot;Hello&quot;
+</code></pre>
+<h3>Three-layer command system</h3>
+<p>Prefixed with +, designed to be friendly for both humans and AI, with smart defaults, table output, and dry-run previews.</p>
+<pre><code class="language-bash">lark-cli calendar +agenda
+lark-cli im +messages-send --chat-id &quot;oc_xxx&quot; --text &quot;Hello&quot;
+lark-cli docs +create --title &quot;Weekly Report&quot; --markdown &quot;# Progress\n- Completed feature X&quot;
+</code></pre>
+<p>Auto-generated from Lark OAPI metadata, curated through evaluation and quality gates — 100+ commands mapped 1:1 to platform endpoints.</p>
+<pre><code class="language-bash">lark-cli calendar calendars list
+lark-cli calendar events instance_view --params '{&quot;calendar_id&quot;:&quot;primary&quot;,&quot;start_time&quot;:&quot;1700000000&quot;,&quot;end_time&quot;:&quot;1700086400&quot;}'
+</code></pre>
+<p>Call any Lark Open Platform endpoint directly, covering 2500+ APIs.</p>
+<pre><code class="language-bash">lark-cli api GET /open-apis/calendar/v4/calendars
+lark-cli api POST /open-apis/im/v1/messages --params '{&quot;receive_id_type&quot;:&quot;chat_id&quot;}' --body '{&quot;receive_id&quot;:&quot;oc_xxx&quot;,&quot;msg_type&quot;:&quot;text&quot;,&quot;content&quot;:&quot;{\&quot;text\&quot;:\&quot;Hello\&quot;}&quot;}'
+</code></pre>
+<h3>Output formats</h3>
+<ul>
+<li><code>--format json</code></li>
+<li><code>--format pretty</code></li>
+<li><code>--format table</code></li>
+<li><code>--format ndjson</code></li>
+<li><code>--format csv</code></li>
+</ul>
+<h3>Pagination</h3>
+<ul>
+<li><code>--page-all</code></li>
+<li><code>--page-limit 5</code></li>
+<li><code>--page-delay 500</code></li>
+</ul>
+<h3>Dry run</h3>
+<pre><code class="language-bash">lark-cli im +messages-send --chat-id oc_xxx --text &quot;hello&quot; --dry-run
+</code></pre>
+<h3>Schema</h3>
+<pre><code class="language-bash">lark-cli schema
+lark-cli schema calendar.events.instance_view
+lark-cli schema im.messages.delete
+</code></pre>
+<h2>Security</h2>
+<p>This tool can be invoked by AI Agents to automate operations on the Lark/Feishu Open Platform, and carries inherent risks such as model hallucinations, unpredictable execution, and prompt injection. After you authorize Lark/Feishu permissions, the AI Agent will act under your user identity within the authorized scope, which may lead to high-risk consequences such as leakage of sensitive data or unauthorized operations. Please use with caution.</p>
+<p>To reduce these risks, the tool enables default security protections at multiple layers. However, these risks still exist. We strongly recommend that you do not proactively modify any default security settings; once relevant restrictions are relaxed, the risks will increase significantly, and you will bear the consequences.</p>
+<p>We recommend using the Lark/Feishu bot integrated with this tool as a private conversational assistant. Do not add it to group chats or allow other users to interact with it, to avoid abuse of permissions or data leakage.</p>
+<p>Please fully understand all usage risks. By using this tool, you are deemed to voluntarily assume all related responsibilities.</p>
+<h2>Contributing</h2>
+<p>Community contributions are welcome! If you find a bug or have feature suggestions, please submit an <a href="https://github.com/larksuite/cli/issues">Issue</a> or <a href="https://github.com/larksuite/cli/pulls">Pull Request</a>.</p>
+<p>For major changes, we recommend discussing with us first via an Issue.</p>
+<p>This project is licensed under the MIT License.</p>
+<p>When running, it calls Lark/Feishu Open Platform APIs. To use these APIs, you must comply with the following agreements and privacy policies:</p>
+<ul>
+<li><a href="https://www.feishu.cn/terms">Feishu User Terms of Service</a></li>
+<li><a href="https://www.feishu.cn/privacy">Feishu Privacy Policy</a></li>
+<li><a href="https://open.feishu.cn/document/uAjLw4CM/uMzNwEjLzcDMx4yM3ATM/management-practice/app-service-provider-security-management-specifications">Feishu Open Platform App Service Provider Security Management Specifications</a></li>
+<li><a href="https://www.larksuite.com/user-terms-of-service">Lark User Terms of Service</a></li>
+<li><a href="https://www.larksuite.com/privacy-policy">Lark Privacy Policy</a></li>
+</ul>
+</main>
+<footer class="footer"><a href="./">📰 mallocnews</a> · Built with ♥</footer>
+</div></body></html>

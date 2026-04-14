@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI 现场巡检与控制 - Architectural Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#d5e3fc",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#0d1c2e",
+                    "error-container": "#ffdad6",
+                    "secondary": "#00677d",
+                    "on-primary-fixed-variant": "#264778",
+                    "on-secondary-fixed": "#001f27",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#405f91",
+                    "on-secondary-container": "#005e73",
+                    "tertiary-container": "#1f2d3f",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#63dbfe",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-fixed": "#001b3d",
+                    "tertiary-fixed-dim": "#b9c7df",
+                    "outline-variant": "#c4c6d0",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#8694aa",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-dim": "#d8dadc",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#a9c7ff",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "surface": "#f7f9fb",
+                    "secondary-fixed-dim": "#5cd5f8",
+                    "primary": "#001736",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#b3ebff",
+                    "background": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e5f",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary": "#09182a",
+                    "on-tertiary-fixed-variant": "#3a485b",
+                    "surface-container": "#eceef0",
+                    "on-surface-variant": "#43474f",
+                    "on-primary-container": "#7594ca",
+                    "primary-container": "#002b5b",
+                    "surface-container-high": "#e6e8ea",
+                    "outline": "#747780"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Manrope', 'Noto Sans SC', sans-serif; }
+        .camera-grid-overlay {
+            background: linear-gradient(to top, rgba(0, 23, 54, 0.8) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background flex overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#1f2d3f] flex flex-col h-full py-6 shadow-[0px_24px_48px_rgba(25,28,30,0.06)] z-50">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-white tracking-widest leading-none">企业智能</h1>
+<p class="text-[10px] text-on-tertiary-container font-manrope">管理中心</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-300 pl-8 py-3 hover:bg-[#2c3e50] transition-all group transform hover:translate-x-1" href="./asset-management-zh-d43e2f37.html">
+<span class="material-symbols-outlined text-xl" data-icon="account_balance">account_balance</span>
+<span class="font-manrope tracking-tight text-sm">业务资产</span>
+</a>
+<a class="flex items-center gap-3 text-slate-300 pl-8 py-3 hover:bg-[#2c3e50] transition-all group transform hover:translate-x-1" href="./merchant-management-zh-f4b87970.html">
+<span class="material-symbols-outlined text-xl" data-icon="storefront">storefront</span>
+<span class="font-manrope tracking-tight text-sm">商户管理</span>
+</a>
+<a class="flex items-center gap-3 text-slate-300 pl-8 py-3 hover:bg-[#2c3e50] transition-all group transform hover:translate-x-1" href="./business-dashboard-zh-ea70f768.html">
+<span class="material-symbols-outlined text-xl" data-icon="query_stats">query_stats</span>
+<span class="font-manrope tracking-tight text-sm">经营分析</span>
+</a>
+<a class="flex items-center gap-3 bg-[#b3ebff] text-[#001736] rounded-l-full ml-4 pl-4 py-3 font-bold group transform hover:translate-x-1" href="./ai-site-inspection-alert-zh.html">
+<span class="material-symbols-outlined text-xl" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-manrope tracking-tight text-sm">AI巡检</span>
+</a>
+</nav>
+<div class="px-4 mb-6">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="text-sm">新增资产</span>
+</button>
+</div>
+<div class="mt-auto border-t border-slate-700/50 pt-4">
+<a class="flex items-center gap-3 text-slate-300 pl-8 py-3 hover:bg-[#2c3e50] transition-all group transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="contact_support">contact_support</span>
+<span class="font-manrope tracking-tight text-sm">帮助中心</span>
+</a>
+<a class="flex items-center gap-3 text-slate-300 pl-8 py-3 hover:bg-[#2c3e50] transition-all group transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="logout">logout</span>
+<span class="font-manrope tracking-tight text-sm">退出登录</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen bg-surface overflow-hidden">
+<!-- TopNavBar Component -->
+<header class="w-full h-16 sticky top-0 z-40 bg-[#f7f9fb] flex justify-between items-center px-6 w-full ml-auto">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold text-[#002B5B] font-manrope">建筑分类账</h2>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-sm">search</span>
+<input class="bg-[#eceef0] border-none rounded-full pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-secondary-container" placeholder="全局搜索" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-[#002B5B] font-semibold text-sm">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span>系统状态正常</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:bg-[#f2f4f6] p-2 rounded-full cursor-pointer active:scale-95 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:bg-[#f2f4f6] p-2 rounded-full cursor-pointer active:scale-95 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="text-slate-500 hover:bg-[#f2f4f6] p-2 rounded-full cursor-pointer active:scale-95 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-white overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="professional male executive portrait in modern corporate setting with neutral lighting and clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbhuAKAqgP4JjysvifAWLJqkktMKLpODxbBX8-xTBGsnYr8sQG1ChkW71RsvXf6-_4_5Jw1k6qnLINJrPRpcfRhjAHG1BhNW-8Itd_3LH4eD0TP73jVBnWcAJ1QSVQOU9EO_ik8AsZRSwdp06PlVP0oW1f0-itk3r9tL1vaWUDP6NbhHZfSxhkywUkJPFaEmYBQzxPUNKURuE-_QbSM9Hsw_f0-jQtZQ9PUJtpyiViL_mCFzeeLSSzPeFToghzTje_3GGIPU8u8SQ"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Inspection Interface -->
+<section class="flex-1 p-6 space-y-6 overflow-y-auto">
+<div class="flex items-end justify-between">
+<div>
+<h3 class="text-2xl font-extrabold text-primary tracking-tight">AI 现场巡检</h3>
+<p class="text-on-surface-variant text-sm">实时监控多地点监控及风险管理</p>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-2 bg-white shadow-sm rounded text-xs font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">grid_view</span> 网格视图
+                        </button>
+<button class="px-4 py-2 text-xs font-bold text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">splitscreen</span> 焦点模式
+                        </button>
+</div>
+</div>
+<!-- Camera Feed Bento Grid -->
+<div class="grid grid-cols-12 grid-rows-2 gap-4 h-[calc(100vh-280px)] min-h-[600px]">
+<!-- Main Feed -->
+<div class="col-span-8 row-span-2 relative rounded-xl overflow-hidden bg-black group">
+<img alt="Main Site Feed" class="w-full h-full object-cover opacity-80" data-alt="A realistic CCTV security footage of a staff member wearing a reflective vest and a hard hat in a modern logistics warehouse." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEAJK779Jj3c3LUUB7KIe4rDRuUdDSXuxdwmXrgdIc6m3P-nYye-SESbNlAUB8d9XurXebO19AmNLka70Wnj4VOAkGVsJtTiYC5-yoiupXsZgd6Q-_4OXbw6LvfLqh5Wj0JHmyypIPW7pcztkRMAuD3wdrQM6s_wMJotHWoCNW_xMquu3fAfcemxwWQGH-oYHWK00KiFg-dM-_e1TrD84pvBuvG1Pe7ar_2Gq4ivPPraAI8gUsm9IBvJg1rrw2UfF-QZ7Gm6p0hi4"/>
+<div class="absolute inset-0 camera-grid-overlay p-6 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start pointer-events-auto">
+<span class="bg-primary/90 text-white px-3 py-1 text-xs font-bold rounded-full flex items-center gap-2 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span> 录制中: 01号摄像机_北门入口
+                                </span>
+<div class="flex gap-2">
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 rounded-lg text-white transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- AI Detections in Main Feed -->
+<div class="space-y-3 pointer-events-auto">
+<div class="bg-secondary-container/90 border border-secondary text-on-secondary-container p-3 rounded-lg flex items-center justify-between backdrop-blur-lg w-72">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<div>
+<p class="text-xs font-bold uppercase tracking-wider">岗哨员工检测</p>
+<p class="text-[10px] opacity-80">4号站 • 在岗</p>
+</div>
+</div>
+<span class="text-[10px] font-mono bg-white/20 px-2 py-0.5 rounded">98.4% 匹配度</span>
+</div>
+<div class="bg-error-container/90 border border-error text-on-error-container p-3 rounded-lg flex items-center justify-between backdrop-blur-lg w-72">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<p class="text-xs font-bold uppercase tracking-wider">安全违规检测: 未戴防护具</p>
+<p class="text-[10px] opacity-80">B装载区 • 紧急</p>
+</div>
+</div>
+<span class="text-[10px] font-mono bg-error/20 px-2 py-0.5 rounded">已识别</span>
+</div>
+</div>
+</div>
+<!-- Bounding Box Overlays (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 1024 1024">
+<rect fill="transparent" height="220" stroke="#b3ebff" stroke-dasharray="8 4" stroke-width="2" width="120" x="450" y="460"></rect>
+<text class="text-[10px] font-bold" fill="#b3ebff" x="450" y="450">员工_ID_882</text>
+</svg>
+</div>
+<!-- Secondary Feeds -->
+<div class="col-span-4 row-span-1 relative rounded-xl overflow-hidden bg-black group">
+<img alt="Warehouse Feed" class="w-full h-full object-cover opacity-60" data-alt="industrial warehouse interior with shelving units and bright overhead fluorescent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC93g9ixtHKW9pOFVEIbF3yQ_kZLLVSjtkb_QHXoy6NSajgD3hNgdKzpiyMSEWp2vqtzcZOATWAELsoOLq1ZrUnu_XzA9ICYwD4psLCD-8ov76GTHBNEA6gZvVkJHrgJQzLWrvcf9lnFgU2HUP0tAodXCJJBtfR8i2TexoaWvh7CqeHFIfma3P3amtiii5lmkZzUsio41qO3johrfxcQAnDS3fIkURg9Er2uw4wB_imumFV6u7-EG4GSK2ZZip9_wXfWStkqvctqTQ"/>
+<div class="absolute inset-0 camera-grid-overlay p-4 flex flex-col justify-between">
+<span class="bg-black/60 text-white px-2 py-1 text-[10px] font-bold rounded w-fit">02号摄像机_仓库12通道</span>
+<div class="bg-white/10 p-2 rounded backdrop-blur-md border border-white/20">
+<p class="text-[10px] font-bold text-white uppercase tracking-tighter">陈列状态</p>
+<div class="flex items-center justify-between mt-1">
+<span class="text-[9px] text-secondary-fixed">整洁 (88%)</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-4 row-span-1 relative rounded-xl overflow-hidden bg-black group">
+<img alt="POS Feed" class="w-full h-full object-cover opacity-60" data-alt="modern retail point of sale counter with clean minimalist design and warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQpQhvQ6BmBwIV7GjLlBeJdI68ihYwjSK3QgLCb2VwLlIzXc39FjPaeQ-eGJJvMc1uU-FCHlBvlF17qCZzjxoIi9CostqUxsyYGdsv_2e1FONoVeJyjEbMx2in8dPafI_jr1sXFb7S4uI9JEPCc772XCF3Ik2BKIcEdsFIDlr-cItb60GAIjced9k3PRx7KRSCVkGR6i3gXMX6MSgzwdtbQX0PFPgwxfqTpwzYoC8-Z0x6XOBjppmV6tYkLp-vSaEBzqa6PYw9iTs"/>
+<div class="absolute inset-0 camera-grid-overlay p-4 flex flex-col justify-between">
+<span class="bg-black/60 text-white px-2 py-1 text-[10px] font-bold rounded w-fit">03号摄像机_01收银台</span>
+<div class="bg-white/10 p-2 rounded backdrop-blur-md border border-white/20">
+<p class="text-[10px] font-bold text-white uppercase tracking-tighter">排队分析</p>
+<div class="flex items-center justify-between mt-1">
+<span class="text-[9px] text-white">4人等待 • 预计2分钟</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Stats Footer -->
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-secondary">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">运行摄像机</p>
+<p class="text-2xl font-black text-primary mt-1">12 / 12</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-secondary">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">AI 巡检负载</p>
+<p class="text-2xl font-black text-primary mt-1">42%</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-error">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">未处理预警</p>
+<p class="text-2xl font-black text-error mt-1">04</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-secondary">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">员工诚信度</p>
+<p class="text-2xl font-black text-primary mt-1">99.2%</p>
+</div>
+</div>
+</section>
+<!-- Event Log Sidebar -->
+<aside class="w-80 bg-surface-container-low border-l border-outline-variant/15 flex flex-col">
+<div class="p-6 border-b border-outline-variant/15 flex justify-between items-center">
+<h4 class="font-bold text-primary">预警记录</h4>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">tune</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Critical Alert -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-error">
+<div class="flex justify-between items-start">
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-0.5 rounded font-bold uppercase">安全违规</span>
+<span class="text-[10px] text-on-surface-variant">2分钟前</span>
+</div>
+<p class="text-sm font-bold mt-2 text-primary">未佩戴安全帽检测</p>
+<p class="text-xs text-on-surface-variant mt-1">C-4 区外围</p>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 py-2 text-[10px] font-bold bg-error text-white rounded active:scale-95 transition-transform">立即干预</button>
+<button class="flex-1 py-2 text-[10px] font-bold bg-surface-container text-on-surface rounded active:scale-95 transition-transform">忽略</button>
+</div>
+</div>
+<!-- System Info -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-secondary">
+<div class="flex justify-between items-start">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded font-bold uppercase">运营状态</span>
+<span class="text-[10px] text-on-surface-variant">12分钟前</span>
+</div>
+<p class="text-sm font-bold mt-2 text-primary">员工交接班</p>
+<p class="text-xs text-on-surface-variant mt-1">主服务台 01终端</p>
+<div class="mt-3 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden">
+<img alt="Staff Avatar" class="w-full h-full object-cover" data-alt="close up of a professional person in uniform smiling softly in bright interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3YjhVlpbPBait32XZPegppNagetZAkZz1g1Oqd3DahjP0820gxex1FiFbIxk-PbeIEzitYzZL48cAuE1Q4IWpIa8TWbTDgC-5OG7cwxocggKJEf8H5YeZSbmyQjvXANK7yG7jlefRywYBzG6Ay-zbGzEKUgXe0lrFR8Ht84YMToEkZciRwcr4VEoRtCD5krCej-83NJc-sR12vIEdwJLdMw3vfnQ5firqNOSuWMFyqDZgiibQxSbLDH_0n_V1-nhSEvR-a54Qcj4"/>
+</div>
+<span class="text-[10px] text-on-surface-variant">已认证: Alex Wang (ID: 902)</span>
+</div>
+</div>
+<!-- Display Alert -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-l-4 border-on-primary-container">
+<div class="flex justify-between items-start">
+<span class="bg-primary-fixed text-primary text-[10px] px-2 py-0.5 rounded font-bold uppercase">陈列质量</span>
+<span class="text-[10px] text-on-surface-variant">45分钟前</span>
+</div>
+<p class="text-sm font-bold mt-2 text-primary">检测到货架杂乱</p>
+<p class="text-xs text-on-surface-variant mt-1">4号通道 (饮品区)</p>
+<button class="w-full mt-3 py-2 text-[10px] font-bold text-on-primary-fixed-variant border border-on-primary-fixed-variant/20 rounded hover:bg-surface-variant transition-colors">
+                            指派清理人员
+                        </button>
+</div>
+<!-- Resolved Log (Low Contrast) -->
+<div class="bg-surface-container-lowest/50 p-4 rounded-xl border border-dashed border-outline-variant/30">
+<div class="flex justify-between items-start opacity-50">
+<span class="text-[10px] font-bold uppercase">系统</span>
+<span class="material-symbols-outlined text-sm text-green-600">check_circle</span>
+</div>
+<p class="text-sm font-bold text-primary/50 mt-1">每日完整性检查已完成</p>
+<p class="text-[10px] text-on-surface-variant/50">所有 14 个检查点均已通过</p>
+</div>
+</div>
+<!-- Sidebar Footer Action -->
+<div class="p-6 bg-surface-container-high">
+<button class="w-full bg-primary text-white py-3 rounded-lg text-xs font-bold flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span> 导出排班报告
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<script src="./shared-nav.js"></script>
+</body></html>

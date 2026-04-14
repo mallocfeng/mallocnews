@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusinessSystemDemo 导览首页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f9fb;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-soft: #f2f4f6;
+      --text: #191c1e;
+      --muted: #43474f;
+      --primary: #001736;
+      --primary-strong: #002b5b;
+      --accent: #00677d;
+      --outline: rgba(196, 198, 208, 0.7);
+      --shadow: 0 24px 48px rgba(25, 28, 30, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(179, 235, 255, 0.45), transparent 28%),
+        linear-gradient(180deg, #fbfdff 0%, var(--bg) 100%);
+    }
+
+    .shell {
+      width: min(1200px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-card,
+    .note-card,
+    .page-card {
+      border: 1px solid var(--outline);
+      border-radius: 24px;
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 36px;
+      background: linear-gradient(135deg, rgba(0, 23, 54, 0.97), rgba(0, 43, 91, 0.92));
+      color: white;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(179, 235, 255, 0.14);
+      color: #b3ebff;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 56ch;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button--primary {
+      background: linear-gradient(135deg, #00677d, #00a3c4);
+      color: white;
+    }
+
+    .button--secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .note-card {
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(242, 244, 246, 0.95));
+    }
+
+    .note-card h2 {
+      margin: 0 0 10px;
+      font: 800 20px/1.15 Manrope, Inter, sans-serif;
+      color: var(--primary);
+    }
+
+    .note-card p,
+    .note-card li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .note-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 20px 0 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font: 800 24px/1.1 Manrope, Inter, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .page-card {
+      padding: 22px;
+    }
+
+    .page-card__meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .page-card__meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--primary-strong);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .page-card h3 {
+      margin: 0 0 10px;
+      font: 800 22px/1.18 Manrope, Inter, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .page-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 72px;
+    }
+
+    .page-card__actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .page-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .page-link--primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      color: white;
+    }
+
+    .page-link--ghost {
+      background: var(--surface-soft);
+      color: var(--primary-strong);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <article class="hero-card">
+        <div class="eyebrow">BusinessSystemDemo</div>
+        <h1>商业经营管理平台体验导览</h1>
+        <p>本组页面集中展示平台在登录认证、资产管理、AI 巡查、商户管理与经营分析等核心场景下的整体产品体验与视觉体系。</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="./system-login-zh-b8fe7fb8.html">从登录页开始</a>
+          <a class="button button--secondary" href="./business-dashboard-zh-ea70f768.html">直接看分析看板</a>
+        </div>
+      </article>
+      <aside class="note-card">
+        <h2>体验说明</h2>
+        <ul>
+          <li>页面采用统一的企业级设计语言，强调信息密度、层次秩序与业务可信感。</li>
+          <li>各页面之间已建立完整跳转关系，可连续浏览主要业务路径与重点模块。</li>
+          <li>建议按“登录、管理、巡查、商户、分析”的顺序体验，以便快速理解平台全貌。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>页面列表</h2>
+          <p>涵盖平台关键业务场景，可用于整体方案演示与界面评审。</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="page-card">
+          <div class="page-card__meta">
+            <span>入口页</span>
+            <span>中文</span>
+          </div>
+          <h3>系统登录页</h3>
+          <p>企业后台入口，适合先给用户看整体品牌气质、登录安全感和视觉基调。</p>
+          <div class="page-card__actions">
+            <a class="page-link page-link--primary" href="./system-login-zh-b8fe7fb8.html">打开页面</a>
+          </div>
+        </article>
+
+        <article class="page-card">
+          <div class="page-card__meta">
+            <span>业务资产</span>
+            <span>中文</span>
+          </div>
+          <h3>业务资产</h3>
+          <p>展示铺位、楼层、业态、巡检与经营状态，是业务管理类页面的核心示例。</p>
+          <div class="page-card__actions">
+            <a class="page-link page-link--primary" href="./asset-management-zh-d43e2f37.html">打开页面</a>
+          </div>
+        </article>
+
+        <article class="page-card">
+          <div class="page-card__meta">
+            <span>商户管理</span>
+            <span>中文</span>
+          </div>
+          <h3>商户管理</h3>
+          <p>聚焦租户画像、合同、履约与沟通信息，适合给用户展示商户运营管理场景。</p>
+          <div class="page-card__actions">
+            <a class="page-link page-link--primary" href="./merchant-management-zh-f4b87970.html">打开页面</a>
+          </div>
+        </article>
+
+        <article class="page-card">
+          <div class="page-card__meta">
+            <span>经营分析</span>
+            <span>中文</span>
+          </div>
+          <h3>经营分析</h3>
+          <p>集中展示经营数据、趋势、区域分布和关键业务指标，是管理层决策入口。</p>
+          <div class="page-card__actions">
+            <a class="page-link page-link--primary" href="./business-dashboard-zh-ea70f768.html">打开页面</a>
+          </div>
+        </article>
+
+        <article class="page-card">
+          <div class="page-card__meta">
+            <span>AI巡检</span>
+            <span>中文</span>
+          </div>
+          <h3>AI巡检</h3>
+          <p>用于展示 AI 巡检、异常告警、任务联动与现场运营协同能力。</p>
+          <div class="page-card__actions">
+            <a class="page-link page-link--primary" href="./ai-site-inspection-alert-zh.html">打开页面</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="./shared-nav.js"></script>
+</body>
+</html>

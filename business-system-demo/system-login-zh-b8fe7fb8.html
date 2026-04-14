@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>系统登录页 - 建筑台账</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#d5e3fc",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#0d1c2e",
+                    "error-container": "#ffdad6",
+                    "secondary": "#00677d",
+                    "on-primary-fixed-variant": "#264778",
+                    "on-secondary-fixed": "#001f27",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#405f91",
+                    "on-secondary-container": "#005e73",
+                    "tertiary-container": "#1f2d3f",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#63dbfe",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-fixed": "#001b3d",
+                    "tertiary-fixed-dim": "#b9c7df",
+                    "outline-variant": "#c4c6d0",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#8694aa",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-dim": "#d8dadc",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#a9c7ff",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "surface": "#f7f9fb",
+                    "secondary-fixed-dim": "#5cd5f8",
+                    "primary": "#001736",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#b3ebff",
+                    "background": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004e5f",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary": "#09182a",
+                    "on-tertiary-fixed-variant": "#3a485b",
+                    "surface-container": "#eceef0",
+                    "on-surface-variant": "#43474f",
+                    "on-primary-container": "#7594ca",
+                    "primary-container": "#002b5b",
+                    "surface-container-high": "#e6e8ea",
+                    "outline": "#747780"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-login-gradient {
+            background: linear-gradient(135deg, #001736 0%, #002b5b 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased overflow-hidden">
+<main class="min-h-screen flex flex-col md:flex-row">
+<section class="hidden md:flex md:w-1/2 lg:w-3/5 relative overflow-hidden bg-primary overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Stunning modern skyscraper architecture with sharp geometric glass facades reflecting a clear blue sky at dusk with premium blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHa0KTK6o6d1-ayMdVBUzMf7tMFSkTZWQqkw_Q4t5H851lQqm4S2BTFS6yySjB2Nik1CIB94QJLj367jQZDHMlrDmpJmCZXVgabTRxd6QFYLI2vXMgllS0Ru20wx0YagnHB7uM3v7lNiD4qv5PtcxHhudxU8brrvhp54drP78RbUv-3yWzTlQAEx6X1J7m-NoUEov8NGNu6dKRXskWQDLs1ukKoPYJHn6ayZfplON9yE0_KCB9U5BvrE-nMUXQuUhGvmghZv6sysg"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary via-primary/40 to-transparent z-10"></div>
+<div class="relative z-20 flex flex-col justify-between p-16 w-full">
+<div>
+<div class="flex items-center gap-3 mb-12">
+<div class="w-10 h-10 bg-secondary-fixed rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold">domain</span>
+</div>
+<span class="font-headline text-2xl font-extrabold text-white tracking-tight">企业智领 (Enterprise Intel)</span>
+</div>
+<h1 class="font-headline text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 max-w-2xl">
+                        基建数字账本 <br/>
+<span class="text-secondary-fixed">精准管理系统</span>
+</h1>
+<p class="text-secondary-fixed/80 text-lg max-w-md font-body leading-relaxed">
+                        专为大型机构设计的终极商业智能平台，提供银行级的可靠性与极致的处理速度。
+                    </p>
+</div>
+<div class="flex flex-col gap-8">
+<div class="flex gap-12">
+<div>
+<div class="text-white text-3xl font-bold font-headline">99.9%</div>
+<div class="text-secondary-fixed/60 text-sm font-label uppercase tracking-wider">系统可用性 SLA</div>
+</div>
+<div>
+<div class="text-white text-3xl font-bold font-headline">256位</div>
+<div class="text-secondary-fixed/60 text-sm font-label uppercase tracking-wider">数据加密强度</div>
+</div>
+</div>
+<footer class="text-secondary-fixed/40 text-xs">
+                        © 2024 基建数字账本 (Architectural Ledger). 保留所有权利。
+                    </footer>
+</div>
+</div>
+</section>
+<section class="flex-1 flex items-center justify-center p-6 sm:p-12 md:p-16 bg-surface-container-low">
+<div class="w-full max-w-md">
+<div class="md:hidden flex items-center gap-2 mb-12">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">domain</span>
+</div>
+<span class="font-headline text-xl font-bold text-primary">企业智领</span>
+</div>
+<div class="mb-10">
+<h2 class="font-headline text-3xl font-bold text-primary mb-2">欢迎回来</h2>
+<p class="text-on-surface-variant font-body">请登录您的基建管理控制台以继续操作。</p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block font-label text-sm font-semibold text-on-surface-variant" for="identity">
+                            用户名或电子邮箱
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-xl">person</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-secondary-container text-on-surface placeholder:text-outline/50 transition-all shadow-sm" id="identity" name="identity" placeholder="name@company.com" required="" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block font-label text-sm font-semibold text-on-surface-variant" for="password">
+                                登录密码
+                            </label>
+<a class="text-xs font-semibold text-on-primary-fixed-variant hover:text-primary transition-colors" href="#">
+                                忘记密码？
+                            </a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-xl">lock</span>
+<input class="w-full pl-12 pr-12 py-3 bg-surface-container-lowest border-none rounded-xl focus:ring-2 focus:ring-secondary-container text-on-surface placeholder:text-outline/50 transition-all shadow-sm" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center">
+<input class="w-4 h-4 text-secondary border-outline rounded-md focus:ring-secondary focus:ring-offset-background cursor-pointer" id="remember" name="remember" type="checkbox"/>
+<label class="ml-2 block text-sm text-on-surface-variant font-medium cursor-pointer" for="remember">
+                            保持登录状态（30天内）
+                        </label>
+</div>
+<div class="pt-2">
+<button class="w-full py-4 px-6 bg-login-gradient text-white font-headline font-bold rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span>登录系统</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-12">
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant/30"></div>
+<span class="flex-shrink mx-4 text-xs font-label uppercase tracking-widest text-on-tertiary-container">企业单点登录 (SSO)</span>
+<div class="flex-grow border-t border-outline-variant/30"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6">
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border-none rounded-xl text-on-surface font-semibold text-sm hover:bg-surface-variant transition-colors shadow-sm">
+<img alt="Google logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEk4eXGFdBG4WDWI6bpxJ4BZx7N0_f65boHCNMKgyTdRtD_k0ev6X2IoMHV-eyzROmLKinmyS2L02vWOG6vVFoglCF1QUYWF_U09MmJP4wSeU0gVz9pgcbmeWT9q_Laq3O0ymy0B2d8QEDGV1UbIaXnfb9SNadYfRKnrZq1RBXAek1Cpnc_xGZdn9IegUxuwlo5EpXt0bFo5FUETTxvxZXvfahz45sYNySM1fUGKh_ZVXPYFzMfilgSZJmqnL0rPpKLbtsXToC1lg"/>
+<span>Google Workspace</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border-none rounded-xl text-on-surface font-semibold text-sm hover:bg-surface-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined text-primary text-xl">key</span>
+<span>Azure AD</span>
+</button>
+</div>
+</div>
+<div class="mt-10 text-center">
+<p class="text-sm text-on-surface-variant">
+                        还没有企业账户？ 
+                        <a class="font-bold text-on-primary-fixed-variant hover:underline ml-1" href="#">联系系统管理员</a>
+</p>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed bottom-6 right-6 z-50">
+<button class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">contact_support</span>
+</button>
+</div>
+<script src="./shared-nav.js"></script>
+</body></html>

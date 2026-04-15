@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智慧商业综合管理平台 - 客户演示站</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="demo-home" data-page="index.html">
+  
+    <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-4 overflow-y-auto shadow-none border-r border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 ease-in-out z-50">
+      <div class="flex items-center gap-2.5 mb-8 px-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg shrink-0">
+          <span class="material-symbols-outlined">analytics</span>
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-[17px] leading-none font-bold tracking-tight whitespace-nowrap text-[#1a237e] dark:text-white">智汇商业管理系统</h1>
+          <p class="text-[11px] mt-1 text-slate-500 font-medium whitespace-nowrap">数字策展人后台</p>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1">
+        
+                <div class="px-2 py-2 text-[#1a237e] dark:text-blue-400 font-semibold bg-white/50 dark:bg-slate-800/50 rounded-lg flex items-center gap-3 group transition-all duration-300 ease-in-out">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">home</span>
+                  <span class="text-sm">演示总览</span>
+                </div>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="dashboard.html">
+                  <span class="material-symbols-outlined text-xl">dashboard</span>
+                  <span class="text-sm">数据看板</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="reports.html">
+                  <span class="material-symbols-outlined text-xl">description</span>
+                  <span class="text-sm">报表中心</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="leasing.html">
+                  <span class="material-symbols-outlined text-xl">business_center</span>
+                  <span class="text-sm">招商管理</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="assets.html">
+                  <span class="material-symbols-outlined text-xl">domain</span>
+                  <span class="text-sm">资产与铺位</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="merchants.html">
+                  <span class="material-symbols-outlined text-xl">storefront</span>
+                  <span class="text-sm">商户管理</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="fitout.html">
+                  <span class="material-symbols-outlined text-xl">architecture</span>
+                  <span class="text-sm">设计装修</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="service.html">
+                  <span class="material-symbols-outlined text-xl">support_agent</span>
+                  <span class="text-sm">租户服务</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="field-ops.html">
+                  <span class="material-symbols-outlined text-xl">visibility</span>
+                  <span class="text-sm">物业巡检</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="operations.html">
+                  <span class="material-symbols-outlined text-xl">engineering</span>
+                  <span class="text-sm">设备与运营</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="analytics.html">
+                  <span class="material-symbols-outlined text-xl">bolt</span>
+                  <span class="text-sm">经营分析</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="inventory.html">
+                  <span class="material-symbols-outlined text-xl">inventory</span>
+                  <span class="text-sm">进销存管理</span>
+                </a>
+                
+                <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="catalog.html">
+                  <span class="material-symbols-outlined text-xl">category</span>
+                  <span class="text-sm">商品档案</span>
+                </a>
+                
+      </nav>
+      <div class="mt-auto pt-4 space-y-1">
+        <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+          <span class="material-symbols-outlined text-xl">settings</span>
+          <span class="text-sm">设置与总览</span>
+        </a>
+        <a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+          <span class="material-symbols-outlined text-xl">help</span>
+          <span class="text-sm">帮助中心</span>
+        </a>
+      </div>
+    </aside>
+    
+  <main class="demo-home__shell">
+    <section class="demo-home__hero">
+      <div class="demo-home__eyebrow">客户演示站</div>
+      <h1>智慧商业综合管理平台</h1>
+      <p>
+        这是一个静态 HTML 演示站。所有页面都已经按业务内容重命名，并互相建立了可点击链接。
+        你可以直接从这里进入任意模块，也可以在每个页面右上角继续切换到其他页面，用来给客户演示完整业务链路。
+      </p>
+    </section>
+    <section class="demo-home__grid">
+      
+            <article class="demo-card">
+              <span class="demo-card__route">/login</span>
+              <h2>登录页</h2>
+              <p>系统登录与品牌入口，适合演示整体视觉基调。</p>
+              <a href="login.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/dashboard</span>
+              <h2>商业数据驾驶舱</h2>
+              <p>总览核心经营指标、客流、销售和租赁表现。</p>
+              <a href="dashboard.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/reports</span>
+              <h2>报表中心</h2>
+              <p>面向客户演示的虚拟报表中心，集中展示报表库、订阅和导出任务。</p>
+              <a href="reports.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/analytics</span>
+              <h2>经营分析</h2>
+              <p>多维度经营分析与趋势洞察页面。</p>
+              <a href="analytics.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/assets</span>
+              <h2>资产与铺位管理</h2>
+              <p>商业资产、铺位状态和空间信息总览。</p>
+              <a href="assets.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/merchants</span>
+              <h2>商户管理</h2>
+              <p>商户资料、经营状态与服务记录管理。</p>
+              <a href="merchants.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/operations</span>
+              <h2>商业运营管理</h2>
+              <p>活动运营、巡场执行和经营动作协同。</p>
+              <a href="operations.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/leasing</span>
+              <h2>招商管理</h2>
+              <p>招商线索、铺位匹配与签约推进管理。</p>
+              <a href="leasing.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/fitout</span>
+              <h2>设计与装修管理</h2>
+              <p>商铺设计、施工节点和验收流程管理。</p>
+              <a href="fitout.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/inventory</span>
+              <h2>库存管理</h2>
+              <p>后台库存、出入库和补货流程展示。</p>
+              <a href="inventory.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/service</span>
+              <h2>客诉与服务</h2>
+              <p>客诉工单、服务闭环与满意度追踪。</p>
+              <a href="service.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/field-ops</span>
+              <h2>现场运营</h2>
+              <p>现场巡检、任务执行和运营事件响应。</p>
+              <a href="field-ops.html">进入页面</a>
+            </article>
+            
+            <article class="demo-card">
+              <span class="demo-card__route">/catalog</span>
+              <h2>商品档案</h2>
+              <p>商品资料、分类体系和品牌商品信息维护。</p>
+              <a href="catalog.html">进入页面</a>
+            </article>
+            
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>智慧商业综合管理平台 - 设计与装修管理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed-dim": "#ffb59d",
+                "primary-container": "#1a237e",
+                "on-tertiary-fixed": "#390c00",
+                "surface-tint": "#4c56af",
+                "on-secondary-container": "#575b7f",
+                "error": "#ba1a1a",
+                "tertiary": "#380b00",
+                "on-secondary-fixed-variant": "#414467",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#f3faff",
+                "secondary-container": "#d2d4ff",
+                "surface-dim": "#c7dde9",
+                "outline": "#767683",
+                "inverse-primary": "#bdc2ff",
+                "on-tertiary-container": "#e17c5a",
+                "surface-container-lowest": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface": "#f3faff",
+                "secondary": "#585c80",
+                "primary": "#000666",
+                "on-background": "#071e27",
+                "on-primary-container": "#8690ee",
+                "on-secondary-fixed": "#151839",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#cfe6f2",
+                "inverse-surface": "#1e333c",
+                "tertiary-fixed": "#ffdbd0",
+                "on-surface": "#071e27",
+                "secondary-fixed": "#e0e0ff",
+                "on-primary-fixed-variant": "#343d96",
+                "surface-variant": "#cfe6f2",
+                "inverse-on-surface": "#dff4ff",
+                "outline-variant": "#c6c5d4",
+                "primary-fixed-dim": "#bdc2ff",
+                "tertiary-container": "#5c1800",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-primary-fixed": "#000767",
+                "primary-fixed": "#e0e0ff",
+                "surface-container": "#dbf1fe",
+                "surface-container-low": "#e6f6ff",
+                "on-tertiary-fixed-variant": "#7b2e12",
+                "secondary-fixed-dim": "#c1c3ed",
+                "surface-container-high": "#d5ecf8",
+                "on-surface-variant": "#454652",
+                "background": "#f3faff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "fontFamily": {
+                "headline": ["Inter", "Noto Sans SC"],
+                "body": ["Inter", "Noto Sans SC"],
+                "label": ["Inter", "Noto Sans SC"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cfe6f2; border-radius: 10px; }
+    </style>
+<link href="site.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface" data-page="fitout.html">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-4 overflow-y-auto shadow-none border-r border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 ease-in-out z-50">
+<div class="flex items-center gap-2.5 mb-8 px-2">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg shrink-0">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="min-w-0">
+<h1 class="text-[17px] leading-none font-bold tracking-tight whitespace-nowrap text-[#1a237e] dark:text-white">智汇商业管理系统</h1>
+<p class="text-[11px] mt-1 text-slate-500 font-medium whitespace-nowrap">数字策展人后台</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="index.html">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-sm">演示总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="dashboard.html">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm">数据看板</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="reports.html">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="text-sm">报表中心</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="leasing.html">
+<span class="material-symbols-outlined text-xl">business_center</span>
+<span class="text-sm">招商管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="assets.html">
+<span class="material-symbols-outlined text-xl">domain</span>
+<span class="text-sm">资产与铺位</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="merchants.html">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-sm">商户管理</span>
+</a>
+<div class="px-2 py-2 text-[#1a237e] dark:text-blue-400 font-semibold bg-white/50 dark:bg-slate-800/50 rounded-lg flex items-center gap-3 group transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span class="text-sm">设计装修</span>
+</div>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="service.html">
+<span class="material-symbols-outlined text-xl">support_agent</span>
+<span class="text-sm">租户服务</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="field-ops.html">
+<span class="material-symbols-outlined text-xl">visibility</span>
+<span class="text-sm">物业巡检</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="operations.html">
+<span class="material-symbols-outlined text-xl">engineering</span>
+<span class="text-sm">设备与运营</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="analytics.html">
+<span class="material-symbols-outlined text-xl">bolt</span>
+<span class="text-sm">经营分析</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="inventory.html">
+<span class="material-symbols-outlined text-xl">inventory</span>
+<span class="text-sm">进销存管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="catalog.html">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="text-sm">商品档案</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">设置与总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">help</span>
+<span class="text-sm">帮助中心</span>
+</a>
+</div>
+</aside>
+
+<!-- SideNavBar -->
+
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 glass-panel border-b border-slate-100 flex items-center justify-between px-8 h-16 ml-64">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-[#1a237e]">商业地产管理矩阵</span>
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container/20 w-64 transition-all" placeholder="搜索项目、图纸或工单..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-slate-500 hover:text-[#1a237e] text-sm font-medium transition-colors" href="dashboard.html">数据看板</a>
+<a class="text-slate-500 hover:text-[#1a237e] text-sm font-medium transition-colors" href="assets.html">资产全景</a>
+<a class="text-[#1a237e] text-sm font-medium border-b-2 border-[#1a237e] pb-1" href="reports.html">报表中心</a>
+<div class="flex items-center gap-4 ml-4 border-l border-slate-100 pl-6">
+<button class="relative p-1 text-slate-500 hover:text-primary-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-1 text-slate-500 hover:text-primary-container">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border-2 border-primary-container/20 object-cover" data-alt="professional male property manager headshot in business attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS5It4f5TJPYgTb9Wnlrm121JnadaKy2YLfjakk2jDT4yEaVW5jST06hewHUCRm0W4Ls4_foWfoUx4-zTKilPavrgfxNVH-Ig5xe0U-etW2oSFEreeXpuvBCFBhsB4keD3wBHKUaJbh9M0BtCEUYyqR1g-nW74vnismBVv6M2RooIPkLcM0TjtvpNT2ItTxn9_GcS5n-tNL01CkD72sqsWVYGUFX9wIs8Y0y4tBFbhFB6bBFpISX_GUoZiuBfpr9ZrUbxVSSfdxZ0"/>
+<span class="text-xs font-bold text-on-surface">Admin. Zhou</span>
+</div>
+</div>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen bg-surface p-8">
+<!-- Metric Theater -->
+<section class="grid grid-cols-4 gap-6 mb-8">
+<div class="bg-gradient-to-br from-primary-container to-[#000666] p-6 rounded-xl shadow-sm text-white relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]" data-icon="architecture">architecture</span>
+</div>
+<p class="text-on-primary-container text-xs font-bold uppercase tracking-widest mb-2">装修中项目</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-extrabold tracking-tight">24</h2>
+<span class="text-on-primary-container text-sm">个</span>
+</div>
+<p class="mt-4 text-xs text-white/70 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                    本月新增 4 个入场
+                </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.04)]">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">待审批方案</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-extrabold tracking-tight text-[#1a237e]">08</h2>
+<span class="text-slate-400 text-sm">项</span>
+</div>
+<div class="mt-4 flex -space-x-2">
+<img class="w-6 h-6 rounded-full ring-2 ring-white object-cover" data-alt="female designer profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Mo5aerJ1YEF-qex6LzPPsfgC1JHMKAqxT7otVYfMY9v-OjyJ0ARn1Y1fbc3GKizGcVTCQPlk9cFrb0SMkPNaNkYwkSx67CrDH69_HAMVI7vYOLmEs49_g7iwfXMow-c0KfEsStAOpl8Sm-zdIxVBeNxBcBE3bwo8hhrH07H_ATaH2mvOOx3mOk5EabV70UBEKC_zaKl64hOJJom2wMcWtbqU4kZ6XiiaKB8N4ag1SQBfK4o8UMCWzltOWzxIbxj-oH97zCeRXP8"/>
+<img class="w-6 h-6 rounded-full ring-2 ring-white object-cover" data-alt="male architect profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk5M2FijB3WwHW_npxeTQO7oCS1x1T4aPabrcvQU_5mo428myyskkNGM68DZUnmb5xGCeX36LDPovb8XflHMs1tSmyWoTEu3hzFHpnwnNoTrOLBhs1tM1zT3iMXFpLqDL_61aBmQs-HUcEuKEqJ5rO1iN4CyXSigV7LP-WjPEbxkNHLfjP17TZjgUSwcVrPJ3gLfs_d-niUjYJEjszRjYlJt0B1gIsnqlFSN8ZbrZu-IMGVuC9PANTHQ1mWf6egrRVPTQpwggy4FI"/>
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[8px] font-bold text-slate-400 ring-2 ring-white">+5</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.04)]">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">平均进度偏差</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-extrabold tracking-tight text-error">-3.2</h2>
+<span class="text-slate-400 text-sm">%</span>
+</div>
+<div class="mt-4 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[68%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.04)]">
+<p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">即将开业品牌</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-extrabold tracking-tight text-primary-container">12</h2>
+<span class="text-slate-400 text-sm">家</span>
+</div>
+<p class="mt-4 text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="event">event</span>
+                    未来 30 天内完成验收
+                </p>
+</div>
+</section>
+<!-- Bento Layout: Workflow & Gantt -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left: Construction Progress (Gantt-like) -->
+<div class="col-span-8 bg-surface-container-lowest p-8 rounded-2xl shadow-sm border border-slate-50">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold text-primary-container">装修进度全景</h3>
+<p class="text-sm text-slate-400 mt-1">关键品牌节点追踪 (实时数据更新)</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 text-xs font-bold bg-surface-container-low text-primary-container rounded-lg hover:bg-surface-container-high transition-colors">导出周报</button>
+<button class="px-4 py-2 text-xs font-bold bg-primary-container text-white rounded-lg hover:opacity-90 transition-opacity">查看详情</button>
+</div>
+</div>
+<div class="space-y-8">
+<!-- Project 1 -->
+<div class="relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="storefront">storefront</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Apple Store 概念旗舰店</h4>
+<span class="text-[10px] text-slate-400 uppercase tracking-wider">A区 L1-01 / 850㎡</span>
+</div>
+</div>
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full">进行中 (良好)</span>
+</div>
+<div class="h-6 w-full bg-slate-50 rounded-full relative overflow-hidden group">
+<div class="absolute inset-y-0 left-0 bg-gradient-to-r from-primary-container to-blue-500 w-[75%] rounded-full shadow-lg flex items-center justify-end pr-4">
+<span class="text-[10px] font-black text-white">75%</span>
+</div>
+<div class="absolute left-[30%] h-full w-px bg-white/20 z-10"></div>
+<div class="absolute left-[60%] h-full w-px bg-white/20 z-10"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-slate-400 font-medium uppercase">
+<span>硬装入场</span>
+<span>机电隐蔽</span>
+<span class="text-primary-container font-bold">软装陈列</span>
+<span>竣工验收</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-600" data-icon="coffee">coffee</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Manner Coffee 精品店</h4>
+<span class="text-[10px] text-slate-400 uppercase tracking-wider">B区 L2-15 / 120㎡</span>
+</div>
+</div>
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">延期风险 (物料缺失)</span>
+</div>
+<div class="h-6 w-full bg-slate-50 rounded-full relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-gradient-to-r from-orange-400 to-amber-500 w-[42%] rounded-full shadow-lg flex items-center justify-end pr-4">
+<span class="text-[10px] font-black text-white">42%</span>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-slate-400 font-medium uppercase">
+<span class="text-orange-600 font-bold">硬装入场</span>
+<span>机电隐蔽</span>
+<span>软装陈列</span>
+<span>竣工验收</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-purple-600" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Supermonkey 24H 健身房</h4>
+<span class="text-[10px] text-slate-400 uppercase tracking-wider">D区 L4-08 / 400㎡</span>
+</div>
+</div>
+<span class="px-3 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">方案待审</span>
+</div>
+<div class="h-6 w-full bg-slate-50 rounded-full relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-slate-200 w-[15%] rounded-full flex items-center justify-end pr-4">
+<span class="text-[10px] font-black text-slate-500">15%</span>
+</div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-slate-400 font-medium uppercase">
+<span>设计交底</span>
+<span class="text-slate-300">施工准备</span>
+<span class="text-slate-300">硬装开工</span>
+<span class="text-slate-300">机电同步</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Approval Workflow & Documents -->
+<div class="col-span-4 space-y-6">
+<!-- Approval Quick View -->
+<div class="bg-surface-container-low p-6 rounded-2xl border border-blue-100/30">
+<h3 class="text-sm font-bold text-primary-container mb-4 flex items-center justify-between">
+                        待审批流
+                        <span class="bg-primary text-white text-[10px] px-2 py-0.5 rounded">8</span>
+</h3>
+<div class="space-y-3">
+<div class="bg-white p-3 rounded-xl border-l-4 border-amber-400 shadow-sm flex items-start gap-3">
+<div class="p-2 bg-amber-50 rounded-lg text-amber-600">
+<span class="material-symbols-outlined text-lg" data-icon="architecture">architecture</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Zara 旗舰店硬装方案</p>
+<p class="text-[10px] text-slate-400 mt-0.5">提交人：李工 · 2小时前</p>
+<div class="flex gap-2 mt-3">
+<button class="flex-1 bg-primary text-white text-[10px] font-bold py-1.5 rounded hover:opacity-90 transition-opacity">查看</button>
+<button class="flex-1 bg-slate-100 text-slate-600 text-[10px] font-bold py-1.5 rounded hover:bg-slate-200 transition-colors">延后</button>
+</div>
+</div>
+</div>
+<div class="bg-white p-3 rounded-xl border-l-4 border-blue-400 shadow-sm flex items-start gap-3">
+<div class="p-2 bg-blue-50 rounded-lg text-blue-600">
+<span class="material-symbols-outlined text-lg" data-icon="bolt">bolt</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">Lululemon 消防机电方案</p>
+<p class="text-[10px] text-slate-400 mt-0.5">提交人：王工 · 4小时前</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Management -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-50">
+<h3 class="text-sm font-bold text-primary-container mb-4">最新图纸库</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-50 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<p class="text-[11px] font-bold text-on-surface">A区整体天花点位图_V3.pdf</p>
+<p class="text-[9px] text-slate-400">12.5 MB · 更新于昨日</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary-container transition-colors" data-icon="download">download</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-50 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-[11px] font-bold text-on-surface">公区铺装样板确认单.xlsx</p>
+<p class="text-[9px] text-slate-400">4.2 MB · 更新于 3天前</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary-container transition-colors" data-icon="download">download</span>
+</div>
+</div>
+<button class="w-full mt-6 border-2 border-dashed border-slate-100 py-3 rounded-xl text-[10px] font-bold text-slate-400 hover:border-primary-container/30 hover:text-primary-container transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="upload_file">upload_file</span>
+                        上传新文档
+                    </button>
+</div>
+</div>
+</div>
+<!-- Opening Acceptance Checklist -->
+<section class="mt-8 bg-surface-container-lowest p-8 rounded-2xl shadow-sm border border-slate-50">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold text-primary-container">开业验收清单</h3>
+<p class="text-sm text-slate-400 mt-1">标准化验收流程 (Acceptance Protocol)</p>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-bold bg-white text-primary-container shadow-sm rounded-md">所有项目</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-400">已逾期</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-400">进行中</button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-8">
+<!-- Checklist Category 1 -->
+<div class="bg-surface p-6 rounded-xl border-t-4 border-primary">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary-container" data-icon="verified_user">verified_user</span>
+<h4 class="font-bold text-on-surface">合规性验收</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">消防验收许可证明</p>
+<p class="text-[10px] text-slate-400 mt-1">已由消防部门盖章确认</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">建筑结构安全鉴定报告</p>
+<p class="text-[10px] text-slate-400 mt-1">主体结构载荷测试通过</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">环保节能评估申报</p>
+<p class="text-[10px] text-slate-400 mt-1">待环保局现场复核</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Checklist Category 2 -->
+<div class="bg-surface p-6 rounded-xl border-t-4 border-blue-400">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-blue-500" data-icon="electric_bolt">electric_bolt</span>
+<h4 class="font-bold text-on-surface">机电设施联调</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">变电所受电及负荷测试</p>
+<p class="text-[10px] text-slate-400 mt-1">满负载运行 24 小时正常</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">中央空调末端平衡调试</p>
+<p class="text-[10px] text-slate-400 mt-1">目前 A 区 3-5 层待调</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">智能化垂直交通测试</p>
+<p class="text-[10px] text-slate-400 mt-1">电梯维保商进行压力测试中</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Checklist Category 3 -->
+<div class="bg-surface p-6 rounded-xl border-t-4 border-amber-400">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-amber-500" data-icon="palette">palette</span>
+<h4 class="font-bold text-on-surface">精装感官验收</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">公区石材结晶与收边</p>
+<p class="text-[10px] text-slate-400 mt-1">中庭柱体包边存在瑕疵需整改</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">标识标牌安装到位率</p>
+<p class="text-[10px] text-slate-400 mt-1">地下库引导牌安装进度 45%</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-200 mt-0.5" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface">景观绿化及灯光氛围</p>
+<p class="text-[10px] text-slate-400 mt-1">主入口水景试运行效果良好</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Only for main dash) -->
+<button class="fixed bottom-10 right-10 bg-gradient-to-tr from-primary to-[#3d5afe] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-[70] group">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+<span class="absolute right-full mr-4 bg-primary px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">发起新工程报审</span>
+</button>
+</body></html>

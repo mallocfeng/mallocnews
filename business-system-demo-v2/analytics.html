@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>智慧商业综合管理平台 - 经营分析</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "primary-container": "#1a237e",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-tint": "#4c56af",
+                        "on-secondary-container": "#575b7f",
+                        "error": "#ba1a1a",
+                        "tertiary": "#380b00",
+                        "on-secondary-fixed-variant": "#414467",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f3faff",
+                        "secondary-container": "#d2d4ff",
+                        "surface-dim": "#c7dde9",
+                        "outline": "#767683",
+                        "inverse-primary": "#bdc2ff",
+                        "on-tertiary-container": "#e17c5a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f3faff",
+                        "secondary": "#585c80",
+                        "primary": "#000666",
+                        "on-background": "#071e27",
+                        "on-primary-container": "#8690ee",
+                        "on-secondary-fixed": "#151839",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#cfe6f2",
+                        "inverse-surface": "#1e333c",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-surface": "#071e27",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-primary-fixed-variant": "#343d96",
+                        "surface-variant": "#cfe6f2",
+                        "inverse-on-surface": "#dff4ff",
+                        "outline-variant": "#c6c5d4",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-container": "#5c1800",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#000767",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-container": "#dbf1fe",
+                        "surface-container-low": "#e6f6ff",
+                        "on-tertiary-fixed-variant": "#7b2e12",
+                        "secondary-fixed-dim": "#c1c3ed",
+                        "surface-container-high": "#d5ecf8",
+                        "on-surface-variant": "#454652",
+                        "background": "#f3faff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "Noto Sans SC"],
+                        "body": ["Inter", "Noto Sans SC"],
+                        "label": ["Inter", "Noto Sans SC"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cfe6f2; border-radius: 10px; }
+    </style>
+<link href="site.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-white" data-page="analytics.html">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-4 overflow-y-auto shadow-none border-r border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 ease-in-out z-50">
+<div class="flex items-center gap-2.5 mb-8 px-2">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg shrink-0">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="min-w-0">
+<h1 class="text-[17px] leading-none font-bold tracking-tight whitespace-nowrap text-[#1a237e] dark:text-white">智汇商业管理系统</h1>
+<p class="text-[11px] mt-1 text-slate-500 font-medium whitespace-nowrap">数字策展人后台</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="index.html">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-sm">演示总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="dashboard.html">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm">数据看板</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="reports.html">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="text-sm">报表中心</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="leasing.html">
+<span class="material-symbols-outlined text-xl">business_center</span>
+<span class="text-sm">招商管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="assets.html">
+<span class="material-symbols-outlined text-xl">domain</span>
+<span class="text-sm">资产与铺位</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="merchants.html">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-sm">商户管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="fitout.html">
+<span class="material-symbols-outlined text-xl">architecture</span>
+<span class="text-sm">设计装修</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="service.html">
+<span class="material-symbols-outlined text-xl">support_agent</span>
+<span class="text-sm">租户服务</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="field-ops.html">
+<span class="material-symbols-outlined text-xl">visibility</span>
+<span class="text-sm">物业巡检</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="operations.html">
+<span class="material-symbols-outlined text-xl">engineering</span>
+<span class="text-sm">设备与运营</span>
+</a>
+<div class="px-2 py-2 text-[#1a237e] dark:text-blue-400 font-semibold bg-white/50 dark:bg-slate-800/50 rounded-lg flex items-center gap-3 group transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-sm">经营分析</span>
+</div>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="inventory.html">
+<span class="material-symbols-outlined text-xl">inventory</span>
+<span class="text-sm">进销存管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="catalog.html">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="text-sm">商品档案</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">设置与总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">help</span>
+<span class="text-sm">帮助中心</span>
+</a>
+</div>
+</aside>
+
+<!-- SideNavBar Anchor -->
+
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-100 dark:border-slate-900 shadow-sm flex items-center justify-between px-8 h-16 ml-64">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-[#1a237e] dark:text-blue-400">商业地产管理矩阵</span>
+<div class="h-8 w-[1px] bg-slate-200"></div>
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-[#1a237e] border-b-2 border-[#1a237e] py-5" href="dashboard.html">数据看板</a>
+<a class="text-sm font-medium text-slate-500 hover:text-[#1a237e] transition-colors py-5" href="assets.html">资产全景</a>
+<a class="text-sm font-medium text-slate-500 hover:text-[#1a237e] transition-colors py-5" href="reports.html">报表中心</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-slate-100 border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="搜索报表或店铺..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<!-- Metric Theater -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">groups</span>
+</div>
+<p class="text-sm font-medium text-slate-500 mb-2">今日客流量</p>
+<h3 class="text-4xl font-black text-[#1a237e] tracking-tighter">42,892</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 12.5%
+                    </span>
+<span class="text-[10px] text-slate-400">较昨日同期</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] relative overflow-hidden group border-b-2 border-primary-container">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">shopping_bag</span>
+</div>
+<p class="text-sm font-medium text-slate-500 mb-2">平均客单价 (ATV)</p>
+<h3 class="text-4xl font-black text-[#1a237e] tracking-tighter">¥328.50</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 4.2%
+                    </span>
+<span class="text-[10px] text-slate-400">本月平均</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">sell</span>
+</div>
+<p class="text-sm font-medium text-slate-500 mb-2">今日销售额</p>
+<h3 class="text-4xl font-black text-[#1a237e] tracking-tighter">¥1.24M</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">arrow_downward</span> 2.1%
+                    </span>
+<span class="text-[10px] text-slate-400">较去年同比</span>
+</div>
+</div>
+<div class="bg-[#1a237e] p-6 rounded-xl shadow-xl relative overflow-hidden group text-white">
+<div class="absolute -right-4 -bottom-4 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-9xl text-white">confirmation_number</span>
+</div>
+<p class="text-sm font-medium text-blue-200 mb-2">提袋率</p>
+<h3 class="text-4xl font-black tracking-tighter">24.8%</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="flex items-center text-xs font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">trending_up</span> 稳步增长
+                    </span>
+</div>
+</div>
+</section>
+<!-- Main Analytics Grid -->
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- Category Structure Deep Dive -->
+<section class="col-span-12 lg:col-span-4 bg-white rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] p-6 h-full">
+<div class="flex items-center justify-between mb-8">
+<h4 class="text-lg font-bold text-[#1a237e]">业态结构分析</h4>
+<button class="text-primary text-xs font-semibold hover:underline flex items-center gap-1">
+                        详细下钻 <span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+<div class="relative h-64 flex items-center justify-center">
+<!-- Custom SVG Donut for more control -->
+<svg class="w-48 h-48 transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#e6f6ff" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#1a237e" stroke-dasharray="45 100" stroke-dashoffset="0" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#4c56af" stroke-dasharray="25 100" stroke-dashoffset="-45" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#bdc2ff" stroke-dasharray="20 100" stroke-dashoffset="-70" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#e17c5a" stroke-dasharray="10 100" stroke-dashoffset="-90" stroke-width="3"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-xs text-slate-400 uppercase tracking-widest">总面积</span>
+<span class="text-2xl font-bold">12.5k</span>
+<span class="text-[10px] text-slate-400">sq.m</span>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-[#1a237e]"></div>
+<span class="text-sm font-medium text-slate-700">零售百货</span>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">45.0%</p>
+<p class="text-[10px] text-slate-400">¥4.5M 销售额</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-[#4c56af]"></div>
+<span class="text-sm font-medium text-slate-700">餐饮美食</span>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">25.0%</p>
+<p class="text-[10px] text-slate-400">¥2.8M 销售额</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-[#bdc2ff]"></div>
+<span class="text-sm font-medium text-slate-700">生活配套</span>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">20.0%</p>
+<p class="text-[10px] text-slate-400">¥1.2M 销售额</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footfall & Transaction Trend -->
+<section class="col-span-12 lg:col-span-8 bg-white rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] p-6">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="text-lg font-bold text-[#1a237e]">客流与客单价趋势</h4>
+<p class="text-xs text-slate-400">过去 24 小时动态监控</p>
+</div>
+<div class="flex items-center bg-slate-100 p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-bold bg-white shadow-sm rounded-md text-[#1a237e]">实时</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-700">日报</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-700">周报</button>
+</div>
+</div>
+<!-- Custom Bar Chart Visualization -->
+<div class="h-80 flex items-end justify-between gap-2 px-2 relative">
+<!-- Y Axis Labels -->
+<div class="absolute -left-2 top-0 h-full flex flex-col justify-between text-[10px] text-slate-300 pointer-events-none">
+<span>50k</span><span>40k</span><span>30k</span><span>20k</span><span>10k</span><span>0</span>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/5 group-hover:bg-primary/10 transition-colors w-full rounded-t-sm" style="height: 40%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">10:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/10 group-hover:bg-primary/20 transition-colors w-full rounded-t-sm" style="height: 55%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">12:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/15 group-hover:bg-primary/25 transition-colors w-full rounded-t-sm" style="height: 45%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">14:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/30 group-hover:bg-primary/40 transition-colors w-full rounded-t-sm" style="height: 75%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">16:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary-container text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">峰值: 18,240</div>
+<div class="bg-primary group-hover:bg-primary-container transition-colors w-full rounded-t-sm" style="height: 90%;"></div>
+<span class="text-[10px] font-bold text-primary mt-2 text-center">18:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/40 group-hover:bg-primary/50 transition-colors w-full rounded-t-sm" style="height: 80%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">20:00</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="bg-primary/20 group-hover:bg-primary/30 transition-colors w-full rounded-t-sm" style="height: 35%;"></div>
+<span class="text-[10px] text-slate-400 mt-2 text-center">22:00</span>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-8 border-t border-slate-100 pt-6">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-blue-50 rounded-lg">
+<span class="material-symbols-outlined text-primary">groups_2</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">平均停留时长</p>
+<p class="text-xl font-bold text-[#1a237e]">124 min</p>
+<p class="text-[10px] text-emerald-600 mt-1 font-semibold">+8.5% 较环比</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-2 bg-orange-50 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container">point_of_sale</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">转化率 (CR)</p>
+<p class="text-xl font-bold text-[#1a237e]">18.2%</p>
+<p class="text-[10px] text-red-500 mt-1 font-semibold">-1.2% 较环比</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Merchant Sales Ranking -->
+<section class="col-span-12 bg-white rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] overflow-hidden">
+<div class="p-6 flex items-center justify-between border-b border-slate-50">
+<div>
+<h4 class="text-lg font-bold text-[#1a237e]">商户销售排行 (TOP 10)</h4>
+<p class="text-xs text-slate-400">实时业绩监测与坪效分析</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/30">
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">排行</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">商户名称</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">业态</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">今日销售额</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">坪效 (¥/m²)</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold text-right">环比趋势</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-black text-primary text-sm">01</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Logo" class="w-6 h-6 object-contain" data-alt="minimalist logo of a premium electronics brand in high-end retail mall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMiTZHicJ4S2o45dqYqJ39ybvZpfm8k9mUHbXvDDfDUj5RqsuDkYv4-MI7tpcogEIXivaupqco36C7erN6NydwnHp0FRKC_HvZA-lgw1oLq4Vk139r738z-Y6OBQE8lQuG6ehyqUEiJ5pfFdLeBbfePv8ss_iMwjnO5yBgAQ7gXNQ_CLHfyE5_lu8c3vWtn3q68xBY4C2IRAzguUJ-u8bUhlPQ8J8k5YK0g-1h00_btuD2oZn8zyhGNz73iyOkSw7R9uX2gqOOS_0"/>
+</div>
+<span class="text-sm font-bold text-slate-800">Apple Store</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-blue-50 text-[#1a237e] text-[10px] font-bold rounded">主力店-数码</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">¥428,000</td>
+<td class="px-6 py-4 text-sm">1,240.00</td>
+<td class="px-6 py-4 text-right">
+<span class="text-emerald-600 font-bold text-xs flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +14.2%
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-black text-slate-400 text-sm">02</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Logo" class="w-6 h-6 object-contain" data-alt="elegant cafe branding icon for a boutique coffee house" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1-HykH3Kh_qWH2YOZTqV6fZ_7NL9o6P0qcOW7axXJ-pDEr-1PUcXojxBYqja5sYEh7750L1k6VchyfLYlN1AKlicYUP_VRwZJSVbvyQiDEozowiadRwT-5TdVRaAPg66H8k3SCu50vbMPJ5uhSyco9IE71cR02GMsVIKF51jc6AqbbFPy0u2hFV60tThBFsOAYagWO0v-UVRkXXk0HJ1imZhFSCZ3V6m01C610MX8-GPXZepl7vr9C6uyPIBm_SAz3bY-it84Rsk"/>
+</div>
+<span class="text-sm font-bold text-slate-800">Manner Coffee</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-orange-50 text-tertiary-container text-[10px] font-bold rounded">配套-餐饮</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">¥12,450</td>
+<td class="px-6 py-4 text-sm">345.50</td>
+<td class="px-6 py-4 text-right">
+<span class="text-emerald-600 font-bold text-xs flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +5.8%
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-black text-slate-400 text-sm">03</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Logo" class="w-6 h-6 object-contain" data-alt="minimalist fashion brand logo icon for upscale clothing store" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfeFwjWvhrs1x5RyjM322tZ9Td3Ywcb68vquZBUXR2XlV8xXbaS8xbIEZqQ_5sIA-mOPDRKvbQcyVQrLbfwbb_r1MDYMXNDKAQr1UF4hfDexAH1DiiP1uB0-aQmt3LpmS_yEl72kdUURiHjvrQCkki8Q4O8QnQn6GmKgM76en3W53bKbjYKwvhbgQuAMu48auK3xxXPY3SI27q2OvQhowRfsLYLD0Y_TtjPdARB9G6yoiTU0-ag1HtBHgQSHG8AcPQlUQDwvvS7ec"/>
+</div>
+<span class="text-sm font-bold text-slate-800">UNIQLO</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 bg-blue-50 text-[#1a237e] text-[10px] font-bold rounded">主力店-服饰</span>
+</td>
+<td class="px-6 py-4 text-sm font-semibold">¥210,800</td>
+<td class="px-6 py-4 text-sm">85.20</td>
+<td class="px-6 py-4 text-right">
+<span class="text-red-500 font-bold text-xs flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span> -2.4%
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-slate-50/50 flex justify-center">
+<button class="text-xs font-bold text-primary hover:tracking-widest transition-all">查看完整排行列表</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB (Only on Dashboard) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

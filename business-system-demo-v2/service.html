@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed-dim": "#ffb59d",
+                "primary-container": "#1a237e",
+                "on-tertiary-fixed": "#390c00",
+                "surface-tint": "#4c56af",
+                "on-secondary-container": "#575b7f",
+                "error": "#ba1a1a",
+                "tertiary": "#380b00",
+                "on-secondary-fixed-variant": "#414467",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#f3faff",
+                "secondary-container": "#d2d4ff",
+                "surface-dim": "#c7dde9",
+                "outline": "#767683",
+                "inverse-primary": "#bdc2ff",
+                "on-tertiary-container": "#e17c5a",
+                "surface-container-lowest": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface": "#f3faff",
+                "secondary": "#585c80",
+                "primary": "#000666",
+                "on-background": "#071e27",
+                "on-primary-container": "#8690ee",
+                "on-secondary-fixed": "#151839",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#cfe6f2",
+                "inverse-surface": "#1e333c",
+                "tertiary-fixed": "#ffdbd0",
+                "on-surface": "#071e27",
+                "secondary-fixed": "#e0e0ff",
+                "on-primary-fixed-variant": "#343d96",
+                "surface-variant": "#cfe6f2",
+                "inverse-on-surface": "#dff4ff",
+                "outline-variant": "#c6c5d4",
+                "primary-fixed-dim": "#bdc2ff",
+                "tertiary-container": "#5c1800",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-primary-fixed": "#000767",
+                "primary-fixed": "#e0e0ff",
+                "surface-container": "#dbf1fe",
+                "surface-container-low": "#e6f6ff",
+                "on-tertiary-fixed-variant": "#7b2e12",
+                "secondary-fixed-dim": "#c1c3ed",
+                "surface-container-high": "#d5ecf8",
+                "on-surface-variant": "#454652",
+                "background": "#f3faff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "fontFamily": {
+                "headline": ["Inter", "Noto Sans SC"],
+                "body": ["Inter", "Noto Sans SC"],
+                "label": ["Inter", "Noto Sans SC"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cfe6f2; border-radius: 10px; }
+    </style>
+<link href="site.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white" data-page="service.html">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-4 overflow-y-auto shadow-none border-r border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 ease-in-out z-50">
+<div class="flex items-center gap-2.5 mb-8 px-2">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg shrink-0">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="min-w-0">
+<h1 class="text-[17px] leading-none font-bold tracking-tight whitespace-nowrap text-[#1a237e] dark:text-white">智汇商业管理系统</h1>
+<p class="text-[11px] mt-1 text-slate-500 font-medium whitespace-nowrap">数字策展人后台</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="index.html">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-sm">演示总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="dashboard.html">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm">数据看板</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="reports.html">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="text-sm">报表中心</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="leasing.html">
+<span class="material-symbols-outlined text-xl">business_center</span>
+<span class="text-sm">招商管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="assets.html">
+<span class="material-symbols-outlined text-xl">domain</span>
+<span class="text-sm">资产与铺位</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="merchants.html">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-sm">商户管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="fitout.html">
+<span class="material-symbols-outlined text-xl">architecture</span>
+<span class="text-sm">设计装修</span>
+</a>
+<div class="px-2 py-2 text-[#1a237e] dark:text-blue-400 font-semibold bg-white/50 dark:bg-slate-800/50 rounded-lg flex items-center gap-3 group transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="text-sm">租户服务</span>
+</div>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="field-ops.html">
+<span class="material-symbols-outlined text-xl">visibility</span>
+<span class="text-sm">物业巡检</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="operations.html">
+<span class="material-symbols-outlined text-xl">engineering</span>
+<span class="text-sm">设备与运营</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="analytics.html">
+<span class="material-symbols-outlined text-xl">bolt</span>
+<span class="text-sm">经营分析</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="inventory.html">
+<span class="material-symbols-outlined text-xl">inventory</span>
+<span class="text-sm">进销存管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="catalog.html">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="text-sm">商品档案</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">设置与总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">help</span>
+<span class="text-sm">帮助中心</span>
+</a>
+</div>
+</aside>
+
+<!-- SideNavBar Anchor -->
+
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-30 flex items-center justify-between px-8 h-16 ml-64 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-100 dark:border-slate-900">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-[#1a237e] dark:text-blue-400">商业地产管理矩阵</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#1a237e] transition-colors text-sm font-medium" href="dashboard.html">数据看板</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#1a237e] transition-colors text-sm font-medium" href="assets.html">资产全景</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#1a237e] transition-colors text-sm font-medium" href="reports.html">报表中心</a>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="搜索客诉订单..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors relative">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-slate-600">apps</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">林经理</p>
+<p class="text-[10px] text-slate-500">运营总监</p>
+</div>
+<img alt="管理员头像" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="professional middle-aged asian businessman in a suit smiling, corporate headshot with clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcPkz70Y5g6l43Tuq4f1gYPGN5m3OPEG577_0danjyQTKngMPHkk8L-GYvOAx4IvwK-qyvuLwMa57re6NRsRkLvEkfUqPLK6JCNMz-jRn388nFZvREo-CGppsvuFWgEEugSKn2La3iUCyjto0Cddv0C4XwQmgOWiCnawpeoA5Fu86-iNQMkHWn2jTnThK3Oyyntjf0IEpkeNxXTdFkpbsOh2iAy0s_CrEAXH9zVuWcPnyyYsU01MYh19uthTgMFuoz6GpoNfuyykA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<!-- Metric Theater -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-slate-500 text-sm font-medium">活跃投诉总数</span>
+<span class="material-symbols-outlined text-primary-container bg-primary/10 p-2 rounded-lg" style="font-variation-settings: 'FILL' 1;">assignment_late</span>
+</div>
+<div>
+<h2 class="text-4xl font-black text-primary tracking-tight">42</h2>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-error text-sm">trending_up</span>
+<span class="text-error text-xs font-bold">+12.5%</span>
+<span class="text-slate-400 text-xs ml-1">较上周</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-slate-500 text-sm font-medium">结案解决率</span>
+<span class="material-symbols-outlined text-green-600 bg-green-50 p-2 rounded-lg" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<h2 class="text-4xl font-black text-primary tracking-tight">94.2%</h2>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-green-600 text-sm">trending_up</span>
+<span class="text-green-600 text-xs font-bold">+2.1%</span>
+<span class="text-slate-400 text-xs ml-1">目标: 95%</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-slate-500 text-sm font-medium">平均响应耗时</span>
+<span class="material-symbols-outlined text-amber-600 bg-amber-50 p-2 rounded-lg" style="font-variation-settings: 'FILL' 1;">avg_time</span>
+</div>
+<div>
+<h2 class="text-4xl font-black text-primary tracking-tight">18<span class="text-xl">min</span></h2>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-green-600 text-sm">trending_down</span>
+<span class="text-green-600 text-xs font-bold">-4min</span>
+<span class="text-slate-400 text-xs ml-1">效率提升</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_40px_rgba(7,30,39,0.06)] flex flex-col justify-between overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-slate-500 text-sm font-medium">租户满意度指数</span>
+<span class="material-symbols-outlined text-blue-600 bg-blue-50 p-2 rounded-lg" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
+</div>
+<div>
+<h2 class="text-4xl font-black text-primary tracking-tight">4.8<span class="text-xl">/5</span></h2>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex">
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="text-slate-400 text-xs font-medium">基于 856 份反馈</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Content Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Complaints List (Left Column) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-2xl shadow-[0_12px_40px_rgba(7,30,39,0.04)] flex flex-col">
+<div class="px-8 py-6 flex justify-between items-center border-b border-slate-50">
+<div>
+<h3 class="text-xl font-bold text-primary">实时工单流</h3>
+<p class="text-xs text-slate-400 mt-1">当前共有 12 条待处理工单</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-semibold bg-primary text-white rounded-lg hover:bg-primary-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                            手动创建工单
+                        </button>
+<button class="p-2 border border-slate-100 rounded-lg hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-slate-500 text-xl">filter_list</span>
+</button>
+</div>
+</div>
+<div class="p-4 overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-3">
+<thead>
+<tr class="text-slate-400 text-[10px] uppercase tracking-widest px-4">
+<th class="pb-2 pl-4">客户/租户信息</th>
+<th class="pb-2">投诉内容</th>
+<th class="pb-2">优先级</th>
+<th class="pb-2">状态</th>
+<th class="pb-2 pr-4 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="space-y-4">
+<!-- New Complaint -->
+<tr class="group hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="py-4 pl-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">星巴克</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Starbucks (L1-008)</p>
+<p class="text-[10px] text-slate-400">报送人: 陈经理 · 5分钟前</p>
+</div>
+</div>
+</td>
+<td class="py-4">
+<p class="text-sm font-medium text-slate-600 truncate max-w-[200px]">商铺后门漏水，影响日常营业，需紧急排水维修...</p>
+</td>
+<td class="py-4">
+<span class="px-2 py-1 bg-red-50 text-error text-[10px] font-bold rounded-full border border-red-100">紧急 P0</span>
+</td>
+<td class="py-4">
+<span class="flex items-center gap-1.5 text-blue-600 font-bold text-xs">
+<span class="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                                        待受理
+                                    </span>
+</td>
+<td class="py-4 pr-4 text-right rounded-r-xl">
+<button class="text-primary hover:underline text-xs font-bold">立即分配</button>
+</td>
+</tr>
+<!-- Processing Complaint -->
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pl-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs">私域</div>
+<div>
+<p class="text-sm font-bold text-on-surface">张女士 (VIP顾客)</p>
+<p class="text-[10px] text-slate-400">报送人: 线上客服 · 2小时前</p>
+</div>
+</div>
+</td>
+<td class="py-4">
+<p class="text-sm font-medium text-slate-600 truncate max-w-[200px]">洗手间卫生状况不佳，且烘手机无法正常使用。</p>
+</td>
+<td class="py-4">
+<span class="px-2 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold rounded-full border border-amber-100">中等 P2</span>
+</td>
+<td class="py-4">
+<span class="flex items-center gap-1.5 text-amber-500 font-bold text-xs">
+<span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>
+                                        处理中
+                                    </span>
+</td>
+<td class="py-4 pr-4 text-right rounded-r-xl">
+<button class="text-primary hover:underline text-xs font-bold">查看详情</button>
+</td>
+</tr>
+<!-- Resolved Complaint -->
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pl-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs">Nike</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Nike (L2-015)</p>
+<p class="text-[10px] text-slate-400">报送人: 李店长 · 昨天</p>
+</div>
+</div>
+</td>
+<td class="py-4">
+<p class="text-sm font-medium text-slate-400 line-through truncate max-w-[200px]">空调温度过高，进店顾客体感不适。</p>
+</td>
+<td class="py-4">
+<span class="px-2 py-1 bg-slate-100 text-slate-400 text-[10px] font-bold rounded-full">低 P3</span>
+</td>
+<td class="py-4">
+<span class="flex items-center gap-1.5 text-green-600 font-bold text-xs">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                                        已结案
+                                    </span>
+</td>
+<td class="py-4 pr-4 text-right rounded-r-xl">
+<button class="text-slate-400 hover:text-primary text-xs font-bold">评价</button>
+</td>
+</tr>
+<!-- More entries... -->
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-4 pl-4 rounded-l-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs">Zara</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Zara (L1-020)</p>
+<p class="text-[10px] text-slate-400">报送人: 王店长 · 3小时前</p>
+</div>
+</div>
+</td>
+<td class="py-4">
+<p class="text-sm font-medium text-slate-600 truncate max-w-[200px]">货梯维护占用了高峰期，导致到货积压。</p>
+</td>
+<td class="py-4">
+<span class="px-2 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold rounded-full border border-amber-100">高 P1</span>
+</td>
+<td class="py-4">
+<span class="flex items-center gap-1.5 text-blue-600 font-bold text-xs">
+<span class="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                                        待受理
+                                    </span>
+</td>
+<td class="py-4 pr-4 text-right rounded-r-xl">
+<button class="text-primary hover:underline text-xs font-bold">立即分配</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-auto px-8 py-4 border-t border-slate-50 flex justify-between items-center text-[10px] text-slate-400">
+<span>显示 1-4 条，共计 12 条记录</span>
+<div class="flex gap-1">
+<button class="w-6 h-6 flex items-center justify-center border border-slate-100 rounded bg-white text-slate-300">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center border border-primary-container rounded bg-primary text-white font-bold">1</button>
+<button class="w-6 h-6 flex items-center justify-center border border-slate-100 rounded bg-white hover:bg-slate-50">2</button>
+<button class="w-6 h-6 flex items-center justify-center border border-slate-100 rounded bg-white hover:bg-slate-50">3</button>
+<button class="w-6 h-6 flex items-center justify-center border border-slate-100 rounded bg-white hover:bg-slate-50 text-slate-600">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Analysis & Trends (Right Column) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Complaint Types Analysis -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0_12px_40px_rgba(7,30,39,0.04)] border border-white/50">
+<h3 class="text-lg font-bold text-primary mb-6">投诉类型构成</h3>
+<div class="relative h-48 flex items-center justify-center mb-8">
+<!-- Custom CSS Donut Chart Visualization -->
+<div class="w-32 h-32 rounded-full border-[14px] border-slate-100 relative">
+<!-- Visual representation of percentages -->
+<div class="absolute inset-[-14px] rounded-full border-[14px] border-transparent border-t-primary-container border-r-primary-container rotate-[30deg]"></div>
+<div class="absolute inset-[-14px] rounded-full border-[14px] border-transparent border-l-on-tertiary-container rotate-[-45deg]"></div>
+<div class="absolute inset-[-14px] rounded-full border-[14px] border-transparent border-b-green-500 rotate-[60deg]"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-xl font-black text-primary">856</span>
+<span class="text-[8px] text-slate-400">总计报告</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="text-xs text-slate-600">硬件设施损坏</span>
+</div>
+<span class="text-xs font-bold text-primary">42%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-on-tertiary-container"></span>
+<span class="text-xs text-slate-600">服务态度投诉</span>
+</div>
+<span class="text-xs font-bold text-primary">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+<span class="text-xs text-slate-600">环境卫生问题</span>
+</div>
+<span class="text-xs font-bold text-primary">15%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+<span class="text-xs text-slate-600">其他诉求</span>
+</div>
+<span class="text-xs font-bold text-primary">15%</span>
+</div>
+</div>
+</div>
+<!-- Trend Chart -->
+<div class="bg-primary text-white p-6 rounded-2xl shadow-[0_12px_40px_rgba(26,35,126,0.2)] relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-lg font-bold">投诉趋势分析</h3>
+<p class="text-xs text-on-primary-container mt-1">最近 30 天统计</p>
+</div>
+<span class="material-symbols-outlined text-white/50">insights</span>
+</div>
+<!-- Simplified Visual Graph Area -->
+<div class="h-32 flex items-end gap-1 px-2 mb-4">
+<div class="flex-1 bg-white/10 h-[20%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/10 h-[35%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/20 h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/20 h-[45%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/40 h-[75%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/60 h-[90%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/30 h-[50%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/10 h-[25%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/40 h-[65%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/100 h-[100%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/60 h-[70%] rounded-t-sm"></div>
+<div class="flex-1 bg-white/20 h-[40%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between text-[8px] text-white/40 uppercase font-bold tracking-widest px-2">
+<span>01 Nov</span>
+<span>15 Nov</span>
+<span>30 Nov</span>
+</div>
+<div class="mt-6 flex items-center justify-between bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+<div>
+<p class="text-[10px] text-on-primary-container">最高峰值</p>
+<p class="text-xl font-bold">24 次/日</p>
+</div>
+<div class="h-8 w-[1px] bg-white/10"></div>
+<div class="text-right">
+<p class="text-[10px] text-on-primary-container">波动率</p>
+<p class="text-xl font-bold text-on-tertiary-container">+4.2%</p>
+</div>
+</div>
+</div>
+<!-- Recent Feedback Card -->
+<div class="bg-surface-container-high p-6 rounded-2xl">
+<h4 class="text-sm font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span>
+                        最近解决反馈
+                    </h4>
+<div class="space-y-4">
+<div class="bg-white p-3 rounded-lg shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="close-up portrait of a young professional woman with glasses, light skin, looking at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE21HWL3Tq9VEPkrWIWu3BsUZlvq7ZzJghN5xxt9beLCanNN7whYN4IGylt2d18A0zr_v1CqjnBmnTeaJq4Of84ld2oDQdSBV7a2cY4pJlgH25wurZHt-rgxtYWPpL7GrwaIxr-Vd4kK0jjA-rYvHC2rVnTyStOLRpGystpJVl8JaxqVlLT_Nika-oFcChYXj0bLUHSQHUPjaIC1v2rJuhHsWLnClCT7-NIKT4LNr8SI58O1fm1KPpDRcbhe7YHycs_PYjTRd4K2w"/>
+<span class="text-[10px] font-bold">周女士</span>
+<div class="flex ml-auto">
+<span class="material-symbols-outlined text-amber-400 text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-amber-400 text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-[10px] text-slate-500 italic">“处理速度非常快，维修人员态度专业，给五星好评！”</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Only for Home/Dashboard logic -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">add</span>
+<div class="absolute right-16 px-4 py-2 bg-on-background text-white text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none transition-opacity">
+            快速建单
+        </div>
+</button>
+</body></html>

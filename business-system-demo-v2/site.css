@@ -1,0 +1,128 @@
+:root {
+  color-scheme: light;
+  --demo-sidebar-width: 256px;
+  --demo-primary: #1a237e;
+  --demo-text: #0f172a;
+  --demo-muted: #5b6475;
+  --demo-border: rgba(15, 23, 42, 0.08);
+}
+
+.demo-login-page .demo-login-shell {
+  margin-left: 0;
+  width: 100%;
+}
+
+.demo-home {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(26, 35, 126, 0.12), transparent 34%),
+    linear-gradient(180deg, #f4f8ff, #eef3fb 55%, #f8fbff);
+  color: var(--demo-text);
+  font-family: Inter, "Noto Sans SC", sans-serif;
+}
+
+.demo-home__shell {
+  max-width: 1200px;
+  width: calc(100% - var(--demo-sidebar-width) - 56px);
+  margin: 0 0 0 calc(var(--demo-sidebar-width) + 28px);
+  padding: 56px 28px 64px;
+}
+
+.demo-home__hero {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+}
+
+.demo-home__eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--demo-primary);
+}
+
+.demo-home__hero h1 {
+  margin: 10px 0 8px;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.demo-home__hero p {
+  margin: 0;
+  max-width: 760px;
+  color: var(--demo-muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.demo-home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.demo-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.demo-card__route {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(26, 35, 126, 0.08);
+  color: var(--demo-primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.demo-card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.demo-card p {
+  margin: 0 0 16px;
+  color: var(--demo-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.demo-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #1a237e, #4c56af);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  :root { --demo-sidebar-width: 232px; }
+}
+
+@media (max-width: 760px) {
+  :root { --demo-sidebar-width: 0px; }
+
+  .demo-home__shell {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .demo-login-page .demo-login-shell {
+    margin-left: 0;
+    width: 100%;
+  }
+}

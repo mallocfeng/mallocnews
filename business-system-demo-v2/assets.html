@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "primary-container": "#1a237e",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-tint": "#4c56af",
+                        "on-secondary-container": "#575b7f",
+                        "error": "#ba1a1a",
+                        "tertiary": "#380b00",
+                        "on-secondary-fixed-variant": "#414467",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f3faff",
+                        "secondary-container": "#d2d4ff",
+                        "surface-dim": "#c7dde9",
+                        "outline": "#767683",
+                        "inverse-primary": "#bdc2ff",
+                        "on-tertiary-container": "#e17c5a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f3faff",
+                        "secondary": "#585c80",
+                        "primary": "#000666",
+                        "on-background": "#071e27",
+                        "on-primary-container": "#8690ee",
+                        "on-secondary-fixed": "#151839",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#cfe6f2",
+                        "inverse-surface": "#1e333c",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-surface": "#071e27",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-primary-fixed-variant": "#343d96",
+                        "surface-variant": "#cfe6f2",
+                        "inverse-on-surface": "#dff4ff",
+                        "outline-variant": "#c6c5d4",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "tertiary-container": "#5c1800",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#000767",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-container": "#dbf1fe",
+                        "surface-container-low": "#e6f6ff",
+                        "on-tertiary-fixed-variant": "#7b2e12",
+                        "secondary-fixed-dim": "#c1c3ed",
+                        "surface-container-high": "#d5ecf8",
+                        "on-surface-variant": "#454652",
+                        "background": "#f3faff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "PingFang SC"],
+                        "body": ["Inter", "PingFang SC"],
+                        "label": ["Inter", "PingFang SC"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cfe6f2; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1a237e; }
+    </style>
+<link href="site.css" rel="stylesheet"/></head>
+<body class="bg-surface font-body text-on-surface antialiased" data-page="assets.html">
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-4 overflow-y-auto shadow-none border-r border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 ease-in-out z-50">
+<div class="flex items-center gap-2.5 mb-8 px-2">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg shrink-0">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="min-w-0">
+<h1 class="text-[17px] leading-none font-bold tracking-tight whitespace-nowrap text-[#1a237e] dark:text-white">智汇商业管理系统</h1>
+<p class="text-[11px] mt-1 text-slate-500 font-medium whitespace-nowrap">数字策展人后台</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="index.html">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-sm">演示总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="dashboard.html">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm">数据看板</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="reports.html">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="text-sm">报表中心</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="leasing.html">
+<span class="material-symbols-outlined text-xl">business_center</span>
+<span class="text-sm">招商管理</span>
+</a>
+<div class="px-2 py-2 text-[#1a237e] dark:text-blue-400 font-semibold bg-white/50 dark:bg-slate-800/50 rounded-lg flex items-center gap-3 group transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">domain</span>
+<span class="text-sm">资产与铺位</span>
+</div>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="merchants.html">
+<span class="material-symbols-outlined text-xl">storefront</span>
+<span class="text-sm">商户管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="fitout.html">
+<span class="material-symbols-outlined text-xl">architecture</span>
+<span class="text-sm">设计装修</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="service.html">
+<span class="material-symbols-outlined text-xl">support_agent</span>
+<span class="text-sm">租户服务</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="field-ops.html">
+<span class="material-symbols-outlined text-xl">visibility</span>
+<span class="text-sm">物业巡检</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="operations.html">
+<span class="material-symbols-outlined text-xl">engineering</span>
+<span class="text-sm">设备与运营</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="analytics.html">
+<span class="material-symbols-outlined text-xl">bolt</span>
+<span class="text-sm">经营分析</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="inventory.html">
+<span class="material-symbols-outlined text-xl">inventory</span>
+<span class="text-sm">进销存管理</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#1a237e] rounded-lg flex items-center gap-3 transition-all duration-300" href="catalog.html">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="text-sm">商品档案</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">设置与总览</span>
+</a>
+<a class="px-2 py-2 text-slate-600 dark:text-slate-400 hover:bg-blue-50 rounded-lg flex items-center gap-3 transition-all" href="index.html">
+<span class="material-symbols-outlined text-xl">help</span>
+<span class="text-sm">帮助中心</span>
+</a>
+</div>
+</aside>
+
+<!-- SideNavBar Anchor -->
+
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/85 backdrop-blur-md border-b border-slate-100 z-40 flex items-center justify-between px-8">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="搜索铺位、品牌或合同..." type="text"/>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-500 hover:text-[#1a237e] transition-colors" href="dashboard.html">数据看板</a>
+<a class="text-sm font-medium text-[#1a237e] border-b-2 border-[#1a237e] pb-1" href="assets.html">资产全景</a>
+<a class="text-sm font-medium text-slate-500 hover:text-[#1a237e] transition-colors" href="reports.html">报表中心</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-primary">李管理</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-wider">Senior Manager</p>
+</div>
+<img alt="管理员头像" class="w-10 h-10 rounded-full border-2 border-primary/10" data-alt="Professional male avatar with glasses and business attire, minimalist illustration style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWoxrOuH8jHM_IPKoB2SODHvu6__gkdShPqeDQcy1krBW7sVrifuskPrpT60vdSGV1acPVv0HCl05baDagB4FpATCNPl4BCphfwilFAKnRaT1Ggig8yyB6BAC9YtIZvbyaA6zAZdMH-zgACGOPOPg7hWRBBiBAzOLH5kDqQu1JDYKbUuzbqb3T6QVWAOEqLRh2TTZ3UWnqWN6tDXa_P80a0j9Kn2mPvBG44Cdhgw4Tu3PEkRdfEKVxGl2KzaXOlGnJqGHYe9ObX6w"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 pt-24 p-8 min-h-screen">
+<!-- Metric Theater -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-50 group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-primary/5 text-primary rounded-lg">
+<span class="material-symbols-outlined" data-icon="apartment">apartment</span>
+</span>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">稳定运行</span>
+</div>
+<h3 class="text-sm text-slate-500 mb-1">总铺位数量</h3>
+<div class="text-3xl font-black text-primary tracking-tight">1,248 <span class="text-sm font-normal text-slate-400">个</span></div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-50 group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-tertiary-fixed-dim/20 text-tertiary-container rounded-lg">
+<span class="material-symbols-outlined" data-icon="percent">percent</span>
+</span>
+<span class="text-[10px] font-bold text-primary bg-secondary-container px-2 py-1 rounded">+2.4% MoM</span>
+</div>
+<h3 class="text-sm text-slate-500 mb-1">当前出租率</h3>
+<div class="text-3xl font-black text-primary tracking-tight">94.2 <span class="text-sm font-normal text-slate-400">%</span></div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-50 group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-secondary-container text-primary rounded-lg">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+</span>
+<span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">即将到期 12</span>
+</div>
+<h3 class="text-sm text-slate-500 mb-1">待租/空置铺位</h3>
+<div class="text-3xl font-black text-primary tracking-tight">72 <span class="text-sm font-normal text-slate-400">个</span></div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-50 group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-primary-container text-white rounded-lg">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</span>
+<span class="text-[10px] font-bold text-primary bg-surface-container-highest px-2 py-1 rounded">本月目标 98%</span>
+</div>
+<h3 class="text-sm text-slate-500 mb-1">租金收缴率</h3>
+<div class="text-3xl font-black text-primary tracking-tight">89.5 <span class="text-sm font-normal text-slate-400">%</span></div>
+</div>
+</section>
+<!-- Dynamic Content Area (Bento Layout) -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Floor Plan & Navigation (Left 8 Columns) -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Interactive Map Section -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 overflow-hidden relative">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-extrabold text-primary mb-1">楼层交互全景 (F2)</h2>
+<p class="text-xs text-slate-400">点击铺位查看详细经营数据与租赁状态</p>
+</div>
+<div class="flex gap-2">
+<select class="bg-surface-container-low border-none rounded-lg text-xs font-bold text-primary px-3 py-2 outline-none">
+<option>L2 - 潮流零售</option>
+<option>L1 - 国际奢侈品</option>
+<option>B1 - 精品超市</option>
+</select>
+<div class="flex bg-surface-container-low rounded-lg p-1">
+<button class="p-1 px-3 bg-white shadow-sm rounded-md text-xs font-bold text-primary">地图</button>
+<button class="p-1 px-3 text-xs font-bold text-slate-400">列表</button>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="relative aspect-video rounded-xl bg-slate-50 overflow-hidden flex items-center justify-center border border-slate-100 group">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#1a237e 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+<!-- Simulated Floor Plan Layout -->
+<div class="relative w-4/5 h-4/5 grid grid-cols-6 grid-rows-4 gap-2">
+<!-- Shop Blocks -->
+<div class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">A201 - Apple Store</div>
+<div class="col-span-1 row-span-1 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">A202</div>
+<div class="col-span-1 row-span-1 bg-amber-100/60 border-2 border-amber-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-amber-700 hover:bg-amber-200/80 cursor-pointer transition-all">A203 (欠费)</div>
+<div class="col-span-2 row-span-1 bg-slate-100/60 border-2 border-slate-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-slate-700 hover:bg-slate-200/80 cursor-pointer transition-all">A204 (空置)</div>
+<div class="col-span-1 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">B201</div>
+<div class="col-span-3 row-span-1 bg-blue-50/50 border-2 border-primary/20 rounded-lg flex items-center justify-center text-[10px] font-bold text-primary hover:bg-blue-100/50 cursor-pointer transition-all">中央中庭区域</div>
+<div class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">C201 - Nike</div>
+</div>
+<!-- Zoom Controls -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-sm">add</span></button>
+<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-sm">remove</span></button>
+</div>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-sm border border-slate-100">
+<div class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 已租</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span> 空置</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 异常</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Shop List with Filters -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-primary">铺位清单详情</h2>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span> 筛选
+                            </button>
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> 导出数据报告
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-[11px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-50">
+<th class="pb-4 font-black">铺位号</th>
+<th class="pb-4 font-black">品牌/租户</th>
+<th class="pb-4 font-black">面积 (m²)</th>
+<th class="pb-4 font-black">业态类型</th>
+<th class="pb-4 font-black">租约状态</th>
+<th class="pb-4 font-black">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">A-201</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-[10px] font-bold">AP</div>
+<span class="text-sm font-medium">Apple Store</span>
+</div>
+</td>
+<td class="py-4 text-sm font-mono">420.50</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-0.5 rounded">电子科技</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-emerald-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 履约中</span></td>
+<td class="py-4">
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">arrow_forward_ios</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">A-204</td>
+<td class="py-4"><span class="text-sm font-medium text-slate-400 italic">暂无租户</span></td>
+<td class="py-4 text-sm font-mono">156.20</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded">待招商</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-slate-400"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> 空置中</span></td>
+<td class="py-4">
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">add_circle</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">C-201</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-[10px] font-bold">NK</div>
+<span class="text-sm font-medium">Nike Beacon</span>
+</div>
+</td>
+<td class="py-4 text-sm font-mono">680.00</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-orange-50 text-orange-600 px-2 py-0.5 rounded">运动户外</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-amber-600"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 租金逾期</span></td>
+<td class="py-4">
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">priority_high</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Shop Details & Documents (Right 4 Columns) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Shop Profile Card -->
+<div class="bg-[#1a237e] rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="flex items-start justify-between mb-6">
+<div>
+<span class="text-[10px] font-black uppercase tracking-widest text-white/50">当前选中资产</span>
+<h2 class="text-2xl font-black mt-1">A-201 Apple Store</h2>
+</div>
+<span class="p-2 bg-white/10 rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">info</span>
+</span>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-xs text-white/60">签约起止</span>
+<span class="text-sm font-bold">2023.01 - 2028.12</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-xs text-white/60">月基准租金</span>
+<span class="text-sm font-bold">¥ 450,000.00</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-xs text-white/60">物业费标准</span>
+<span class="text-sm font-bold">¥ 45.00/m²/月</span>
+</div>
+</div>
+<button class="w-full py-3 bg-white text-primary rounded-xl font-black text-sm hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
+                            编辑铺位信息 <span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+</div>
+<!-- Documents Section -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+<h3 class="text-sm font-black text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">folder_open</span> 资产技术文档
+                    </h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-700">A-201_建筑施工图纸.pdf</p>
+<p class="text-[10px] text-slate-400">12.4 MB · 2023/12/01 更新</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">electric_bolt</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-700">水电点位分布及荷载.dwg</p>
+<p class="text-[10px] text-slate-400">4.1 MB · 2024/02/15 更新</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-700">品牌方装修规范要求.pdf</p>
+<p class="text-[10px] text-slate-400">2.8 MB · 2024/03/10 更新</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border-2 border-dashed border-slate-200 rounded-xl text-xs font-bold text-slate-400 hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> 上传新文件
+                    </button>
+</div>
+<!-- Utilities Chart Placeholder -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+<h3 class="text-sm font-black text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">bolt</span> 能耗实时监控
+                    </h3>
+<div class="h-40 w-full relative flex items-end gap-1 px-2 pt-8">
+<!-- Simulated Bar Chart -->
+<div class="flex-1 bg-primary/10 rounded-t-sm h-[60%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">85%</div>
+</div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[85%] group relative"></div>
+<div class="flex-1 bg-primary/30 rounded-t-sm h-[70%] group relative"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[95%] group relative"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm h-[80%] group relative"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[65%] group relative"></div>
+<div class="flex-1 bg-primary/80 rounded-t-sm h-[90%] group relative"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[75%] group relative"></div>
+</div>
+<div class="flex justify-between mt-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Today</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Action (Suppressed on details focus but shown here for main dashboard context) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform" data-icon="add">add</span>
+<div class="absolute right-16 px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            新增铺位/招商项目
+        </div>
+</button>
+</body></html>

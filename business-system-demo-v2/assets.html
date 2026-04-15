@@ -251,7 +251,7 @@
 <div class="flex items-center justify-between mb-8">
 <div>
 <h2 class="text-xl font-extrabold text-primary mb-1">楼层交互全景 (F2)</h2>
-<p class="text-xs text-slate-400">点击铺位查看详细经营数据与租赁状态</p>
+<p class="text-xs text-slate-400">点击铺位查看内部结构图、经营数据与租赁状态，可返回继续浏览其他铺位</p>
 </div>
 <div class="flex gap-2">
 <select class="bg-surface-container-low border-none rounded-lg text-xs font-bold text-primary px-3 py-2 outline-none">
@@ -266,25 +266,77 @@
 </div>
 </div>
 <!-- Map Placeholder -->
-<div class="relative aspect-video rounded-xl bg-slate-50 overflow-hidden flex items-center justify-center border border-slate-100 group">
+<div class="relative aspect-video rounded-xl bg-slate-50 overflow-hidden flex items-center justify-center border border-slate-100 group" id="floor-map-shell">
 <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#1a237e 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
-<!-- Simulated Floor Plan Layout -->
-<div class="relative w-4/5 h-4/5 grid grid-cols-6 grid-rows-4 gap-2">
-<!-- Shop Blocks -->
-<div class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">A201 - Apple Store</div>
-<div class="col-span-1 row-span-1 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">A202</div>
-<div class="col-span-1 row-span-1 bg-amber-100/60 border-2 border-amber-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-amber-700 hover:bg-amber-200/80 cursor-pointer transition-all">A203 (欠费)</div>
-<div class="col-span-2 row-span-1 bg-slate-100/60 border-2 border-slate-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-slate-700 hover:bg-slate-200/80 cursor-pointer transition-all">A204 (空置)</div>
-<div class="col-span-1 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">B201</div>
-<div class="col-span-3 row-span-1 bg-blue-50/50 border-2 border-primary/20 rounded-lg flex items-center justify-center text-[10px] font-bold text-primary hover:bg-blue-100/50 cursor-pointer transition-all">中央中庭区域</div>
-<div class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all">C201 - Nike</div>
+<div class="relative w-4/5 h-4/5" id="floor-overview-stage">
+<div class="relative w-full h-full grid grid-cols-6 grid-rows-4 gap-2" id="floor-overview-grid">
+<button class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="a201" type="button">
+<span>A201 - Apple Store</span>
+<span class="mt-1 text-[9px] font-medium text-emerald-600/90">点击看内部结构</span>
+</button>
+<button class="col-span-1 row-span-1 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="a202" type="button">
+<span>A202</span>
+<span class="mt-1 text-[9px] font-medium text-emerald-600/90">轻奢配饰</span>
+</button>
+<button class="col-span-1 row-span-1 bg-amber-100/60 border-2 border-amber-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-amber-700 hover:bg-amber-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="a203" type="button">
+<span>A203 (欠费)</span>
+<span class="mt-1 text-[9px] font-medium text-amber-700/90">查看欠费点位</span>
+</button>
+<button class="col-span-2 row-span-1 bg-slate-100/60 border-2 border-slate-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-slate-700 hover:bg-slate-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="a204" type="button">
+<span>A204 (空置)</span>
+<span class="mt-1 text-[9px] font-medium text-slate-500">招商方案预览</span>
+</button>
+<button class="col-span-1 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="b201" type="button">
+<span>B201</span>
+<span class="mt-1 text-[9px] font-medium text-emerald-600/90">美妆集合</span>
+</button>
+<div class="col-span-3 row-span-1 bg-blue-50/50 border-2 border-primary/20 rounded-lg flex items-center justify-center text-[10px] font-bold text-primary">中央中庭区域</div>
+<button class="col-span-2 row-span-2 bg-emerald-100/60 border-2 border-emerald-500/30 rounded-lg flex flex-col items-center justify-center text-[10px] font-bold text-emerald-700 hover:bg-emerald-200/80 cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-primary/20" data-shop-id="c201" type="button">
+<span>C201 - Nike</span>
+<span class="mt-1 text-[9px] font-medium text-emerald-600/90">运动体验店</span>
+</button>
+</div>
+</div>
+<div class="absolute inset-6 hidden overflow-y-auto rounded-[24px] border border-slate-100 bg-white/90 backdrop-blur-xl shadow-[0_18px_60px_rgba(7,30,39,0.10)]" id="shop-detail-stage">
+<div class="flex min-h-full flex-col p-5">
+<div class="mb-4 flex items-center justify-between gap-4">
+<div>
+<div class="mb-2 flex items-center gap-2">
+<button class="inline-flex items-center gap-1 rounded-full bg-surface-container-low px-3 py-1 text-[11px] font-bold text-primary transition hover:bg-surface-container-high" id="shop-detail-back" type="button"><span class="material-symbols-outlined text-sm">arrow_back</span> 返回楼层总览</button>
+<span class="rounded-full bg-primary/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-primary" id="shop-detail-badge">内部结构</span>
+</div>
+<h3 class="text-lg font-black text-primary" id="shop-detail-title">A201 - Apple Store</h3>
+<p class="mt-1 text-xs text-slate-500" id="shop-detail-subtitle">展示该铺位的前场、中岛、收银与仓储动线。</p>
+</div>
+<div class="flex items-center gap-2 text-[11px] font-semibold">
+<span class="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700" id="shop-detail-status-pill">履约中</span>
+<span class="rounded-full bg-slate-100 px-3 py-1 text-slate-500" id="shop-detail-floor-pill">F2 / L2</span>
+</div>
+</div>
+<div class="grid min-h-0 flex-1 gap-4 lg:grid-cols-[1.4fr_0.8fr]">
+<div class="rounded-[22px] border border-slate-100 bg-slate-50 p-4">
+<div class="mb-3 flex items-center justify-between">
+<p class="text-xs font-black uppercase tracking-[0.22em] text-slate-400">Store Layout</p>
+<p class="text-xs font-semibold text-slate-500" id="shop-detail-area-line">建筑面积 420.50 m²</p>
+</div>
+<div class="grid h-[320px] grid-cols-6 grid-rows-4 gap-3" id="shop-layout-grid"></div>
+</div>
+<div class="space-y-4">
+<div class="rounded-[22px] bg-[#1a237e] p-4 text-white">
+<p class="text-[11px] font-black uppercase tracking-[0.18em] text-white/55">经营提示</p>
+<p class="mt-3 text-sm leading-6 text-white/90" id="shop-detail-tip">该店以新品陈列和体验咨询为主，入口区域需要维持强曝光。</p>
+</div>
+<div class="grid gap-3" id="shop-detail-metrics"></div>
+</div>
+</div>
+</div>
 </div>
 <!-- Zoom Controls -->
-<div class="absolute bottom-4 right-4 flex flex-col gap-2">
-<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-sm">add</span></button>
-<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-sm">remove</span></button>
+<div class="absolute bottom-4 right-4 flex flex-col gap-2" id="floor-map-controls">
+<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" type="button"><span class="material-symbols-outlined text-sm">add</span></button>
+<button class="w-8 h-8 bg-white shadow-md rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" type="button"><span class="material-symbols-outlined text-sm">remove</span></button>
 </div>
-<div class="absolute top-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-sm border border-slate-100">
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-sm border border-slate-100" id="floor-map-legend">
 <div class="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-400">
 <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 已租</div>
 <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span> 空置</div>
@@ -331,8 +383,24 @@
 <td class="py-4"><span class="text-[10px] font-bold bg-blue-50 text-blue-600 px-2 py-0.5 rounded">电子科技</span></td>
 <td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-emerald-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 履约中</span></td>
 <td class="py-4">
-<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">arrow_forward_ios</span></button>
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="a201" type="button"><span class="material-symbols-outlined text-lg">arrow_forward_ios</span></button>
 </td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">A-202</td>
+<td class="py-4"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-[10px] font-bold">SV</div><span class="text-sm font-medium">Swarovski Atelier</span></div></td>
+<td class="py-4 text-sm font-mono">186.00</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-fuchsia-50 text-fuchsia-600 px-2 py-0.5 rounded">轻奢配饰</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-emerald-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 履约中</span></td>
+<td class="py-4"><button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="a202" type="button"><span class="material-symbols-outlined text-lg">arrow_forward_ios</span></button></td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">A-203</td>
+<td class="py-4"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-[10px] font-bold">MU</div><span class="text-sm font-medium">MUJI Lab</span></div></td>
+<td class="py-4 text-sm font-mono">172.80</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-amber-50 text-amber-700 px-2 py-0.5 rounded">生活方式</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-amber-600"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 欠费预警</span></td>
+<td class="py-4"><button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="a203" type="button"><span class="material-symbols-outlined text-lg">priority_high</span></button></td>
 </tr>
 <tr class="group hover:bg-surface-container-low/50 transition-colors">
 <td class="py-4 text-sm font-bold text-primary">A-204</td>
@@ -341,8 +409,16 @@
 <td class="py-4"><span class="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded">待招商</span></td>
 <td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-slate-400"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> 空置中</span></td>
 <td class="py-4">
-<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">add_circle</span></button>
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="a204" type="button"><span class="material-symbols-outlined text-lg">add_circle</span></button>
 </td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 text-sm font-bold text-primary">B-201</td>
+<td class="py-4"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-[10px] font-bold">SE</div><span class="text-sm font-medium">Sephora Studio</span></div></td>
+<td class="py-4 text-sm font-mono">248.60</td>
+<td class="py-4"><span class="text-[10px] font-bold bg-pink-50 text-pink-600 px-2 py-0.5 rounded">美妆护理</span></td>
+<td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-emerald-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 履约中</span></td>
+<td class="py-4"><button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="b201" type="button"><span class="material-symbols-outlined text-lg">arrow_forward_ios</span></button></td>
 </tr>
 <tr class="group hover:bg-surface-container-low/50 transition-colors">
 <td class="py-4 text-sm font-bold text-primary">C-201</td>
@@ -356,7 +432,7 @@
 <td class="py-4"><span class="text-[10px] font-bold bg-orange-50 text-orange-600 px-2 py-0.5 rounded">运动户外</span></td>
 <td class="py-4"><span class="flex items-center gap-1.5 text-xs font-bold text-amber-600"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 租金逾期</span></td>
 <td class="py-4">
-<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all"><span class="material-symbols-outlined text-lg">priority_high</span></button>
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded transition-all" data-shop-id="c201" type="button"><span class="material-symbols-outlined text-lg">priority_high</span></button>
 </td>
 </tr>
 </tbody>
@@ -372,8 +448,9 @@
 <div class="relative z-10">
 <div class="flex items-start justify-between mb-6">
 <div>
-<span class="text-[10px] font-black uppercase tracking-widest text-white/50">当前选中资产</span>
-<h2 class="text-2xl font-black mt-1">A-201 Apple Store</h2>
+<span class="text-[10px] font-black uppercase tracking-widest text-white/50" id="asset-chip">当前选中资产</span>
+<h2 class="text-2xl font-black mt-1" id="asset-title">A-201 Apple Store</h2>
+<p class="mt-2 text-xs leading-6 text-white/70" id="asset-summary">旗舰电子科技门店，入口展示与中岛体验并行，当前经营状态稳定。</p>
 </div>
 <span class="p-2 bg-white/10 rounded-lg backdrop-blur-sm">
 <span class="material-symbols-outlined">info</span>
@@ -382,15 +459,15 @@
 <div class="space-y-4 mb-8">
 <div class="flex justify-between items-center border-b border-white/10 pb-2">
 <span class="text-xs text-white/60">签约起止</span>
-<span class="text-sm font-bold">2023.01 - 2028.12</span>
+<span class="text-sm font-bold" id="asset-lease">2023.01 - 2028.12</span>
 </div>
 <div class="flex justify-between items-center border-b border-white/10 pb-2">
 <span class="text-xs text-white/60">月基准租金</span>
-<span class="text-sm font-bold">¥ 450,000.00</span>
+<span class="text-sm font-bold" id="asset-rent">¥ 450,000.00</span>
 </div>
 <div class="flex justify-between items-center border-b border-white/10 pb-2">
 <span class="text-xs text-white/60">物业费标准</span>
-<span class="text-sm font-bold">¥ 45.00/m²/月</span>
+<span class="text-sm font-bold" id="asset-fee">¥ 45.00/m²/月</span>
 </div>
 </div>
 <button class="w-full py-3 bg-white text-primary rounded-xl font-black text-sm hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
@@ -403,38 +480,7 @@
 <h3 class="text-sm font-black text-primary mb-6 flex items-center gap-2">
 <span class="material-symbols-outlined text-lg">folder_open</span> 资产技术文档
                     </h3>
-<div class="space-y-3">
-<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
-<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">architecture</span>
-</div>
-<div class="flex-1">
-<p class="text-xs font-bold text-slate-700">A-201_建筑施工图纸.pdf</p>
-<p class="text-[10px] text-slate-400">12.4 MB · 2023/12/01 更新</p>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
-</div>
-<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
-<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">electric_bolt</span>
-</div>
-<div class="flex-1">
-<p class="text-xs font-bold text-slate-700">水电点位分布及荷载.dwg</p>
-<p class="text-[10px] text-slate-400">4.1 MB · 2024/02/15 更新</p>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
-</div>
-<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer">
-<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">description</span>
-</div>
-<div class="flex-1">
-<p class="text-xs font-bold text-slate-700">品牌方装修规范要求.pdf</p>
-<p class="text-[10px] text-slate-400">2.8 MB · 2024/03/10 更新</p>
-</div>
-<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span>
-</div>
-</div>
+<div class="space-y-3" id="asset-documents"></div>
 <button class="w-full mt-4 py-2 border-2 border-dashed border-slate-200 rounded-xl text-xs font-bold text-slate-400 hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-sm">add</span> 上传新文件
                     </button>
@@ -442,21 +488,9 @@
 <!-- Utilities Chart Placeholder -->
 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
 <h3 class="text-sm font-black text-primary mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-lg">bolt</span> 能耗实时监控
+<span class="material-symbols-outlined text-lg">bolt</span> <span id="asset-energy-title">能耗实时监控</span>
                     </h3>
-<div class="h-40 w-full relative flex items-end gap-1 px-2 pt-8">
-<!-- Simulated Bar Chart -->
-<div class="flex-1 bg-primary/10 rounded-t-sm h-[60%] group relative">
-<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">85%</div>
-</div>
-<div class="flex-1 bg-primary/20 rounded-t-sm h-[85%] group relative"></div>
-<div class="flex-1 bg-primary/30 rounded-t-sm h-[70%] group relative"></div>
-<div class="flex-1 bg-primary/40 rounded-t-sm h-[95%] group relative"></div>
-<div class="flex-1 bg-primary/50 rounded-t-sm h-[80%] group relative"></div>
-<div class="flex-1 bg-primary/60 rounded-t-sm h-[65%] group relative"></div>
-<div class="flex-1 bg-primary/80 rounded-t-sm h-[90%] group relative"></div>
-<div class="flex-1 bg-primary rounded-t-sm h-[75%] group relative"></div>
-</div>
+<div class="h-40 w-full relative flex items-end gap-1 px-2 pt-8" id="asset-energy-bars"></div>
 <div class="flex justify-between mt-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter">
 <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Today</span>
 </div>
@@ -471,4 +505,48 @@
             新增铺位/招商项目
         </div>
 </button>
+<script>
+(() => {
+  const shops = {
+    a201: { shortTitle: "A201 - Apple Store", title: "A-201 Apple Store", floor: "F2 / L2", brand: "Apple Store", area: "420.50", lease: "2023.01 - 2028.12", rent: "¥ 450,000.00", fee: "¥ 45.00/m²/月", summary: "旗舰电子科技门店，入口展示与中岛体验并行，当前经营状态稳定。", tip: "该店以新品陈列和体验咨询为主，入口区域需要维持强曝光。", status: { text: "履约中", badgeClass: "bg-emerald-50 text-emerald-700" }, metrics: [{ label: "坪效", value: "¥ 10,702/m²", tone: "text-primary" }, { label: "周客流", value: "18,420", tone: "text-emerald-600" }, { label: "员工编制", value: "34 人", tone: "text-slate-700" }], docs: [{ icon: "architecture", name: "A-201_建筑施工图纸.pdf", meta: "12.4 MB · 2023/12/01 更新" }, { icon: "electric_bolt", name: "水电点位分布及荷载.dwg", meta: "4.1 MB · 2024/02/15 更新" }, { icon: "description", name: "品牌方装修规范要求.pdf", meta: "2.8 MB · 2024/03/10 更新" }], energy: [60, 85, 70, 95, 80, 65, 90, 75], layoutSubtitle: "展示该铺位的前场、中岛、收银与仓储动线。", layout: [{ name: "品牌形象入口", className: "col-span-2 row-span-1 bg-blue-50 border border-blue-200 text-primary" }, { name: "新品首发岛台", className: "col-span-2 row-span-1 bg-indigo-50 border border-indigo-200 text-indigo-700" }, { name: "咨询收银", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "体验台 A", className: "col-span-2 row-span-2 bg-emerald-50 border border-emerald-200 text-emerald-700" }, { name: "体验台 B", className: "col-span-2 row-span-2 bg-emerald-50 border border-emerald-200 text-emerald-700" }, { name: "配件墙", className: "col-span-1 row-span-2 bg-cyan-50 border border-cyan-200 text-cyan-700" }, { name: "售后吧台", className: "col-span-1 row-span-2 bg-amber-50 border border-amber-200 text-amber-700" }, { name: "后仓", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }, { name: "员工后场", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }] },
+    a202: { shortTitle: "A202 - Swarovski Atelier", title: "A-202 Swarovski Atelier", floor: "F2 / L2", brand: "Swarovski Atelier", area: "186.00", lease: "2024.03 - 2027.02", rent: "¥ 188,000.00", fee: "¥ 38.00/m²/月", summary: "轻奢配饰店，门店面积小但客单价高，强调橱窗和试戴体验。", tip: "入口橱窗与 VIP 试戴区是转化关键，适合演示精品店小铺型布局。", status: { text: "履约中", badgeClass: "bg-emerald-50 text-emerald-700" }, metrics: [{ label: "坪效", value: "¥ 8,960/m²", tone: "text-primary" }, { label: "周客流", value: "6,580", tone: "text-emerald-600" }, { label: "客单价", value: "¥ 1,280", tone: "text-slate-700" }], docs: [{ icon: "architecture", name: "A-202_精品店立面图.pdf", meta: "6.8 MB · 2024/01/18 更新" }, { icon: "description", name: "VIP 陈列清单.xlsx", meta: "0.8 MB · 2024/03/02 更新" }, { icon: "security", name: "珠宝安防点位图.dwg", meta: "1.2 MB · 2024/03/16 更新" }], energy: [42, 55, 51, 58, 63, 48, 61, 57], layoutSubtitle: "精品珠宝店结构，重点展示橱窗、试戴与后仓保险区。", layout: [{ name: "双橱窗展示", className: "col-span-2 row-span-1 bg-fuchsia-50 border border-fuchsia-200 text-fuchsia-700" }, { name: "主陈列桌", className: "col-span-2 row-span-2 bg-pink-50 border border-pink-200 text-pink-700" }, { name: "VIP 试戴", className: "col-span-2 row-span-2 bg-purple-50 border border-purple-200 text-purple-700" }, { name: "收银台", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "保险柜室", className: "col-span-2 row-span-1 bg-amber-50 border border-amber-200 text-amber-700" }, { name: "后仓", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }] },
+    a203: { shortTitle: "A203 - MUJI Lab", title: "A-203 MUJI Lab", floor: "F2 / L2", brand: "MUJI Lab", area: "172.80", lease: "2023.06 - 2026.05", rent: "¥ 142,000.00", fee: "¥ 36.00/m²/月", summary: "生活方式门店，当前存在租金逾期，需要联动租控与催缴。", tip: "这里可以重点讲异常铺位的平面核查、巡场复核和催缴闭环。", status: { text: "欠费预警", badgeClass: "bg-amber-50 text-amber-700" }, metrics: [{ label: "欠费金额", value: "¥ 63,000", tone: "text-amber-700" }, { label: "逾期天数", value: "12 天", tone: "text-amber-700" }, { label: "整改节点", value: "4 月 18 日", tone: "text-slate-700" }], docs: [{ icon: "warning", name: "A-203_租金催缴通知.pdf", meta: "0.6 MB · 今天生成" }, { icon: "assignment", name: "巡场整改记录.docx", meta: "1.1 MB · 昨天更新" }, { icon: "architecture", name: "门店装修验收图纸.pdf", meta: "5.4 MB · 2023/11/08 更新" }], energy: [58, 61, 68, 71, 64, 67, 69, 74], layoutSubtitle: "异常铺位内部结构，用于核对陈列、仓储与经营状态是否匹配。", layout: [{ name: "入口陈列", className: "col-span-2 row-span-1 bg-amber-50 border border-amber-200 text-amber-700" }, { name: "生活杂货区", className: "col-span-2 row-span-2 bg-lime-50 border border-lime-200 text-lime-700" }, { name: "家居样板", className: "col-span-2 row-span-2 bg-emerald-50 border border-emerald-200 text-emerald-700" }, { name: "收银台", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "后仓", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }, { name: "卸货口", className: "col-span-2 row-span-1 bg-orange-50 border border-orange-200 text-orange-700" }] },
+    a204: { shortTitle: "A204 - 招商预留铺位", title: "A-204 空置铺位", floor: "F2 / L2", brand: "待招商", area: "156.20", lease: "待签约", rent: "建议租金 ¥ 128,000.00", fee: "物业费预估 ¥ 32.00/m²/月", summary: "当前为空置铺位，展示招商方案草图和可拆分结构，适合客户演示招商预案。", tip: "可用于讲解空铺如何在系统中做招商规划、动线评估和方案切换。", status: { text: "空置中", badgeClass: "bg-slate-100 text-slate-600" }, metrics: [{ label: "推荐业态", value: "精品咖啡", tone: "text-primary" }, { label: "可拆分方案", value: "2 套", tone: "text-slate-700" }, { label: "预计回租期", value: "45 天", tone: "text-emerald-600" }], docs: [{ icon: "storefront", name: "A-204_招商定位建议.pptx", meta: "3.1 MB · 今天更新" }, { icon: "architecture", name: "A-204_可拆分平面方案.dwg", meta: "2.0 MB · 2024/04/06 更新" }, { icon: "group", name: "意向品牌访谈纪要.pdf", meta: "0.9 MB · 2024/04/08 更新" }], energy: [18, 14, 16, 12, 13, 11, 15, 12], layoutSubtitle: "空置铺位展示招商方案，可切换出杯台、座区与后场预留。", layout: [{ name: "门头形象区", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "开放座区", className: "col-span-2 row-span-2 bg-blue-50 border border-blue-200 text-primary" }, { name: "出杯吧台", className: "col-span-2 row-span-1 bg-amber-50 border border-amber-200 text-amber-700" }, { name: "轻餐备餐", className: "col-span-2 row-span-1 bg-orange-50 border border-orange-200 text-orange-700" }, { name: "后仓预留", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }, { name: "外摆接口", className: "col-span-2 row-span-1 bg-cyan-50 border border-cyan-200 text-cyan-700" }] },
+    b201: { shortTitle: "B201 - Sephora Studio", title: "B-201 Sephora Studio", floor: "F2 / L2", brand: "Sephora Studio", area: "248.60", lease: "2022.09 - 2027.08", rent: "¥ 205,000.00", fee: "¥ 40.00/m²/月", summary: "美妆集合店，彩妆试妆和皮肤检测为主，导购驻店效率高。", tip: "适合用来演示体验型门店的动线，特别是试妆、收银和会员服务区。", status: { text: "履约中", badgeClass: "bg-emerald-50 text-emerald-700" }, metrics: [{ label: "会员转化", value: "32.4%", tone: "text-primary" }, { label: "周客流", value: "9,360", tone: "text-emerald-600" }, { label: "试妆台利用率", value: "78%", tone: "text-slate-700" }], docs: [{ icon: "face", name: "B-201_美容仪点位图.pdf", meta: "1.5 MB · 2024/03/28 更新" }, { icon: "description", name: "会员活动脚本.docx", meta: "0.5 MB · 2024/04/02 更新" }, { icon: "architecture", name: "彩妆试妆区施工图.pdf", meta: "4.9 MB · 2024/01/14 更新" }], energy: [55, 57, 62, 60, 66, 64, 68, 70], layoutSubtitle: "围绕试妆、会员咨询和快闪陈列的集合店结构。", layout: [{ name: "彩妆快闪", className: "col-span-2 row-span-1 bg-pink-50 border border-pink-200 text-pink-700" }, { name: "护肤陈列", className: "col-span-2 row-span-2 bg-rose-50 border border-rose-200 text-rose-700" }, { name: "皮肤检测", className: "col-span-2 row-span-1 bg-purple-50 border border-purple-200 text-purple-700" }, { name: "会员顾问区", className: "col-span-2 row-span-1 bg-indigo-50 border border-indigo-200 text-indigo-700" }, { name: "收银与寄存", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "后仓补货", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }] },
+    c201: { shortTitle: "C201 - Nike Beacon", title: "C-201 Nike Beacon", floor: "F2 / L2", brand: "Nike Beacon", area: "680.00", lease: "2021.11 - 2029.10", rent: "¥ 528,000.00", fee: "¥ 48.00/m²/月", summary: "大体量运动旗舰店，存在租金逾期，内部包含鞋墙、服饰区和试穿跑道。", tip: "这类大铺型可以展示从前场陈列到试穿体验再到仓储补货的完整闭环。", status: { text: "租金逾期", badgeClass: "bg-amber-50 text-amber-700" }, metrics: [{ label: "逾期金额", value: "¥ 128,000", tone: "text-amber-700" }, { label: "坪效", value: "¥ 7,980/m²", tone: "text-primary" }, { label: "试穿转化", value: "24.8%", tone: "text-slate-700" }], docs: [{ icon: "sports_soccer", name: "C-201_运动体验区布置图.pdf", meta: "8.1 MB · 2024/02/21 更新" }, { icon: "warning", name: "租金异常协同记录.docx", meta: "0.7 MB · 今天更新" }, { icon: "inventory_2", name: "后仓陈列与补货流转.xlsx", meta: "1.3 MB · 2024/03/26 更新" }], energy: [72, 79, 83, 88, 84, 81, 90, 86], layoutSubtitle: "运动旗舰店内部结构，覆盖鞋墙、服饰区、跑道体验和后仓。", layout: [{ name: "鞋墙展示", className: "col-span-2 row-span-2 bg-orange-50 border border-orange-200 text-orange-700" }, { name: "服饰主陈列", className: "col-span-2 row-span-2 bg-emerald-50 border border-emerald-200 text-emerald-700" }, { name: "主题快闪", className: "col-span-2 row-span-1 bg-red-50 border border-red-200 text-red-700" }, { name: "跑道体验", className: "col-span-3 row-span-1 bg-blue-50 border border-blue-200 text-primary" }, { name: "收银台", className: "col-span-1 row-span-1 bg-slate-100 border border-slate-200 text-slate-700" }, { name: "试衣间", className: "col-span-2 row-span-1 bg-violet-50 border border-violet-200 text-violet-700" }, { name: "后仓补货", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }, { name: "员工后场", className: "col-span-2 row-span-1 bg-slate-100 border border-slate-200 text-slate-600" }] }
+  };
+  const floorMapShell = document.getElementById("floor-map-shell");
+  const overviewStage = document.getElementById("floor-overview-stage");
+  const detailStage = document.getElementById("shop-detail-stage");
+  const detailBack = document.getElementById("shop-detail-back");
+  const mapLegend = document.getElementById("floor-map-legend");
+  const mapControls = document.getElementById("floor-map-controls");
+  const detailTitle = document.getElementById("shop-detail-title");
+  const detailSubtitle = document.getElementById("shop-detail-subtitle");
+  const detailStatusPill = document.getElementById("shop-detail-status-pill");
+  const detailFloorPill = document.getElementById("shop-detail-floor-pill");
+  const detailAreaLine = document.getElementById("shop-detail-area-line");
+  const detailTip = document.getElementById("shop-detail-tip");
+  const layoutGrid = document.getElementById("shop-layout-grid");
+  const detailMetrics = document.getElementById("shop-detail-metrics");
+  const assetTitle = document.getElementById("asset-title");
+  const assetSummary = document.getElementById("asset-summary");
+  const assetLease = document.getElementById("asset-lease");
+  const assetRent = document.getElementById("asset-rent");
+  const assetFee = document.getElementById("asset-fee");
+  const assetDocuments = document.getElementById("asset-documents");
+  const assetEnergyTitle = document.getElementById("asset-energy-title");
+  const assetEnergyBars = document.getElementById("asset-energy-bars");
+  const triggers = document.querySelectorAll("[data-shop-id]");
+  function renderDocuments(shop) { assetDocuments.innerHTML = shop.docs.map((doc) => `<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-xl group hover:bg-surface-container-highest transition-colors cursor-pointer"><div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-primary group-hover:scale-105 transition-transform"><span class="material-symbols-outlined">${doc.icon}</span></div><div class="flex-1"><p class="text-xs font-bold text-slate-700">${doc.name}</p><p class="text-[10px] text-slate-400">${doc.meta}</p></div><span class="material-symbols-outlined text-slate-300 group-hover:text-primary">download</span></div>`).join(""); }
+  function renderEnergy(shop) { assetEnergyTitle.textContent = `${shop.brand} 能耗实时监控`; assetEnergyBars.innerHTML = shop.energy.map((value, index) => `<div class="flex-1 rounded-t-sm ${index === shop.energy.length - 1 ? "bg-primary" : `bg-primary/${Math.min(90, 10 * (index + 1))}`}" style="height:${value}%"><div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">${value}%</div></div>`).join(""); Array.from(assetEnergyBars.children).forEach((bar, index) => { bar.classList.add("group", "relative"); if (index < shop.energy.length - 1) { bar.style.backgroundColor = ""; } }); }
+  function renderDetail(shop) { detailTitle.textContent = shop.shortTitle; detailSubtitle.textContent = shop.layoutSubtitle; detailStatusPill.textContent = shop.status.text; detailStatusPill.className = `rounded-full px-3 py-1 text-[11px] font-semibold ${shop.status.badgeClass}`; detailFloorPill.textContent = shop.floor; detailAreaLine.textContent = `建筑面积 ${shop.area} m²`; detailTip.textContent = shop.tip; layoutGrid.innerHTML = shop.layout.map((area) => `<div class="${area.className} rounded-[18px] flex items-center justify-center text-center text-xs font-bold px-2 py-2 shadow-sm">${area.name}</div>`).join(""); detailMetrics.innerHTML = shop.metrics.map((metric) => `<div class="rounded-[20px] border border-slate-100 bg-white px-4 py-3 shadow-sm"><p class="text-[11px] font-black uppercase tracking-[0.18em] text-slate-400">${metric.label}</p><p class="mt-2 text-lg font-black ${metric.tone}">${metric.value}</p></div>`).join(""); }
+  function renderAssetPanel(shop) { assetTitle.textContent = shop.title; assetSummary.textContent = shop.summary; assetLease.textContent = shop.lease; assetRent.textContent = shop.rent; assetFee.textContent = shop.fee; renderDocuments(shop); renderEnergy(shop); }
+  function openShop(shopId) { const shop = shops[shopId]; if (!shop) return; renderDetail(shop); renderAssetPanel(shop); floorMapShell?.classList.remove("aspect-video", "items-center"); floorMapShell?.classList.add("items-start"); overviewStage.classList.add("hidden"); detailStage.classList.remove("hidden"); detailStage.scrollTop = 0; mapLegend?.classList.add("hidden"); mapControls?.classList.add("hidden"); requestAnimationFrame(() => { if (!floorMapShell || !detailStage) return; const desiredHeight = Math.max(detailStage.scrollHeight + 48, 620); floorMapShell.style.height = `${desiredHeight}px`; }); triggers.forEach((trigger) => { trigger.classList.toggle("ring-2", trigger.dataset.shopId === shopId); trigger.classList.toggle("ring-primary/25", trigger.dataset.shopId === shopId); }); }
+  function backToOverview() { floorMapShell?.classList.add("aspect-video", "items-center"); floorMapShell?.classList.remove("items-start"); if (floorMapShell) floorMapShell.style.height = ""; overviewStage.classList.remove("hidden"); detailStage.classList.add("hidden"); mapLegend?.classList.remove("hidden"); mapControls?.classList.remove("hidden"); }
+  triggers.forEach((trigger) => { trigger.addEventListener("click", () => openShop(trigger.dataset.shopId)); });
+  detailBack?.addEventListener("click", backToOverview);
+  renderAssetPanel(shops.a201);
+})();
+</script>
 </body></html>

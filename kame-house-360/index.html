@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>龟仙屋 360 Viewer</title>
+    <link rel="icon" href="data:," />
+    <link
+      rel="stylesheet"
+      href="./vendor/pannellum/pannellum.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="experience" aria-label="360 panorama viewer">
+      <section class="viewer-shell">
+        <div id="panorama" aria-label="Interactive equirectangular 360 image"></div>
+
+        <div class="topbar">
+          <div>
+            <p class="kicker">Equirectangular 360</p>
+            <h1>龟仙屋</h1>
+          </div>
+          <button class="icon-button" id="fullscreen" type="button" aria-label="Toggle fullscreen" title="Fullscreen">
+            <span aria-hidden="true">⛶</span>
+          </button>
+        </div>
+
+        <div class="control-dock" aria-label="Panorama controls">
+          <button type="button" data-control="left" aria-label="Pan left" title="Pan left">←</button>
+          <button type="button" data-control="right" aria-label="Pan right" title="Pan right">→</button>
+          <button type="button" data-control="up" aria-label="Look up" title="Look up">↑</button>
+          <button type="button" data-control="down" aria-label="Look down" title="Look down">↓</button>
+          <span class="divider" aria-hidden="true"></span>
+          <button type="button" data-control="zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+          <button type="button" data-control="zoom-out" aria-label="Zoom out" title="Zoom out">−</button>
+          <button type="button" data-control="reset" aria-label="Reset view" title="Reset view">⌂</button>
+        </div>
+
+        <div class="caption">
+          <span>GPT-Image-2 anime panorama</span>
+          <strong>Drag to look around</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="./vendor/pannellum/pannellum.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

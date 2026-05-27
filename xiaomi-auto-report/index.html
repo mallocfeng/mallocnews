@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米汽车 2026年Q1 销量报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --xiaomi-orange: #FF6A00;
+            --dark-gray: #333333;
+            --light-gray: #F5F5F5;
+            --blue: #0078D4;
+            --green: #107C10;
+            --pink: #E3008C;
+            --text-secondary: #666666;
+            --border-light: #DDDDDD;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        /* ========== Navigation ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(51, 51, 51, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            height: 56px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-logo {
+            color: var(--xiaomi-orange);
+            font-weight: 700;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.25rem;
+            margin-left: 2rem;
+            overflow-x: auto;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            background: rgba(255, 106, 0, 0.2);
+        }
+
+        /* ========== Section Common ========== */
+        section {
+            min-height: 100vh;
+            padding: 80px 5% 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--xiaomi-orange);
+            border-radius: 2px;
+            margin-bottom: 2.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ========== Cover ========== */
+        #cover {
+            background: var(--dark-gray);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 56px;
+        }
+
+        #cover::before,
+        #cover::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--xiaomi-orange);
+        }
+
+        #cover::before { top: 56px; }
+        #cover::after { bottom: 0; }
+
+        .cover-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cover-main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .cover-sub-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--xiaomi-orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .cover-date {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+        }
+
+        .cover-footer {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* ========== Overview KPIs ========== */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .kpi-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .kpi-value.orange { color: var(--xiaomi-orange); }
+        .kpi-value.green  { color: var(--green); }
+        .kpi-value.blue   { color: var(--blue); }
+
+        .kpi-unit {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .overview-notes {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 2;
+        }
+
+        .overview-notes li {
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .overview-notes li::before {
+            content: '•';
+            color: var(--xiaomi-orange);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========== Model Detail ========== */
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .model-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .model-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .model-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .model-card-title.orange { color: var(--xiaomi-orange); }
+        .model-card-title.blue   { color: var(--blue); }
+
+        .model-card-subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .model-delivery-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .model-delivery-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin: 0.25rem 0;
+        }
+
+        .model-share {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.25rem;
+        }
+
+        .model-note {
+            font-size: 0.8rem;
+            color: var(--green);
+        }
+
+        .model-note.gray {
+            color: #888;
+        }
+
+        .detail-notes {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+        }
+
+        .detail-notes h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-gray);
+        }
+
+        .detail-notes li {
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 2;
+        }
+
+        .detail-notes li::before {
+            content: '•';
+            color: var(--xiaomi-orange);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========== Pie Chart ========== */
+        .pie-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .pie-chart-container {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .pie-analysis h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .pie-analysis-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pie-analysis-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pie-analysis-card h4.orange { color: var(--xiaomi-orange); }
+        .pie-analysis-card h4.blue   { color: var(--blue); }
+
+        .pie-analysis-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* ========== Market ========== */
+        .market-rank-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .rank-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .rank-badge {
+            background: var(--xiaomi-orange);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .rank-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .rank-card:last-child .rank-info h3 {
+            color: var(--xiaomi-orange);
+        }
+
+        .rank-info p {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .advantages-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+
+        .advantage-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .advantage-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .advantage-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--xiaomi-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .advantage-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ========== Monthly Trend ========== */
+        .trend-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .trend-chart-container {
+            position: relative;
+            max-height: 420px;
+        }
+
+        .trend-analysis {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .trend-analysis h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            color: var(--dark-gray);
+        }
+
+        .trend-analysis p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 2;
+        }
+
+        /* ========== Summary ========== */
+        #summary {
+            background: var(--dark-gray);
+            text-align: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        #summary::before,
+        #summary::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--xiaomi-orange);
+        }
+
+        #summary::before { top: 0; }
+        #summary::after { bottom: 0; }
+
+        #summary .section-title {
+            color: #fff;
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #summary .section-divider {
+            margin: 0 auto 3rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: left;
+            transition: background 0.3s;
+        }
+
+        .summary-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .summary-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .summary-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--xiaomi-orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .summary-text p {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .summary-outlook {
+            font-size: 1.1rem;
+            color: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== Counter Animation ========== */
+        .count-up {
+            display: inline-block;
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 900px) {
+            section {
+                padding: 70px 4% 40px;
+            }
+
+            .cover-main-title {
+                font-size: 2rem;
+            }
+
+            .cover-sub-title {
+                font-size: 1.5rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-value {
+                font-size: 2.4rem;
+            }
+
+            .model-grid,
+            .pie-layout,
+            .market-rank-grid,
+            .trend-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-main-title {
+                font-size: 1.5rem;
+            }
+
+            .cover-sub-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-logo">XIAOMI EV</div>
+    <div class="nav-links">
+        <a href="#cover">封面</a>
+        <a href="#overview">概览</a>
+        <a href="#models">车型</a>
+        <a href="#pie">占比</a>
+        <a href="#market">市场</a>
+        <a href="#trend">趋势</a>
+        <a href="#summary">总结</a>
+    </div>
+</nav>
+
+<!-- Cover -->
+<section id="cover">
+    <div class="cover-content">
+        <h1 class="cover-main-title">小米汽车 2026年第一季度</h1>
+        <h2 class="cover-sub-title">销量报告</h2>
+        <p class="cover-date">报告期间：2026年1月 – 3月</p>
+        <p class="cover-footer">XIAOMI EV &nbsp;|&nbsp; 数据来源：小米集团官方财报</p>
+    </div>
+</section>
+
+<!-- Overview -->
+<section id="overview">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Q1 2026 整体交付概览</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-label">总交付量</div>
+                <div class="kpi-value orange count-up" data-target="80856">0</div>
+                <div class="kpi-unit">辆</div>
+            </div>
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-label">同比增长</div>
+                <div class="kpi-value green">+6.6%</div>
+                <div class="kpi-unit">较去年同期</div>
+            </div>
+            <div class="kpi-card animate-on-scroll">
+                <div class="kpi-label">汽车业务收入</div>
+                <div class="kpi-value blue count-up" data-target="190">0</div>
+                <div class="kpi-unit">亿元人民币</div>
+            </div>
+        </div>
+
+        <ul class="overview-notes animate-on-scroll">
+            <li>本季度小米汽车处于产品迭代过渡期，YU7系列承担主力交付任务</li>
+            <li>新一代SU7于3月23日正式开启交付，为季度末带来新增量</li>
+            <li>整体业务保持稳健增长，市场竞争力持续提升</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Model Detail -->
+<section id="models">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">各车型交付详情</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="model-grid">
+            <div class="model-card animate-on-scroll">
+                <div class="model-card-title orange">YU7 系列</div>
+                <div class="model-card-subtitle">豪华高性能中大型SUV</div>
+                <div class="model-delivery-label">Q1交付量</div>
+                <div class="model-delivery-value count-up" data-target="71623">0 辆</div>
+                <div class="model-share">占季度总交付量 88.6%</div>
+                <div class="model-note">上市10个月累计交付超23万台</div>
+            </div>
+            <div class="model-card animate-on-scroll">
+                <div class="model-card-title blue">SU7 系列（新一代）</div>
+                <div class="model-card-subtitle">纯电轿车 &nbsp;|&nbsp; 3月23日开启交付</div>
+                <div class="model-delivery-label">Q1交付量</div>
+                <div class="model-delivery-value count-up" data-target="9233">0 辆</div>
+                <div class="model-share">占季度总交付量 11.4%</div>
+                <div class="model-note gray">仅统计3月23日-31日交付量</div>
+            </div>
+        </div>
+
+        <div class="detail-notes animate-on-scroll">
+            <h4>💡 分析要点</h4>
+            <ul>
+                <li>YU7系列作为成熟产品线，持续稳定输出，是本季度交付主力</li>
+                <li>新一代SU7于季度末开始交付，完整季度贡献将在Q2体现</li>
+                <li>两款车型形成轿车+SUV双线布局，覆盖不同细分市场</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Pie Chart -->
+<section id="pie">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">车型销量占比分析</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="pie-layout">
+            <div class="pie-chart-container animate-on-scroll">
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="pie-analysis animate-on-scroll">
+                <h3>销量构成分析</h3>
+                <div class="pie-analysis-card">
+                    <h4 class="orange">YU7 系列</h4>
+                    <p>
+                        • 交付量：71,623 辆<br>
+                        • 占比：88.6%<br>
+                        • 本季度主力车型
+                    </p>
+                </div>
+                <div class="pie-analysis-card">
+                    <h4 class="blue">SU7 系列</h4>
+                    <p>
+                        • 交付量：9,233 辆<br>
+                        • 占比：11.4%<br>
+                        • 3月下旬开始交付
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Market Position -->
+<section id="market">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">市场表现与竞争力</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="market-rank-grid">
+            <div class="rank-card animate-on-scroll">
+                <div class="rank-badge">TOP 1</div>
+                <div class="rank-info">
+                    <h3>SU7 市场地位</h3>
+                    <p>20万元以上纯电轿车市场销量冠军</p>
+                </div>
+            </div>
+            <div class="rank-card animate-on-scroll">
+                <div class="rank-badge">TOP 2</div>
+                <div class="rank-info">
+                    <h3 style="color: var(--xiaomi-orange);">YU7 市场地位</h3>
+                    <p>SUV市场销量亚军，实力强劲</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="advantages-title animate-on-scroll">核心竞争优势</h3>
+        <div class="advantages-grid">
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">🚀</div>
+                <h4>品牌势能</h4>
+                <p>小米生态链协同效应<br>强大品牌号召力</p>
+            </div>
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">⚡</div>
+                <h4>产品力</h4>
+                <p>高性能、高颜值<br>智能化体验领先</p>
+            </div>
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">🏪</div>
+                <h4>渠道优势</h4>
+                <p>线上线下融合<br>新零售模式创新</p>
+            </div>
+            <div class="advantage-card animate-on-scroll">
+                <div class="advantage-icon">👥</div>
+                <h4>用户运营</h4>
+                <p>米粉社区转化<br>用户粘性高</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Monthly Trend -->
+<section id="trend">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Q1 月度交付趋势</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="trend-layout">
+            <div class="trend-chart-container animate-on-scroll">
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="trend-analysis animate-on-scroll">
+                <h3>📊 月度分析</h3>
+                <p>
+                    <strong>1-2月：</strong>YU7稳定输出，月均约2.3万辆<br><br>
+                    <strong>3月：</strong>交付量回升<br>
+                    &nbsp;&nbsp;• YU7 交付 25,323 辆<br>
+                    &nbsp;&nbsp;• SU7 开启交付 9,233 辆<br><br>
+                    季度末冲刺明显
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Summary -->
+<section id="summary">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">总结与展望</h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="summary-grid">
+            <div class="summary-item animate-on-scroll">
+                <div class="summary-icon">✅</div>
+                <div class="summary-text">
+                    <h4>Q1交付80,856辆</h4>
+                    <p>同比增长6.6%，业务稳健增长</p>
+                </div>
+            </div>
+            <div class="summary-item animate-on-scroll">
+                <div class="summary-icon">✅</div>
+                <div class="summary-text">
+                    <h4>YU7系列表现出色</h4>
+                    <p>单季交付7.1万辆，SUV市场TOP 2</p>
+                </div>
+            </div>
+            <div class="summary-item animate-on-scroll">
+                <div class="summary-icon">✅</div>
+                <div class="summary-text">
+                    <h4>新一代SU7开启交付</h4>
+                    <p>3月下旬交付近万辆，潜力巨大</p>
+                </div>
+            </div>
+            <div class="summary-item animate-on-scroll">
+                <div class="summary-icon">✅</div>
+                <div class="summary-text">
+                    <h4>收入规模持续扩大</h4>
+                    <p>汽车业务季度收入190亿元</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="summary-outlook animate-on-scroll">
+            🔮 Q2展望：新一代SU7完整季度交付 + YU7持续放量，有望冲击更高目标
+        </p>
+    </div>
+</section>
+
+<script>
+    // ========== Scroll Animations ==========
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // ========== Active Nav Link ==========
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const top = section.offsetTop - 100;
+            if (window.scrollY >= top) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // ========== Count-Up Animation ==========
+    function animateCountUp(el) {
+        const target = parseInt(el.getAttribute('data-target'));
+        const duration = 1500;
+        const start = performance.now();
+
+        function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = Math.floor(eased * target);
+            el.textContent = current.toLocaleString();
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                el.textContent = target.toLocaleString();
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCountUp(entry.target);
+                countObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+    // ========== Pie Chart ==========
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: ['YU7 系列', 'SU7 系列'],
+            datasets: [{
+                data: [71623, 9233],
+                backgroundColor: ['#FF6A00', '#0078D4'],
+                borderColor: '#fff',
+                borderWidth: 3,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14 },
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const pct = ((context.parsed / total) * 100).toFixed(1);
+                            return `${context.label}: ${context.parsed.toLocaleString()} 辆 (${pct}%)`;
+                        }
+                    }
+                },
+                datalabels: false
+            }
+        }
+    });
+
+    // ========== Bar Chart ==========
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: ['1月', '2月', '3月'],
+            datasets: [
+                {
+                    label: 'YU7',
+                    data: [23500, 22800, 25323],
+                    backgroundColor: '#FF6A00',
+                    borderRadius: 6
+                },
+                {
+                    label: 'SU7',
+                    data: [0, 0, 9233],
+                    backgroundColor: '#0078D4',
+                    borderRadius: 6
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 13 },
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} 辆`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '交付量（辆）',
+                        font: { size: 13 }
+                    },
+                    grid: {
+                        color: '#E0E0E0'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        }
+                    }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
